@@ -1004,7 +1004,7 @@ Para agregar un nuevo elemento al arreglo utilizamos la función o método `push
 const autos4 = ['BMW','Mercedes Benz','Volvo'];
 console.log(autos4);
 
-// agregamos el elemento 'Audi' al arreglo en el indice 3
+/** agregamos el elemento 'Audi' al arreglo en el indice 3 */
 autos4.push('Audi');
 console.log(autos4);
 
@@ -1063,3 +1063,755 @@ function nombreFuncion(argumento1, argumento2, ... argumentoN){
   cuerpo de la funcion
 }
 ```
+
+#!javascript
+
+/** llamamos la funcion antes de definirla */
+miFuncion(4, 2);
+
+/** declaramos la función
+ * si la misma tiene más de un argumento se separan por comas */
+function miFuncion(a, b){ 
+    console.log("Suma: " + (a + b));   
+}
+
+/** llamamos la función después de definirla */
+miFuncion(2, 3);
+
+#!markdown
+
+Podemos llamar a la función, en la sucuencia de sentencias, incluso antes de definir la misma. Esto se conoce como hoisting, donde JavaScript pasa, de forma automatica, la definición de la función al comienzo de la ejecución de sentencias, para que esté definida al momento de llamarla.
+
+#!markdown
+
+## Palabra reservada `return`
+
+#!markdown
+
+Cuando necesitamos que la función nos devuelva un valor utilizamos, en el cuerpo de la misma, la palabra reservada `return` y a continuacion el valor que queremos que devuelva. El valor que la función devuelve lo tenemos que asignar a una variable para poder trabajar con él. Si al final de la función no está la palabra `return` escrita JavaScript la agrega automaticamente, pero sin nada a continuación, por lo que la función no devuelve nada a pesar de tener `return` al final.
+
+#!javascript
+
+/** declaramos la función */
+function miFuncion(a, b){
+     return a + b;
+}
+
+/** llamamos a la función asignando a una variable el valor que devuelve */
+resultado = miFuncion(2, 3);
+console.log(resultado);
+
+#!markdown
+
+## Funciones de tipo expresión
+
+#!markdown
+
+Podemos asignar una función a una variable. Esto es diferente a asignar lo que la función devuevel a una variable. Cuando asignamos una función a una variable evitamos de tener que poner un nombre a la función. Para llamar a la misma utilizamos el nombre de la variable. Esto se conoce como funciones de tipo expresión o funciones anónimas.
+
+#!javascript
+
+/** Declaramos la función
+ * no es necesario ; al final de la declaración de la función */
+function miFuncion(a, b){
+     return a + b;
+}
+
+/** Llamamos a la función */
+resultado = miFuncion(2, 3);
+console.log(resultado);
+
+/** Declaramos la  función de tipo expresión 
+ * tenemos que finalizar la sentecia con ; por ser una expresión */
+sumar = function (a, b){return a + b};
+
+resultado = sumar(1, 2);
+console.log(resultado);
+
+#!markdown
+
+## Funciones de tipo self-invoking
+
+#!markdown
+
+Las funciones self-invoking son funciones que se llaman a sí mismas. Son funciones anónimas, sin nombre. Ak finalizar la declaración de la función la llamamos, una vez que lo hicimos ya no podemos volver a llamar a la misma. Declaramos la función abriendo paréntesis `(`, seguimos con la palabra reservada `function` seguida de nuevos paréntesis donde podemos tener algumentos si lo requiere. Abrimos llaves `{` y escribimos las sentencias del cuerpo de la función. Cerramos las llaves y el paréntesis `)}`. Para llamar a la función, si no tiene argumentos escribimos a continuación del final de la declaración, paréntesis `()`. Si la función tiene argumentos ponemos los valores de los argumentos dentro de los paréntesis.
+
+#!javascript
+
+(function (a, b){
+    console.log('Ejecutando la función: ' + (a + b));
+})(3, 4);
+
+#!markdown
+
+## Funciones como objetos
+
+#!markdown
+
+Las funciones tienen como tipo de dato `function`. A pesar de eso las mismas pueden ser descritas como objetos, que tienen propiedades y métodos asociados. 
+
+#!javascript
+
+console.log(typeof miFuncion);
+
+/** arguments es una propiedad que tiene la función al ser un objeto 
+ * esta propiedad enumera la cantidad de argumentos de la funcion y su valor al llamarla
+ * esta propiedad solo se puede usar dentro del cuerpo de la función */
+function miFuncion(a, b) {
+  console.log(arguments);
+  console.log(arguments.length);
+  return a + b;
+}
+miFuncion(3, 4);
+
+/** toString es un método que tiene la función al ser un objeto 
+ * este método convierte la declaración de la función en texto
+ * el texto se guarda en la variable miFuncionTexto */
+var miFuncionTexto = miFuncion.toString();
+console.log(miFuncionTexto);
+
+#!markdown
+
+## Función flecha
+
+#!markdown
+
+Las funciones flecha son similares a las funciones de tipo expresión. No utilizamos `function`, directamente indicamos los argumentos o parámetros a continuación del `=`. Si la función solo tiene un argumento podemos indicarlo sin parentesis, si tiene varios argumentos los indicamos entre parentesis de la forma `(arg1, arg2, ... argn)`, si no tiene ningun argumento es necesario escribir los parentesis vacios `()`. A continucion escribimos el simbolo de flecha `=>` con lo que indicamos que continua el cuerpo de la funcion. Podemos omitir el uso de llaves y de la palabra reservada `return` si la función solo tiene una sentencia o linea de código. Si la funcion tiene más de una sentencia indicamos todo entre llaves y utlizamos `return`.
+
+#!javascript
+
+/** Declaración Función de tipo Expresión */
+let sumar = function (a, b){return a + b};
+
+resultado = sumar(1, 2);
+console.log(resultado);
+
+/** utilizamos const en lugar de let para evitar cambiar la referencia 
+ * a la función que guarda la variable */
+const sumarFuncionTipoFlecha = (a, b) => a + b;
+
+/** llamamos a la función flecha */
+resultado = sumarFuncionTipoFlecha(3, 5);
+console.log(resultado);
+
+#!markdown
+
+## Parámetros y argumentos
+
+#!markdown
+
+En la mayoría de los casos podemos decir que los argumentos y los paramtros de una función son lo mismo, ya que en la práctica se manejan de forma equivalente. Se conocen como parámetros a la lista de variables que recibe la función cuando la declaramos. A su vez los argumentos son los valores que toman esas variables al momento de llamar a la función. Podemos llamar a la función con todos, algunos o ninguno de los argumentos para los parametros con que se definió. En ese caso los argumentos que no se pasan quedan con valor `undefined o null`. A los parámetros podemos declararlos con valores por defecto cuando definimos la función, en caso de no pasar valores cuando se llama a la función el argumento de la misma va a ser el definido en la funcion por defecto. Podemos acceder a argumentos de la función aunque no estén declarados los parametros correspondientes en la definición de la misma. En ese caso utilizamos el array `arguments[x]` donde x es el número de orden del parámetro si el mismo se hubiese definido `function (a = 4, b = 5, x)`. En el ejemplo x sería el valor 2.
+
+#!javascript
+
+/** Declaración de una función de tipo expresión
+ * al declarar la función damos valores por defecto a los parametros
+ * el parametro es a y el argumento de ese parametro, por defecto, es 4 */
+sumar = function (a = 4, b = 5) {
+    console.log(arguments[0]); // muestra 3, valor con que llamamos a la función
+    console.log(arguments[1]);
+    console.log(arguments[2]);
+    console.log(arguments[3]); // muestra null
+    return a + b + arguments[2];
+};
+
+resultado = sumar(3, 6, 7);
+console.log(resultado);
+
+#!markdown
+
+## Paso dinámico de argumentos a una función
+
+#!javascript
+
+/** podemos pasar todos los argumentos que queramos a la función
+ * mediante el array arguments vamos a ir sumando cada uno */
+let resultado = sumarTodo(5, 4, 13, 10, 9, 10, 11, 3);
+console.log( resultado );
+
+function sumarTodo(){
+    let suma = 0;
+    for(let i = 0; i < arguments.length; i++){
+        suma += arguments[i]; // suma = suma + arguments[i]
+    }
+    return suma;
+}
+
+#!markdown
+
+## Paso por valor
+
+#!markdown
+
+En una asignación del tipo `x=10` el valor 10 se conoce como valor primitivo o valor de tipo primitivo, ya que no podemos asociar atributos o métodos a ese valor. Al pasar por valor el argumento de una función, no se pasa la referencia en memoria que corresponde a la variable que igualamos al parametro, sino que pasamos el valor que contiene esa variable. Es decir, no pasamos la variable x sino el valor que tiene asignado la variable x que es 10. Pasamos una copia del valor de la variable x.
+
+#!javascript
+
+x = 10;
+
+function cambiarValor(a){
+    a = 20;
+}
+
+/** Paso por valor */
+cambiarValor(x); // hacemos a = 10
+console.log(x); // devuelve 10
+console.log(a); // devuelve is not defined por que a existe solo dentro de la función
+
+#!markdown
+
+## Paso por referencia
+
+#!markdown
+
+Al contrario de los tipos primitivos tenemos los objetos. A los objetos podemos asociarles atributos y métodos. Las variables a las que igualamos estos objetos almacenan una referencia al objeto. En el ejemplo `persona` guarda una referencia al objeto con los atributos que le asignamos.
+
+#!javascript
+
+/** definimos el objeto persona, para hacerlo usamos las llaves
+ * despues definimos atributos y valores a esos atributos */
+const persona = {
+  nombre: 'Juan',
+  apellido: 'Perez'
+}
+console.log( persona );
+
+/** p1 = persona, es decir que p1 es igual a la referencia del objeto
+ * a la que es igual persona, si modificamos los atributos de p1
+ * se modifican los de persona */
+function cambiarValorObjeto(p1) {
+
+  /** mediante punto+atributo indicamos que queremos acceder a algun
+   * atributo del objeto que pasamos por referencia */
+    p1.nombre = 'Carlos'; 
+    p1.apellido = 'Lara';
+}
+
+/** Paso por referencia */
+cambiarValorObjeto( persona );
+console.log( persona );
+
+#!markdown
+
+# Objetos
+
+#!markdown
+
+Casi todo lo que manejamos en JavaScript son objetos. La diferencia entre los valores de tipo primitivo y los objetos es que los primeros no tienen atributos ni métodos. Los atributos de un objeto pueden ser valores de tipo primitivo u otros objetos. El código que ingresamos entre `{}` crea un objeto en memoria. A este objeto se le asigna una referencia o dirección en memomoria del lugar donde se aloja. Este valor o referencia es lo que se guarda en la variable con la que generamos el objeto, en el ejemplo `persona`. La variable persona entonces almacena la referencia en memoria donde se encuentra el objeto.
+
+#!javascript
+
+/** el valor asignado a la variable x es de tipo primitivo
+ * x.length devuelve undefined por que el método length no está definido
+ * para la variable */
+let x = 10;
+console.log(x.length);
+
+/** definimos el objeto en la variable persona
+ * la variable puede llamarse perro y tener los mismos atributos
+ * el nombre de la variable no define su contenido, tipo o clase */
+let persona = {
+    nombre: 'Juan',
+    apellido: 'Perez',
+    email: 'jperez@mail.com',
+    edad: 28,
+}
+/** mediante la variable persona podemos acceder a los atributos
+ * y métodos del objeto utilizando la notación del punto */
+console.log(persona.nombre);
+console.log(persona.edad);
+console.log(persona.apellido);
+
+console.log(persona);
+
+#!markdown
+
+## Agregar métodos a los objetos
+
+#!markdown
+
+Agregamos el método a la función como si fuera un atributo más de la misma. Se trabaja de forma similar a como trabajamos las funciones de tipo expresión. La función es, a su vez, un objeto, por lo que la referencia a esta función la asignamos una variable o atributo del objeto, en el ejemplo es `nombreCompleto`. Si necesitamos acceder a los atributos del objeto, dentro de una función o método que pernecen al objeto, utilizamos la palabra reservada `this` para hacer referencia a que queremos utilizar el atributo perteneciente al objeto.
+
+#!javascript
+
+let persona = {
+    nombre: 'Juan',
+    apellido: 'Perez',
+    email: 'jperez@mail.com',
+  edad: 28,
+
+  /** agregamos el método como si fuera un atributo del objeto
+   * pero a la hora de declararlo no declaramos como un valor primitivo
+   * sino como una función */    
+  nombreCompleto: function () {
+
+      /** utilizamos this. para acceder a los atributos o métodos del objeto */
+        return this.nombre + ' ' + this.apellido;
+    }
+}
+
+console.log(persona.nombre);
+console.log(persona.edad);
+console.log(persona.apellido);
+
+/** llamamos a la función similar a como accedemos a los atributos
+ * solo que tulizamos los () para indicar que es una función */
+console.log( persona.nombreCompleto() );
+
+console.log(persona);
+
+#!markdown
+
+## Crear objetos
+
+#!markdown
+
+Podemos crear objetos definiendo la variable, que va a almacenar la referencia al objeto, y luego igualandola a `{}`, dentro de las llaves vamos a declarar los atributos y métodos del objeto de la forma `nombre : valor`, en el caso de ser valores de tipo primitivo u otros objetos y `nombre : function(){}`, en el caso de tratarse de un método. Podemos crear un objeto utilizando la palabra reservada `new` con esta palabra indicamos que necesitamos espacio en memoria para el objeto que estamos creando. la sintaxis para crear el objeto es `new Object()`. `Object` es un tipo de dato de JavaScript. Para agregar atributos o métodos al objeto que acabamos de crear los hacemos utilizando el punto. Los atributos o métodos se agregan de forma dinámica, es decir que se crean al momento en que los definimos.
+
+#!javascript
+
+/** Definimos el objeto y asignamos su referencia a la variable persona  */
+persona = {
+    nombre: 'Juan',
+    apellido: 'Perez',
+    email: 'jperez@mail.com',
+    edad: 28,
+    nombreCompleto: function(){
+        return this.nombre + ' ' + this.apellido;
+    }
+}
+
+/** Definimos el objeto utilizando la palabra reservada new 
+ * el objeto que se crea es vacío
+ * la referencia en memoria al objeto se guarda en la variable persona2 */
+let persona2 = new Object();
+
+/** utilizamos punto para indicar los atributos o métodos que agregamos */
+persona2.nombre = 'Carlos';
+persona2.direccion = 'Saturno 15';
+persona2.tel = '55443322';
+
+console.log( persona2.tel );
+
+#!markdown
+
+## Acceder a atributos o métodos de objetos. Uso de `for in`
+
+#!markdown
+
+Podemos acceder a los atributos o métodos de los objetos mediante la notación de punto de la forma `objeto.atributo` u `objeto.metodo()`, donde objeto es la variable que tiene la referencia en memoria del objeto. También podemos acceder a los atributos de los objetos como si fueran un `array` de la forma `objeto['atributo']`. Podemos recorrer los atributos del objeto utilizando un ciclo `for` con la sintaxis `for (nombreAtributo in objeto){}`.
+
+#!javascript
+
+persona = {
+    nombre: 'Juan',
+    apellido: 'Perez',
+    email: 'jperez@mail.com',
+    edad: 28,
+    nombreCompleto: function(){
+        return this.nombre + ' ' + this.apellido;
+    }
+}
+
+/** accedemos al atributo del objeto utilizando el punto */
+console.log(persona.nombre);
+
+/** accedermos al atributo del objeto como si fuera un array */
+console.log( persona['apellido'] );
+
+/** recorremos los atributos del objeto con el ciclo for in */
+for( nombrePropiedad in persona){
+    console.log( nombrePropiedad );
+    console.log( persona[nombrePropiedad]);
+}
+
+#!markdown
+
+## Agregar o eliminar atributos y métodos de objetos
+
+#!markdown
+
+Con la notación de punto podemos agregar atributos o métodos a un objeto. El atributo o método agragado se suma a la colección de estos que ya tiene el objeto. Para eliminar un atributo o método de un objeto utilizamos la palabra reservada delete de la forma `delete objeto.atributo`. Esto borra el atributo y los valores que tenga asignados.
+
+#!javascript
+
+let persona = {
+    nombre: 'Juan',
+    apellido: 'Perez',
+    email: 'jperez@mail.com',
+    edad: 28,
+    nombreCompleto: function(){
+        return this.nombre + ' ' + this.apellido;
+    }
+}
+
+/** agregamos el atributo tel que no existía en el objeto
+ * y le asignamos un valor */
+persona.tel = '55443322';
+
+/** modificamos el valor del atributo tel del objeto */
+persona.tel = '44332211';
+console.log( persona );
+
+/** eliminamos el atributo tel del objeto */
+delete persona.tel;
+console.log( persona );
+
+#!markdown
+
+## Formas de imprimir objetos
+
+#!markdown
+
+Una de las formas de imprimir los valores de un objeto es de la forma `console.log(objeto)` pero algunos navegadores pueden mostrar, ante ese método, la leyenda `Object Object`, sin desglozar sus atributos y métodos con sus valores. Podemos concatenar los valores de los atributos de la forma `console.log(objeto.atributo1 + ', ' + atributo2)`. Podemos recorrer el objeto mediante `for in` y mostrar sus atributos y métodos con `console.log`. Podemos utilizar el método `Object.values()` que regresa el objeto pero como un `array`. Similar a esto, pero utilizando una variable de tipo `String`, imprimimos los atributos del objeto mediante el método `JSON.stringify()` que convierte el objeto en una cadena de caracteres. Utilizamos el objeto `JSON` por que este, al igual que nuestros objetos, utiliza la notación de `atributo : valor`.
+
+#!javascript
+
+let persona = {
+    nombre: 'Juan',
+    apellido: 'Perez',
+    email: 'jperez@mail.com',
+    edad: 28,
+    nombreCompleto: function(){
+        return this.nombre + ' ' + this.apellido;
+    }
+}
+
+/** concatenamos los valores asignados a cada atributo del objeto */
+console.log( persona.nombre + ', ' + persona.apellido);
+
+/** accdemos a cada uno de los atributos y métodos mediante for in */
+for( nombrePropiedad in persona){
+    console.log( persona[nombrePropiedad]);
+}
+
+/** guardamos en el array personaArray los atributos y métodos del objeto
+ * el método Object.values() nos devuelve este array  */
+let personaArray = Object.values( persona );
+console.log( personaArray );
+
+/** convertimos en String el objeto con JSON.stringify() 
+ * guardamos lo que devuelve el método en la variable personaString */
+let personaString = JSON.stringify( persona );
+console.log( personaString );
+
+#!markdown
+
+## Método `get` y `set` en objetos
+
+#!markdown
+
+Trabajar con los métodos `get` y `set` son las mejores prácticas a la hora de programar. `get` significa obtener, y lo utilizamos para acceder a los valores asignados a nuestros atributos y métodos, es decir que usamos `get` para indicar que vamos a recuperar información del objeto. A los métodos los declaramos como `get metodo(){}`, y a la hora de llamarlo hacemos directamente `objeto.metodo` sin los `()`. Esto simplifica la sintaxis de la declaración y llamado del método, lo que hace que se asemeje al llamado de un atributo, pero es un método que devuelve valores.
+
+#!javascript
+
+let persona = {
+    nombre: 'Juan',
+    apellido: 'Perez',
+    email: 'jperez@mail.com',
+  edad: 28,
+  
+    /** modificamos la declaración de la función utilizamod get
+     * lo siguiente a get va a ser el nombre de la función
+     * el resto se escribe como se hace normalmente con las funciones */
+    get nombreCompleto(){
+        return this.nombre + ' ' + this.apellido;
+    }
+}
+
+/** a declarar la función con get no necesitamos indicar los parentesis
+ * cuando la llamamos si la misma no necesita parámetros */
+console.log( persona.nombreCompleto );
+
+#!markdown
+
+`set` significa establecer o modificar, y lo utilizamos para modificar los valores de los atributos de nuestro objeto. Los métodos los declaramos como `set metodo(parametro){}` y a la hora de llamarlo hacemos `objeto.metodo = parametro`, no lo hacemos de la forma `objeto.metodo(parametro)` para llamarlo. Esto simplifica la sintaxis de la declaración y llamado del método, lo que hace que se asemenje a la asignación de un valor a un atributo, pero es un método que asigna valores.
+
+#!javascript
+
+let persona = {
+    nombre: 'Juan',
+    apellido: 'Perez',
+    email: 'jperez@mail.com',
+  edad: 28,
+
+    /** los idiomas en general se almacenan en mayusculas de la forma ES */
+  idioma: 'es',
+    
+  get lang() {
+
+      /** utilizamos toUpperCase() para convertir a mayúsculas la cadena 
+       * guardada en la variable idioma */
+        return this.idioma.toUpperCase();
+  },
+
+    /** el método lag recibe un parámetro del mismo nombre */
+  set lang(lang) {
+  
+      /** convertimos a mayúsculas con toUpperCase() al valor
+       * del parámetro lang que recibe el método */
+        this.idioma = lang.toUpperCase();
+  },
+    
+    get nombreCompleto(){
+        return this.nombre + ' ' + this.apellido;
+    }
+}
+
+console.log( persona.lang );
+
+/** llamamos al método set lang y el parametro de entrada es lo que 
+ * continua al = que es 'en'. Como el llamado tiene un signo de = 
+ * JavaScript interpreta que se trata del método set */
+persona.lang = 'en';
+
+/** llamamos al método get lang, como el llamado no tiene signo =
+ * Javascript interpreta que se trata de método get */
+console.log(persona.lang);
+
+console.log( persona.idioma );
+
+#!markdown
+
+## Constructor de objetos
+
+#!markdown
+
+Un constructor es una función especial de los objetos que permite crear un nuevo objeto. Para llamar a la función utilizamos la palabra reservada `new`, que reserva espacio en memoria para el objeto que vamos a crear. Se acostumbra que el nombre de la función constructor empiece en mayusculas, así mismo el nombre del constructor va a ser el nombre del tipo de objeto que estamos definiendo. En el ejemplo la función constructor se llama Persona y el tipo de objeto va a ser tipo Persona. La firma del método son los parametros que recibe el mismo, es decir lo que está entre parentesis en su definición. Utilizamos el operador `this` para indicar que los atributos que utilizamos dentro de la función pertenecen al objeto que creamos mediante esta. Esto funciona por que llamamos a la función con la palabra reservada `new`.
+
+#!javascript
+
+/** Funcion constructor de objetos de tipo Persona */
+function Persona(nombre, otro, email) {
+
+  /** el atributo del objeto se llama nombre
+   * recibe el argumento del parametro nombre que es una prática común
+   * el parametro no tiene que tener el mismo nombre que el atributo   */
+    this.nombre = nombre;
+    this.apellido = otro;
+    this.email = email;
+}
+
+/** llamamos el constructor con la palabra reservada new
+ * y le asignamos valores a los atributos */
+let padre = new Persona('Juan', 'Perez', 'jperez@mail.com');
+console.log( padre );
+
+let madre = new Persona('Laura', 'Quintero', 'lquintero@mail.com');
+console.log( madre );
+
+/** podemos cambiar el valor de un atributo en uno de los objetos
+ * el otro objeto queda como está */
+padre.nombre = 'Carlos';
+
+console.log( padre );
+console.log( madre );
+
+#!markdown
+
+## Agregar métodos a un constructor de objetos
+
+#!markdown
+
+Agregamos métodos en el método constructor de objetos de forma en que agregabamos métodos en un objeto ya creado, utilizando la palabra reservada `this`. Los métodos agregados en el constructor van a estar disponibles para cualquier objeto que creemos con ese constructor. Esto permite reutilizar el código ya que, definido un constructor de objetos con sus atributos y métodos, todos los objetos que creemos con ese constructor van a poder hacer uso de los mismos atributos y métodos.
+
+#!javascript
+
+/** Funcion constructor de objetos de tipo Persona */
+function Persona(nombre, apellido, email){
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.email = email;
+    
+    /** creamos la función */
+    this.nombreCompleto = function(){
+        return this.nombre + ' ' + this.apellido;
+    }
+}
+
+let padre = new Persona('Juan', 'Perez', 'jperez@mail.com');
+
+/** llamamos a la función después de crear el objeto */
+console.log( padre.nombreCompleto() );
+
+let madre = new Persona('Laura', 'Quintero', 'lquintero@mail.com');
+console.log( madre.nombreCompleto() );
+
+padre.nombre = 'Carlos';
+
+console.log( padre );
+console.log( madre );
+
+#!markdown
+
+## Distintas formas de crear objetos
+
+#!markdown
+
+Hasta el momento vimos como crear objetos a partir de una función constructor, pero existen sintaxis que simplifican el uso de la palabra `new` a la hora de crear objetos. En los ejemplos vemos que cada tipo de dato en JavaScript se corresponde con un objeto, es decir que podemos crear variables de tipo `String`, `Number` o `Array` de manera mas formal, que es utilizando la palabra reservada `new`, o podemos indicar su valor directamente y JavaScript reconoce el tipo de objeto o dato al que corresponde.
+
+#!javascript
+
+/** creamos un nuevo objeto de tipo Object. Es un objeto vacio
+ * la sintaxis simplificada de eso es utilizar {} */
+let miObjeto1 = new Object();
+let miObjeto2 = {};
+
+let miCadena1 = new String('Hola');
+let miCadena2 = 'Hola';
+
+let miNumero1 = new Number(1);
+let miNumero2 = 1;
+
+let miBoolean1 = new Boolean(false);
+let miBoolean2 = false;
+
+let miArreglo1 = new Array();
+let miArreglo2 = [];
+
+let miFuncion1 = new Function();
+let miFuncion2 = function(){};
+
+#!markdown
+
+## Uso de `prototype`
+
+#!markdown
+
+Si agregamos un atributo o método a un objeto ya creado, en el ejemplo el atributo `tel` al objeto `padre` de la forma `padre.tel = '11223344';`, ese atributo está disponible solo para ese objeto. Si queremos agregar un atributo o método para todos los objetos, pero no hacerlo en la definición del constructor, utilizamos `prototype`.
+
+#!javascript
+
+function Persona(nombre, apellido, email){
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.email = email;
+    this.nombreCompleto = function(){
+        return this.nombre + ' ' + this.apellido;
+    }
+}
+
+let padre = new Persona('Juan', 'Perez', 'jperez@mail.com');
+
+/** creamos el atributo tel en el objeto padre */
+padre.tel = '11223344';
+console.log( padre.tel );
+
+let madre = new Persona('Laura', 'Quintero', 'lquintero@mail.com');
+
+/** la propiedad tel no esta definida para el objeto madre */
+console.log(madre.tel);
+
+/** agregamos el atributo tel a todos los objetos que creamos
+ * utilizando el constructor Persona */
+Persona.prototype.tel = '44332211';
+
+let padre2 = new Persona('Juan', 'Perez', 'jperez@mail.com');
+console.log( padre2.tel );
+
+let madre2 = new Persona('Laura', 'Quintero', 'lquintero@mail.com');
+
+/** podemos cambiar el atributo tel si lo necesitamos */
+madre2.tel = '66889900';
+console.log(madre2.tel);
+
+#!markdown
+
+## Uso del método `call`
+
+#!markdown
+
+El método `call` nos permite llamar un método que está definido en un objeto desde otro objeto. El método `call` utiliza los atributos del objeto que le pasamos como parametro como si fueran los atributos del objeto donde está definido el método que queremos utilizar.
+
+#!javascript
+
+let persona1 = {
+    nombre: 'Juan',
+    apellido: 'Perez',
+    nombreCompleto: function(){
+        return this.nombre + ' ' + this.apellido;
+    }
+}
+
+let persona2 = {
+    nombre: 'Carlos',
+    apellido: 'Lara'
+}
+
+/** llamamos al método nombreCompleto que pertenece a persona1 */
+console.log( persona1.nombreCompleto() );
+
+/** llamamos al método nombreCompleto de persona1 y después al metodo call
+ * call recibe como parametro el objeto sobre el cual queremos llamar
+ * al método nombreCompleto */
+console.log( persona1.nombreCompleto.call( persona2 ) );
+
+#!markdown
+
+## Paso de argumentos al método `call`
+
+#!markdown
+
+Los argumentos del método, perteneciente a otro objeto, los pasamos después del objeto sobre el que llamamos al método, seguidos de coma.
+
+#!javascript
+
+let persona1 = {
+    nombre: 'Juan',
+    apellido: 'Perez',
+    nombreCompleto: function(titulo, tel){
+        return titulo + ': ' + this.nombre + ' ' + this.apellido + ', ' + tel;
+    }
+}
+
+let persona2 = {
+    nombre: 'Carlos',
+    apellido: 'Lara'
+}
+
+/** llamamos al método nombreCompleto de persona1 con sus parámetros */
+console.log( persona1.nombreCompleto('Lic.', '44332288') );
+
+/** cuando llamamos al método call, además de pasar el objeto como parámetro
+ * pasamos los dos parámetros que requiere la función original nombreCompleto */
+console.log( persona1.nombreCompleto.call( persona2, 'Ing', '5544332211' ) );
+
+#!markdown
+
+## Uso del método `apply`
+
+#!markdown
+
+El método `apply`, como el método `call`, nos permite utilizar un método que pertenece a un objeto en otro objeto. La diferencia está en que, a la hora de pasar argumentos al método del otro objeto, con `call` los pasamos seguidos de comas mientras que con `apply` lo hacemos mediante un `Array`.
+
+#!javascript
+
+let persona1 = {
+    nombre: 'Juan',
+    apellido: 'Perez',
+    nombreCompleto: function(titulo, tel){
+        return titulo + ': ' + this.nombre + ' ' + this.apellido + ', ' + tel;
+    }
+}
+
+let persona2 = {
+    nombre: 'Carlos',
+    apellido: 'Lara'
+}
+
+console.log( persona1.nombreCompleto('Lic', '66887711') );
+
+/** pasamos los argumentos del método nombreCompleto de persona1 
+ * mediante un array utilizando el método apply */
+let arreglo = ['Ing','55443322'];
+
+console.log(persona1.nombreCompleto.apply(persona2, arreglo));
+console.log(persona1.nombreCompleto.apply(persona2, ['Lic', '55448822']) );
+
+#!markdown
+
+# Clases
+
+#!markdown
+
+## Definición de clases
