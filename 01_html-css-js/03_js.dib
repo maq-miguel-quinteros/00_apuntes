@@ -380,3 +380,269 @@ console.log("z: " + z);
 #!markdown
 
 ## Precedencia de operadores
+
+#!markdown
+
+Las expresiones se evaluan de izquierda a derecha. Siempre se evaluan primero las expresiones que estan dentro de los parentesis, desde el mas interior hasta el mas exterior. El orden de prioridad de los operadores es el siguiente:
+1.   Paréntesis: () 
+2.   División y multiplicación: / *
+3.   Suma y resta: + -
+
+#!javascript
+
+a = 3, b = 2, c = 1, d = 4;
+
+z = a * b + c / d;
+console.log(z);
+
+z = c + a * b / d;
+console.log(z);
+
+z = (c + a) * b / c;
+console.log(z);
+
+#!markdown
+
+## Operadores de asignación
+
+#!markdown
+
+Operador de asignación común.
+
+#!javascript
+
+a = 1;
+console.log(a);
+
+#!markdown
+
+Operadores de asignación compuesto. Son operadores de asignación que además de asignar el valor realizan una operación aritmética antes de la asignación.
+
+#!javascript
+
+a = 1;
+
+a += 3; // a = a + 3
+console.log(a);
+
+a -= 2; // a = a - 2
+console.log(a);
+
+a *= 5; // a = a * 5
+console.log(a);
+
+a /= 2; // a = a / 2
+console.log(a);
+
+a %= 3; // a = a % 2
+console.log(a);
+
+a **= 2; // a = a ** 2
+console.log(a);
+
+#!markdown
+
+## Operadores de comparación
+
+#!markdown
+
+El operador de comparación de igualdad `==` revisa el valor de las dos variables a comparar sin importar el tipo.
+
+#!javascript
+
+a = 3, b = 2, c = "3";
+
+z = a == c; // convierte la cadena '3' a número y los compara
+console.log(z);
+
+#!markdown
+
+El operador de comparación de igualdad `===` revisa el valor de las dos variables a comparar y también su tipo. Ambos tienen que ser iguales para que la comparación de `true`.
+
+#!javascript
+
+a = 3, b = 2, c = "3";
+
+z = a == c; // convierte la cadena '3' a número y los compara
+console.log(z);
+
+#!markdown
+
+El operador de comparación de desigualdad `!=` revisa el valor de las dos variables a comparar sin importar el tipo.
+
+#!javascript
+
+a = 3, b = 2, c = "3";
+
+z = a != c; // convierte la cadena '3' a número y los compara
+console.log(z);
+
+#!markdown
+
+El operador de comparación de igualdad `!==` revisa el valor de las dos variables a comparar y también su tipo. Ambos tienen que ser iguales para que la comparación de true.
+
+#!javascript
+
+a = 3, b = 2, c = "3";
+
+z = a !== c; // convierte la cadena '3' a número y los compara
+console.log(z);
+
+#!markdown
+
+## Operadores relacionales
+
+#!markdown
+
+Son operadores que devuelven valores de verdad (`true` o `false`) dependiendo de la expresión que se evalúa. Los operadores son menor que `<`, menor igual que `<=`, mayor que `>` y mayor igual que `>=`.
+
+#!javascript
+
+a = 3, b = 2, c = "3";
+
+z = a < b;
+console.log(z);
+
+z = a <= b;
+console.log(z);
+
+z = a > b;
+console.log(z);
+
+z = a >= b;
+console.log(z);
+
+#!markdown
+
+## Operadores lógicos
+
+#!markdown
+
+El operador lógico and (`&&`) solo devuelve `true` cuando las dos expresiones que se evaluan son `true`.
+
+#!javascript
+
+valMin = 0, valMax = 10;
+
+a = 15;
+
+if( a >= valMin && a <= valMax ){
+    console.log("Dentro de rango"); 
+}else{
+    console.log("Fuera de rango"); // devuelve este mensaje
+}
+
+a = 9;
+
+if( a >= valMin && a <= valMax ){
+    console.log("Dentro de rango"); // devuelve este mensaje
+}else{
+    console.log("Fuera de rango"); 
+}
+
+#!markdown
+
+El operador lógico or (`||`) solo devuelve `false` cuando las dos expresiones que se evaluan son `false`.
+
+#!javascript
+
+vacaciones = false, diaDescanso = true;
+
+if( vacaciones || diaDescanso ){
+    console.log("Padre puede asistir al juego del hijo"); // devuelve este mensaje
+}else{
+    console.log("El padre está ocupado");
+}
+
+vacaciones = false, diaDescanso = false;
+
+if( vacaciones || diaDescanso ){
+    console.log("Padre puede asistir al juego del hijo"); 
+}else{
+    console.log("El padre está ocupado"); // devuelve este mensaje
+}
+
+#!markdown
+
+## Operador ternario
+
+#!markdown
+
+El operador ternario revisa la condicion dentro del `()` y devuelve lo que está despues de `?` si la condición dio `true` o lo que está despues de los `:` si la condición dio `false`. No es necesario poner la condicion entre parentesis.
+
+#!javascript
+
+resultado = (1>2) ? "verdadero" : "falso";
+console.log(resultado);
+
+numero = 110;
+resultado = numero % 2 == 0 ? "Número par" : "Número impar"; 
+console.log( resultado );
+
+#!markdown
+
+## Convertir `string` a `number`
+
+#!markdown
+
+Mediante la función `Number` convertimos el valor de una variable de `string` a un `number`.
+
+#!javascript
+
+miNumero = "18";
+console.log(typeof miNumero); // devuelve string
+ 
+edad = Number(miNumero);
+console.log(typeof edad);
+console.log(edad); 
+ 
+if(edad >= 18){
+ console.log("Puede votar");
+}else{
+ console.log("Muy joven para votar");
+}
+ 
+resultado = (edad >= 18)? "Puede votar" : "Muy joven para votar";
+console.log( resultado );
+
+#!markdown
+
+## Función `isNaN`
+
+#!markdown
+
+Utilizamos la función `isNaN` para saber si la variable es un número antes de trabajar con ella. La función isNaN devuelve `true` si la variable no contiene un número y `false` en caso contrario.
+
+#!javascript
+
+miNumero = "17x";
+
+/** al tener caracteres el string no se puede convertir en número */
+edad = Number(miNumero); 
+
+/** devuelve NaN que significa not a number */
+console.log(edad);
+
+edad = 18;
+
+if( isNaN(edad)){
+  console.log("No es un número");
+}else{
+  if(edad >= 18){
+    console.log("Puede votar");
+  }else{
+    console.log("Muy joven para votar");
+  }
+}
+
+if( isNaN(edad)){
+  console.log("No es un número");
+}
+else{
+  let resultado = (edad >= 18)? "Puede votar" : "Muy joven para votar";
+  console.log( resultado ); 
+}
+
+#!markdown
+
+# Estructuras de control
