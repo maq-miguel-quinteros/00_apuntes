@@ -646,3 +646,28 @@ else{
 #!markdown
 
 # Estructuras de control
+
+#!markdown
+
+## Estructura if / else
+
+#!markdown
+
+Según una condición de verdad, examinada por la palabra reservada `if`, realiza uno u otro conjunto de sentencias. La expresión examina una condición, si la misma se cumple, es decir es `true`, realiza un conjunto de sentencias. La estructura puede quedar de esa mamenera pero, en caso de que no se cumpla la condición, es decir que sea `false`, podemos indicarle a la expresión realizar otro conjunto de sentencias, diferente mediante la palabra reservada `else`.
+
+#!javascript
+
+condicion = true;
+
+if(condicion){
+    console.log("Condición verdadera");
+    console.log("fin del programa");
+}
+else{
+    console.log("Condición falsa");
+}
+
+/**  en caso de tener una sola línea a continuación de if o else podemos omitir el uso de llaves */
+condicion = 3;
+if(condicion > 2) console.log("Condición verdadera");   
+else console.log("Condición falsa");
