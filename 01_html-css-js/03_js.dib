@@ -3482,3 +3482,170 @@ setInterval(reloj, 1000);
 #!markdown
 
 # Promesas
+
+#!markdown
+
+En una promesa utilizamos funciones de tipo callback. Una promesa es código que tiene varios estados. Lo que hacemos es lanzar una petición para procesar un código en caso de que la promesa se haya resuelto correctamente, en caso de tener problemas se llama otro código denominado rejected. Es decir, tenemos dos posibles caminos sobre nuestra petición, uno es que el código se haya ejecutado correctamente y el otro es que haya devuelto un error. Mientras la promesa no haya terminado de ejecutar su código se encuentra en estado pendiente, una vez que termina puede estar en estado resuelto o rechazado. Para procesar el código cuando se haya resuelto una promesa utilizamos la función `then()`, en caso de error utilizamos la función `catch()`.
+
+#!javascript
+
+/** cuando creamos el objeto de tipo Promise recibe como argumento una función flecha
+ *  esta funcion tiene como parámetros 2 funciones de tipo callback 
+ * la primera se ejecuta en caso que se haya resuelto la promesa correctamente 
+ * y la segunda en caso contrario */
+let miPromesa = new Promise((resolver, rechazar) => {
+  let expresion = true;
+
+  /** definimos ambos caminos que puede tomar la promesa */
+  if (expresion)    
+    resolver('Resolvió correcto');        
+  else    
+    rechazar('Se produjo un error');        
+});
+
+/** then es un método del objeto de tipo Promise. Este método recibe dos argumentos
+ * que son 2 funciones de tipo flecha que se corresponden con las funciones 
+ * resolver y rechazar que definimos cuando creamos el objeto */
+miPromesa.then(
+
+  /** se ejecuta el código de la promesa, si da verdadero if (expresion) se
+   * ejecuta la función resolver, que es una función callback, por lo que lo
+   * que se ejecuta es la funcion flecha valor => console.log(valor) 
+   * #ver notas abajo */
+  valor => console.log(valor),
+
+  /** sucede igual que con resolver pero con rechazar */
+  error => console.log(error)
+);
+
+/** para trabajar con catch y la función rechazar tenemos que llamar al método
+ * de la misma forma que llamamos a then. En este caso then solo recibe
+ * 1 argumento, el de resolver */
+miPromesa.then(valor => console.log(valor)).catch(error => console.log(error));
+
+/** notas */
+/**
+ * let resolver = valor => console.log(valor);
+ * resolver('Resolvió correcto');
+ * 
+ * let rechazar = error => console.log(error);
+ * rechazar('Se produjo un error');
+ */
+
+#!markdown
+
+## Función `setTimeout` y promesas
+
+#!javascript
+
+/** cuando creamos el objeto de tipo Promise, a la hora de pasar como argumento
+ * la función flecha, no es necesario que la misma tenga las 2 funciones callback
+ * como parámetro. En el ejemplo no manejamos el error, si lo tiene, de la promesa */
+let promesa = new Promise((resolver) => {
+  console.log('inicio promesa');
+
+  /** setTimeout recibe como primer argumento una función callback. Esta función
+   * va a ser la que recibamos como argumento cuando llamemos al método then del
+   * objeto */
+  setTimeout(() => resolver('saludos con promesa y timeout'), 3000);    
+  console.log('fin promesa');    
+});
+
+/** llamamos al método then del objeto de tipo Promise. Pasamos como argumento
+ * la función flecha que va a convertirse en la función resolver de tipo callback
+ * que llamamos en la creación del objeto */
+promesa.then(valor => console.log(valor));
+
+#!markdown
+
+## Palabra reservada `async`
+
+#!markdown
+
+La palabra resercada `async` facilita el uso de promesas. Al escribir la palabra `async`, antes de la definición de una función, indicamos que esa función está obligado a regresar una promesa.
+
+#!javascript
+
+/** creamos una función anteponiendo la palabra reservada async. Esto permite
+ * que la función se comporte como un objeto de tipo Promise, es decir, podemos
+ * llamar al método then y catch  */
+async function miFuncionConPromesa(){
+    return 'saludos con promesa y async';
+}
+
+/** al ser una función y no un objeto de tipo Promise usamos los () antes de then
+ * en el ejemplo llamamos a la función miFuncionConPromesa, lo que devuelve se
+ * asigna al parámetro valor de la función flecha dentro de los () del then */
+miFuncionConPromesa().then(valor => console.log(valor));
+
+#!markdown
+
+## Palabra reservada `await`
+
+#!markdown
+
+La palabra reservada `await` espera el resultado de una promesa. Una vez que este llega continua la ejecución del código que indicamos. `await` solo se puede usar dentro de una función declarada con `async`.
+
+#!javascript
+
+/** definimos una función con async para que devuelva una promesa */
+async function funcionConPromesaYAwait() {
+
+  /** definimos un objeto de tipo Promise de la forma en que veníamos trabajando
+   * con la función flecha como parámetro y la función resolver de tipo callback */
+  let miPromesa = new Promise(resolver => {      
+    resolver('Promesa con await');        
+  });
+    
+  /** consumimos dentro de la misma función lo que regresa el objeto miPromesa
+   * lo hacemos con la palabra resercada await, esto es equivalente a hacer
+   * miPromesa.then(valor => return valor);  */
+  console.log(await miPromesa);
+    
+}
+
+/** llamamos a la función de forma normal para que se ejecute el código de las
+ * promesas */
+funcionConPromesaYAwait();
+
+#!markdown
+
+## Uso de promesas con `async`, `await` y `setTimeout`
+
+#!markdown
+
+Como ejemplo vamos a definir una función con `async` que devuelve una promesa, pero esa promesa se a resolver después de algunos segundos, cuando se ejecute la función `setTimeout`.
+
+#!javascript
+
+/** definimos una función que devuelve una promesa con async */
+async function funcionConPromesaAwaitTimeout() {
+  console.log('inicio función');
+
+  /** creamos un nuevo objeto de tipo Promise pasando una función flecha
+   * que tiene como parámetro la función callback resolver */
+  let miPromesa = new Promise(resolver => {
+
+    /** pasamos a la función setTimeout una función flecha sin parámetros
+     * que llama a la función callback resolver. Indicamos que lo haga pasados
+     * 3 segundos desde la ejecución de la línea de código */
+    setTimeout(() => resolver('promesa con await y timeout'), 3000);
+  });
+
+  /** con await indicamos que se ejecute esperamos la respuesta del objeto Promise
+   * miPromesa. El mismo ejecuta el código miPromesa.then(valor => return valor); */
+  console.log(await miPromesa);    
+  console.log('fin función');
+    
+}
+
+/** llamamos a la función que regresa una promesa de forma normal */
+funcionConPromesaAwaitTimeout();
+
+#!markdown
+
+# Manejo del DOM HTML
+
+#!markdown
+
+## DOM HTML
