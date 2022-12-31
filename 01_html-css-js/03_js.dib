@@ -3938,3 +3938,87 @@ Al formulario le damos un id para poder referenciarlo e iterar sobre sus element
 
 </body>
 </html>
+
+#!markdown
+
+## Manejo individual de elementos del formulario
+
+#!markdown
+
+Para acceder a un elemento en particular de un formulario podemos utilizar su atributo `name`.
+
+#!html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo Formulario con JavaScript</title>
+</head>
+<body>
+    <form id='formulario'>
+        Nombre: <input type="text" name='nombre' value='Juan'/>
+        <br/>
+        Apellido: <input type='text' name='apellido' value='Perez'/>
+        <br/>
+    </form>
+    <button onclick='mostrarValores()'>Mostrar</button>
+    <div id='valores'></div>
+    
+    <script>
+        function mostrarValores(){
+            let formulario = document.forms['formulario'];            
+            let texto = '';
+
+            /** en la variable formulario tenemos la referencia al array de elementos del
+            * formulario que capturamos mediante su id. Podemos acceder a un elemento en
+            * particular desde su atributo name. En el ejemplo accedemos a input con 
+            * atributo name='nombre' */
+            let nombre = formulario['nombre'];
+            
+            let apellido = formulario['apellido'];
+
+            /** con al referencia del elemento del formulario en la variable nombre y
+            * apellido podemos acceder a sus atributos value */
+            texto = nombre.value + '<br/>' + apellido.value;
+            
+            document.getElementById('valores').innerHTML = texto;            
+        }        
+    </script>
+
+</body>
+</html>
+
+#!markdown
+
+## Método `write`
+
+#!markdown
+
+Mediante el método `write`, cuya sintaxis es `document.write()`, podemos imprimir texto directamente en el flujo de información que muestra el documentos HTML. Esto sobreescribe por completo la información que se estaba mostrando hasta antes de ejecutar el método.
+
+#!markdown
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Manejo DOM con JavaScript</title>
+</head>
+<body>
+    <h1>Manejo DOM con JavaScript</h1>
+    <button onclick="mostrar()">Mostrar</button>
+    <br/>
+    <script>
+    
+        /** al cargar por primera vez la página se muestra este mensaje */
+        document.write('Saludos desde JavaScript');
+
+        /** al tocar el el botón mostrar se sobreescribe todo lo que había en el
+        * el documento y se reemplaza con lo que pasamos como argumento al método */
+        function mostrar() {
+        document.write('Adios');
+        }        
+    </script>
+</body>
+</html>
