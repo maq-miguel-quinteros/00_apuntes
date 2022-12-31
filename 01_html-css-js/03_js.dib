@@ -1815,3 +1815,775 @@ console.log(persona1.nombreCompleto.apply(persona2, ['Lic', '55448822']) );
 #!markdown
 
 ## Definición de clases
+
+#!markdown
+
+Una clase es una plantilla. En esta plantilla definimos los atributos y métodos que queremos que tengan los objetos que vamos a crear a partir de ella. Un objeto es una instancia de una clase. EN general cuando definimos una clase la misma no tiene valores en sus atributos o métodos, en caso de tenerlos esos valores van a estar presente en cada uno de los objetos que creemos a partir de esa clase. Una clase tiene un nombre, tiene atributos y tiene métodos. Cada uno de los objetos creados a partir de la clase comparten los mismos atributos y métodos, pero no comparten los valores qque toman estos.
+
+#!javascript
+
+/** el nombre de la clase en general se escribe en mayúsculas */
+class Persona{
+
+  /** creamos el constructor de la clase escribiendo un método
+   * llamado constructor */
+  constructor(nombre, otro) {
+  
+      /** this nos permite indicar que nombre es un atributo de la clase */
+        this.nombre = nombre; 
+        this.apellido = otro;
+    }
+}
+
+/** utilizamos la palabra reservada new para crear un nuevo objeto
+ * del tipo Persona  */
+let persona1 = new Persona('Juan', 'Perez');
+console.log( persona1 );
+
+let persona2 = new Persona('Carlos', 'Lara');
+console.log( persona2 );
+
+#!markdown
+
+## Métodos `get` y `set`
+
+#!markdown
+
+Podemos utilizar métodos `get` y `set` para acceder y modificar los valores de los atributos de un objeto. El método `get` no puede tener el mismo nombre que el atributo sobre el que trabaja, por ese motivo al atributo lo nombramos antepuesto a un guión bajo de la forma `_atributo`.
+
+#!javascript
+
+class Persona{
+
+  /** no son necesarias las comas despueés de definir cada método de la clase */
+  constructor(nombre, apellido) {
+
+      /** los atributos llevan un _ para poder crear el método
+       * get con el mismo nombre de estos */
+        this._nombre = nombre; 
+        this._apellido = apellido;
+  }
+  
+    /** creamos el método get */
+    get nombre(){
+        return this._nombre;
+    }
+    
+    /** cramos el método set que recibe un argumento */
+    set nombre(nombre){
+        this._nombre = nombre;
+    }
+}
+
+let persona1 = new Persona('Juan', 'Perez');
+
+/** el método set no requiere ser utilizado de la forma
+ * persona1.nombre('Juan Carlos') */
+persona1.nombre = 'Juan Carlos';
+
+/** el método get no tiene que se llamado de la forma persona1.nombre() */
+console.log(persona1.nombre);
+
+#!markdown
+
+## Hoisting y clases
+
+#!markdown
+
+Cuando trabajamos con clases no se aplica el concepto de hoisting, es decir, no es posible crear objetos antes de declarar la clase de ese objeto.
+
+#!javascript
+
+/** va a devolver un error por que tratamos de crear el objeto
+ * antes de definir la clase */
+let persona2 = new Persona('Karla', 'Juarez');
+
+class Persona{
+    constructor(nombre, apellido){
+        this._nombre = nombre; 
+        this._apellido = apellido;
+    }
+    get nombre(){
+        return this._nombre;
+    }
+    set nombre(nombre){
+        this._nombre = nombre;
+    }
+}
+
+let persona1 = new Persona('Juan', 'Perez');
+persona1.nombre = 'Juan Carlos';//set nombre('Juan Carlos')
+console.log( persona1.nombre );//get nombre
+
+let persona2 = new Persona('Karla', 'Juarez');
+console.log( persona2 );
+
+#!markdown
+
+## Herencia
+
+#!markdown
+
+Mediante la herencia podemos reutilizar código y heredar caracteristicas de una clase padre a una clase hijo. Para indicar la herencia de una clase desde otra utilizamos la palabra reservada `extends` sobre la clase hijo. La clase hijo va a heredar, y por ende a tener definidos, los atributos y métodos de la clase padre, esto significa que no tenemos la necesidad de declarar los atributos presentes en la clase padre, entre las declaraciones de la clase hijo. Para llamar al constructor de la clase padre dentro de la clase hijo utilizamos la palabra reservada `super`, si no hacemos este llamado y completamos los datos del constructor de la clase padre nos dará un error indicando que no podemos crear un objeto de la clase hijo.
+
+#!javascript
+
+class Persona{
+    constructor(nombre, apellido){
+        this._nombre = nombre; 
+        this._apellido = apellido;
+    }
+    get nombre(){
+        return this._nombre;
+    }
+    set nombre(nombre){
+        this._nombre = nombre;
+    }
+    get apellido(){
+        return this._apellido;
+    }
+    set apellido(apellido){
+        this._apellido = apellido;
+    }
+}
+
+/** la clase Empleado hereda de la clase Persona mediante la palabra reservada
+ * extends. */
+class Empleado extends Persona{
+  constructor(nombre, apellido, departamento) {
+
+    /** llamamos al constructor de la clase padre con sus parámetros */
+    super(nombre, apellido);
+    this._departamento = departamento;
+
+    }
+    get departamento(){
+        return this._departamento;
+    }
+    set departamento(departamento){
+        this._departamento = departamento;
+    }
+}
+
+let persona1 = new Persona('Juan', 'Perez');
+console.log( persona1 );
+
+let empleado1 = new Empleado('Maria', 'Jimenez', 'Sistemas');
+console.log(empleado1);
+
+/** utilizamos el método get nombre heredado de la clase persona */
+console.log( empleado1.nombre );
+
+#!markdown
+
+## Herencia de métodos
+
+#!markdown
+
+Podemos heredar métodos además de los `get` y `set` en una clase hijo desde una clase padre.
+
+#!javascript
+
+class Persona{
+    constructor(nombre, apellido){
+        this._nombre = nombre; 
+        this._apellido = apellido;
+    }
+    get nombre(){
+        return this._nombre;
+    }
+    set nombre(nombre){
+        this._nombre = nombre;
+    }
+    get apellido(){
+        return this._apellido;
+    }
+    set apellido(apellido){
+        this._apellido = apellido;
+    }
+
+    /** no es necesario agregar function en la definicion de la clase
+     * cuando definimos un nuevo método o función */
+    nombreCompleto(){
+        return this._nombre + ' ' + this._apellido;
+    }
+}
+
+class Empleado extends Persona{
+    constructor(nombre, apellido, departamento){
+        super(nombre, apellido);
+        this._departamento = departamento;
+    }
+    get departamento(){
+        return this._departamento;
+    }
+    set departamento(departamento){
+        this._departamento = departamento;
+    }
+}
+
+let empleado1 = new Empleado('Maria', 'Jimenez', 'Sistemas');
+console.log(empleado1);
+
+/** heredamos el método nombreCompleto */
+console.log( empleado1.nombreCompleto() );
+
+#!markdown
+
+## Sobreescritura de métodos
+
+#!markdown
+
+Podemos redefinir un método de la clase heredado de la clase padre en la clase hijo, es decir, podemos editar el método heredado en la clase hijo para que realice acciones para las que no está definido en la clase padre. Esto no modifica el método en la clase padre, donde queda como está, pero lo redefine en la clase hijo que lo hereda. Cuando lo redefinimos en la clase hijo, el método tiene que tener el mismo nombre y recibir los mismos parámetros, si esto no se cumple no es sobreescritura del método heredado sino la definición de un nuevo método.
+
+#!javascript
+
+class Persona{
+    constructor(nombre, apellido){
+        this._nombre = nombre; 
+        this._apellido = apellido;
+    }
+    get nombre(){
+        return this._nombre;
+    }
+    set nombre(nombre){
+        this._nombre = nombre;
+    }
+    get apellido(){
+        return this._apellido;
+    }
+    set apellido(apellido){
+        this._apellido = apellido;
+    }
+    nombreCompleto(){
+        return this._nombre + ' ' + this._apellido;
+    }
+}
+
+class Empleado extends Persona{
+    constructor(nombre, apellido, departamento){
+        super(nombre, apellido);
+        this._departamento = departamento;
+    }
+    get departamento(){
+        return this._departamento;
+    }
+    set departamento(departamento){
+        this._departamento = departamento;
+    }
+
+    /** redefinimos o sobreescribimos el método nombreCompleto() */
+  nombreCompleto() {
+  
+      /** como la sobreescritura no modifica el método de la clase padre
+       * podemos reutilizar este método con la palabra reservada super
+       * que llama al método o a atributos definidos en la clase padre*/
+        return super.nombreCompleto() + ', ' + this._departamento;
+    }
+}
+
+let persona1 = new Persona('Juan', 'Perez');
+console.log( persona1 );
+
+let empleado1 = new Empleado('Maria', 'Jimenez', 'Sistemas');
+console.log( empleado1 );
+console.log( empleado1.nombreCompleto() );
+
+#!markdown
+
+## Clase `Object` y polimorfismo
+
+#!markdown
+
+La clase `Object` es la clase padre de todas las clases en JavaScript. No se escribe de manera explicita pero cada clase que creamos está definida de la forma `class NombreClase extends Object`. Al heredar de la clase `Object` la nueva clase tambien hereda los atributos y métodos de esta clase. Uno de los atributos de la clase `Object` es `prototype`. Este también tiene definidos sus propios atributos y métodos, por ende, en nuestra nueva clase podemos acceder y sobreescribir los atributos y métodos de `Object` y los atributos y métodos de sus atributos como `prototype`.
+
+#!javascript
+
+class Persona{
+    constructor(nombre, apellido){
+        this._nombre = nombre; 
+        this._apellido = apellido;
+    }
+    get nombre(){
+        return this._nombre;
+    }
+    set nombre(nombre){
+        this._nombre = nombre;
+    }
+    get apellido(){
+        return this._apellido;
+    }
+    set apellido(apellido){
+        this._apellido = apellido;
+    }
+    nombreCompleto(){
+        return this._nombre + ' ' + this._apellido;
+    }
+
+    /** sobreescribimos el método toString() que encontramos en la clase padre
+     * Object en uno de sus atributos (que también es un objeto) prototype
+     * de la forma Object.prototype.toString(); */
+    toString(){
+
+      /** se aṕlica el concepto de polimorfimso, el método toString llama a 
+       * nombreCompleto() de la clase Persona (padre) si lo llamamos
+       * desde un objeto de tipo Persona y llama a 
+       * nombreCompleto() de la clase Empleado (hijo) si lo llamamos 
+       * desde un objeto del tipo Empleado */
+        return this.nombreCompleto();
+    }
+}
+
+class Empleado extends Persona{
+    constructor(nombre, apellido, departamento){
+        super(nombre, apellido);
+        this._departamento = departamento;
+    }
+    get departamento(){
+        return this._departamento;
+    }
+    set departamento(departamento){
+        this._departamento = departamento;
+    }
+    nombreCompleto(){
+        return super.nombreCompleto() + ', ' + this._departamento;
+    }
+}
+
+let persona1 = new Persona('Juan', 'Perez');
+
+/** llama al método nombre completo de la clase Persona */
+console.log( persona1.toString() );
+
+let empleado1 = new Empleado('Maria', 'Jimenez', 'Sistemas');
+console.log( empleado1 );
+console.log(empleado1.nombreCompleto());
+
+/** el método  toString() sobreescrito se hereda de la clase padre Persona y
+ * llama al método nombre completo de la clase hijo Empleado */
+console.log( empleado1.toString());
+
+#!markdown
+
+Polimorfismo significa multiples formas en tiempo de ejecución, es decir, que el comportamiento del método varía segun el objeto desde el cual lo estemos llamando.
+
+#!markdown
+
+# Palabra reservada `static`
+
+#!markdown
+
+## Métodos estáticos
+
+#!markdown
+
+Una vez definida la clase podemos agregar métodos que se asocien con los objetos que creamos a partir de esa clase y también podemos crear métodos que se asocien con la clase exclusivamente. Para definir estos métodos utilizamos la palabra reservada `static`.
+
+#!javascript
+
+class Persona{
+    constructor(nombre, apellido){
+        this._nombre = nombre; 
+        this._apellido = apellido;
+    }
+    get nombre(){
+        return this._nombre;
+    }
+    set nombre(nombre){
+        this._nombre = nombre;
+    }
+    get apellido(){
+        return this._apellido;
+    }
+    set apellido(apellido){
+        this._apellido = apellido;
+    }
+    nombreCompleto(){
+        return this._nombre + ' ' + this._apellido;
+    }
+    toString(){
+        return this.nombreCompleto();
+    }
+
+    /** definimos el método estático, es decir que se asocia con la clase
+     * y no con los objetos que creamos a partir de la clase */
+    static saludar(){
+        console.log('saludos desde método static');
+    }
+
+    /** paramos un objeto como parametro del método estatico */
+    static saludar2(persona){
+        console.log(persona.nombre + ' ' + persona.apellido);
+    }
+}
+
+class Empleado extends Persona{
+    constructor(nombre, apellido, departamento){
+        super(nombre, apellido);
+        this._departamento = departamento;
+    }
+    get departamento(){
+        return this._departamento;
+    }
+    set departamento(departamento){
+        this._departamento = departamento;
+    }
+    nombreCompleto(){
+        return super.nombreCompleto() + ', ' + this._departamento;
+    }
+}
+
+let persona1 = new Persona('Juan', 'Perez');
+
+let empleado1 = new Empleado('Maria', 'Jimenez', 'Sistemas');
+
+/** el método funciona por que lo llamamos desde la clase directamente */
+Persona.saludar();
+
+/** pasamos como argumento un objeto de tipo persona pero seguimos llamando
+ * al método desde la clase y no del objeto */
+Persona.saludar2(persona1);
+
+/** el método estático se hereda a la clase hijo como método estático
+ * es decir que tiene que ser llamado desde la clase hijo, no desde el 
+ * objeto que creamos con la clase */
+Empleado.saludar();
+Empleado.saludar2(empleado1);
+
+/** devuelve error por que no es posible llamar un método static
+ * desde un objeto */
+persona1.saludar(); 
+
+#!markdown
+
+## Atributos estáticos
+
+#!markdown
+
+Para definir atributos estáticos en nuestra clase utilizamos la palabra reservada `static`. Este atributo, así como los métodos estáticos pertenecen a la clase pero no a los objetos que creamos a partir de esa clase.
+
+#!javascript
+
+class Persona{
+
+  /** definimos el atributo contadorObjetosPersona como static
+   * y le asignamos el valor inicial 0 */
+    static contadorObjetosPersona = 0;
+
+    constructor(nombre, apellido){
+        this._nombre = nombre; 
+      this._apellido = apellido;
+
+        /** incrementamos el valor del atributo contadorObjetosPersona cada
+         * vez que se crea un objeto. No accedemos al atributo como 
+         * this.contadorObjetosPersona por que este hace referencia al atributo
+         *  del objeto y contadorObjetosPersona es un atributo de la clase */
+        Persona.contadorObjetosPersona++;
+        console.log( 'Se incrementa contador:' + Persona.contadorObjetosPersona);
+    }
+    get nombre(){
+        return this._nombre;
+    }
+    set nombre(nombre){
+        this._nombre = nombre;
+    }
+    get apellido(){
+        return this._apellido;
+    }
+    set apellido(apellido){
+        this._apellido = apellido;
+    }
+    nombreCompleto(){
+        return this._nombre + ' ' + this._apellido;
+    }    
+    toString(){
+        return this.nombreCompleto();
+    }
+    static saludar(){
+        console.log('saludos desde método static');
+    }
+    static saludar2(persona){
+        console.log(persona.nombre + ' ' + persona.apellido);
+    }
+}
+
+class Empleado extends Persona{
+    constructor(nombre, apellido, departamento){
+        super(nombre, apellido);
+        this._departamento = departamento;
+    }
+    get departamento(){
+        return this._departamento;
+    }
+    set departamento(departamento){
+        this._departamento = departamento;
+    }
+    nombreCompleto(){
+        return super.nombreCompleto() + ', ' + this._departamento;
+    }
+}
+
+let persona1 = new Persona('Juan', 'Perez');
+
+let empleado1 = new Empleado('Maria', 'Jimenez', 'Sistemas');
+
+/** si tratamos de llamar a una variable estática desde un objeto nos indica
+ * con undefined que la variable no existe, aunque esta si existe, solo que
+ * debe ser accedida desde la clase */
+console.log(persona1.contadorObjetosPersona);
+
+/** llamamos al atributo desde la clase */
+console.log( Persona.contadorObjetosPersona );
+
+/** el atributo estático se hereda y puede llamarse desde la clase hijo */
+console.log( Empleado.contadorObjetosPersona );
+
+#!markdown
+
+## Atributos estáticos vs no estáticos
+
+#!markdown
+
+No es necesario definir todos los atributos propios de los objetos en el constructor de la clase.
+
+#!javascript
+
+class Persona{
+
+  /** atributo estático, se asocia solo con la clase */
+  static contadorObjetosPersona = 0;
+
+  /** atributo no estático, se asocia con los objetos creados a partir
+   * de la clase. No requiere la palabra this en su definicio, si cuando
+   * lo llamamos o asignamos valores con un método */
+    email = 'Valor default email';
+
+    constructor(nombre, apellido){
+        this._nombre = nombre; 
+        this._apellido = apellido;
+        Persona.contadorObjetosPersona++;
+        console.log( 'Se incrementa contador:' + Persona.contadorObjetosPersona);
+    }
+    get nombre(){
+        return this._nombre;
+    }
+    set nombre(nombre){
+        this._nombre = nombre;
+    }
+    get apellido(){
+        return this._apellido;
+    }
+    set apellido(apellido){
+        this._apellido = apellido;
+    }
+    nombreCompleto(){
+        return this._nombre + ' ' + this._apellido;
+    }
+    toString(){
+        return this.nombreCompleto();
+    }
+    static saludar(){
+        console.log('saludos desde método static');
+    }
+    static saludar2(persona){
+        console.log(persona.nombre + ' ' + persona.apellido);
+    }
+}
+
+class Empleado extends Persona{
+    constructor(nombre, apellido, departamento){
+        super(nombre, apellido);
+        this._departamento = departamento;
+    }
+    get departamento(){
+        return this._departamento;
+    }
+    set departamento(departamento){
+        this._departamento = departamento;
+    }
+    nombreCompleto(){
+        return super.nombreCompleto() + ', ' + this._departamento;
+    }
+}
+
+let persona1 = new Persona('Juan', 'Perez');
+
+
+let empleado1 = new Empleado('Maria', 'Jimenez', 'Sistemas');
+
+/** los objetos creados a partir de la clase padre e hijo 
+ * tienen el atributo email */
+console.log( persona1.email );
+console.log(empleado1.email);
+
+/** la clase padre e hijo no tienen el atributo email por que no
+ * está definino como static */
+console.log( Persona.email);
+console.log( Empleado.email);
+
+#!markdown
+
+## Ejemplo de uso de atributos estáticos
+
+#!javascript
+
+class Persona{
+
+  /** atributo estático de la clase */
+    static contadorPersonas = 0;
+
+    constructor(nombre, apellido){
+        this._nombre = nombre; 
+      this._apellido = apellido;
+
+        /** creamos el atributo de objeto idPersona y le asignamos el valor
+         * del atributo de clase contadorPersonas incrementando en 1 el mismo
+         * antes de la asignación */
+        this.idPersona = ++Persona.contadorPersonas;
+    }
+    get nombre(){
+        return this._nombre;
+    }
+    set nombre(nombre){
+        this._nombre = nombre;
+    }
+    get apellido(){
+        return this._apellido;
+    }
+    set apellido(apellido){
+        this._apellido = apellido;
+    }
+  nombreCompleto() {
+  
+      /** modificamos el método para mostrar el atributo idPersona */
+        return this.idPersona + ' ' + this._nombre + ' ' + this._apellido;
+    }
+    toString(){
+        return this.nombreCompleto();
+    }
+}
+
+class Empleado extends Persona{
+    constructor(nombre, apellido, departamento){
+        super(nombre, apellido);
+        this._departamento = departamento;
+    }
+    get departamento(){
+        return this._departamento;
+    }
+    set departamento(departamento){
+        this._departamento = departamento;
+    }
+    nombreCompleto(){
+        return super.nombreCompleto() + ', ' + this._departamento;
+    }
+}
+
+/** al crear un objeto de tipo Persona el atributo de clase contadorPersonas 
+ * se incrementa en 1 y ese valor se asigna al atributo de objeto idPersona */
+let persona1 = new Persona('Juan', 'Perez');
+console.log( persona1.toString() );
+
+/** el constructor de Empleado llama al constructor de Persona, por ende
+ * el atributo de clase contadorPersonas se incrementa en 1 y ese valor 
+ * se asigna al atributo de objeto idPersona */
+let empleado1 = new Empleado('Maria', 'Jimenez', 'Sistemas');
+console.log( empleado1.toString() );
+
+console.log( Persona.contadorPersonas );
+
+let persona2 = new Persona('Karla', 'Ramirez');
+console.log( persona2.toString() );
+console.log( Persona.contadorPersonas);
+
+#!markdown
+
+## Crear constantes estáticas
+
+#!markdown
+
+Para crear un atributo de tipo `static`, pero que sea de solo lectura, similar a lo que hacemos con `const`, solo que en este caso no podemos utilizar `const`. Para esto vamos a crear un método `static` que solo va a regresar un valor. Al no ser un atributo sino un método que devuelve un valor, este valor no puede ser modificado.
+
+#!javascript
+
+class Persona{
+
+  static contadorPersonas = 0;
+    
+    /** el método MAX_OBJ, definido como get, solo devuelve un valor
+     * de esa forma simula ser una constante */
+    static get MAX_OBJ(){
+        return 5;
+    }
+
+    constructor(nombre, apellido){
+        this._nombre = nombre; 
+      this._apellido = apellido;
+
+      /** valida si la cantidad de personas creadas en contadorPersonas es 
+       * menor a la constante simulada MAX_OBJ */
+        if( Persona.contadorPersonas < Persona.MAX_OBJ){
+            this.idPersona = ++Persona.contadorPersonas;
+        }
+        else{
+            console.log('Se han superado el máximo de objetos permitidos');
+        }
+    }
+    get nombre(){
+        return this._nombre;
+    }
+    set nombre(nombre){
+        this._nombre = nombre;
+    }
+    get apellido(){
+        return this._apellido;
+    }
+    set apellido(apellido){
+        this._apellido = apellido;
+    }
+    nombreCompleto(){
+        return this.idPersona + ' ' + this._nombre + ' ' + this._apellido;
+    }
+    toString(){
+        return this.nombreCompleto();
+    }
+}
+
+class Empleado extends Persona{
+    constructor(nombre, apellido, departamento){
+        super(nombre, apellido);
+        this._departamento = departamento;
+    }
+    get departamento(){
+        return this._departamento;
+    }
+    set departamento(departamento){
+        this._departamento = departamento;
+    }
+    nombreCompleto(){
+        return super.nombreCompleto() + ', ' + this._departamento;
+    }
+}
+
+/** al ser un método get no requiere los () */
+console.log(Persona.MAX_OBJ);
+
+/** no da error al tratar de hacer ejecutar el método set para MAX_OBJ ya que,
+ * aunque este no existe, JavaScript está creando un atributo en persona con 
+ * el nombre MAX_OBJ */
+Persona.MAX_OBJ = 10;
+
+/** seguimos llamando al método a pesar de la asignación de la linea anterior
+ * y el valor que devuelve el método no cambia */
+console.log( Persona.MAX_OBJ);
+
+let persona1 = new Persona('Juan', 'Perez');
+let persona2 = new Persona('Karla', 'Ramirez');
+let persona3 = new Persona('Mariano', 'Lara');
+let persona4 = new Persona('Armando', 'Toledo');
+let persona5 = new Persona('Laura', 'Quintero');
+console.log( persona5.toString() );
+
+#!markdown
+
+# Ejercicios de ejemplo
