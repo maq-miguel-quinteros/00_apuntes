@@ -1,0 +1,238 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# Tipos de datos en JavaScript
+
+#!markdown
+
+## Tipos de datos
+
+#!markdown
+
+El tipo de dato `string` (cadena de caracteres)
+
+#!javascript
+
+var nombre = "Carlos";
+console.log(nombre);
+
+#!markdown
+
+El tipo de dato `number` (númerico)
+
+#!javascript
+
+var numero = 1000;
+console.log(numero);
+
+#!markdown
+
+El tipo de dato `object` (objeto)
+
+#!javascript
+
+var objeto = {
+    nombre : "Juan",
+    apellido : "Perez",
+    telefono : "55443322"
+}
+console.log(objeto);
+
+#!markdown
+
+Las variables son dinámicas, con asignarle el valor indicamos el tipo de datos que almacena, a su vez si cambiamos su valor por otro, de otro tipo de datos, la misma cambia para adatarse a al mismo.
+
+#!markdown
+
+El tipo de dato `typeof` devuelve el tipo de datos que está almacenado en la variable al momento de usarlo.
+
+#!javascript
+
+var nombre = "Carlos";
+console.log(typeof nombre);
+
+var nombre = 5;
+console.log(typeof nombre);
+
+var objeto = {
+    nombre : "Juan",
+    apellido : "Perez",
+    telefono : "55443322"
+}
+console.log(typeof objeto);
+
+#!markdown
+
+El tipo de dato `boolean` puede tomar los valores de `true` o `false` (verdadero o falso). Este tipo de variable se conoce como bandera.
+
+#!javascript
+
+var bandera = false;
+console.log(typeof bandera);
+
+#!markdown
+
+El tipo de dato `function` (función) permite realizar una tarea. Lleva adelante una serie de lineas de código y, si necesitamos volver a realizar esa tarea, podemos volver a llamar a la funcion.
+
+#!javascript
+
+function miFuncion(){}
+console.log(typeof miFuncion);
+
+#!markdown
+
+El tipo de dato `Symbol` se utiliza para crear un valor unico de una variable. Si necesitamos crear una variable de este tipo llamamos a la funcion `Symbol()` y entre los parentesis pasamos una cadena de caracteres.
+
+#!javascript
+
+var simbolo = Symbol("mi simbolo");
+console.log(typeof simbolo);
+
+#!markdown
+
+El tipo de dato `class` (clase) es un tipo `function`. Por lo general  se define la clase con su nombre en singular y empezando en mayusculas. Para poder definir objetos de esta clase necesitamos un constructor. Con la palabra reservada `this` seguida de .A indicamos que al atributo A, propio de la clase, le asignamos el valor de B que viene por parametros en el constructor de la forma `this.A = B`.
+
+#!javascript
+
+class Persona {
+
+  /** constructor de la clase recibe por parametros nombreNuevo, apellidoNuevo */
+  constructor(nombreNuevo, apellidoNuevo) {
+  
+    /** asignamos a los atributos nombre y apellido, propios de la clase, lo que llega por parametro */
+    this.nombre = nombreNuevo;
+    this.apellido = apellidoNuevo;
+    }
+}
+console.log(typeof Persona);
+
+#!markdown
+
+El tipo de dato `undefined` es un tipo de dato y, a la vez, un valor que puede tomar una variable cuando, por ejemplo, se la declara sin asignarle valores.
+
+#!javascript
+
+var x;
+console.log(typeof x);
+
+x = undefined;
+console.log(x);
+
+#!markdown
+
+Para el caso de `null`, este no es un tipo de datos sino que es un valor asignable a una variable, que representa la ausencia de valor.
+
+#!javascript
+
+var y = null;
+console.log(y);
+console.log(typeof y);
+
+#!markdown
+
+Para el caso de los array (arreglos), su tipo de dato es `object`.
+
+#!javascript
+
+var autos = ['BMW','Audi','Volvo'];
+console.log(autos);
+console.log(typeof autos);
+
+#!markdown
+
+Para el caso de las cadenas vacias su tipo de dato es `string` pero al consultar su contenido nos devuelve `empty string`. `empty string` no es un tipo de dato sino un valor (el contenido de una variable).
+
+#!javascript
+
+var z = '';
+console.log(z); // devuelve empty string aunque en notebooks no aparezca así
+console.log(typeof z);
+
+#!markdown
+
+## Concatenación de variables
+
+#!markdown
+
+Podemos concatenar variables usando el operador `+`. Al concatenar el contenido de dos o más variables o datos generamos una nueva cadena. Mediante `+ ' ' +` concatenamos un espacio en blanco entre las dos variables.
+
+#!javascript
+
+var nombre = 'Juan';
+var apellido = 'Perez';
+
+var nombreCompleto = nombre + ' ' + apellido;
+console.log(nombreCompleto);
+
+#!markdown
+
+No es necesario tener en variables los valores para concatenarlos.
+
+#!javascript
+
+var nombreCompleto2 = 'Carlos' + ' ' + 'Lara';
+console.log(nombreCompleto2);
+
+#!markdown
+
+La lectura de la operación se hace de izquierda a derecha. Si comienza con numeros, realizar la operación matemática hasta que encuentra un string, a partir del string realiza la concatenación. Se atiende primero las operaciones que están dentro de los parentesis, luego lo que está afuera.
+
+#!javascript
+
+var nombre = 'Juan';
+var x = nombre + 2 + 4;
+console.log(x);
+
+/**  realiza la suma dentro del paréntesis antes de realizar la concatenación */
+x = nombre + (2 + 4);
+console.log(x);
+
+x = 2 + 4 + nombre;
+console.log(x);
+
+#!markdown
+
+## Declaración de variables
+
+#!markdown
+
+Un litaral es un dato, un string, number, boolean, etc. Los siguientes son literales:
+
+#!javascript
+
+3;
+3.5;
+'Andrea';
+
+#!markdown
+
+A una variable le asignamos un literal. Podemos decir que dentro de una variable guardamos un literal.
+
+#!javascript
+
+var nombre = 'Andrea';
+
+#!markdown
+
+Ya no se recomienda usar `var` para declarar una variable, ahora usamos `let` para una variable. A su vez tampoco es necesario indicar `let` para declara la variable, se pueden declara solo escribiendo el nombre, pero una buena práctica es escribir `let` antes del nombre de la variable. Podemos declarar primero la variable y asignarle el valor a la misma luego, en otra línea de código distinta.
+
+#!javascript
+
+let nombre;
+nombre = "Juan";
+console.log(nombre);
+nombre = "Pedro";
+console.log( nombre );
+
+#!markdown
+
+ Para declarar una constante usamos `const`. A diferencia de las variables a las constantes no se puede reasignar su valor.
+
+#!javascript
+
+const apellido = "Perez";
+console.log(apellido);
+apellido = "Gomez"; // dará error
