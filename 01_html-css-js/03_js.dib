@@ -236,3 +236,147 @@ console.log( nombre );
 const apellido = "Perez";
 console.log(apellido);
 apellido = "Gomez"; // dará error
+
+#!markdown
+
+La palabra reservada `console` es un objeto. `log` es un método del objeto y el argumento es lo que recibe el método para trabajar  `console.log(argumento)`.
+
+#!javascript
+
+let nombreCompleto = "Juan Perez";
+console.log( nombreCompleto );
+
+#!markdown
+
+Podemos declarar las variables por grupos con coma y asignarles el valor en la misma línea también separadas por coma.
+
+#!javascript
+
+let x, y;
+x = 10, y = 20;
+let z = x + y;
+console.log(z);
+
+#!markdown
+
+Javascript es sencible a mayúsculas y minúsculas para los nombres de las variables o funciones. No se puede comenzar el nombre de una variable o funcion con un número. Para el incio del nombre se permiten mayúsculas, minúsculas y los signos _ y $. No se pueden utilizar las palabras reservadas como nombre de variable o función.
+
+#!markdown
+
+# Operadores en Javascript
+
+#!markdown
+
+## Operadores aritméticos
+
+#!markdown
+
+Suma
+
+#!javascript
+
+let a = 3, b = 2;
+let z = a + b;
+console.log("Resultado de la suma: " + z);
+
+#!markdown
+
+Resta
+
+#!javascript
+
+let a = 3, b = 2;
+z = a - b;
+console.log("Resultado de la resta: " + z);
+
+#!markdown
+
+Multiplicación
+
+#!javascript
+
+let a = 3, b = 2;
+z = a * b;
+console.log("Resultado de la multiplicación: " + z);
+
+#!markdown
+
+División
+
+#!javascript
+
+let a = 3, b = 2;
+z = a / b;
+console.log("Resultado de la división: " + z);
+
+#!markdown
+
+Módulo o resto de la división
+
+#!javascript
+
+let a = 3, b = 2;
+z = a % b;
+console.log("Resultado del módulo (resto): " + z);
+
+#!markdown
+
+Exponente
+
+#!javascript
+
+let a = 3, b = 2;
+z = a ** b;
+console.log("Resultado del exponente: " + z);
+
+#!markdown
+
+## Operadores de incremento y decremento
+
+#!markdown
+
+Pre-incremento. El operador `++` va antes de la variable `++variable`.
+
+#!javascript
+
+a = 3;
+z = ++a; // se incrementa a en 1 y despues se asigna a z
+console.log("a: " + a);
+console.log("z: " + z);
+
+#!markdown
+
+Post-incremento. El operador `++` va después de la variable `variable++`.
+
+#!javascript
+
+b = 2;
+z = b++; // se asigna b a z y después se hace el incremento de 1 en b
+console.log("b: " + b);
+console.log("z: " + z);
+
+#!markdown
+
+Pre-decremento. El operador `--` va antes de la variable `--variable`.
+
+#!javascript
+
+a = 3;
+z = --a; // se decrementa a en 1 y despues se asigna a z
+console.log("a: " + a);
+console.log("z: " + z);
+
+#!markdown
+
+Post-decremento. El operador `--` va después de la variable `variable--`.
+
+#!javascript
+
+b = 2;
+z = b--; // se asigna b a z y después se hace el decremento de 1 en b
+console.log("b: " + b);
+console.log("z: " + z);
+
+#!markdown
+
+## Precedencia de operadores
