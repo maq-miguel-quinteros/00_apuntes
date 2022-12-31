@@ -3956,18 +3956,18 @@ Para acceder a un elemento en particular de un formulario podemos utilizar su at
     <title>Ejemplo Formulario con JavaScript</title>
 </head>
 <body>
-    <form id='formulario'>
+    <form id='ejemplo4_form'>
         Nombre: <input type="text" name='nombre' value='Juan'/>
         <br/>
         Apellido: <input type='text' name='apellido' value='Perez'/>
         <br/>
     </form>
     <button onclick='mostrarValores()'>Mostrar</button>
-    <div id='valores'></div>
+    <div id='ejemplo4_div'></div>
     
     <script>
         function mostrarValores(){
-            let formulario = document.forms['formulario'];            
+            let formulario = document.forms['ejemplo4_form'];            
             let texto = '';
 
             /** en la variable formulario tenemos la referencia al array de elementos del
@@ -3982,10 +3982,9 @@ Para acceder a un elemento en particular de un formulario podemos utilizar su at
             * apellido podemos acceder a sus atributos value */
             texto = nombre.value + '<br/>' + apellido.value;
             
-            document.getElementById('valores').innerHTML = texto;            
+            document.getElementById('ejemplo4_div').innerHTML = texto;            
         }        
     </script>
-
 </body>
 </html>
 
@@ -4040,7 +4039,7 @@ En el caso de los estilos de css cada elemento HTML tiene como atributo un objet
     <title>Manejo DOM con JavaScript</title>
 </head>
 <body>
-    <h1 id='titulo'>Manejo DOM con JavaScript</h1>
+    <h1 id='ejemplo5_h1'>Manejo DOM con JavaScript</h1>
     <button onclick="mostrar()">Mostrar</button>
     <br/>
     <script>
@@ -4048,7 +4047,7 @@ En el caso de los estilos de css cada elemento HTML tiene como atributo un objet
         /** al tocar en el boton mostrar el color del elemento con id titulo cambia a
         * rojo por el modificador de estilos css color = 'red' */
         function mostrar() {
-            document.getElementById('titulo').style.color = 'red';           
+            document.getElementById('ejemplo5_h1').style.color = 'red';           
         }        
     </script>
 </body>
@@ -4061,3 +4060,74 @@ En el caso de los estilos de css cada elemento HTML tiene como atributo un objet
 #!markdown
 
 Los eventos de JavaScript se indican en el elemento HTML. siempre empieza con on y luego el evento que sucede, por ejemplo, `onclick`. Cada elemento HTML se corresponde con un objeto del tipo del elemento, por ejemplo, un elemento HTML h1 se corresponde con un objeto en JavaScript del tipo de h1 que es un título. Al ser objetos tienen atributos y metodos. Cuando trabajamos dentro de los métodos del objeto, con atributos del propio objeto, utilizamos la palabra reservada `this` para indicar que es sobre un atributo o método del mismo. En el caso de los elementos HTML, por ser objetos, sucede lo mismo, si trabajamos sobre atributos o métodos del objeto dentro del mismo objeto utilizamos `this` para indicarlo.
+
+#!html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Manejo DOM con JavaScript</title>
+</head>
+<body>
+
+    <!-- en el evento onclick indicamos que el texto del elemento donde estamos ubicado se modifique
+     por Nuevo título. this está apuntando al elemento h2 donde se encuentra, es decir que con this 
+     podemos trabajar sobre los atributos y métodos de ese elemento h2 -->
+    <h2 onclick="this.innerHTML='Nuevo título'" id='titulo'>Manejo DOM con JavaScript 1</h2>
+
+    <!-- paramos el elemento h2 como argumento de la función cambiarTexto mediante this  -->
+    <h2 onclick="cambiarTexto(this)">Manejo DOM con JavaScript 2</h2>
+    <br/>
+    <script>
+        function cambiarTexto(titulo) {
+        console.log(titulo);            
+        console.log(titulo.innerHTML);            
+        titulo.innerHTML = 'Cambiamos el título';            
+        console.log(titulo.innerHTML);            
+    }          
+    </script>
+</body>
+</html>
+
+#!markdown
+
+## Asociar eventos a elementos
+
+#!markdown
+
+Podemos asociar un evento a un elemento desde el documento HTML. También podemos asociar un evento a un elemento desde el código JavaScript.
+
+#!html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Manejo DOM con JavaScript</title>
+</head>
+<body>
+    <h1 id='ejemplo6_h1'>Manejo DOM con JavaScript</h1>
+    <br/>
+    <div id='ejemplo6_div'></div>
+    <script>
+    
+        /** recuperamos la referencia al objeto del elemento mediante su id. Luego
+        * asignamos al evento onclick el valor cambiarTexto, que es el nombre de la
+        * función de tipo callback que tiene que ejecutarse cuando se cumpla ese evento */
+        document.getElementById('ejemplo6_h1').onclick = cambiarTexto;
+
+        function cambiarTexto() {          
+        document.getElementById('ejemplo6_div').innerHTML = 'Nuevo contenido';            
+        }        
+    </script>
+</body>
+</html>
+
+#!markdown
+
+## Manejo de evento `onload`
+
+#!markdown
+
+Un evento `onload` se ejecuta cuando se carga el documento HTML.
