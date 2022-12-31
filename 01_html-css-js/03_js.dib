@@ -3997,7 +3997,7 @@ Para acceder a un elemento en particular de un formulario podemos utilizar su at
 
 Mediante el método `write`, cuya sintaxis es `document.write()`, podemos imprimir texto directamente en el flujo de información que muestra el documentos HTML. Esto sobreescribe por completo la información que se estaba mostrando hasta antes de ejecutar el método.
 
-#!markdown
+#!html
 
 <!DOCTYPE html>
 <html>
@@ -4012,13 +4012,52 @@ Mediante el método `write`, cuya sintaxis es `document.write()`, podemos imprim
     <script>
     
         /** al cargar por primera vez la página se muestra este mensaje */
-        document.write('Saludos desde JavaScript');
+        _document.write('Saludos desde JavaScript'); // no ejecutar, borra los markdown de la notebook
 
         /** al tocar el el botón mostrar se sobreescribe todo lo que había en el
         * el documento y se reemplaza con lo que pasamos como argumento al método */
         function mostrar() {
-        document.write('Adios');
+        _document.write('Adios'); // no ejecutar, borra los markdown de la notebook
         }        
     </script>
 </body>
 </html>
+
+#!markdown
+
+## Cambio de estilo css en el DOM
+
+#!markdown
+
+En el caso de los estilos de css cada elemento HTML tiene como atributo un objeto style, que a su vez tiene como atributo los distintos modificadores de estilo disponibles, es decir que asignado un nuevo valor a, por ejemplo, `document.elementBy...().style.color = 'red'` modificamos el color de fuente de ese elemento.
+
+#!html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Manejo DOM con JavaScript</title>
+</head>
+<body>
+    <h1 id='titulo'>Manejo DOM con JavaScript</h1>
+    <button onclick="mostrar()">Mostrar</button>
+    <br/>
+    <script>
+    
+        /** al tocar en el boton mostrar el color del elemento con id titulo cambia a
+        * rojo por el modificador de estilos css color = 'red' */
+        function mostrar() {
+            document.getElementById('titulo').style.color = 'red';           
+        }        
+    </script>
+</body>
+</html>
+
+#!markdown
+
+# Manejo de eventos en el DOM
+
+#!markdown
+
+Los eventos de JavaScript se indican en el elemento HTML. siempre empieza con on y luego el evento que sucede, por ejemplo, `onclick`. Cada elemento HTML se corresponde con un objeto del tipo del elemento, por ejemplo, un elemento HTML h1 se corresponde con un objeto en JavaScript del tipo de h1 que es un título. Al ser objetos tienen atributos y metodos. Cuando trabajamos dentro de los métodos del objeto, con atributos del propio objeto, utilizamos la palabra reservada `this` para indicar que es sobre un atributo o método del mismo. En el caso de los elementos HTML, por ser objetos, sucede lo mismo, si trabajamos sobre atributos o métodos del objeto dentro del mismo objeto utilizamos `this` para indicarlo.
