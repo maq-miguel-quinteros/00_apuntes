@@ -671,3 +671,395 @@ else{
 condicion = 3;
 if(condicion > 2) console.log("Condición verdadera");   
 else console.log("Condición falsa");
+
+#!markdown
+
+Podemos anidar los `if else` para poder realizar consultas que vayan descartando distintas opciones. En el ejemplo tabulamos los anidamientos para visualizar cuanto se adentra en los `if else`.
+
+#!javascript
+
+let numero = 2;
+
+if (numero == 1) {
+  console.log("Número uno");
+}else if (numero == 2) {
+    console.log("Número dos");
+  }else if( numero == 3 ){
+      console.log("Número tres");
+    }else if( numero == 4 ){
+        console.log("Número cuatro");
+      }else{
+          console.log("Número desconocido");
+        }
+
+#!markdown
+
+Podemos utilizar los operadores lógicos `and` (`&&`) y `or` (`||`) para evaluar las condiciones de verdad de la sentencia de control.
+
+#!javascript
+
+/** Estaciones del año con if else*/
+let mes = 12;
+let estacion;
+
+if( mes == 1 || mes == 2 || mes == 12){
+    estacion = "Invierno";
+}
+else if( mes == 3 || mes == 4 || mes == 5){
+    estacion = "Primavera";
+}
+else if( mes == 6 || mes == 7 || mes == 8 ){
+    estacion = "Verano";
+}
+else if( mes == 9 || mes == 10 || mes == 11 ){
+    estacion = "Otoño";
+}
+else{
+    estacion = "Valor incorrecto";
+}
+
+console.log(estacion);
+
+/** saludo segun las horas del día */ 
+
+let horaDia = 23;
+let mensaje;
+
+if( horaDia >= 6 && horaDia <= 11 ){
+    mensaje = "Buenos días";
+}
+else if( horaDia >= 12 && horaDia <= 18 ){
+    mensaje = "Buenas tardes";
+}
+else if( horaDia >= 19 && horaDia <= 24){
+    mensaje = "Buenas noches";
+}
+else if( horaDia >= 0 && horaDia < 6){
+    mensaje = "Durmiendo";
+}
+else{
+    mensaje = "Valor incorrecto";
+}
+
+console.log(mensaje);
+
+#!markdown
+
+## Estructura `switch`
+
+#!markdown
+
+Esta estructura evalúa una variable y en caso de coincidir con algunas de las opciones que tiene configuradas realiza el conjunto de sentencias asociadas a esa opción. La palabra reservada `switch` es la que se utiliza para iniciar la expresión y evaluar la variable. Cada una de las opciones se definen mediante la palabra reservada `case`. Una vez realizadas todas las sentencias del `case` correspondiente salimos de la estructura mediante la palabra reservada `break`.
+
+#!javascript
+
+numero = 1;
+let numeroTexto = 'Valor desconocido';
+
+switch( numero ){
+    case 1:
+        numeroTexto = 'Número uno';
+        break;
+
+/** en caso no encontrarse el break se va a ejecutar el siguiente case aunque la variable no cumpla con la opcion
+ * esto sucede por que la ejecución de las sentencias es secuencias de arriba a abajo y el break, que hace saltar
+  esa secuencia no esta escrito */
+    case 2:
+        numeroTexto = 'Número dos';
+        break;
+    case 3:
+        numeroTexto = 'Número tres';
+        break;
+    case 4:
+        numeroTexto = 'Número cuatro';
+        break;
+
+/** si la variable no cumple con ninguno de los casos se ejecutan las sentencias a continuación de default
+ * la opción default puede no estar, si es así y no se ejecuta ninguno de los case solo se sale de la estructura
+ * podemos escribir default al comienzo de la estructura, pero en ese caso tiene que tener su correspondiente break
+ * en este caso no es necesario el break por que despues de las sentencias de default salimos de la estructura switch */
+    default: 
+        numeroTexto = 'Caso no encontrado';                
+}
+
+console.log(numeroTexto);
+
+#!javascript
+
+/** Estaciones del año con switch */
+mes = 11;
+estacion = 'Estación desconocida';
+
+switch( mes ){
+    case 1: case 2: case 12:
+        estacion = 'Invierno';
+        break;
+    case 3: case 4: case 5:
+        estacion = 'Primavera';
+        break;
+    case 6: case 7: case 8:
+        estacion = 'Verano';
+        break;
+    case 9: case 10: case 11:
+        estacion = 'Otoño';
+        break;
+    default:
+        estacion = 'Valor incorrecto';                
+}
+console.log(estacion);
+
+#!markdown
+
+La comparación de los valores en la estructura es estricta. Esto significa que, si el valor a comparar es de un tipo distinto al `case` indicado, no va a reconocer ese `case`. En el ejemplo anterior si `let mes = '11'`, es decir si `'11'` es un `string` y no una variable de tipo `number`, no reconocerá el `case` y terminará en la opción `default`.
+
+#!markdown
+
+# Bucles
+
+#!markdown
+
+Los bucles nos permiten repetir un conjunto de sentencias en la medida en que se cumpla una condición.
+
+#!markdown
+
+## Bucle while
+
+#!markdown
+
+Mediante la palabra reservada `while` indicamos que se evalue la sentencia dentro de los parentesis. Si la condición es `true` se ejecutan las sentencias que están entre las `{}`, al terminar estas sentencias vuelve a evaluar la condición entre los parentesis, si sigue `true` vuelve a ejecutarse las sentencias entre las llaves. Cuando la condición es `false` sale de bucle o ciclo.
+
+#!javascript
+
+let contador = 0;
+/** la variable que evaluamos entre los parentesis la llamamos contador, por que
+ *  está va a incrementarse dentro de las llaves para, eventualmente, salir del bucle
+ *  */
+while( contador < 3 ){
+    console.log(contador);
+    contador++;
+}
+console.log("Fin ciclo while");
+
+#!markdown
+
+## Bucle do while
+
+#!markdown
+
+En el bucle `do while` el conjunto de sentencias que deben ejecutarse cuando la condición es `true`, se van a ejecutar al menos una vez antes de evaluar la condición. Mediante la palabra reservada `do` indicamos realizar las sentencias entre `{}` y al final de estas, mediante el `while`, evaluamos si se cumple la condición, de ser `true` volvemos a ejecutar las sentencias entre llaves y al final evaluamos de nuevo. Cuando la condición devuelve `false` salimos del bucle.
+
+#!javascript
+
+let contador = 0;
+
+do{
+    console.log(contador);
+    contador++;
+}while(contador < 3); // es importante terminar la sentencia while con ;
+console.log("Fin ciclo do while");
+
+#!markdown
+
+## Bucle for
+
+#!markdown
+
+En el bucle `for` definimos todas las partes del bucle, como ser la variable que se evalua, la condición que se evalua y el incremento de la variable, todo dentro de los parentesis con el que lo generamos. En el ejemplo primero se ejecuta `let contador = 0`, esta sentencia se ejecuta solo la primera vez que entramos en el bucle. Despues ejecutamos la condición `contador < 3`, si la misma devuelve `true` se ejecutan las sentencias dentro de las `{}`. Una vez terminadas las sentencias de las llaves ejecutamos `contador++` incrementando la variable contador. Después de eso volvemos a ejecutar la condición, si devuelve `true` de nuevo se ejecutan las sentencias dentro de las llaves y vuelve a sumarse el contador. Si la condición da `false` sale del bucle.
+
+#!javascript
+
+//   def variable      condición     incremento
+for (let contador = 0; contador < 3; contador++){
+    console.log(contador);
+}
+console.log("Fin ciclo for");
+
+#!markdown
+
+## Palabra reservada break
+
+#!markdown
+
+Mediante la palabra reservada `break` podemos indicar que se termine el bucle que se está ejecutando aunque no se hayan completado todos los casos en que la condición devuelve `true`.
+
+#!javascript
+
+/** en el ejemplo mostramos el primer número par y después salimos del bucle */
+for (let contador = 0; contador <= 10; contador++){
+  if (contador % 2 !== 0) {
+	  console.log(contador);
+    break; // termina la ejecución del bucle for por completo 
+  }
+}
+
+#!markdown
+
+## Palabra reservada continue
+
+#!markdown
+
+Mediante la palabra reservada `continue` indicamos al bucle que, en el punto donde aparece `continue`, se termine la ejecucion de sentencias dentro de los `{}` y se pase a incrementar la variable a evaluar con `contador++` y que vuelva a evaluarse la condición que, si devuelve `true`, volverá a entrar en el bucle. Es decir que con `continue` detenemos la ejecución de sentencias dentro del bucle en ese punto y pasamos a la siguiente iteracción, de corresponder, o salimos del bucle si la condición devuelve `false`.
+
+#!javascript
+
+for(let contador = 0; contador <= 10; contador++){
+    if( contador % 2 !== 0){
+        continue; // ir a la siguiente iteración
+    }
+    console.log(contador);
+}
+
+#!markdown
+
+## Labels
+
+#!markdown
+
+Podemos indicar, dentro del código, una label o etiqueta, que es una linea en la secuencia de sentencias del código a la que podemos volver si necesitamos que las sentencias de la misma se repitan por algún motivo. En el ejemplo el label es `inicio:` y dentro del bucle indicamos mediante `continue inicio` que al ejecutarse esa linea de código la secuencia de sentencias vaya a lo que se encuentra a continuación de la etiqueta `inicio:`. Podemos indicar una etiqueda a donde redireccionar la secuencia de ejecución al usar la palabra reservada `break` de la manera `break inicio;`. En este caso en lugar de redireccionar a esa etiqueta indicamos saltar todo lo contenido a continuación de la misma. Este tipo de programación se conoce como `go to`. No es recomendado trabajar de este forma.
+
+#!javascript
+
+inicio:
+for(let contador = 0; contador <= 10; contador++){
+    if( contador % 2 !== 0){
+        continue inicio; // ir a la siguiente iteración
+    }
+    console.log(contador);
+}
+
+#!markdown
+
+# Arreglos o array
+
+#!markdown
+
+Un arreglo o `array` es una variable de tipo `object` que permite almacenar, no solo uno sino varios elementos. Los elementos que almacena una arreglo pueden ser de distintos tipo como `number` o `String` o hasta `object` como otro arreglo. Podemos declarar un arreglo mediante el operador `new` y la clase `Array`. Esta es una forma antigua de declarar los arreglos que ya no se recomienda usar. Actualmente creamos una variable o constante y la hacemos igual a los valores que va a tener el arreglo. La variable almacena la referencia a la dirección en memoria donde se encuentran los datos que contiene el arreglo.
+
+#!javascript
+
+/** forma antigua de declarar arreglos */
+let autos1 = new Array('BMW', 'Mercedes Benz', 'Volvo');
+
+/** forma actual de declarar arreglos usando let o const 
+ * según se vayan a agregar datos o no al arreglo */
+const autos2 = ['BMW', 'Mercedes Benz', 'Volvo'];
+
+console.log(autos1);
+console.log(autos2);
+
+#!markdown
+
+## Recorrer elementos de un arreglo
+
+#!markdown
+
+Podemos acceder a un elemento particular de un arreglo utilizando corchetes y el indice del elemento al lado del nombre de la variable. El indice de elementos del arreglo comienza a contarse desde 0, quiere decir que, por ejemplo, el primer elemento del arreglo autos es `autos[0]`, el segundo es `autos[1]` y así.
+
+#!javascript
+
+const autos = ['BMW','Mercedes Benz','Volvo'];
+console.log(autos);
+
+console.log(autos[0]);
+console.log(autos[2]);
+
+/** recorremos el arreglo e imprimimos en consola un mensaje utilizando 
+ * cada uno de los elementos. Utilizamos la variable contador i como indice
+ * dentro de los corchetes para trabajar con cada elemento */ 
+for(let i = 0; i < autos.length; i++){
+    console.log(i + ' : ' + autos[i] );
+}
+
+#!markdown
+
+Mediante al propiedad `length` podemos saber la longitud del arreglo, es decir, la cantidad de elementos que tiene el arreglo. Esta propiedad nos sirve para recorrer un arreglo, mediante un bucle `for`, y trabajar sobre cada uno de sus elementos por separado.
+
+#!markdown
+
+## Modificar elementos de un arreglo
+
+#!markdown
+
+Para modificar los datos de un elemento en un arreglo tenemos que acceder al elemento utilizando su indice y asignarle el nuevo valor que este elemento va a tener. En el ejemplo es la linea `autos[1] = 'MerecedesBenz'`.
+
+#!javascript
+
+const autos3 = ['BMW','Mercedes Benz','Volvo'];
+console.log(autos3);
+
+/** cambiamos el vamor 'Mercedes Benz' del elemto 1 por 'MerecedesBenz' */
+autos3[1] = 'MerecedesBenz';
+console.log(autos3[1]);
+
+#!markdown
+
+## Agregar elementos en un arreglo
+
+#!markdown
+
+Para agregar un nuevo elemento al arreglo utilizamos la función o método `push` del tipo de dato `array`. El nuevo elemento se va a agregar a continuación del último indice del arreglo.
+
+#!javascript
+
+const autos4 = ['BMW','Mercedes Benz','Volvo'];
+console.log(autos4);
+
+// agregamos el elemento 'Audi' al arreglo en el indice 3
+autos4.push('Audi');
+console.log(autos4);
+
+#!markdown
+
+Tambien podemos agregar elementos al arreglo utilizando su longitud. 
+La propiedad `autos5.length` devuelve un valor numérico, que es la longitud del arreglo pero, como los arreglos comienzan en 0, la propiedad `autos5.length` va a devolver un numero más al último indice del arreglo. Esto permite que `autos5[autos5.length] = 'Cadillac'` agregue al siguiente indice del arreglo el valor `'Cadillac'`.
+
+#!javascript
+
+const autos5 = ['BMW','Mercedes Benz','Volvo'];
+console.log(autos5);
+
+console.log(autos5.length);
+autos5[autos5.length] = 'Cadillac';
+
+console.log(autos5);
+
+#!markdown
+
+Tambien podemos agregar elementos dejando indices vacios entre ellos. En el ejemplo la variable `autos5` quedó con 4 elementos en los índices del 0 al 3. Podemos egregar un elemento en el índice 7 sin tomar en cuenta los índices 4, 5 y 6. Esos dos índices quedan sin elementos, quedan vacíos. Ahora la variable `autos5` queda con 4 elemenos pero con 8 índices que van del 0 al 7. No es recomendable sumar elementos a un arreglo de esta forma ni tener indices sin elementos o vacios.
+
+#!javascript
+
+autos5 = ["BMW","Mercedes Benz","Volvo","Cadillac"];
+autos5[7] = 'Porshe';
+console.log(autos5);
+
+#!markdown
+
+## Consultar si una variable es un arreglo
+
+#!markdown
+
+Cuando necesitamos consultar si una variable es un arreglo, utilizando el tipo de dato `typeof` nos va a devolver que el tipo dato de la variable es `object`. Esta respuesta no es lo suficientemente específica. Para un respuesta mas certera podemos usar el método `isArray` de la clase `Array` de la forma `Array.isArray(variable)`, que nos devuelve `true` si la variable es un arreglo. Tambien podemos usar `instanceof`, una palabra reservada de JavaScript que nos indica si la variable es una instancia de un tipo de datos, en este caso el tipo de datos es Array, si la variable es un arreglo la sentencia va a devolver `variable instanceof Array` va a devolver `true`.
+
+#!javascript
+
+autos = ["BMW","Mercedes Benz","Volvo","Cadillac"];
+
+console.log(typeof autos);
+
+console.log( Array.isArray(autos) );
+
+console.log( autos instanceof Array);
+
+#!markdown
+
+# Funciones
+
+#!markdown
+
+Una función es un código reutilizable que podemos llamar todas la veces que utilizamos. Llamar a una función significa solicitar, en un momento de la secuencia de sentencias, que la función se ejecute. Primero tenemos que declarar la función, para hacerlo utilizamos la palabra reservada `function` seguido del nombre de la funcion, de preferencia en notación camelCase (primera letra del nombre en minuscula y si consta de más de una palabra, la siguiente palabra empezando en mayúsculas sin espacio). Seguido al nombre agregamos `()` dentro de los cuales podemos o no tener argumentos de la función. Los argumentos son valores que ingresan a la función y que se van a utilizar cuando se ejecuten las sentencias dentro de la función. Seguido a esto abrimos llaves `{` escribimos el cuerpo de la funcion, que son las sentencias a ejecutar cada vez que llamemos a la función y finalmente cerramos llaves `}` indicando el final de la definición de la misma.
+```
+function nombreFuncion(argumento1, argumento2, ... argumentoN){
+  cuerpo de la funcion
+}
+```
