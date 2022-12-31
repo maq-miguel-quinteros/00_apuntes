@@ -4131,3 +4131,396 @@ Podemos asociar un evento a un elemento desde el documento HTML. También podemo
 #!markdown
 
 Un evento `onload` se ejecuta cuando se carga el documento HTML.
+
+#!html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Manejo DOM con JavaScript</title>
+</head>
+<body onload="entrar()">
+    <h1 id='ejemplo7_h1'>Manejo DOM con JavaScript</h1>
+    <br/>
+    <div id='ejemplo7_div'></div>
+    <script>
+        function entrar() {
+
+            /** mediante alert desplegamos una ventana emergente mostrando un mensaje */
+            alert('Entrando a la página web');
+
+            let texto = '';
+
+            /** navegator es un objeto de JavaScript que tiene atributos y métodos
+            * relacionados con el navegador web que estamos utilizando para visualizar
+            * el documento HTML */      
+            if (navigator.cookieEnabled) {              
+                texto = 'Cookies están habilitadas';                
+            }            
+            else {              
+                texto = 'Cookies están inhabilitadas';                
+            }            
+            document.getElementById('ejemplo7_div').innerHTML = texto;            
+        }        
+    </script>
+</body>
+</html>
+
+#!markdown
+
+## Manejo de evento `onchange`
+
+#!markdown
+
+Por lo general utilizamos el evento `onchange` cuando modificamos los valores de un campo de texto o los elementos de un formulario.
+
+#!html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Manejo DOM con JavaScript</title>
+</head>
+<body>
+    <h1 id=''>Manejo DOM con JavaScript</h1>
+    <br/>
+
+    <!-- cuando hagamos una modificación sobre el input de texto el evento onchange 
+    llama a la función convertir enviando como argumento el mismo elemento -->
+    Nombre: <input type="text" onchange="convertir(this)"/>
+    
+    <script>
+        function convertir(nombreInput) {
+
+            /** convertims en mayúsculas el contenido de la caja de texto que se encuentra
+            * en el atributo value */
+            nombreInput.value = nombreInput.value.toUpperCase();            
+        }        
+    </script>
+</body>
+</html>
+
+#!markdown
+
+## Eventos `onmouseover` y `onmouseout`
+
+#!markdown
+
+Los eventos `onmouseover` y `onmouseout` responden a las acciones colocar el mouse sobre un elemento y sacar el mouse de ese elemento.
+
+#!html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Manejo DOM con JavaScript</title>
+</head>
+<body>
+    <h1 id='' onmouseover="rojo(this)" onmouseout="azul(this)">
+        Manejo DOM con JavaScript
+    </h1>
+    <br/>
+    <script>
+        function rojo(titulo) {
+            titulo.style.color = 'red';            
+        }
+        
+        function azul(titulo) {          
+            titulo.style.color = 'blue';            
+        }        
+    </script>
+</body>
+</html>
+
+#!markdown
+
+## Eventos `onmousedown` y `onmouseup`
+
+#!markdown
+
+Los eventos `onmousedown` y `onmouseup` se ejecutan al hacer click sobre un elemento y al soltar el click respectivamente.
+
+#!html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Manejo DOM con JavaScript</title>
+</head>
+<body>
+    <h1 id='' onmousedown="rojo(this)" onmouseup="azul(this)"
+    onclick="verde(this)">
+        Manejo DOM con JavaScript
+    </h1>
+    <br/>
+    <script>
+        function rojo(titulo){
+            console.log('onmousedown cambio a rojo');            
+            titulo.style.color = 'red';            
+        }
+        
+        function azul(titulo) {          
+            console.log('onmouseup cambio a azul');            
+            titulo.style.color = 'blue';            
+        }
+        
+        function verde(titulo) {          
+            console.log('click cambio a verde');            
+            titulo.style.color = 'green';            
+        }        
+    </script>
+</body>
+</html>
+
+#!markdown
+
+## Eventos `onfocus` y `onblur`
+
+#!markdown
+
+El evento `onfocus` se ejecuta cuando damos click sobre una caja de texto, es decir, ponemos en foco la caja de texto. El evento `onblur` se activa cuando quitamos el foco de una caja de texto.
+
+#!html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Manejo DOM con JavaScript</title>
+</head>
+<body>
+    <h1 id=''>Manejo DOM con JavaScript</h1>
+    <br/>
+    Nombre: <input type="text" onfocus="cambiar(this)" onblur="regresar(this)"/>
+    <br/><br/>
+    Apellido: <input type="text" onfocus="cambiar(this)" onblur="regresar(this)"/>
+    <script>
+        function cambiar(elementoInput){
+            elementoInput.style.background = 'yellow';            
+        }
+        
+        function regresar(elementoInput) {          
+            elementoInput.style.background = 'red';            
+        }        
+    </script>
+</body>
+</html>
+
+#!markdown
+
+## Método `addEventListener`
+
+#!markdown
+
+Mediante el método `addEventListener` agregamos eventos a elementos del documentos HTML. Los eventos que pasamos como argumentos del método se pasan entre '' sin el `on` de la forma `addEventListener('event', function)`.
+
+#!html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Manejo DOM con JavaScript</title>
+</head>
+<body>
+    <h1 id=''>Manejo DOM con JavaScript</h1>
+    <br/>
+    Nombre: <input type="text" id='ejemplo8_input1'/>
+    <br/><br/>
+    Apellido: <input type="text" id='ejemplo8_input2'/>
+    <script>
+    
+        /** capturamos la referencia al elemento con id nombre. Mediante el método 
+        * addEventListener agregamos al elemento el evento que pasamos como argumento
+        * del metodo y la función o acción que va a realizar. El elemento quedaría como 
+        * <input type="text" id='nombre' onfocus='cambiar(this)' /> */
+        document.getElementById('ejemplo8_input1').addEventListener('focus', cambiar);
+        document.getElementById('ejemplo8_input1').addEventListener('blur', regresar);       
+
+        /** la función que pasamos, en el ejemplo cambiar, es una función callback */
+        document.getElementById('ejemplo8_input2').addEventListener('focus', cambiar);        
+        document.getElementById('ejemplo8_input2').addEventListener('blur', regresar);
+
+        /** si indicamos que la función recibe un argumento este es el evento que la 
+        * llama. Teniendo el evento como argumento podemos saber cual elemento mandó
+        * a llamar la función mediante el atributo target de la forma event.target */
+        function cambiar(evento) {          
+            let componente = evento.target;            
+            componente.style.background = 'yellow';            
+        }
+        
+        function regresar(evento) {          
+            evento.target.style.background = 'white';
+        }     
+    </script>
+</body>
+</html>
+
+#!markdown
+
+## Funciones flecha con eventos
+
+#!markdown
+
+En lugar de definir funciones por separado y llamarlas desde el `addEventListener` podemos hacerlo mediante funciones flecha. La desventaja de esta opción es que no podemos reutilizar el código.
+
+#!html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Manejo DOM con JavaScript</title>
+</head>
+<body>
+    <h1 id=''>Manejo DOM con JavaScript</h1>
+    <br/>
+    Nombre: <input type="text" id='ejemplo9_input1'/>
+    <br/><br/>
+    Apellido: <input type="text" id='ejemplo9_input2'/>
+    <script>
+    
+        /** agregamos la función flecha como segundo parametro del método addEventListener */
+        document.getElementById('ejemplo9_input1').addEventListener('focus', (evento) => {
+            evento.target.style.background = 'pink';            
+        });
+        
+        document.getElementById('ejemplo9_input1').addEventListener('blur', (evento) => {          
+            evento.target.style.background = '';            
+        });        
+
+        /** ejemplo sin función flecha */
+        document.getElementById('ejemplo9_input2').addEventListener('focus', cambiar);        
+        document.getElementById('ejemplo9_input2').addEventListener('blur', regresar);
+
+        function cambiar(evento) {          
+            let componente = evento.target;            
+            componente.style.background = 'yellow';            
+        }
+        
+        function regresar(evento) {          
+            evento.target.style.background = 'white';            
+        }        
+    </script>
+</body>
+</html>
+
+#!markdown
+
+## Delegación de eventos o `useCapture`
+
+#!markdown
+
+Podemos aplicar eventos a varios elementos de un mismo formulario. Es decir, propagar la configuración que hicimos para un elemento mas externo o padre hacia elementos mas internos o hijos.
+
+#!html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Manejo DOM con JavaScript</title>
+</head>
+<body>
+    <h1 id=''>Manejo DOM con JavaScript</h1>
+    <br/>
+    <form id='ejemplo10_form'>
+        Nombre: <input type="text" id='nombre'/>
+        <br/><br/>
+        Apellido: <input type="text" id='apellido'/>
+    </form>    
+    <script>
+    
+        /** recuperamos la referencia al formulario con id forma */
+        const forma = document.getElementById('ejemplo10_form');
+
+        /** el addEventListener agrega el evento a todos los elementos del formulario 
+        * si el tercer argumento que pasamos es true */
+        forma.addEventListener('focus', (evento) => {          
+            evento.target.style.background = 'yellow';            
+        }, true);
+        
+        forma.addEventListener('blur', (evento) => {          
+            evento.target.style.background = '';            
+        }, true);               
+    </script>
+</body>
+</html>
+
+#!markdown
+
+# Ejemplos
+
+#!markdown
+
+## Calculadora
+
+#!markdown
+
+Para poder probar el ejemplo tenemos que guardar lo siguiente como un documento HTML llamado `index.html` y en la misca carpeta de este documento crear una nueva carpeta llamada `js` y dentro un nuevo archivo `app.js` quedando de la forma `js/app.js`. Dentro del archivo app.js va nuestro código de JavaScript.
+
+#!html
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Aplicación Calculadora</title>
+  </head>
+  <body>
+    <div class=''>
+      <h1>Aplicación Calculadora</h1>
+
+      <!-- creamos un formulario con 2 elementos input de tipo number y usamos clases de bootstrap para modificar lo que se ve -->
+      <form id='ejemplo11_form'>
+        <div class=''>
+          <label for='operandoA'>Operando A</label>
+          <input type="number" class=''
+            placeholder="Escribe operando A" id='operandoA'/>
+        </div>
+        <div class=''>
+          <label for='operandoB'>Operando B</label>
+          <input type="number" class=""
+            placeholder="Escribe operando B" id='operandoB'/>
+        </div>
+      </form>
+
+      <!-- el botón lo dejamos fuera del formulario ya que su acción no va a ser enviar información por GET o POST, 
+      en ese caso, si tocamos el botón no se actualiza la página -->
+      <button onclick='sumar()'
+      >Sumar</button>
+      
+      <div id='ejemplo11_div'></div>
+    </div>    
+
+    <script>
+      console.log('Aplicación Calculadora');
+
+      function sumar() {
+        const forma = document.getElementById('ejemplo11_form');
+
+        /** accedemos a cada uno de los elementos del array del formulario con id forma
+        * para hacerlo usamos el id de cada uno de estos elementos */
+        let operandoA = forma['operandoA'];    
+        let operandoB = forma['operandoB'];
+
+        /** utilizamos parseInt pasar el valor del atributo value de los elementos a 
+        * números. Cuando estos se recuperan lo hacen como string aunque se escriban
+        * como números en el formulario */
+        let resultado = parseInt(operandoA.value) + parseInt(operandoB.value);    
+
+        /** la función isNaN devuelve true si la variable que pasamos como argumento 
+        * no es un número */
+        if (isNaN(resultado)) resultado = 'La operación no incluye números';
+        document.getElementById('ejemplo11_div').innerHTML = `Resultado: ${resultado}`;    
+        console.log(`Resultado: ${resultado}`);
+      }
+    </script>
+  </body>
+</html>
