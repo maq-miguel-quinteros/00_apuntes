@@ -28,3 +28,63 @@ HTML (Lenguaje de Marcas de Hipertexto, del inglés HyperText Markup Language) e
      <p>Pruebita </p>
 </body>
 </html>
+
+#!markdown
+
+# Etiquetas o tags
+
+#!markdown
+
+Las etiquetas o tags son elementos u objetos que se declaran de la forma `<abreEtiqueta> contenido </cierraEtiqueta>`. Lo que escribimos entre los tags de apertura y cierre de los elementos es el contenido de la mismo. Cuando el navegador encuentra este formato entiende que todo su conjunto es un elemento u objeto. Las etiquetas pueden tener atributos, que son las propiedades o caracteristicas de ese elemento. Los atributos van dentro del tag de apertura del elemento de la forma `<abreEtiqueta atributo="valor">...`. 
+
+#!html
+
+<!-- ejemplo de etiqueta botón donde id es un atributo y su valor es boton01 -->
+<button id="boton01">aceptar</button>
+
+#!markdown
+
+Algunos elementos no tienen etiqueta de cierre como `<meta>`, que se usa para dar valores a los atributos de los metadatos de un documento HTML, por ejemplo `<meta charset="UTF-8">` establece que el juego de caracteres que se va a utilizar en el documento es `UTF-8`, uno que incluye la ñ y letras con acento. En otros casos el elemento no tiene etiqueta de cierre ni atributos como `<br>`, que se usa para hacer un salto de línea, es decir, dejar un espacio en blanco.
+
+#!markdown
+
+## Tipos de etiquetas
+
+#!markdown
+
+Podemos dividir las etiquetas en distintos grupos según su función. `Etiquetas básicas` HTML, con estas etiquetas podríamos crear un documento HTML simple. `Etiquetas de formato` HTLM, son etiquetas que nos permiten dar un formato más útil y claro al contenido de nuestro documento. `Etiquetas de formularios`, estas etiquetas sirven para crear formularios donde podamos escribir texto, seleccionar algún elemento de una lista desplegable u organizar los campos de una manera legible,
+
+#!html
+
+<!DOCTYPE html> <!-- etiqueta básica -->
+<html lang="en"> <!-- etiqueta básica -->
+<head> <!-- etiqueta básica -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> <!-- etiqueta básica -->
+</head>
+<body> <!-- etiqueta básica -->
+    <h1>Ejemplo de etiquetas</h1> <!-- etiqueta básica -->
+    <p>Podemos dividir las etiquetas en distintos grupos según su función. Etiquetas básicas HTML, con estas etiquetas podríamos crear un documento HTML simple.</p> <!-- etiqueta básica -->
+
+    <p>Etiquetas de formato HTLM, <b>son etiquetas</b> <!-- etiqueta de formato --> que nos permiten dar un formato más útil y <code>claro al contenido</code> <!-- etiqueta de formato --> de nuestro <u>documento</u><!-- etiqueta de formato -->.</p> 
+
+    <a href="#">Enlace</a> <!-- etiqueta básica -->
+    <br> <!-- etiqueta básica -->
+
+    <form> <!-- etiqueta de formulario -->
+        <textarea value="dato por defecto">Ingresar el texto aquí</textarea> <!-- etiqueta de formulario -->
+        <br>
+        <button name="siguiente">Siguiente</button> <!-- etiqueta de formulario -->
+    </form>
+</body>
+</html>
+
+#!markdown
+
+## Entendiendo las etiquetas de un documento HTML
+
+#!markdown
+
+## Concepto de HTML semántico
