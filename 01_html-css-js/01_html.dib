@@ -31,7 +31,11 @@ HTML (Lenguaje de Marcas de Hipertexto, del inglés HyperText Markup Language) e
 
 #!markdown
 
-# Etiquetas o tags
+## Concepto de cajas
+
+#!markdown
+
+## Etiquetas o tags
 
 #!markdown
 
@@ -48,11 +52,11 @@ Algunos elementos no tienen etiqueta de cierre como `<meta>`, que se usa para da
 
 #!markdown
 
-## Tipos de etiquetas
+### Tipos de etiquetas
 
 #!markdown
 
-Podemos dividir las etiquetas en distintos grupos según su función. `Etiquetas básicas` HTML, con estas etiquetas podríamos crear un documento HTML simple. `Etiquetas de formato` HTLM, son etiquetas que nos permiten dar un formato más útil y claro al contenido de nuestro documento. `Etiquetas de formularios`, estas etiquetas sirven para crear formularios donde podamos escribir texto, seleccionar algún elemento de una lista desplegable u organizar los campos de una manera legible,
+Podemos dividir las etiquetas en distintos grupos según su función. `Etiquetas básicas` HTML, con estas etiquetas podríamos crear un documento HTML simple. `Etiquetas de formato` HTLM, son etiquetas que nos permiten dar un formato más útil y claro al contenido de nuestro documento. `Etiquetas de formularios`, estas etiquetas sirven para crear formularios donde podamos escribir texto, seleccionar algún elemento de una lista desplegable u organizar los campos de una manera legible. Podemos conocer todas las etiquetas disponibles en el siguiente enlace __[w3schools - HTML Element Reference](https://www.w3schools.com/TAGS/default.asp)__.
 
 #!html
 
@@ -83,8 +87,48 @@ Podemos dividir las etiquetas en distintos grupos según su función. `Etiquetas
 
 #!markdown
 
-## Entendiendo las etiquetas de un documento HTML
+### Entendiendo las etiquetas de un documento HTML
 
 #!markdown
 
-## Concepto de HTML semántico
+Los documentos con extensión html, que son páginas web, se visualizan mediante un navegador web. Dentro de las etiquetas `<!-- -->` podemos escribir comentarios que no se ven en el resultado final de la página web, pero que permiten aclarar cuestiones relacionadas con su desarrollo y funcionamiento en el documentos html.
+
+#!html
+
+<!-- mediante esta etiqueta le indicamos al navegador que estamos trabajando sobre un documento html en la última versión del lenguaje -->
+<!DOCTYPE html>
+
+<!-- todo el contenido de la página se encierra en las etiquetas html. Tanto lo que el navegador muestre como así tembién lo que no se ve como los metadatos -->
+<html lang="en">
+
+<!-- en el head tenemos todo lo que hace a la configuración y funcionamiento de la página pero que no podemos ver en el navegador cuando la abrimos --> 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- el título de la página, que puede verse en la barra de titulos del navegador o en la pestaña si tenemos varias abiertas en el mismo navegador --> 
+    <title>título de la página</title>
+</head>
+
+<!-- en body se encirran todos elementos de la página que vamos a poder visualizar y con los que vamos a interactuar --> 
+<body>
+    <h1>Título de primer nivel h1</h1>
+    <p>El titulo de primer nivel se ve en el navegador, dentro de la página. A diferencia del título con etiqueta <code>title</code> que se lee fuera de la página.</p>
+</body>
+</html>
+
+#!markdown
+
+### Concepto de HTML semántico
+
+#!markdown
+
+`html` es un lenguaje, y como tal se rige por reglas semánticas para estar correctamente utilizado. Algunas de las reglas son, por ejemplo:
+- No puede existir más de un elemento `h1`. Esto se debe a que `h1` se corresponde con el título general de la página.
+- Todas los elementos que cuenten con etiqueta de cierre tienen que estar correctamente cerrados.
+- Utilizar elementos según la función que cumplen en el documento. Existen, por ejemplo, etiquetas como `footer` que indican a los navegadores que ese elemento es el pie de la página.
+
+#!markdown
+
+Cuando esta semanticamente mejor estructurada la página se dice que tiene un buen SEO. SEO significa Search Engine Optimization (Optimización para motores de búsqueda). Se trata del conjunto de estrategias y técnicas de optimización que se hacen en una página web para que aparezca orgánicamente en buscadores de Internet como Google, Yahoo o Youtube.
