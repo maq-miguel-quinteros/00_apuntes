@@ -4629,7 +4629,7 @@ Para poder probar el ejemplo tenemos que guardar lo siguiente como un documento 
 
 #!markdown
 
-# Aplicación reloj digital
+## Aplicación reloj digital
 
 #!html
 
@@ -4639,7 +4639,7 @@ Para poder probar el ejemplo tenemos que guardar lo siguiente como un documento 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
+    <style>        
         #ejemplo13_div1{
             font-family: sans-serif;
             font-size: 60px;
@@ -4660,10 +4660,8 @@ Para poder probar el ejemplo tenemos que guardar lo siguiente como un documento 
             font-size: 15px;
         }
         .animar{
-            border: rgb(0, 0, 0) 2px solid;
+            border: rgb(255, 68, 68) 2px solid;
         }
-
-
     </style>
 
     <title>Reloj Digital</title>
@@ -4692,15 +4690,19 @@ Para poder probar el ejemplo tenemos que guardar lo siguiente como un documento 
             let mes = meses[fecha.getMonth()];
             let fechaTexto = `${diaSemana}, ${dia} ${mes}`;
             document.getElementById('ejemplo13_div4').innerHTML = fechaTexto;
-
+            
+            /** mediante el método classList obtenemos una lista de todas las 
+             * clases que se están aplicando al elemeto y mediante toggle indicamos
+             * aplique la clase css animar al objeto en la primera iteración de setInterval
+             * y que quite la clase animar en la siguiente iteración */
             document.getElementById('ejemplo13_div2').classList.toggle('animar');
-        }
+        };
 
         const formatoHora = (hora)=>{
             if(hora < 10)
                 hora = '0' + hora;
                 return hora;    
-        }                                                                                                                                                                                                                              
+        };                                                                                                                                                                                                                             
 
         setInterval(mostrarReloj, 1000);
     </script>
