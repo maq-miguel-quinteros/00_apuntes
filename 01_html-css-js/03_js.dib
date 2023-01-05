@@ -4702,8 +4702,7 @@ Para poder probar el ejemplo tenemos que guardar lo siguiente como un documento 
             if(hora < 10)
                 hora = '0' + hora;
                 return hora;    
-        };                                                                                                                                                                                                                             
-
+        };
         setInterval(mostrarReloj, 1000);
     </script>
 </body>
