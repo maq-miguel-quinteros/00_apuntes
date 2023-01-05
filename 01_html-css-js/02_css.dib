@@ -1,0 +1,74 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# CSS
+
+#!markdown
+
+## ¿Qué es y para qué sirve CSS?
+
+#!markdown
+
+CSS (Cascading Style Sheets) es un lenguaje de estilos en cascada, este lenguaje nos permite darle estilos a nuestro código HTML por medio de una regla de estilos, que conlleva un selector, propiedad y valor. En pocas palabras, servirá para darle estilos a nuestro código HTML.
+
+#!markdown
+
+## ¿Cuál es la estructura de CSS?
+
+#!markdown
+
+El selector se corresponde con uno o varios elementos, según la forma en que declaramos la regla de estilos. Para el, o los elementos, indicados por el selector, la propiedad, dentro de la regla de estilos, va a tener el valor que escribimos después de los dos puntos.
+```
+elemento {
+    propiedad: valor;
+}
+```
+
+#!markdown
+
+## Trabajar con css en documentos html
+
+#!markdown
+
+Lo ideal es trabajar con hojas de estilo fuera del documento html, para hacerlo conectamos la hoja de estilo al documento mediante la etiqueta `link`.
+```
+<link rel="stylesheet" href="css/estilos.css">
+```
+Mediante el atributo `rel` indicamos la relación que existe entre el archivo que estamos llamando y el documento, es decir, indicamos al navegador que el archivo es de hojas de estilo. mediante el atributo `href` indicamos la ruta donde se ecuentra el archivo css que estamos llamando. En el ejemplo la hoja de estilos se encuentra en la carpeta donde está el documento html, y dentro de esta en la carpeta css con el nombre `estilos.css`.
+Para comodidad del trabajo con notebooks vamos a cargar los estilos mediante la etiqueta `<style>` en el documento html.
+
+#!html
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi primer código de CSS</title>
+    <style>
+        /* los estilos declarados en esta regla van a afectar a todos los elementos html que tengan cuadrado en su atributo class */
+        .cuadrado{
+            height: 5cm; /* alto */
+            width: 5cm; /* ancho */
+            background-color: steelblue;
+            color: white; /* color de la letra */
+            border: 2px solid black;
+        }
+    </style>    
+</head>
+<body>
+    <!-- podemos escribir estilos en línea, esto significa, que las propiedades y valores las indicamos en el atributo style del elemento html, estos estilos solo van a aplicar al elemento sobre el cual los aplicamos  -->
+    <div class="" style="color: chartreuse; font-size: 32px;">¡Hola mundo!</div>
+    
+    <div class="cuadrado">¡Hola Universo!</div>
+
+</body>
+</html>
+
+#!markdown
+
+## Selectores css
