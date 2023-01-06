@@ -22,7 +22,7 @@ CSS (Cascading Style Sheets) es un lenguaje de estilos en cascada, este lenguaje
 
 El selector se corresponde con uno o varios elementos, según la forma en que declaramos la regla de estilos. Para el, o los elementos, indicados por el selector, la propiedad, dentro de la regla de estilos, va a tener el valor que escribimos después de los dos puntos.
 ```
-elemento {
+selector {
     propiedad: valor;
 }
 ```
@@ -72,3 +72,106 @@ Para comodidad del trabajo con notebooks vamos a cargar los estilos mediante la 
 #!markdown
 
 ## Selectores css
+
+#!markdown
+
+Los selectores son la primera parte de una regla css. Definen que elementos html van a ser modificados. Todos los elementos html que coincidan con el selecctor que declaremos se verán afectados por los estilos de ese selector. Si el selector no encuentra ninguna coincidencia en el documento, ningún elemento html va a ser modificado por ese selector.
+
+#!markdown
+
+### Selectores de tipo, clase e id
+
+#!markdown
+
+El ***selector universal*** permite seleccionar al todos los elementos del documento html. Siempre que se use tiene que ir primero que todos los demas selectores en el archivo css. El selector universal tiene una especificidad de 0, lo que quiere decir .................. Mediante el * indicamos que estamos seleccionando a todos los elementos. Si modificamos todos los elementos mediante el selector universar utilizando una propiedad, y más adelante en el documento css, volvemos a cambiar esa propiedad en otra regla, la segunda tiene más ponderancia que la primera por lo que la modificación del selector universal deja de aplicarse. Todos los selectores tienen implícito el selector universal, ya que aplican a todos los elementos de ese tipo, clase o id. La regla se vería de la forma `*.nombreClase{...}`, pero como está implícito ese primer * no se escribe quedando como `.nombreClase{...}`.
+
+#!markdown
+
+El ***selector de tipo***, conocido como selector de nombre o de etiqueta, selecciona una etiqueta para modificar, del documento html, mediante el nombre de la misma. En css el selector es el nombre de la etiqueta sin ninguna modificación, por ejemplo `h2`. Si existe más de una etiqueta de ese tipo, o con ese nombre, se van a modificar todos los elementos que lo tengan.
+
+#!markdown
+
+<br>El ***selector de clase*** selecciona elementos por el valor del atributo `class`. Un elemento puede tener más de una clase, por lo que podemos modificar ese elementos de formas distintas según los valores que tenga en el atributo clase. En css para indicar que se trata de un selector de clase utilizamos el punto antes del nombre de la clase de la forma `.nombreClase`.
+
+#!markdown
+
+El ***selector de id*** selecciona elementos por el valor que tiene el atributo `id`. En css indicamos que se trata de un selector de id utilizamos `#` antes del valor del atributo id de la forma `#valorId`. En html los id son identificadores únicos que no se deben repetir en todo el documento. Por este motivo los identificadores de id en css van a afectar a un único elemento, el que tenga como atributo ese id.
+
+#!html
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selectores</title>
+    <style>
+        /* 
+        Los comentarios en css se hacen mediante se abren y cierran con la barra y el astorizco como los que se utilizan en este mismo comentario. Todo lo que queda dentro de estas barras y asteriscos son comentarios que no afectan al funcionamiento de la página.
+        h1 {
+            color: red;
+        }
+        */
+
+        /* SELECTOR UNIVERSAL (no usar por que modifica toda la notebook) 
+        * {
+            letter-spacing: 10px;
+        }
+        */
+
+        /* SELECTORES DE TIPO O ETIQUETA */
+
+        /* modificamos el elemento body, que es el padre de todos los demás elementos visibles, para establecer una fuente para todo el documento */
+        body {
+            font-family: 'Arial';
+        }
+        li {
+            color: slateblue;
+            font-size: 20px;
+        }
+
+        /* SELECTORES DE CLASE */
+        .peliculas {
+            color: crimson;
+        }
+        .series {
+            font-size: 40px;
+        }
+        .favoritas {
+            font-weight: bold;
+            color: rebeccapurple;
+        }
+        .espaciado {
+            letter-spacing: 10px;
+        }
+
+        /* SELECTORES DE ID */
+        #spidermanNoWayHome {
+            font-size: 25px;
+            color: tomato;
+            text-decoration: underline;
+        }
+        #temporada3 {
+            color: seagreen;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h2 class="peliculas">Spiderman</h2>
+    <ul>
+        <li class="pelicula">Spiderman 1</li>
+
+        <!-- el elemento se ve afectado por las modificaciones de la clase pelicula y la clase favoritas -->
+        <li class="pelicula favoritas">Spiderman 2</li>
+        <li class="pelicula espaciado" id="spidermanNoWayHome">Spider verse</li>
+    </ul>
+    <h2 class="series">The office</h2>
+    <ul>
+        <li class="temporadas">Temporada 1</li>
+        <li class="temporadas">Temporada 2</li>
+        <li class="temporadas" id="temporada3">Temporada 3</li>
+    </ul>
+</body>
+</html>
