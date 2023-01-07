@@ -179,3 +179,115 @@ El ***selector de id*** selecciona elementos por el valor que tiene el atributo 
 #!markdown
 
 ### Selectores combinadores
+
+#!markdown
+
+Los selectores combinadores combinan mas de un selector básico, es decir, que vamos a ocupar más de un selector a la vez. Esto permite ser más específico sobre qué elemento queremos seleccionar.
+
+#!markdown
+
+El **selectore combinador de descendientes** es representado por un espacio en blanco, combina dos selectores, donde el primer selector hace referencia a un elemento que es ancestro del elemento al que hace referencia el segundo selector. Esto es lo que se conoce como descendencia, por que seleccionamos un primer elemento y a su descendiente. Por ejemplo
+```
+<body> -> es padre de div y footer, es ancestro de h1, p y span
+    <div> -> es hermano de footer, es padre de h1 y p y es ancestro de span
+        <h1> -> es hermano de p
+        <p> -> es hermano de h1 y padre de span
+            <span>
+    <footer> -> es hermano de div
+``` 
+Algunos ejemplo de selectores combinadores descendientes, mediante selectores de tipo, serían `body h1{...}`, `div p {...}` o `div span {...}`. 
+
+#!markdown
+
+El **selector combinadore de hijos directos** se representa mediante el simbolo de mayor `>`, combina dos selectores, donde el primer selector hace referencia al elemento padre del segundo selector que hace referencia al elemento hijo. Estos selectores en el elemento hijo se dice que son hijos directos del selector del elemento padre.
+
+#!markdown
+
+El **selector combinador de hermano adyacente** 
+
+#!html
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combinadores</title>
+    <style>
+        /* Combinador de descendientes */
+
+        /* todos los elementos en los cuales su ancestro tiene la clase lista y su descendiente tiene la clase lista */
+        .listas .lista {
+            text-decoration: underline;
+        }
+        .todo .lista {
+            list-style: decimal;
+        }
+        .dias .lista {
+            list-style: none;
+        }
+
+        /* Combinador de hijos de directos */
+
+        /* todos los elementos en los cuales su padre tiene la clase listas y solo sus hijos directos (no aplica a otros niveles de descendencia) tienen la clase lista */
+        .listas>.lista {
+            list-style: upper-roman;
+        }
+        .dias>.lista {
+            color: orangered;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        /* Combinador de hermano adyacente */
+
+        /* .subtitlo + .parrafo{
+    background-color: yellow;
+} */
+
+        /* Combinador de hermanos generales */
+
+        .subtitlo~.parrafo {
+            background-color: tomato;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2 class="titulo">Todo List</h2>    
+    <ul class="todo listas">
+        <li class="lista primera">Programar</li>
+        <ul class="sublista">
+            <li class="lista">Javascritpt</li>
+            <li class="lista">PHP</li>
+        </ul>
+        <li class="lista">Correr</li>
+        <li class="lista">Suscribirme</li>
+    </ul>
+    <h2 class="titulo">Día de la semana</h2>
+    <ul class="dias listas">
+        <li class="lista">Lunes</li>
+        <li class="lista">Martes</li>
+        <li class="lista">Miercoles</li>
+    </ul>
+
+    <article>
+        <h2 class="subtitlo">¿Qué es un registro de hábitos?</h2>
+
+        <p class="parrafo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam vero expedita voluptatum?
+        </p>
+
+        <p class="parrafo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam vero expedita voluptatum?
+        </p>
+
+        <p class="parrafo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam vero expedita voluptatum?
+        </p>
+    </article>
+
+
+</body>
+
+</html>
