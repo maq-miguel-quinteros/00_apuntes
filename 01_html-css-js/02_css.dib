@@ -199,7 +199,7 @@ Algunos ejemplo de selectores combinadores descendientes, mediante selectores de
 
 #!markdown
 
-El **selector combinadore de hijos directos** se representa mediante el simbolo de mayor `>`, combina dos selectores, donde el primer selector hace referencia al elemento padre del segundo selector que hace referencia al elemento hijo. Estos selectores en el elemento hijo se dice que son hijos directos del selector del elemento padre.
+El **selector combinador de hijos directos** se representa mediante el simbolo de mayor `>`, combina dos selectores, donde el primer selector hace referencia al elemento padre del segundo selector que hace referencia al elemento hijo. Estos selectores en el elemento hijo se dice que son hijos directos del selector del elemento padre.
 
 #!markdown
 
@@ -296,3 +296,67 @@ El **selector combinador de hermanos generales** por el símbolo `~`, combina do
 #!markdown
 
 ### Selectores de atributos
+
+#!markdown
+
+Mediante los selectores de atributos podemos seleccionar elementos por medio de sus atributos. Para indicar que se trata de un selector de atributos utilizamos corchetes `[]`. Por ejemplo, si queremos seleccionar los elementos que tengan el atributo class, sin importar el valor que tome este atributo, lo indicamos como `[class]{...}`. También podemos especificar el valor del atributo a la hora de armar la regla, el ejemplo anterior con el atributo clase igual menu quedaría como `[class="munu"]{...}`. Podemos utilizar caracteres especiales para filtrar los atributos, estos son `* ~ ^ $` y nos sirven para indicar que se busque coicidencias de valor en los atributos de forma general o especifica.
+
+#!html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atributo</title>
+    <style>
+
+        /* seleccionamos a todos los elementos que tengan el atributo value */
+        [value] {
+            display: block;
+            width: 90%;
+            margin-top: 20px;
+        }
+
+        /* todos elementos que tengan el atributo type con valor text  */
+        [type="text"]{
+            background-color: aquamarine;
+        }
+
+        /* todos los elementos que tengan en el atributo value la cadena cursocss.com, aunque la misma forme parte de otra cadena. pisa la regla anterior */
+        [value*="cursocss.com"] {
+            background-color: yellow;
+        }
+
+        /* todos los elementos que tengan en el atributo value la cadena cursocss.com sola o rodeada por espacios en blanco. pisa la regla anterior */
+        [value~="cursocss.com"] {
+            background-color: coral;
+        }
+
+        /* todos los elementos que tengan en el atributo value la cadena cursocss.com al comienzo del valor del atributo. pisa la regla anterior */
+        [value^="cursocss.com"] {
+            background-color:grey;
+        }
+
+        /* todos los elementos que tengan en el atributo value la cadena cursocss.com al final del valor del atributo. pisa la regla anterior */
+        [value$="cursocss.com"] {
+            background-color:steelblue;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 class="titulo">Titulo</h2>
+    <form class="form">
+        <input type="text" value="Aquí introduce el nombre">
+        <input type="email" value="Aquí irá el email para cursocss.com email">
+        <input type="text" value="cursocss.com ingresar la dirección">
+        <input type="text" value=" ingresar el celular para cursocss.com">
+        <input type="password" value="Aqui Aquí irá la contraseña">
+
+        <!-- aplica la regla value*="cursocss.com" por que tiene la cadena cursocss.com aunque la misma esté dentro de una cadena más grande -->
+        <input type="submit" value="enviaracursocss.com.ar">
+    </form>
+</body>
+</html>
