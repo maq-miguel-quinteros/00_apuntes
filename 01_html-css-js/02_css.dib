@@ -360,3 +360,105 @@ Mediante los selectores de atributos podemos seleccionar elementos por medio de 
     </form>
 </body>
 </html>
+
+#!markdown
+
+## Herencia, cascada y especificidad
+
+#!markdown
+
+### Especificidad
+
+#!markdown
+
+La especificidad es el primer método que se utiliza para establecer que selector va a modificar un elemento, cuando más de uno de estos selectores lo afectan. La especificidad es el valor que se le da a los selectores en css. Cada selector tiene un valor de especificidad diferente al otro y los estilos que se muestren van a ser del selector con mayor especificidad.
+* Los `selectores de id` son los selectores con valor de espcificidad 100. Son selectores especificos de un elemento en particular ya que el atributo id solo puede tomar un valor por elemento.
+* Los `selectores de clase, atributo y pseudoclase` son los selectores con valor de especificidad 10. Suelen ser muy utilizadas por tener más especificidad que los `selectores de tipo y pseudoelemento` y no ser tan específicos como los `selecores de id`.
+* Los `selectores de tipo y pseudoelemento` son los selectores con valor de especificidad 1, es decir, los que tienen la menor especificidad y los últimos en poder llegar a ser mostrados.
+
+#!markdown
+
+Si posicionamos el mouse sobre un selector en los editores de código como Visual Studio Code podemos ver el valor de especificidad de los mismos.
+
+#!markdown
+
+Los valores de especificidad de los selectores se pueden sumar cuando utilizamos selectores combinadores.
+* `div p` tiene un valor de espcificidad de 2 ya que sus dos selectores son de tipo.
+* `div p.principal` tiene un valor de espcificidad de 12 ya que suma los valores de especificidad de 1 de ambos selectores de tipo más el valor de especificidad de 10 del selector de clase.
+* `div#header` tiene un valor de especificidad de 101 ya que suma el valor de especificidad de tipo más el valor de especificidad de id.
+
+#!markdown
+
+Podemos hacer que no se tome en cuenta el valor de especificidad de un selector y aplicar una propiedad de un selector con menor valor de especificidad que otros mediante la palabra reservada `!important`, que hace que se ignoren por completo estos valores. Se escribe de la forma
+```
+h1 {
+    color : red !important; 
+}
+```
+También podemos cambiar el estilo de un elemento en línea, es decir, en el propio elemento html de la forma `<div style="color:red">Texto en rojo</div>`. Estas formas de trabajo no se recomiendan.
+
+#!markdown
+
+### Cascada
+
+#!markdown
+
+La cascada es el segundo método que se utiliza para establecer que selector va a modificar un elemento. Css significa 'Cascading Style Sheets' que significa 'hojas de estilo en cascada'. La expresión 'en cascada' hace referencia a la forma en que van a ser aplicados los selectores, en caso de existir más de uno, que modifiquen a un mismo elemento de forma distinta.
+* Si tenemos dos selectores afectando a un elemento, el estilo que se va a mostrar en pantalla es el del selector que este escrito más abajo en la hoja de estilos, o el que esté en la última hoja de estilo enlazada, en caso de tener varias de ellas enlazadas al documento.
+* La cascada no cambia el valor de especificidad de los selectores. Siempre va a tener prioridad el selector con mayor valor de especificidad. En caso de tener el mismo valor de especificidad aplica el método de cascada para desempatar.
+* Solo se ven afectadas las propiedades que esten repetidas en los subsiguientes selectores, es decir, en caso de tener la siguiente estructura, solo se ve modificada la propiedad `color` del elemento h1 del segundo selector, el elemento se va a mostrar con un `font-size: 25px` ya que esta propiedad no se ve modificada por el segundo selector.
+    * ```
+        h1 {
+            color: steelblue;
+            font-size: 25px;
+        }
+        h1.novedad {
+            color: red;
+        }
+    ```
+
+#!html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herencia, Especificidad & Cascada</title>
+    <style>
+        body {
+            border: 3px solid orange;
+            font-family: cursive;
+            color: steelblue;
+        }       
+
+        #header{...}
+        .secciones{...}
+        p{...}
+        
+        div#header{...}
+        div p.secciones{...}
+        div p{...}
+        
+
+
+
+        .title {
+            border: inherit;
+        }
+
+        input {
+            font-size: 25px;
+            color: inherit;
+            font-family: inherit;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="title" id="title">Hola, soy un titulo</h1>
+    <p>Hola, soy un parrafo</p>
+    <input type="text" placeholder="Hola mundo">
+</body>
+</html>
