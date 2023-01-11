@@ -39,7 +39,7 @@ HTML (Lenguaje de Marcas de Hipertexto, del inglés HyperText Markup Language) e
 
 #!markdown
 
-Las etiquetas o tags son elementos u objetos que se declaran de la forma `<abreEtiqueta> contenido </cierraEtiqueta>`. Lo que escribimos entre los tags de apertura y cierre de los elementos es el contenido de la mismo. Cuando el navegador encuentra este formato entiende que todo su conjunto es un elemento u objeto. Las etiquetas pueden tener atributos, que son las propiedades o caracteristicas de ese elemento. Los atributos van dentro del tag de apertura del elemento de la forma `<abreEtiqueta atributo="valor">...`. 
+Las etiquetas o tags son elementos u objetos que se declaran de la forma `<abreEtiqueta> contenido </cierraEtiqueta>`. Lo que escribimos entre los tags de apertura y cierre de los elementos es el contenido de la mismo. Cuando el navegador encuentra este formato entiende que todo su conjunto es un elemento u objeto. Las etiquetas pueden tener atributos, que son las propiedades o características de ese elemento. Los atributos van dentro del tag de apertura del elemento de la forma `<abreEtiqueta atributo="valor">...`. 
 
 #!html
 
@@ -56,7 +56,7 @@ Algunos elementos no tienen etiqueta de cierre como `<meta>`, que se usa para da
 
 #!markdown
 
-Podemos dividir las etiquetas en distintos grupos según su función. `Etiquetas básicas` HTML, con estas etiquetas podríamos crear un documento HTML simple. `Etiquetas de formato` HTLM, son etiquetas que nos permiten dar un formato más útil y claro al contenido de nuestro documento. `Etiquetas de formularios`, estas etiquetas sirven para crear formularios donde podamos escribir texto, seleccionar algún elemento de una lista desplegable u organizar los campos de una manera legible. Podemos conocer todas las etiquetas disponibles en el siguiente enlace __[w3schools - HTML Element Reference](https://www.w3schools.com/TAGS/default.asp)__.
+Podemos dividir las etiquetas en distintos grupos según su función. `Etiquetas básicas` HTML, con estas etiquetas podríamos crear un documento HTML simple. `Etiquetas de formato` HTML, son etiquetas que nos permiten dar un formato más útil y claro al contenido de nuestro documento. `Etiquetas de formularios`, estas etiquetas sirven para crear formularios donde podamos escribir texto, seleccionar algún elemento de una lista desplegable u organizar los campos de una manera legible. Podemos conocer todas las etiquetas disponibles en el siguiente enlace __[w3schools - HTML Element Reference](https://www.w3schools.com/TAGS/default.asp)__.
 
 #!html
 
@@ -131,4 +131,4 @@ Los documentos con extensión html, que son páginas web, se visualizan mediante
 
 #!markdown
 
-Cuando esta semanticamente mejor estructurada la página se dice que tiene un buen SEO. SEO significa Search Engine Optimization (Optimización para motores de búsqueda). Se trata del conjunto de estrategias y técnicas de optimización que se hacen en una página web para que aparezca orgánicamente en buscadores de Internet como Google, Yahoo o Youtube.
+Cuando esta semánticamente mejor estructurada la página se dice que tiene un buen SEO. SEO significa Search Engine Optimization (Optimización para motores de búsqueda). Se trata del conjunto de estrategias y técnicas de optimización que se hacen en una página web para que aparezca orgánicamente en buscadores de Internet como Google, Yahoo o YouTube.

@@ -21,7 +21,7 @@ console.log(nombre);
 
 #!markdown
 
-El tipo de dato `number` (númerico)
+El tipo de dato `number` (numérico)
 
 #!javascript
 
@@ -43,7 +43,7 @@ console.log(objeto);
 
 #!markdown
 
-Las variables son dinámicas, con asignarle el valor indicamos el tipo de datos que almacena, a su vez si cambiamos su valor por otro, de otro tipo de datos, la misma cambia para adatarse a al mismo.
+Las variables son dinámicas, con asignarle el valor indicamos el tipo de datos que almacena, a su vez si cambiamos su valor por otro, de otro tipo de datos, la misma cambia para adaptarse a al mismo.
 
 #!markdown
 
