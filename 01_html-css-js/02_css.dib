@@ -433,3 +433,69 @@ La herencia en css nos permite heredar estilos. Estos estilos se heredan del com
     border: inherit;
 }
 ```
+
+#!markdown
+
+## Metodología BEN
+
+#!markdown
+
+BEM es una metodología que nos proporciona una manera de nombrar a nuestras clases en html para posteriormente poder usarlas en css. BEM nos ayudará a mantener nuestro código flexible, modular y sencillo, y sobre todo nos ayudará  a lidiar con problemas de especificidad de los elementos. BEM significa Block Element Modifier, esto es debido a que todas las clases que escribiremos se regirán por estas 3 partes.
+* Bloque: es una parte independiente en nuestro html, es decir, que no necesita de otros elementos para existir, como puede ser, por ejemplo, una galería de imágenes o un menú. Los bloques tienen el nombre de lo que representan, como ser `header menu gallery footer`.
+* Elemento: un elemento siempre estará dentro de un bloque, debido a que es parte de él y es dependiente del bloque, por ejemplo una imágen necesita una galería de imagenes para existir, o un enlace necesita un menu para existir. Los elementos tendrán como nombre, primero el nombre del bloque al que pertenece, luego dos guiones bajos y después el nombre de lo que representan, por ejemplo `header__title menu__item galeria__img footer__img`.
+* Modificador: los modificadores son usados en elementos o bloques, se usan para representar una característica diferente que tendrá el modificador o elemento. Los modificadores tendrán el nombre del bloque o del elemento, seguido de un espacio en blanco, después otra vez el nombre del bloque o elemento, pero seguido de dos guiones medios y a continuación la característica diferente que tendrá este bloque o elemento, por ejemplo `boton boton—active header header—wave`.
+
+#!html
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEM</title>
+    <style>
+        /* la clase nav contiene las propiedades comunes a todos los elementos y otros bloques que contiene */
+        .nav {
+            background-color: #264DE4;
+            padding: 0 100px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        /* la clase nav__link tiene todas las propiedades comunes a todos los elementos que van a ser link en el menu */
+        .nav__link {
+            color: inherit;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        /* la clase .nav__link--active contiene las propiedades especificas de los elementos que cumplen con el modificador de active */
+        .nav__link--active {
+            border-bottom: 2px solid white;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- la clase nav representa un bloque, ya que existe por si mismo y no depende de otro elemento o contenedor -->
+    <nav class="nav">
+        
+        <!-- la clase nav__links es un elemento, ya que se encuentra dentro del bloque nav y depende de este, es un elemento que depende de un contenedor -->
+        <div class="nav__links">
+
+            <!-- la clase nav__link, es un elemento que, aunque está contenido por el elemento div con clase nav__links, no depende de estem sino que depende del div con clase nav, de ahí la forma en que nombramos a la clase nav__link y no nav__links__link -->
+            <a href="#" class="nav__link">Inicio</a>
+            <a href="#" class="nav__link">Acerca de</a>
+
+            <!-- la clase nav_link--active es un modificador, ya que señala un comportamiento diferente para un elemento de clase nav_link. tiene que tener ambas clases ya que el modificador solo actua sobre unas propiedades puntuales del elemento, las otras propiedades vienen configuradas por la clase nav__link -->
+            <a href="#" class="nav__link nav__link--active">Contacto</a>
+        </div>
+    </nav>
+</body>
+
+</html>
