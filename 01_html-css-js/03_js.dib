@@ -4,7 +4,7 @@
 
 #!markdown
 
-# Tipos de datos en JavaScript
+# JavaScript
 
 #!markdown
 
@@ -75,7 +75,7 @@ console.log(typeof bandera);
 
 #!markdown
 
-El tipo de dato `function` (función) permite realizar una tarea. Lleva adelante una serie de lineas de código y, si necesitamos volver a realizar esa tarea, podemos volver a llamar a la funcion.
+El tipo de dato `function` (función) permite realizar una tarea. Lleva adelante una serie de lineas de código y, si necesitamos volver a realizar esa tarea, podemos volver a llamar a la función.
 
 #!javascript
 
@@ -84,7 +84,7 @@ console.log(typeof miFuncion);
 
 #!markdown
 
-El tipo de dato `Symbol` se utiliza para crear un valor unico de una variable. Si necesitamos crear una variable de este tipo llamamos a la funcion `Symbol()` y entre los parentesis pasamos una cadena de caracteres.
+El tipo de dato `Symbol` se utiliza para crear un valor único de una variable. Si necesitamos crear una variable de este tipo llamamos a la función `Symbol()` y entre los paréntesis pasamos una cadena de caracteres.
 
 #!javascript
 
@@ -93,7 +93,7 @@ console.log(typeof simbolo);
 
 #!markdown
 
-El tipo de dato `class` (clase) es un tipo `function`. Por lo general  se define la clase con su nombre en singular y empezando en mayusculas. Para poder definir objetos de esta clase necesitamos un constructor. Con la palabra reservada `this` seguida de .A indicamos que al atributo A, propio de la clase, le asignamos el valor de B que viene por parametros en el constructor de la forma `this.A = B`.
+El tipo de dato `class` (clase) es un tipo `function`. Por lo general  se define la clase con su nombre en singular y empezando en mayúsculas. Para poder definir objetos de esta clase necesitamos un constructor. Con la palabra reservada `this` seguida de .A indicamos que al atributo A, propio de la clase, le asignamos el valor de B que viene por parámetros en el constructor de la forma `this.A = B`.
 
 #!javascript
 
@@ -143,7 +143,7 @@ console.log(typeof autos);
 
 #!markdown
 
-Para el caso de las cadenas vacias su tipo de dato es `string` pero al consultar su contenido nos devuelve `empty string`. `empty string` no es un tipo de dato sino un valor (el contenido de una variable).
+Para el caso de las cadenas vacías su tipo de dato es `string` pero al consultar su contenido nos devuelve `empty string`. `empty string` no es un tipo de dato sino un valor (el contenido de una variable).
 
 #!javascript
 
@@ -153,7 +153,11 @@ console.log(typeof z);
 
 #!markdown
 
-## Concatenación de variables
+## Variables
+
+#!markdown
+
+### Concatenación de variables
 
 #!markdown
 
@@ -169,7 +173,7 @@ console.log(nombreCompleto);
 
 #!markdown
 
-No es necesario tener en variables los valores para concatenarlos.
+No es necesario tener en variables los valores para concatenar.
 
 #!javascript
 
@@ -178,7 +182,7 @@ console.log(nombreCompleto2);
 
 #!markdown
 
-La lectura de la operación se hace de izquierda a derecha. Si comienza con numeros, realizar la operación matemática hasta que encuentra un string, a partir del string realiza la concatenación. Se atiende primero las operaciones que están dentro de los parentesis, luego lo que está afuera.
+La lectura de la operación se hace de izquierda a derecha. Si comienza con números, realizar la operación matemática hasta que encuentra un string, a partir del string realiza la concatenación. Se atiende primero las operaciones que están dentro de los paréntesis, luego lo que está afuera.
 
 #!javascript
 
@@ -195,11 +199,11 @@ console.log(x);
 
 #!markdown
 
-## Declaración de variables
+### Declaración de variables
 
 #!markdown
 
-Un litaral es un dato, un string, number, boolean, etc. Los siguientes son literales:
+Un literal es un dato, un string, number, boolean, etc. Los siguientes son literales:
 
 #!javascript
 
@@ -259,15 +263,15 @@ console.log(z);
 
 #!markdown
 
-Javascript es sencible a mayúsculas y minúsculas para los nombres de las variables o funciones. No se puede comenzar el nombre de una variable o funcion con un número. Para el incio del nombre se permiten mayúsculas, minúsculas y los signos _ y $. No se pueden utilizar las palabras reservadas como nombre de variable o función.
+Javascript es sensible a mayúsculas y minúsculas para los nombres de las variables o funciones. No se puede comenzar el nombre de una variable o función con un número. Para el inicio del nombre se permiten mayúsculas, minúsculas y los signos _ y $. No se pueden utilizar las palabras reservadas como nombre de variable o función.
 
 #!markdown
 
-# Operadores en Javascript
+## Operadores
 
 #!markdown
 
-## Operadores aritméticos
+### Operadores aritméticos
 
 #!markdown
 
@@ -331,7 +335,7 @@ console.log("Resultado del exponente: " + z);
 
 #!markdown
 
-## Operadores de incremento y decremento
+### Operadores de incremento y decremento
 
 #!markdown
 
@@ -379,11 +383,11 @@ console.log("z: " + z);
 
 #!markdown
 
-## Precedencia de operadores
+### Precedencia de operadores
 
 #!markdown
 
-Las expresiones se evaluan de izquierda a derecha. Siempre se evaluan primero las expresiones que estan dentro de los parentesis, desde el mas interior hasta el mas exterior. El orden de prioridad de los operadores es el siguiente:
+Las expresiones se evalúan de izquierda a derecha. Siempre se evalúan primero las expresiones que están dentro de los paréntesis, desde el mas interior hasta el mas exterior. El orden de prioridad de los operadores es el siguiente:
 1.   Paréntesis: () 
 2.   División y multiplicación: / *
 3.   Suma y resta: + -
@@ -403,7 +407,7 @@ console.log(z);
 
 #!markdown
 
-## Operadores de asignación
+### Operadores de asignación
 
 #!markdown
 
@@ -442,7 +446,7 @@ console.log(a);
 
 #!markdown
 
-## Operadores de comparación
+### Operadores de comparación
 
 #!markdown
 
@@ -490,7 +494,7 @@ console.log(z);
 
 #!markdown
 
-## Operadores relacionales
+### Operadores relacionales
 
 #!markdown
 
@@ -514,11 +518,11 @@ console.log(z);
 
 #!markdown
 
-## Operadores lógicos
+### Operadores lógicos
 
 #!markdown
 
-El operador lógico and (`&&`) solo devuelve `true` cuando las dos expresiones que se evaluan son `true`.
+El operador lógico and (`&&`) solo devuelve `true` cuando las dos expresiones que se evalúan son `true`.
 
 #!javascript
 
@@ -542,7 +546,7 @@ if( a >= valMin && a <= valMax ){
 
 #!markdown
 
-El operador lógico or (`||`) solo devuelve `false` cuando las dos expresiones que se evaluan son `false`.
+El operador lógico or (`||`) solo devuelve `false` cuando las dos expresiones que se evalúan son `false`.
 
 #!javascript
 
@@ -564,11 +568,11 @@ if( vacaciones || diaDescanso ){
 
 #!markdown
 
-## Operador ternario
+### Operador ternario
 
 #!markdown
 
-El operador ternario revisa la condicion dentro del `()` y devuelve lo que está despues de `?` si la condición dio `true` o lo que está despues de los `:` si la condición dio `false`. No es necesario poner la condicion entre parentesis.
+El operador ternario revisa la condición dentro del `()` y devuelve lo que está después de `?` si la condición dio `true` o lo que está después de los `:` si la condición dio `false`. No es necesario poner la condición entre paréntesis.
 
 #!javascript
 
@@ -581,7 +585,7 @@ console.log( resultado );
 
 #!markdown
 
-## Convertir `string` a `number`
+### Funciones especiales `Number` e `isNaN`
 
 #!markdown
 
@@ -604,10 +608,6 @@ if(edad >= 18){
  
 resultado = (edad >= 18)? "Puede votar" : "Muy joven para votar";
 console.log( resultado );
-
-#!markdown
-
-## Función `isNaN`
 
 #!markdown
 
@@ -645,15 +645,15 @@ else{
 
 #!markdown
 
-# Estructuras de control
+## Estructuras de control
 
 #!markdown
 
-## Estructura if / else
+### Estructura if / else
 
 #!markdown
 
-Según una condición de verdad, examinada por la palabra reservada `if`, realiza uno u otro conjunto de sentencias. La expresión examina una condición, si la misma se cumple, es decir es `true`, realiza un conjunto de sentencias. La estructura puede quedar de esa mamenera pero, en caso de que no se cumpla la condición, es decir que sea `false`, podemos indicarle a la expresión realizar otro conjunto de sentencias, diferente mediante la palabra reservada `else`.
+Según una condición de verdad, examinada por la palabra reservada `if`, realiza uno u otro conjunto de sentencias. La expresión examina una condición, si la misma se cumple, es decir es `true`, realiza un conjunto de sentencias. La estructura puede quedar de esa manera pero, en caso de que no se cumpla la condición, es decir que sea `false`, podemos indicarle a la expresión realizar otro conjunto de sentencias, diferente mediante la palabra reservada `else`.
 
 #!javascript
 
@@ -745,7 +745,7 @@ console.log(mensaje);
 
 #!markdown
 
-## Estructura `switch`
+### Estructura `switch`
 
 #!markdown
 
@@ -814,7 +814,7 @@ La comparación de los valores en la estructura es estricta. Esto significa que,
 
 #!markdown
 
-# Bucles
+## Bucles
 
 #!markdown
 
@@ -822,11 +822,11 @@ Los bucles nos permiten repetir un conjunto de sentencias en la medida en que se
 
 #!markdown
 
-## Bucle while
+### Bucle while
 
 #!markdown
 
-Mediante la palabra reservada `while` indicamos que se evalue la sentencia dentro de los parentesis. Si la condición es `true` se ejecutan las sentencias que están entre las `{}`, al terminar estas sentencias vuelve a evaluar la condición entre los parentesis, si sigue `true` vuelve a ejecutarse las sentencias entre las llaves. Cuando la condición es `false` sale de bucle o ciclo.
+Mediante la palabra reservada `while` indicamos que se evalúe la sentencia dentro de los paréntesis. Si la condición es `true` se ejecutan las sentencias que están entre las `{}`, al terminar estas sentencias vuelve a evaluar la condición entre los paréntesis, si sigue `true` vuelve a ejecutarse las sentencias entre las llaves. Cuando la condición es `false` sale de bucle o ciclo.
 
 #!javascript
 
@@ -842,7 +842,7 @@ console.log("Fin ciclo while");
 
 #!markdown
 
-## Bucle do while
+### Bucle do while
 
 #!markdown
 
@@ -860,11 +860,11 @@ console.log("Fin ciclo do while");
 
 #!markdown
 
-## Bucle for
+### Bucle for
 
 #!markdown
 
-En el bucle `for` definimos todas las partes del bucle, como ser la variable que se evalua, la condición que se evalua y el incremento de la variable, todo dentro de los parentesis con el que lo generamos. En el ejemplo primero se ejecuta `let contador = 0`, esta sentencia se ejecuta solo la primera vez que entramos en el bucle. Despues ejecutamos la condición `contador < 3`, si la misma devuelve `true` se ejecutan las sentencias dentro de las `{}`. Una vez terminadas las sentencias de las llaves ejecutamos `contador++` incrementando la variable contador. Después de eso volvemos a ejecutar la condición, si devuelve `true` de nuevo se ejecutan las sentencias dentro de las llaves y vuelve a sumarse el contador. Si la condición da `false` sale del bucle.
+En el bucle `for` definimos todas las partes del bucle, como ser la variable que se evalúa, la condición que se evalúa y el incremento de la variable, todo dentro de los paréntesis con el que lo generamos. En el ejemplo primero se ejecuta `let contador = 0`, esta sentencia se ejecuta solo la primera vez que entramos en el bucle. Después ejecutamos la condición `contador < 3`, si la misma devuelve `true` se ejecutan las sentencias dentro de las `{}`. Una vez terminadas las sentencias de las llaves ejecutamos `contador++` incrementando la variable contador. Después de eso volvemos a ejecutar la condición, si devuelve `true` de nuevo se ejecutan las sentencias dentro de las llaves y vuelve a sumarse el contador. Si la condición da `false` sale del bucle.
 
 #!javascript
 
@@ -876,7 +876,7 @@ console.log("Fin ciclo for");
 
 #!markdown
 
-## Palabra reservada break
+### Palabra reservada break
 
 #!markdown
 
@@ -894,11 +894,11 @@ for (let contador = 0; contador <= 10; contador++){
 
 #!markdown
 
-## Palabra reservada continue
+### Palabra reservada continue
 
 #!markdown
 
-Mediante la palabra reservada `continue` indicamos al bucle que, en el punto donde aparece `continue`, se termine la ejecucion de sentencias dentro de los `{}` y se pase a incrementar la variable a evaluar con `contador++` y que vuelva a evaluarse la condición que, si devuelve `true`, volverá a entrar en el bucle. Es decir que con `continue` detenemos la ejecución de sentencias dentro del bucle en ese punto y pasamos a la siguiente iteracción, de corresponder, o salimos del bucle si la condición devuelve `false`.
+Mediante la palabra reservada `continue` indicamos al bucle que, en el punto donde aparece `continue`, se termine la ejecución de sentencias dentro de los `{}` y se pase a incrementar la variable a evaluar con `contador++` y que vuelva a evaluarse la condición que, si devuelve `true`, volverá a entrar en el bucle. Es decir que con `continue` detenemos la ejecución de sentencias dentro del bucle en ese punto y pasamos a la siguiente iteración, de corresponder, o salimos del bucle si la condición devuelve `false`.
 
 #!javascript
 
@@ -911,11 +911,11 @@ for(let contador = 0; contador <= 10; contador++){
 
 #!markdown
 
-## Labels
+### Labels
 
 #!markdown
 
-Podemos indicar, dentro del código, una label o etiqueta, que es una linea en la secuencia de sentencias del código a la que podemos volver si necesitamos que las sentencias de la misma se repitan por algún motivo. En el ejemplo el label es `inicio:` y dentro del bucle indicamos mediante `continue inicio` que al ejecutarse esa linea de código la secuencia de sentencias vaya a lo que se encuentra a continuación de la etiqueta `inicio:`. Podemos indicar una etiqueda a donde redireccionar la secuencia de ejecución al usar la palabra reservada `break` de la manera `break inicio;`. En este caso en lugar de redireccionar a esa etiqueta indicamos saltar todo lo contenido a continuación de la misma. Este tipo de programación se conoce como `go to`. No es recomendado trabajar de este forma.
+Podemos indicar, dentro del código, una label o etiqueta, que es una linea en la secuencia de sentencias del código a la que podemos volver si necesitamos que las sentencias de la misma se repitan por algún motivo. En el ejemplo el label es `inicio:` y dentro del bucle indicamos mediante `continue inicio` que al ejecutarse esa linea de código la secuencia de sentencias vaya a lo que se encuentra a continuación de la etiqueta `inicio:`. Podemos indicar una etiqueta a donde redireccionar la secuencia de ejecución al usar la palabra reservada `break` de la manera `break inicio;`. En este caso en lugar de redireccionar a esa etiqueta indicamos saltar todo lo contenido a continuación de la misma. Este tipo de programación se conoce como `go to`. No es recomendado trabajar de este forma.
 
 #!javascript
 
@@ -929,7 +929,7 @@ for(let contador = 0; contador <= 10; contador++){
 
 #!markdown
 
-# Arreglos o array
+## Arreglos o `array`
 
 #!markdown
 
@@ -949,7 +949,7 @@ console.log(autos2);
 
 #!markdown
 
-## Recorrer elementos de un arreglo
+### Recorrer elementos de un arreglo
 
 #!markdown
 
@@ -976,24 +976,24 @@ Mediante al propiedad `length` podemos saber la longitud del arreglo, es decir, 
 
 #!markdown
 
-## Modificar elementos de un arreglo
+### Modificar elementos de un arreglo
 
 #!markdown
 
-Para modificar los datos de un elemento en un arreglo tenemos que acceder al elemento utilizando su indice y asignarle el nuevo valor que este elemento va a tener. En el ejemplo es la linea `autos[1] = 'MerecedesBenz'`.
+Para modificar los datos de un elemento en un arreglo tenemos que acceder al elemento utilizando su indice y asignarle el nuevo valor que este elemento va a tener. En el ejemplo es la linea `autos[1] = 'MercedesBenz'`.
 
 #!javascript
 
 const autos3 = ['BMW','Mercedes Benz','Volvo'];
 console.log(autos3);
 
-/** cambiamos el vamor 'Mercedes Benz' del elemto 1 por 'MerecedesBenz' */
-autos3[1] = 'MerecedesBenz';
+/** cambiamos el vamor 'Mercedes Benz' del elemto 1 por 'MercedesBenz' */
+autos3[1] = 'MercedesBenz';
 console.log(autos3[1]);
 
 #!markdown
 
-## Agregar elementos en un arreglo
+### Agregar elementos en un arreglo
 
 #!markdown
 
@@ -1010,7 +1010,7 @@ console.log(autos4);
 
 #!markdown
 
-Tambien podemos agregar elementos al arreglo utilizando su longitud. 
+También podemos agregar elementos al arreglo utilizando su longitud. 
 La propiedad `autos5.length` devuelve un valor numérico, que es la longitud del arreglo pero, como los arreglos comienzan en 0, la propiedad `autos5.length` va a devolver un numero más al último indice del arreglo. Esto permite que `autos5[autos5.length] = 'Cadillac'` agregue al siguiente indice del arreglo el valor `'Cadillac'`.
 
 #!javascript
@@ -1025,7 +1025,7 @@ console.log(autos5);
 
 #!markdown
 
-Tambien podemos agregar elementos dejando indices vacios entre ellos. En el ejemplo la variable `autos5` quedó con 4 elementos en los índices del 0 al 3. Podemos egregar un elemento en el índice 7 sin tomar en cuenta los índices 4, 5 y 6. Esos dos índices quedan sin elementos, quedan vacíos. Ahora la variable `autos5` queda con 4 elemenos pero con 8 índices que van del 0 al 7. No es recomendable sumar elementos a un arreglo de esta forma ni tener indices sin elementos o vacios.
+También podemos agregar elementos dejando indices vacíos entre ellos. En el ejemplo la variable `autos5` quedó con 4 elementos en los índices del 0 al 3. Podemos agregar un elemento en el índice 7 sin tomar en cuenta los índices 4, 5 y 6. Esos dos índices quedan sin elementos, quedan vacíos. Ahora la variable `autos5` queda con 4 elementos pero con 8 índices que van del 0 al 7. No es recomendable sumar elementos a un arreglo de esta forma ni tener indices sin elementos o vacíos.
 
 #!javascript
 
@@ -1035,11 +1035,11 @@ console.log(autos5);
 
 #!markdown
 
-## Consultar si una variable es un arreglo
+### Consultar si una variable es un arreglo
 
 #!markdown
 
-Cuando necesitamos consultar si una variable es un arreglo, utilizando el tipo de dato `typeof` nos va a devolver que el tipo dato de la variable es `object`. Esta respuesta no es lo suficientemente específica. Para un respuesta mas certera podemos usar el método `isArray` de la clase `Array` de la forma `Array.isArray(variable)`, que nos devuelve `true` si la variable es un arreglo. Tambien podemos usar `instanceof`, una palabra reservada de JavaScript que nos indica si la variable es una instancia de un tipo de datos, en este caso el tipo de datos es Array, si la variable es un arreglo la sentencia va a devolver `variable instanceof Array` va a devolver `true`.
+Cuando necesitamos consultar si una variable es un arreglo, utilizando el tipo de dato `typeof` nos va a devolver que el tipo dato de la variable es `object`. Esta respuesta no es lo suficientemente específica. Para un respuesta mas certera podemos usar el método `isArray` de la clase `Array` de la forma `Array.isArray(variable)`, que nos devuelve `true` si la variable es un arreglo. También podemos usar `instanceof`, una palabra reservada de JavaScript que nos indica si la variable es una instancia de un tipo de datos, en este caso el tipo de datos es Array, si la variable es un arreglo la sentencia va a devolver `variable instanceof Array` va a devolver `true`.
 
 #!javascript
 
@@ -1053,14 +1053,14 @@ console.log( autos instanceof Array);
 
 #!markdown
 
-# Funciones
+## Funciones
 
 #!markdown
 
-Una función es un código reutilizable que podemos llamar todas la veces que utilizamos. Llamar a una función significa solicitar, en un momento de la secuencia de sentencias, que la función se ejecute. Primero tenemos que declarar la función, para hacerlo utilizamos la palabra reservada `function` seguido del nombre de la funcion, de preferencia en notación camelCase (primera letra del nombre en minuscula y si consta de más de una palabra, la siguiente palabra empezando en mayúsculas sin espacio). Seguido al nombre agregamos `()` dentro de los cuales podemos o no tener argumentos de la función. Los argumentos son valores que ingresan a la función y que se van a utilizar cuando se ejecuten las sentencias dentro de la función. Seguido a esto abrimos llaves `{` escribimos el cuerpo de la funcion, que son las sentencias a ejecutar cada vez que llamemos a la función y finalmente cerramos llaves `}` indicando el final de la definición de la misma.
+Una función es un código reutilizable que podemos llamar todas la veces que utilizamos. Llamar a una función significa solicitar, en un momento de la secuencia de sentencias, que la función se ejecute. Primero tenemos que declarar la función, para hacerlo utilizamos la palabra reservada `function` seguido del nombre de la función, de preferencia en notación camelCase (primera letra del nombre en minúscula y si consta de más de una palabra, la siguiente palabra empezando en mayúsculas sin espacio). Seguido al nombre agregamos `()` dentro de los cuales podemos o no tener argumentos de la función. Los argumentos son valores que ingresan a la función y que se van a utilizar cuando se ejecuten las sentencias dentro de la función. Seguido a esto abrimos llaves `{` escribimos el cuerpo de la función, que son las sentencias a ejecutar cada vez que llamemos a la función y finalmente cerramos llaves `}` indicando el final de la definición de la misma.
 ```
 function nombreFuncion(argumento1, argumento2, ... argumentoN){
-  cuerpo de la funcion
+  cuerpo de la función
 }
 ```
 
@@ -1080,15 +1080,15 @@ miFuncion(2, 3);
 
 #!markdown
 
-Podemos llamar a la función, en la sucuencia de sentencias, incluso antes de definir la misma. Esto se conoce como hoisting, donde JavaScript pasa, de forma automatica, la definición de la función al comienzo de la ejecución de sentencias, para que esté definida al momento de llamarla.
+Podemos llamar a la función, en la secuencia de sentencias, incluso antes de definir la misma. Esto se conoce como hoisting, donde JavaScript pasa, de forma automática, la definición de la función al comienzo de la ejecución de sentencias, para que esté definida al momento de llamarla.
 
 #!markdown
 
-## Palabra reservada `return`
+### Palabra reservada `return`
 
 #!markdown
 
-Cuando necesitamos que la función nos devuelva un valor utilizamos, en el cuerpo de la misma, la palabra reservada `return` y a continuacion el valor que queremos que devuelva. El valor que la función devuelve lo tenemos que asignar a una variable para poder trabajar con él. Si al final de la función no está la palabra `return` escrita JavaScript la agrega automaticamente, pero sin nada a continuación, por lo que la función no devuelve nada a pesar de tener `return` al final.
+Cuando necesitamos que la función nos devuelva un valor utilizamos, en el cuerpo de la misma, la palabra reservada `return` y a continuación el valor que queremos que devuelva. El valor que la función devuelve lo tenemos que asignar a una variable para poder trabajar con él. Si al final de la función no está la palabra `return` escrita JavaScript la agrega automáticamente, pero sin nada a continuación, por lo que la función no devuelve nada a pesar de tener `return` al final.
 
 #!javascript
 
@@ -1103,11 +1103,11 @@ console.log(resultado);
 
 #!markdown
 
-## Funciones de tipo expresión
+### Funciones de tipo expresión
 
 #!markdown
 
-Podemos asignar una función a una variable. Esto es diferente a asignar lo que la función devuevel a una variable. Cuando asignamos una función a una variable evitamos de tener que poner un nombre a la función. Para llamar a la misma utilizamos el nombre de la variable. Esto se conoce como funciones de tipo expresión o funciones anónimas.
+Podemos asignar una función a una variable. Esto es diferente a asignar lo que la función devuelve a una variable. Cuando asignamos una función a una variable evitamos de tener que poner un nombre a la función. Para llamar a la misma utilizamos el nombre de la variable. Esto se conoce como funciones de tipo expresión o funciones anónimas.
 
 #!javascript
 
@@ -1130,11 +1130,11 @@ console.log(resultado);
 
 #!markdown
 
-## Funciones de tipo self-invoking
+### Funciones de tipo self-invoking
 
 #!markdown
 
-Las funciones self-invoking son funciones que se llaman a sí mismas. Son funciones anónimas, sin nombre. Ak finalizar la declaración de la función la llamamos, una vez que lo hicimos ya no podemos volver a llamar a la misma. Declaramos la función abriendo paréntesis `(`, seguimos con la palabra reservada `function` seguida de nuevos paréntesis donde podemos tener algumentos si lo requiere. Abrimos llaves `{` y escribimos las sentencias del cuerpo de la función. Cerramos las llaves y el paréntesis `)}`. Para llamar a la función, si no tiene argumentos escribimos a continuación del final de la declaración, paréntesis `()`. Si la función tiene argumentos ponemos los valores de los argumentos dentro de los paréntesis.
+Las funciones self-invoking son funciones que se llaman a sí mismas. Son funciones anónimas, sin nombre. Ak finalizar la declaración de la función la llamamos, una vez que lo hicimos ya no podemos volver a llamar a la misma. Declaramos la función abriendo paréntesis `(`, seguimos con la palabra reservada `function` seguida de nuevos paréntesis donde podemos tener argumentos si lo requiere. Abrimos llaves `{` y escribimos las sentencias del cuerpo de la función. Cerramos las llaves y el paréntesis `)}`. Para llamar a la función, si no tiene argumentos escribimos a continuación del final de la declaración, paréntesis `()`. Si la función tiene argumentos ponemos los valores de los argumentos dentro de los paréntesis.
 
 #!javascript
 
@@ -1144,7 +1144,7 @@ Las funciones self-invoking son funciones que se llaman a sí mismas. Son funcio
 
 #!markdown
 
-## Funciones como objetos
+### Funciones como objetos
 
 #!markdown
 
@@ -1172,11 +1172,11 @@ console.log(miFuncionTexto);
 
 #!markdown
 
-## Función flecha
+### Función flecha
 
 #!markdown
 
-Las funciones flecha son similares a las funciones de tipo expresión. No utilizamos `function`, directamente indicamos los argumentos o parámetros a continuación del `=`. Si la función solo tiene un argumento podemos indicarlo sin parentesis, si tiene varios argumentos los indicamos entre parentesis de la forma `(arg1, arg2, ... argn)`, si no tiene ningun argumento es necesario escribir los parentesis vacios `()`. A continucion escribimos el simbolo de flecha `=>` con lo que indicamos que continua el cuerpo de la funcion. Podemos omitir el uso de llaves y de la palabra reservada `return` si la función solo tiene una sentencia o linea de código. Si la funcion tiene más de una sentencia indicamos todo entre llaves y utlizamos `return`.
+Las funciones flecha son similares a las funciones de tipo expresión. No utilizamos `function`, directamente indicamos los argumentos o parámetros a continuación del `=`. Si la función solo tiene un argumento podemos indicarlo sin paréntesis, si tiene varios argumentos los indicamos entre paréntesis de la forma `(arg1, arg2, ... argn)`, si no tiene ningún argumento es necesario escribir los paréntesis vacíos `()`. A continuación escribimos el símbolo de flecha `=>` con lo que indicamos que continua el cuerpo de la función. Podemos omitir el uso de llaves y de la palabra reservada `return` si la función solo tiene una sentencia o linea de código. Si la función tiene más de una sentencia indicamos todo entre llaves y utilizamos `return`.
 
 #!javascript
 
@@ -1196,11 +1196,11 @@ console.log(resultado);
 
 #!markdown
 
-## Parámetros y argumentos
+### Parámetros y argumentos
 
 #!markdown
 
-En la mayoría de los casos podemos decir que los argumentos y los paramtros de una función son lo mismo, ya que en la práctica se manejan de forma equivalente. Se conocen como parámetros a la lista de variables que recibe la función cuando la declaramos. A su vez los argumentos son los valores que toman esas variables al momento de llamar a la función. Podemos llamar a la función con todos, algunos o ninguno de los argumentos para los parametros con que se definió. En ese caso los argumentos que no se pasan quedan con valor `undefined o null`. A los parámetros podemos declararlos con valores por defecto cuando definimos la función, en caso de no pasar valores cuando se llama a la función el argumento de la misma va a ser el definido en la funcion por defecto. Podemos acceder a argumentos de la función aunque no estén declarados los parametros correspondientes en la definición de la misma. En ese caso utilizamos el array `arguments[x]` donde x es el número de orden del parámetro si el mismo se hubiese definido `function (a = 4, b = 5, x)`. En el ejemplo x sería el valor 2.
+En la mayoría de los casos podemos decir que los argumentos y los parámetros de una función son lo mismo, ya que en la práctica se manejan de forma equivalente. Se conocen como parámetros a la lista de variables que recibe la función cuando la declaramos. A su vez los argumentos son los valores que toman esas variables al momento de llamar a la función. Podemos llamar a la función con todos, algunos o ninguno de los argumentos para los parámetros con que se definió. En ese caso los argumentos que no se pasan quedan con valor `undefined o null`. A los parámetros podemos declararlos con valores por defecto cuando definimos la función, en caso de no pasar valores cuando se llama a la función el argumento de la misma va a ser el definido en la función por defecto. Podemos acceder a argumentos de la función aunque no estén declarados los parámetros correspondientes en la definición de la misma. En ese caso utilizamos el array `arguments[x]` donde x es el número de orden del parámetro si el mismo se hubiese definido `function (a = 4, b = 5, x)`. En el ejemplo x sería el valor 2.
 
 #!javascript
 
@@ -1220,7 +1220,7 @@ console.log(resultado);
 
 #!markdown
 
-## Paso dinámico de argumentos a una función
+### Paso dinámico de argumentos a una función
 
 #!javascript
 
@@ -1239,11 +1239,11 @@ function sumarTodo(){
 
 #!markdown
 
-## Paso por valor
+### Paso por valor
 
 #!markdown
 
-En una asignación del tipo `x=10` el valor 10 se conoce como valor primitivo o valor de tipo primitivo, ya que no podemos asociar atributos o métodos a ese valor. Al pasar por valor el argumento de una función, no se pasa la referencia en memoria que corresponde a la variable que igualamos al parametro, sino que pasamos el valor que contiene esa variable. Es decir, no pasamos la variable x sino el valor que tiene asignado la variable x que es 10. Pasamos una copia del valor de la variable x.
+En una asignación del tipo `x=10` el valor 10 se conoce como valor primitivo o valor de tipo primitivo, ya que no podemos asociar atributos o métodos a ese valor. Al pasar por valor el argumento de una función, no se pasa la referencia en memoria que corresponde a la variable que igualamos al parámetro, sino que pasamos el valor que contiene esa variable. Es decir, no pasamos la variable x sino el valor que tiene asignado la variable x que es 10. Pasamos una copia del valor de la variable x.
 
 #!javascript
 
@@ -1260,7 +1260,7 @@ console.log(a); // devuelve is not defined por que a existe solo dentro de la fu
 
 #!markdown
 
-## Paso por referencia
+### Paso por referencia
 
 #!markdown
 
@@ -1297,7 +1297,7 @@ console.log( persona );
 
 #!markdown
 
-Casi todo lo que manejamos en JavaScript son objetos. La diferencia entre los valores de tipo primitivo y los objetos es que los primeros no tienen atributos ni métodos. Los atributos de un objeto pueden ser valores de tipo primitivo u otros objetos. El código que ingresamos entre `{}` crea un objeto en memoria. A este objeto se le asigna una referencia o dirección en memomoria del lugar donde se aloja. Este valor o referencia es lo que se guarda en la variable con la que generamos el objeto, en el ejemplo `persona`. La variable persona entonces almacena la referencia en memoria donde se encuentra el objeto.
+Casi todo lo que manejamos en JavaScript son objetos. La diferencia entre los valores de tipo primitivo y los objetos es que los primeros no tienen atributos ni métodos. Los atributos de un objeto pueden ser valores de tipo primitivo u otros objetos. El código que ingresamos entre `{}` crea un objeto en memoria. A este objeto se le asigna una referencia o dirección en memoria del lugar donde se aloja. Este valor o referencia es lo que se guarda en la variable con la que generamos el objeto, en el ejemplo `persona`. La variable persona entonces almacena la referencia en memoria donde se encuentra el objeto.
 
 #!javascript
 
@@ -1330,7 +1330,7 @@ console.log(persona);
 
 #!markdown
 
-Agregamos el método a la función como si fuera un atributo más de la misma. Se trabaja de forma similar a como trabajamos las funciones de tipo expresión. La función es, a su vez, un objeto, por lo que la referencia a esta función la asignamos una variable o atributo del objeto, en el ejemplo es `nombreCompleto`. Si necesitamos acceder a los atributos del objeto, dentro de una función o método que pernecen al objeto, utilizamos la palabra reservada `this` para hacer referencia a que queremos utilizar el atributo perteneciente al objeto.
+Agregamos el método a la función como si fuera un atributo más de la misma. Se trabaja de forma similar a como trabajamos las funciones de tipo expresión. La función es, a su vez, un objeto, por lo que la referencia a esta función la asignamos una variable o atributo del objeto, en el ejemplo es `nombreCompleto`. Si necesitamos acceder a los atributos del objeto, dentro de una función o método que pertenecen al objeto, utilizamos la palabra reservada `this` para hacer referencia a que queremos utilizar el atributo perteneciente al objeto.
 
 #!javascript
 
@@ -1366,7 +1366,7 @@ console.log(persona);
 
 #!markdown
 
-Podemos crear objetos definiendo la variable, que va a almacenar la referencia al objeto, y luego igualandola a `{}`, dentro de las llaves vamos a declarar los atributos y métodos del objeto de la forma `nombre : valor`, en el caso de ser valores de tipo primitivo u otros objetos y `nombre : function(){}`, en el caso de tratarse de un método. Podemos crear un objeto utilizando la palabra reservada `new` con esta palabra indicamos que necesitamos espacio en memoria para el objeto que estamos creando. la sintaxis para crear el objeto es `new Object()`. `Object` es un tipo de dato de JavaScript. Para agregar atributos o métodos al objeto que acabamos de crear los hacemos utilizando el punto. Los atributos o métodos se agregan de forma dinámica, es decir que se crean al momento en que los definimos.
+Podemos crear objetos definiendo la variable, que va a almacenar la referencia al objeto, y luego igualándola a `{}`, dentro de las llaves vamos a declarar los atributos y métodos del objeto de la forma `nombre : valor`, en el caso de ser valores de tipo primitivo u otros objetos y `nombre : function(){}`, en el caso de tratarse de un método. Podemos crear un objeto utilizando la palabra reservada `new` con esta palabra indicamos que necesitamos espacio en memoria para el objeto que estamos creando. la sintaxis para crear el objeto es `new Object()`. `Object` es un tipo de dato de JavaScript. Para agregar atributos o métodos al objeto que acabamos de crear los hacemos utilizando el punto. Los atributos o métodos se agregan de forma dinámica, es decir que se crean al momento en que los definimos.
 
 #!javascript
 
@@ -1431,7 +1431,7 @@ for( nombrePropiedad in persona){
 
 #!markdown
 
-Con la notación de punto podemos agregar atributos o métodos a un objeto. El atributo o método agragado se suma a la colección de estos que ya tiene el objeto. Para eliminar un atributo o método de un objeto utilizamos la palabra reservada delete de la forma `delete objeto.atributo`. Esto borra el atributo y los valores que tenga asignados.
+Con la notación de punto podemos agregar atributos o métodos a un objeto. El atributo o método agregado se suma a la colección de estos que ya tiene el objeto. Para eliminar un atributo o método de un objeto utilizamos la palabra reservada delete de la forma `delete objeto.atributo`. Esto borra el atributo y los valores que tenga asignados.
 
 #!javascript
 
@@ -1463,7 +1463,7 @@ console.log( persona );
 
 #!markdown
 
-Una de las formas de imprimir los valores de un objeto es de la forma `console.log(objeto)` pero algunos navegadores pueden mostrar, ante ese método, la leyenda `Object Object`, sin desglozar sus atributos y métodos con sus valores. Podemos concatenar los valores de los atributos de la forma `console.log(objeto.atributo1 + ', ' + atributo2)`. Podemos recorrer el objeto mediante `for in` y mostrar sus atributos y métodos con `console.log`. Podemos utilizar el método `Object.values()` que regresa el objeto pero como un `array`. Similar a esto, pero utilizando una variable de tipo `String`, imprimimos los atributos del objeto mediante el método `JSON.stringify()` que convierte el objeto en una cadena de caracteres. Utilizamos el objeto `JSON` por que este, al igual que nuestros objetos, utiliza la notación de `atributo : valor`.
+Una de las formas de imprimir los valores de un objeto es de la forma `console.log(objeto)` pero algunos navegadores pueden mostrar, ante ese método, la leyenda `Object Object`, sin desglosar sus atributos y métodos con sus valores. Podemos concatenar los valores de los atributos de la forma `console.log(objeto.atributo1 + ', ' + atributo2)`. Podemos recorrer el objeto mediante `for in` y mostrar sus atributos y métodos con `console.log`. Podemos utilizar el método `Object.values()` que regresa el objeto pero como un `array`. Similar a esto, pero utilizando una variable de tipo `String`, imprimimos los atributos del objeto mediante el método `JSON.stringify()` que convierte el objeto en una cadena de caracteres. Utilizamos el objeto `JSON` por que este, al igual que nuestros objetos, utiliza la notación de `atributo : valor`.
 
 #!javascript
 
@@ -1525,7 +1525,7 @@ console.log( persona.nombreCompleto );
 
 #!markdown
 
-`set` significa establecer o modificar, y lo utilizamos para modificar los valores de los atributos de nuestro objeto. Los métodos los declaramos como `set metodo(parametro){}` y a la hora de llamarlo hacemos `objeto.metodo = parametro`, no lo hacemos de la forma `objeto.metodo(parametro)` para llamarlo. Esto simplifica la sintaxis de la declaración y llamado del método, lo que hace que se asemenje a la asignación de un valor a un atributo, pero es un método que asigna valores.
+`set` significa establecer o modificar, y lo utilizamos para modificar los valores de los atributos de nuestro objeto. Los métodos los declaramos como `set metodo(parámetro){}` y a la hora de llamarlo hacemos `objeto.metodo = parámetro`, no lo hacemos de la forma `objeto.metodo(parametro)` para llamarlo. Esto simplifica la sintaxis de la declaración y llamado del método, lo que hace que se asemeje a la asignación de un valor a un atributo, pero es un método que asigna valores.
 
 #!javascript
 
@@ -1577,7 +1577,7 @@ console.log( persona.idioma );
 
 #!markdown
 
-Un constructor es una función especial de los objetos que permite crear un nuevo objeto. Para llamar a la función utilizamos la palabra reservada `new`, que reserva espacio en memoria para el objeto que vamos a crear. Se acostumbra que el nombre de la función constructor empiece en mayusculas, así mismo el nombre del constructor va a ser el nombre del tipo de objeto que estamos definiendo. En el ejemplo la función constructor se llama Persona y el tipo de objeto va a ser tipo Persona. La firma del método son los parametros que recibe el mismo, es decir lo que está entre parentesis en su definición. Utilizamos el operador `this` para indicar que los atributos que utilizamos dentro de la función pertenecen al objeto que creamos mediante esta. Esto funciona por que llamamos a la función con la palabra reservada `new`.
+Un constructor es una función especial de los objetos que permite crear un nuevo objeto. Para llamar a la función utilizamos la palabra reservada `new`, que reserva espacio en memoria para el objeto que vamos a crear. Se acostumbra que el nombre de la función constructor empiece en mayúsculas, así mismo el nombre del constructor va a ser el nombre del tipo de objeto que estamos definiendo. En el ejemplo la función constructor se llama Persona y el tipo de objeto va a ser tipo Persona. La firma del método son los parámetros que recibe el mismo, es decir lo que está entre paréntesis en su definición. Utilizamos el operador `this` para indicar que los atributos que utilizamos dentro de la función pertenecen al objeto que creamos mediante esta. Esto funciona por que llamamos a la función con la palabra reservada `new`.
 
 #!javascript
 
@@ -1613,7 +1613,7 @@ console.log( madre );
 
 #!markdown
 
-Agregamos métodos en el método constructor de objetos de forma en que agregabamos métodos en un objeto ya creado, utilizando la palabra reservada `this`. Los métodos agregados en el constructor van a estar disponibles para cualquier objeto que creemos con ese constructor. Esto permite reutilizar el código ya que, definido un constructor de objetos con sus atributos y métodos, todos los objetos que creemos con ese constructor van a poder hacer uso de los mismos atributos y métodos.
+Agregamos métodos en el método constructor de objetos de forma en que agregábamos métodos en un objeto ya creado, utilizando la palabra reservada `this`. Los métodos agregados en el constructor van a estar disponibles para cualquier objeto que creemos con ese constructor. Esto permite reutilizar el código ya que, definido un constructor de objetos con sus atributos y métodos, todos los objetos que creemos con ese constructor van a poder hacer uso de los mismos atributos y métodos.
 
 #!javascript
 
@@ -1818,7 +1818,7 @@ console.log(persona1.nombreCompleto.apply(persona2, ['Lic', '55448822']) );
 
 #!markdown
 
-Una clase es una plantilla. En esta plantilla definimos los atributos y métodos que queremos que tengan los objetos que vamos a crear a partir de ella. Un objeto es una instancia de una clase. EN general cuando definimos una clase la misma no tiene valores en sus atributos o métodos, en caso de tenerlos esos valores van a estar presente en cada uno de los objetos que creemos a partir de esa clase. Una clase tiene un nombre, tiene atributos y tiene métodos. Cada uno de los objetos creados a partir de la clase comparten los mismos atributos y métodos, pero no comparten los valores qque toman estos.
+Una clase es una plantilla. En esta plantilla definimos los atributos y métodos que queremos que tengan los objetos que vamos a crear a partir de ella. Un objeto es una instancia de una clase. EN general cuando definimos una clase la misma no tiene valores en sus atributos o métodos, en caso de tenerlos esos valores van a estar presente en cada uno de los objetos que creemos a partir de esa clase. Una clase tiene un nombre, tiene atributos y tiene métodos. Cada uno de los objetos creados a partir de la clase comparten los mismos atributos y métodos, pero no comparten los valores que toman estos.
 
 #!javascript
 
@@ -1849,7 +1849,7 @@ console.log( persona2 );
 
 #!markdown
 
-Podemos utilizar métodos `get` y `set` para acceder y modificar los valores de los atributos de un objeto. El método `get` no puede tener el mismo nombre que el atributo sobre el que trabaja, por ese motivo al atributo lo nombramos antepuesto a un guión bajo de la forma `_atributo`.
+Podemos utilizar métodos `get` y `set` para acceder y modificar los valores de los atributos de un objeto. El método `get` no puede tener el mismo nombre que el atributo sobre el que trabaja, por ese motivo al atributo lo nombramos antepuesto a un guion bajo de la forma `_atributo`.
 
 #!javascript
 
@@ -1924,7 +1924,7 @@ console.log( persona2 );
 
 #!markdown
 
-Mediante la herencia podemos reutilizar código y heredar caracteristicas de una clase padre a una clase hijo. Para indicar la herencia de una clase desde otra utilizamos la palabra reservada `extends` sobre la clase hijo. La clase hijo va a heredar, y por ende a tener definidos, los atributos y métodos de la clase padre, esto significa que no tenemos la necesidad de declarar los atributos presentes en la clase padre, entre las declaraciones de la clase hijo. Para llamar al constructor de la clase padre dentro de la clase hijo utilizamos la palabra reservada `super`, si no hacemos este llamado y completamos los datos del constructor de la clase padre nos dará un error indicando que no podemos crear un objeto de la clase hijo.
+Mediante la herencia podemos reutilizar código y heredar características de una clase padre a una clase hijo. Para indicar la herencia de una clase desde otra utilizamos la palabra reservada `extends` sobre la clase hijo. La clase hijo va a heredar, y por ende a tener definidos, los atributos y métodos de la clase padre, esto significa que no tenemos la necesidad de declarar los atributos presentes en la clase padre, entre las declaraciones de la clase hijo. Para llamar al constructor de la clase padre dentro de la clase hijo utilizamos la palabra reservada `super`, si no hacemos este llamado y completamos los datos del constructor de la clase padre nos dará un error indicando que no podemos crear un objeto de la clase hijo.
 
 #!javascript
 
@@ -2030,11 +2030,11 @@ console.log( empleado1.nombreCompleto() );
 
 #!markdown
 
-## Sobreescritura de métodos
+## Sobrescribir métodos
 
 #!markdown
 
-Podemos redefinir un método de la clase heredado de la clase padre en la clase hijo, es decir, podemos editar el método heredado en la clase hijo para que realice acciones para las que no está definido en la clase padre. Esto no modifica el método en la clase padre, donde queda como está, pero lo redefine en la clase hijo que lo hereda. Cuando lo redefinimos en la clase hijo, el método tiene que tener el mismo nombre y recibir los mismos parámetros, si esto no se cumple no es sobreescritura del método heredado sino la definición de un nuevo método.
+Podemos redefinir un método de la clase heredado de la clase padre en la clase hijo, es decir, podemos editar el método heredado en la clase hijo para que realice acciones para las que no está definido en la clase padre. Esto no modifica el método en la clase padre, donde queda como está, pero lo redefine en la clase hijo que lo hereda. Cuando lo redefinimos en la clase hijo, el método tiene que tener el mismo nombre y recibir los mismos parámetros, si esto no se cumple no es sobrescribir el método heredado sino la definición de un nuevo método.
 
 #!javascript
 
@@ -2095,7 +2095,7 @@ console.log( empleado1.nombreCompleto() );
 
 #!markdown
 
-La clase `Object` es la clase padre de todas las clases en JavaScript. No se escribe de manera explicita pero cada clase que creamos está definida de la forma `class NombreClase extends Object`. Al heredar de la clase `Object` la nueva clase tambien hereda los atributos y métodos de esta clase. Uno de los atributos de la clase `Object` es `prototype`. Este también tiene definidos sus propios atributos y métodos, por ende, en nuestra nueva clase podemos acceder y sobreescribir los atributos y métodos de `Object` y los atributos y métodos de sus atributos como `prototype`.
+La clase `Object` es la clase padre de todas las clases en JavaScript. No se escribe de manera explicita pero cada clase que creamos está definida de la forma `class NombreClase extends Object`. Al heredar de la clase `Object` la nueva clase también hereda los atributos y métodos de esta clase. Uno de los atributos de la clase `Object` es `prototype`. Este también tiene definidos sus propios atributos y métodos, por ende, en nuestra nueva clase podemos acceder y sobrescribir los atributos y métodos de `Object` y los atributos y métodos de sus atributos como `prototype`.
 
 #!javascript
 
@@ -2165,7 +2165,7 @@ console.log( empleado1.toString());
 
 #!markdown
 
-Polimorfismo significa multiples formas en tiempo de ejecución, es decir, que el comportamiento del método varía segun el objeto desde el cual lo estemos llamando.
+Polimorfismo significa multiples formas en tiempo de ejecución, es decir, que el comportamiento del método varía según el objeto desde el cual lo estemos llamando.
 
 #!markdown
 
@@ -2598,7 +2598,7 @@ console.log( persona5.toString() );
 
 #!markdown
 
-En el ejercicio utilizamos las `` para indicar que, lo que esta entre las tildes, va a formatearse como un `string` respetando los espacios y los saltos de línea. Lo que encotramos entre las tiles se formatea como está escrito. Para poder consultar los valores de los atributos utilizamos `${this.atributo}`, esto indica que, en lugar de mostrar es sentencia, muestre el valor guardado en el atributo al que hace referencia.
+En el ejercicio utilizamos las `` para indicar que, lo que esta entre las tildes, va a formatearse como un `string` respetando los espacios y los saltos de línea. Lo que encontramos entre las tiles se formatea como está escrito. Para poder consultar los valores de los atributos utilizamos `${this.atributo}`, esto indica que, en lugar de mostrar es sentencia, muestre el valor guardado en el atributo al que hace referencia.
 
 #!javascript
 
@@ -2852,7 +2852,7 @@ orden2.mostrarOrden();
 
 #!markdown
 
-Las clases Raton y Teclado tiene una relación de herencia con la clase DispositivoEntrada siendo esta la clase padre y las otras dos clases hijo. Así mimos las clases Raton, Teclado y Monitor tiene una relación de agregación con la clase Computadora, ya que varios atributos de los objetos tipo Computadora son a su vez objetos de tipo Raton, Teclado y Monitor.
+Las clases Ratón y Teclado tiene una relación de herencia con la clase DispositivoEntrada siendo esta la clase padre y las otras dos clases hijo. Así mimos las clases Ratón, Teclado y Monitor tiene una relación de agregación con la clase Computadora, ya que varios atributos de los objetos tipo Computadora son a su vez objetos de tipo Ratón, Teclado y Monitor.
 
 #!javascript
 
@@ -3061,7 +3061,7 @@ function miFuncion() {
 
 #!markdown
 
-Los atributos y métodos de la clase padre se heredan a la clase hijo. Muchas veces podemos redefinir o modificar el comportamiento de algunos de los métodos heredados en la clase hijo. Esta redefinición se conoce como sobreescritura.
+Los atributos y métodos de la clase padre se heredan a la clase hijo. Muchas veces podemos redefinir o modificar el comportamiento de algunos de los métodos heredados en la clase hijo. Esta redefinición se conoce como sobrescribir el método.
 
 #!markdown
 
@@ -3161,7 +3161,7 @@ imprimir( gerente1 );
 
 #!markdown
 
-`instanceof` nos permite conocer el tipo de instancia de una clase con el que estamos trabajando. Recordando que, por ejemplo, las variables con datos numéricos en fin de cuentas son instancias de la clase `Number`, con `instanceof` podemos conocer el tipo o clase al que pertenece cualquier variable u objeto. Si el objeto sobre el que consultamos tiene una clase padre, la sentencia va a devolver la clase padre. `instanceof` devuelve valores sobre la clase misma del objeto o sobre la clase padre, si el mismo la tiene. A la hora de chequear el tipo de objeto con `instanceof` conviene hacerlo desde la menor gerarquía e ir subiendo.
+`instanceof` nos permite conocer el tipo de instancia de una clase con el que estamos trabajando. Recordando que, por ejemplo, las variables con datos numéricos en fin de cuentas son instancias de la clase `Number`, con `instanceof` podemos conocer el tipo o clase al que pertenece cualquier variable u objeto. Si el objeto sobre el que consultamos tiene una clase padre, la sentencia va a devolver la clase padre. `instanceof` devuelve valores sobre la clase misma del objeto o sobre la clase padre, si el mismo la tiene. A la hora de chequear el tipo de objeto con `instanceof` conviene hacerlo desde la menor jerarquía e ir subiendo.
 
 #!javascript
 
@@ -3228,7 +3228,7 @@ determinarTipo( gerente1 );
 
 #!markdown
 
-En la ejecución de un programa pueden aparecer errores de distinta índole. Algunos errores se pueden salvar y otros no. Cuando sucede un error en una sentecia del programa el mismo finaliza su ejecución en ese momento. Para que la ejecución no se finalice el código que puede generar un error lo ejecutamos dentro de un bloque `try`, si sucede un error lo capturamos en el bloque `catch` y trabajamos sobre el mismo. El bloque `finally` es opcional, se ejecuta siempre, al finalizar el bloque `try` o, en caso de error, al finalizar el bloque `catch`.
+En la ejecución de un programa pueden aparecer errores de distinta índole. Algunos errores se pueden salvar y otros no. Cuando sucede un error en una sentencia del programa el mismo finaliza su ejecución en ese momento. Para que la ejecución no se finalice el código que puede generar un error lo ejecutamos dentro de un bloque `try`, si sucede un error lo capturamos en el bloque `catch` y trabajamos sobre el mismo. El bloque `finally` es opcional, se ejecuta siempre, al finalizar el bloque `try` o, en caso de error, al finalizar el bloque `catch`.
 
 #!javascript
 
@@ -3562,7 +3562,7 @@ promesa.then(valor => console.log(valor));
 
 #!markdown
 
-La palabra resercada `async` facilita el uso de promesas. Al escribir la palabra `async`, antes de la definición de una función, indicamos que esa función está obligado a regresar una promesa.
+La palabra reservada `async` facilita el uso de promesas. Al escribir la palabra `async`, antes de la definición de una función, indicamos que esa función está obligado a regresar una promesa.
 
 #!javascript
 
@@ -3652,7 +3652,7 @@ funcionConPromesaAwaitTimeout();
 
 #!markdown
 
-DOM significa Document Object Model. El DOM esta formado por diferentes elementos que se representan mediante etiquetas o tags. El elemento principal del cual cual se ramifican todos los otros elementos se llama document. Cuando trabajamos desde JavaScript cada uno de estos elementos se representa mediante un objeto, que tiene atributos y métodos. En ese caso el objeto princial y padre de todos los otros objetos es el objeto `document`. Mediante este objeto vamos a manipular nuestro documento HTML, es decir, vamos a poder interactuar con cada uno de los elementos o tags que componen el DOM o la página HTML.
+DOM significa Document Object Model. El DOM esta formado por diferentes elementos que se representan mediante etiquetas o tags. El elemento principal del cual cual se ramifican todos los otros elementos se llama document. Cuando trabajamos desde JavaScript cada uno de estos elementos se representa mediante un objeto, que tiene atributos y métodos. En ese caso el objeto principal y padre de todos los otros objetos es el objeto `document`. Mediante este objeto vamos a manipular nuestro documento HTML, es decir, vamos a poder interactuar con cada uno de los elementos o tags que componen el DOM o la página HTML.
 
 #!markdown
 
@@ -3691,7 +3691,7 @@ Las sentencias de JavaScript con las que vamos a trabajar tenemos que escribirla
 
 #!markdown
 
-Para acceder a los elementos del DOM, como objetos, por lo general les damos un `id` con la sentencia `id='nombreId'`. Después, el el código JavaScript, bucamos este elemento por su `id`.
+Para acceder a los elementos del DOM, como objetos, por lo general les damos un `id` con la sentencia `id='nombreId'`. Después, el el código JavaScript, buscamos este elemento por su `id`.
 
 #!html
 
@@ -3807,7 +3807,7 @@ for (let i = 0; i < elementos.length; i++){
 
 #!markdown
 
-Podemos utilizar el método `getElementByClassName()` para recuperar todos los elementos que tengan el misno nombre de clase de css.
+Podemos utilizar el método `getElementByClassName()` para recuperar todos los elementos que tengan el mismo nombre de clase de css.
 
 #!html
 
@@ -3890,7 +3890,7 @@ for (let elemento of elementos) {
 
 #!markdown
 
-Al formulario le damos un id para poder referenciarlo e iterar sobre sus elementos luego. Utilizamos el evento `onclick()` para indicar que, al hacer click sobre el botón donde esta definido el evento, se llame a una función.
+Al formulario le damos un id para poder referenciar e iterar sobre sus elementos luego. Utilizamos el evento `onclick()` para indicar que, al hacer click sobre el botón donde esta definido el evento, se llame a una función.
 
 #!html
 
@@ -3994,7 +3994,7 @@ Para acceder a un elemento en particular de un formulario podemos utilizar su at
 
 #!markdown
 
-Mediante el método `write`, cuya sintaxis es `document.write()`, podemos imprimir texto directamente en el flujo de información que muestra el documentos HTML. Esto sobreescribe por completo la información que se estaba mostrando hasta antes de ejecutar el método.
+Mediante el método `write`, cuya sintaxis es `document.write()`, podemos imprimir texto directamente en el flujo de información que muestra el documentos HTML. Esto sobrescribe por completo la información que se estaba mostrando hasta antes de ejecutar el método.
 
 #!html
 
@@ -4059,7 +4059,7 @@ En el caso de los estilos de css cada elemento HTML tiene como atributo un objet
 
 #!markdown
 
-Los eventos de JavaScript se indican en el elemento HTML. siempre empieza con on y luego el evento que sucede, por ejemplo, `onclick`. Cada elemento HTML se corresponde con un objeto del tipo del elemento, por ejemplo, un elemento HTML h1 se corresponde con un objeto en JavaScript del tipo de h1 que es un título. Al ser objetos tienen atributos y metodos. Cuando trabajamos dentro de los métodos del objeto, con atributos del propio objeto, utilizamos la palabra reservada `this` para indicar que es sobre un atributo o método del mismo. En el caso de los elementos HTML, por ser objetos, sucede lo mismo, si trabajamos sobre atributos o métodos del objeto dentro del mismo objeto utilizamos `this` para indicarlo.
+Los eventos de JavaScript se indican en el elemento HTML. siempre empieza con on y luego el evento que sucede, por ejemplo, `onclick`. Cada elemento HTML se corresponde con un objeto del tipo del elemento, por ejemplo, un elemento HTML h1 se corresponde con un objeto en JavaScript del tipo de h1 que es un título. Al ser objetos tienen atributos y métodos. Cuando trabajamos dentro de los métodos del objeto, con atributos del propio objeto, utilizamos la palabra reservada `this` para indicar que es sobre un atributo o método del mismo. En el caso de los elementos HTML, por ser objetos, sucede lo mismo, si trabajamos sobre atributos o métodos del objeto dentro del mismo objeto utilizamos `this` para indicarlo.
 
 #!html
 
@@ -4461,7 +4461,7 @@ Podemos aplicar eventos a varios elementos de un mismo formulario. Es decir, pro
 
 #!markdown
 
-Para poder probar el ejemplo tenemos que guardar lo siguiente como un documento HTML llamado `index.html` y en la misca carpeta de este documento crear una nueva carpeta llamada `js` y dentro un nuevo archivo `app.js` quedando de la forma `js/app.js`. Dentro del archivo app.js va nuestro código de JavaScript.
+Para poder probar el ejemplo tenemos que guardar lo siguiente como un documento HTML llamado `index.html` y en la misma carpeta de este documento crear una nueva carpeta llamada `js` y dentro un nuevo archivo `app.js` quedando de la forma `js/app.js`. Dentro del archivo app.js va nuestro código de JavaScript.
 
 #!html
 

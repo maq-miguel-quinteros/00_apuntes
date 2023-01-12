@@ -37,7 +37,7 @@ Lo ideal es trabajar con hojas de estilo fuera del documento html, para hacerlo 
 ```
 <link rel="stylesheet" href="css/estilos.css">
 ```
-Mediante el atributo `rel` indicamos la relación que existe entre el archivo que estamos llamando y el documento, es decir, indicamos al navegador que el archivo es de hojas de estilo. mediante el atributo `href` indicamos la ruta donde se ecuentra el archivo css que estamos llamando. En el ejemplo la hoja de estilos se encuentra en la carpeta donde está el documento html, y dentro de esta en la carpeta css con el nombre `estilos.css`.
+Mediante el atributo `rel` indicamos la relación que existe entre el archivo que estamos llamando y el documento, es decir, indicamos al navegador que el archivo es de hojas de estilo. mediante el atributo `href` indicamos la ruta donde se encuentra el archivo css que estamos llamando. En el ejemplo la hoja de estilos se encuentra en la carpeta donde está el documento html, y dentro de esta en la carpeta css con el nombre `estilos.css`.
 Para comodidad del trabajo con notebooks vamos a cargar los estilos mediante la etiqueta `<style>` en el documento html.
 
 #!html
@@ -75,7 +75,7 @@ Para comodidad del trabajo con notebooks vamos a cargar los estilos mediante la 
 
 #!markdown
 
-Los selectores son la primera parte de una regla css. Definen que elementos html van a ser modificados. Todos los elementos html que coincidan con el selecctor que declaremos se verán afectados por los estilos de ese selector. Si el selector no encuentra ninguna coincidencia en el documento, ningún elemento html va a ser modificado por ese selector.
+Los selectores son la primera parte de una regla css. Definen que elementos html van a ser modificados. Todos los elementos html que coincidan con el selector que declaremos se verán afectados por los estilos de ese selector. Si el selector no encuentra ninguna coincidencia en el documento, ningún elemento html va a ser modificado por ese selector.
 
 #!markdown
 
@@ -83,7 +83,7 @@ Los selectores son la primera parte de una regla css. Definen que elementos html
 
 #!markdown
 
-El ***selector universal*** permite seleccionar al todos los elementos del documento html. Siempre que se use tiene que ir primero que todos los demas selectores en el archivo css. El selector universal tiene una especificidad de 0, lo que quiere decir .................. Mediante el * indicamos que estamos seleccionando a todos los elementos. Si modificamos todos los elementos mediante el selector universar utilizando una propiedad, y más adelante en el documento css, volvemos a cambiar esa propiedad en otra regla, la segunda tiene más ponderancia que la primera por lo que la modificación del selector universal deja de aplicarse. Todos los selectores tienen implícito el selector universal, ya que aplican a todos los elementos de ese tipo, clase o id. La regla se vería de la forma `*.nombreClase{...}`, pero como está implícito ese primer * no se escribe quedando como `.nombreClase{...}`.
+El ***selector universal*** permite seleccionar al todos los elementos del documento html. Siempre que se use tiene que ir primero que todos los demás selectores en el archivo css. El selector universal tiene una especificidad de 0, lo que quiere decir .................. Mediante el * indicamos que estamos seleccionando a todos los elementos. Si modificamos todos los elementos mediante el selector universal utilizando una propiedad, y más adelante en el documento css, volvemos a cambiar esa propiedad en otra regla, la segunda tiene más ponderación que la primera por lo que la modificación del selector universal deja de aplicarse. Todos los selectores tienen implícito el selector universal, ya que aplican a todos los elementos de ese tipo, clase o id. La regla se vería de la forma `*.nombreClase{...}`, pero como está implícito ese primer * no se escribe quedando como `.nombreClase{...}`.
 
 #!markdown
 
@@ -178,15 +178,15 @@ El ***selector de id*** selecciona elementos por el valor que tiene el atributo 
 
 #!markdown
 
-### Selectores combinadores
+### Selectores combinados
 
 #!markdown
 
-Los selectores combinadores combinan mas de un selector básico, es decir, que vamos a ocupar más de un selector a la vez. Esto permite ser más específico sobre qué elemento queremos seleccionar.
+Los selectores combinados combinan mas de un selector básico, es decir, que vamos a ocupar más de un selector a la vez. Esto permite ser más específico sobre qué elemento queremos seleccionar.
 
 #!markdown
 
-El **selectore combinador de descendientes** es representado por un espacio en blanco, combina dos selectores, donde el primer selector hace referencia a un elemento que es ancestro del elemento al que hace referencia el segundo selector. Esto es lo que se conoce como descendencia, por que seleccionamos un primer elemento y a su descendiente. Por ejemplo
+El **selector combinado de descendientes** es representado por un espacio en blanco, combina dos selectores, donde el primer selector hace referencia a un elemento que es ancestro del elemento al que hace referencia el segundo selector. Esto es lo que se conoce como descendencia, por que seleccionamos un primer elemento y a su descendiente. Por ejemplo
 ```
 <body> -> es padre de div y footer, es ancestro de h1, p y span
     <div> -> es hermano de footer, es padre de h1 y p y es ancestro de span
@@ -195,19 +195,19 @@ El **selectore combinador de descendientes** es representado por un espacio en b
             <span>
     <footer> -> es hermano de div
 ``` 
-Algunos ejemplo de selectores combinadores descendientes, mediante selectores de tipo, serían `body h1{...}`, `div p {...}` o `div span {...}`. 
+Algunos ejemplo de selectores combinados de descendientes, mediante selectores de tipo, serían `body h1{...}`, `div p {...}` o `div span {...}`. 
 
 #!markdown
 
-El **selector combinador de hijos directos** se representa mediante el simbolo de mayor `>`, combina dos selectores, donde el primer selector hace referencia al elemento padre del segundo selector que hace referencia al elemento hijo. Estos selectores en el elemento hijo se dice que son hijos directos del selector del elemento padre.
+El **selector combinado de hijos directos** se representa mediante el símbolo de mayor `>`, combina dos selectores, donde el primer selector hace referencia al elemento padre del segundo selector que hace referencia al elemento hijo. Estos selectores en el elemento hijo se dice que son hijos directos del selector del elemento padre.
 
 #!markdown
 
-El **selector combinador de hermano adyacente** se representa mediante el símbolo `+`, combina dos selectores, donde el primer selector hace referencia a un elemento, el segundo selector hace referencia al siguiente elemento, hermano del primero, y la regla aplica a este segundo elemento. Este combinador puede ayudar a crear animaciones con css. 
+El **selector combinado de hermano adyacente** se representa mediante el símbolo `+`, combina dos selectores, donde el primer selector hace referencia a un elemento, el segundo selector hace referencia al siguiente elemento, hermano del primero, y la regla aplica a este segundo elemento. Este selector combinado puede ayudar a crear animaciones con css. 
 
 #!markdown
 
-El **selector combinador de hermanos generales** por el símbolo `~`, combina dos selectores, donde el primer selector hace referencia a un elemento, el segundo selector hace referencia a todos los hermanos siguientes al primero y la regla aplica sobre todos estos segundos elementos.
+El **selector combinado de hermanos generales** por el símbolo `~`, combina dos selectores, donde el primer selector hace referencia a un elemento, el segundo selector hace referencia a todos los hermanos siguientes al primero y la regla aplica sobre todos estos segundos elementos.
 
 #!html
 
@@ -299,7 +299,7 @@ El **selector combinador de hermanos generales** por el símbolo `~`, combina do
 
 #!markdown
 
-Mediante los selectores de atributos podemos seleccionar elementos por medio de sus atributos. Para indicar que se trata de un selector de atributos utilizamos corchetes `[]`. Por ejemplo, si queremos seleccionar los elementos que tengan el atributo class, sin importar el valor que tome este atributo, lo indicamos como `[class]{...}`. También podemos especificar el valor del atributo a la hora de armar la regla, el ejemplo anterior con el atributo clase igual menu quedaría como `[class="munu"]{...}`. Podemos utilizar caracteres especiales para filtrar los atributos, estos son `* ~ ^ $` y nos sirven para indicar que se busque coicidencias de valor en los atributos de forma general o especifica.
+Mediante los selectores de atributos podemos seleccionar elementos por medio de sus atributos. Para indicar que se trata de un selector de atributos utilizamos corchetes `[]`. Por ejemplo, si queremos seleccionar los elementos que tengan el atributo class, sin importar el valor que tome este atributo, lo indicamos como `[class]{...}`. También podemos especificar el valor del atributo a la hora de armar la regla, el ejemplo anterior con el atributo clase igual menu quedaría como `[class="menu"]{...}`. Podemos utilizar caracteres especiales para filtrar los atributos, estos son `* ~ ^ $` y nos sirven para indicar que se busque coincidencias de valor en los atributos de forma general o especifica.
 
 #!html
 
@@ -372,8 +372,8 @@ Mediante los selectores de atributos podemos seleccionar elementos por medio de 
 #!markdown
 
 La especificidad es el primer método que se utiliza para establecer que selector va a modificar un elemento, cuando más de uno de estos selectores lo afectan. La especificidad es el valor que se le da a los selectores en css. Cada selector tiene un valor de especificidad diferente al otro y los estilos que se muestren van a ser del selector con mayor especificidad.
-* Los `selectores de id` son los selectores con valor de espcificidad 100. Son selectores especificos de un elemento en particular ya que el atributo id solo puede tomar un valor por elemento.
-* Los `selectores de clase, atributo y pseudoclase` son los selectores con valor de especificidad 10. Suelen ser muy utilizadas por tener más especificidad que los `selectores de tipo y pseudoelemento` y no ser tan específicos como los `selecores de id`.
+* Los `selectores de id` son los selectores con valor de especificidad 100. Son selectores específicos de un elemento en particular ya que el atributo id solo puede tomar un valor por elemento.
+* Los `selectores de clase, atributo y pseudoclase` son los selectores con valor de especificidad 10. Suelen ser muy utilizadas por tener más especificidad que los `selectores de tipo y pseudoelemento` y no ser tan específicos como los `selectores de id`.
 * Los `selectores de tipo y pseudoelemento` son los selectores con valor de especificidad 1, es decir, los que tienen la menor especificidad y los últimos en poder llegar a ser mostrados.
 
 #!markdown
@@ -386,9 +386,9 @@ Si posicionamos el mouse sobre un selector en los editores de código como Visua
 
 #!markdown
 
-Los valores de especificidad de los selectores se pueden sumar cuando utilizamos selectores combinadores.
-* `div p` tiene un valor de espcificidad de 2 ya que sus dos selectores son de tipo.
-* `div p.principal` tiene un valor de espcificidad de 12 ya que suma los valores de especificidad de 1 de ambos selectores de tipo más el valor de especificidad de 10 del selector de clase.
+Los valores de especificidad de los selectores se pueden sumar cuando utilizamos selectores combinados.
+* `div p` tiene un valor de especificidad de 2 ya que sus dos selectores son de tipo.
+* `div p.principal` tiene un valor de especificidad de 12 ya que suma los valores de especificidad de 1 de ambos selectores de tipo más el valor de especificidad de 10 del selector de clase.
 * `div#header` tiene un valor de especificidad de 101 ya que suma el valor de especificidad de tipo más el valor de especificidad de id.
 
 #!markdown
@@ -410,7 +410,7 @@ También podemos cambiar el estilo de un elemento en línea, es decir, en el pro
 La cascada es el segundo método que se utiliza para establecer que selector va a modificar un elemento. Css significa 'Cascading Style Sheets' que significa 'hojas de estilo en cascada'. La expresión 'en cascada' hace referencia a la forma en que van a ser aplicados los selectores, en caso de existir más de uno, que modifiquen a un mismo elemento de forma distinta.
 * Si tenemos dos selectores afectando a un elemento, el estilo que se va a mostrar en pantalla es el del selector que este escrito más abajo en la hoja de estilos, o el que esté en la última hoja de estilo enlazada, en caso de tener varias de ellas enlazadas al documento.
 * La cascada no cambia el valor de especificidad de los selectores. Siempre va a tener prioridad el selector con mayor valor de especificidad. En caso de tener el mismo valor de especificidad aplica el método de cascada para desempatar.
-* Solo se ven afectadas las propiedades que esten repetidas en los subsiguientes selectores, es decir, en caso de tener la siguiente estructura, solo se ve modificada la propiedad `color` del elemento h1 del segundo selector, el elemento se va a mostrar con un `font-size: 25px` ya que esta propiedad no se ve modificada por el segundo selector.
+* Solo se ven afectadas las propiedades que estén repetidas en los subsiguientes selectores, es decir, en caso de tener la siguiente estructura, solo se ve modificada la propiedad `color` del elemento h1 del segundo selector, el elemento se va a mostrar con un `font-size: 25px` ya que esta propiedad no se ve modificada por el segundo selector.
     * ```
         h1 {
             color: steelblue;
@@ -442,7 +442,7 @@ La herencia en css nos permite heredar estilos. Estos estilos se heredan del com
 
 BEM es una metodología que nos proporciona una manera de nombrar a nuestras clases en html para posteriormente poder usarlas en css. BEM nos ayudará a mantener nuestro código flexible, modular y sencillo, y sobre todo nos ayudará  a lidiar con problemas de especificidad de los elementos. BEM significa Block Element Modifier, esto es debido a que todas las clases que escribiremos se regirán por estas 3 partes.
 * Bloque: es una parte independiente en nuestro html, es decir, que no necesita de otros elementos para existir, como puede ser, por ejemplo, una galería de imágenes o un menú. Los bloques tienen el nombre de lo que representan, como ser `header menu gallery footer`.
-* Elemento: un elemento siempre estará dentro de un bloque, debido a que es parte de él y es dependiente del bloque, por ejemplo una imágen necesita una galería de imagenes para existir, o un enlace necesita un menu para existir. Los elementos tendrán como nombre, primero el nombre del bloque al que pertenece, luego dos guiones bajos y después el nombre de lo que representan, por ejemplo `header__title menu__item galeria__img footer__img`.
+* Elemento: un elemento siempre estará dentro de un bloque, debido a que es parte de él y es dependiente del bloque, por ejemplo una imagen necesita una galería de imágenes para existir, o un enlace necesita un menu para existir. Los elementos tendrán como nombre, primero el nombre del bloque al que pertenece, luego dos guiones bajos y después el nombre de lo que representan, por ejemplo `header__title menu__item galeria__img footer__img`.
 * Modificador: los modificadores son usados en elementos o bloques, se usan para representar una característica diferente que tendrá el modificador o elemento. Los modificadores tendrán el nombre del bloque o del elemento, seguido de un espacio en blanco, después otra vez el nombre del bloque o elemento, pero seguido de dos guiones medios y a continuación la característica diferente que tendrá este bloque o elemento, por ejemplo `boton boton—active header header—wave`.
 
 #!html
