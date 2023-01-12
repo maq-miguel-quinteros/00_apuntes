@@ -499,3 +499,206 @@ BEM es una metodología que nos proporciona una manera de nombrar a nuestras cla
 </body>
 
 </html>
+
+#!markdown
+
+## Box model
+
+#!markdown
+
+En CSS todos los elementos HTML, por ejemplo `h1 p div`, son tratados como cajas. Estas cajas tienen propiedades que permiten, por ejemplo, cambiar el tamaño del elemento, su posicionamiento o mejorar su diseño. El box model representa la estructura que compone una caja o elemento en CSS. Esta caja se divide capas y, como todos los elementos en CSS son cajas, estas capas están presentes en todas las cajas o elementos.
+* `content`: o capa de contenido. Puede ser texto, una imagen, o algún contenido incrustado en el HTML. Modificarla cambia el tamaño final del elemento.
+* `padding`: o capa de relleno. Es el espacio entre el contenido y el borde de la caja. Modificarla cambia el tamaño final del elemento.
+* `border`: es el borde de la caja que puede tener un grosor y ocupar espacio en la misma.
+* `margin`: es la distancia que hay desde la caja a otras cajas o elementos.
+
+Las capas que cambian el tamaño final del elemento son `content + padding + border`, el valor de cada una de estas se suma para dar el ancho y alto final del elemento.
+
+#!markdown
+
+![box_model.png](data:image/png;base64,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26dE1c/PiCiISUQ8XSoem1snG7ExfEn9oMJmElKfVhVPl9rTz9eIsKghEPeMB362H4rYTGTitUQ8rLv979ogis3n7ZOu9jBy6n9Dvcfkv28UAJiPfA4I9Mxc/ByQ8SO3379R93SM72JDd3dCsjd2dp36twiJ8b3YYL55sEHeU7CYST4HBJhplmABs9LuvtHfV2/md3adfXWP8b0MGADoA0uwAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0CwsAwBy3fv36smnTpu1+v2jRonL00UeXgw8+uOxPzzzzTLnhhhva+61Zs6YAOyZAAIA5b+XKleWll16a9m8RHw8//PB+jZCIn9tvv729hwCBnRMgAEBvLFmypJ14VBEFESYRKOvWrSvAzBMgAEBvRICcffbZw58POuigcu6557ZLpLpiYhHLtjZu3Nj+HOd0JyRxfHzV5VtxbPx7yimntH9/5JFHyoYNG9olV2eeeeYOX8/ofRYvXjy8xu7cB/pIgAAAvfXGG2+0/3anIvGG/9RTT52yZ+TKK68sK1asGC6fuueee9rfXXzxxW1oxDnxc4TBVVdd1X7fPfecc87Z7t4xeYn7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YRPTlVhuFV/1aVujT92C+USAAAC9EROP7pKn+Ar10bb1c0IiDGJZVmxIj2VRd9xxR3vcrj5EMPaHRKDUJ1zF+XGP2FtSfx9xE/eKyKj3iSlMfMX3MREZDRaYTyzBAgB6I97wjy6nihiIsKiTjdgIHqES0VGnGBElccyuHn8b14jN4vUJV90N7fFhh7HMqz76NyIjloTFv3G/en7cp/4M89GCbY0C9MbWiYkytnz58OfHn91UZrvxIzcXIMfm58bLbHfiUW8ugdqfb1O6sfKrLIeq53fPrUEyqoaOZVdgAgIAzFMxjdibDefTnb+jwBAe8CZ7QAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEgjQAAAgDQCBAAASCNAAACANAIEAABII0AAAIA0AgQAAEizsADMsM3PjRcAYH4wAQEAANIIEAAAII0AAQAA0ggQAAAgjQABAADSCBAAACCNAAEAANIIEAAAII0AAQAA0ggQAAAgjQABAADSCBAAACCNAAEAANIIEAAAII0AAQAA0ggQAAAgjQABAADSCBAAACCNAAEAANIIEAAAII0AAQAA0ggQAAAgjQABAADSCBAAACCNAAEAANIIEAAAII0AAQAA0ggQAAAgjQABAADSCBAAACCNAAEAANIIEAAAII0AAQAA0ggQAAAgjQABAADSCBAAACCNAAEAANIIEAAAII0AAQAA0ggQAAAgzcIC9NqJRy0qAACzhQkIAACQRoAAAABpFmxrFAAAgAQmIAAAQBoBAgAApBEgAABAGgECAACkESAAAEAaAQIAAKQRIAAAQBoBAgAApBEgAABAGgECAACkESAAAEAaAQIAAKQRIAAAQBoBAgAApBEgAABAGgECAACkESAAAEAaAQIAAKQRIAAAQBoBAgAApBEgAABAGgECAACkESAAAEAaAQIAAKQRIAAAQBoBAgAApBEgAABAGgECAACkESAAAEAaAQIAAKQRIAAAQBoBAgAApBEgAABAGgECAACkESAAAEAaAQIAAKQRIAAAQBoBAgAApBEgAABAGgECAACkESAAAEAaAQIAAKQRIAAAQBoBAgAApBEgAABAGgECAACkESAAAEAaAQIAAKQRIAAAQBoBAgAApBEgAABAGgECAACkESAAAEAaAQIAAKQRIAAAQBoBAgAApBEgAABAGgECAACkESAAAEAaAQIAAKQRIAAAQJr/ATp5qfmUkSLRAAAAAElFTkSuQmCC)
+
+#!html
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box-Model</title>
+    <style>
+        .contenedor {
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Georgia;
+        }
+
+        /* +++++CAPA DE CONTENIDO+++++ */
+        .card {
+            /* estás propiedades son de uso general en cualquier elemento o caja */
+            background-color: royalblue;
+            color: white;
+            width: auto;
+            
+            /* PROPIEDADES DE LA CAPA DE CONTENIDO O CONTENT */
+
+            /* width permite cambiar el ancho del contenido de la caja o elemento HTML*/
+            width: 300px;
+
+            /* max-width permite definir el ancho máximo del contenido de la caja, aunque width tenga un valor mayor y esté indicado como !important va a aplicar el valor de la propiedad max-width sobre la de width */
+            max-width:400px;
+            
+            /* min-width define el ancho mínimo de la capa de contenido. funciona similar a max-width respecto a width */
+            min-width: 200px;
+
+            /* height define la altura de la capa de contenido. por defecto la propiedad, si no se escribe, está como height: auto ya que el contenido, cuando sobrepasa el tamaño de la caja, se desborda, es decir, se muestra fuera de esta */
+            height: 300px;
+            
+            /* max-height define el alto máximo de la capa de contenido. funciona similar a max-width respecto a width cuando se trata de ponderación */
+            max-height: 400px;
+
+            /* min-height define el alto mínimo de la capa de contenido. funciona similar a max-width respecto a width cuando se trata de ponderación */
+            min-height: 300px;
+            
+
+            /* PROPIEDADES DE LA CAPA DE RELLENO O PADDING */
+
+            /* padding aumenta el padding general del elemento, es decir, la distancia desde la capa de contenido hasta la capa de borde, en las 4 direcciones posibles, arriba, derecha, abajo e izquierda, en la cantidad indicada por el valor de la propiedad */
+            padding: 10px;
+
+
+
+
+        }
+
+            /* arriba, derecha, abajo, izquierda */
+
+            /* padding-top:20px;
+    padding-right:40px;
+    padding-bottom:60px ;
+    padding-left:80px; */
+
+            /* padding:20px 40px 60px 80px; */
+            /* padding: 15px 45px;
+
+
+
+
+            /* border-top-width:20px;
+    border-right-width: 30px;
+    border-bottom-width: 50px;
+    border-left-width:70px ; */
+
+            /* border-width: 20px; */
+
+
+            /* double, dashed, dotted, groove, ridge */
+            /* border-top-style: dotted;
+    border-right-style:dashed ;
+    border-bottom-style: double;
+    border-left-style: solid; */
+
+            /* border-style:dotted dashed double solid ; */
+            /* border-style:dotted dashed double  ; */
+            /* border-style:dotted dashed; */
+            /* border-style:dotted; */
+
+            /* border-top-color: crimson;
+    border-right-color: black;
+    border-bottom-color:yellow ;
+    border-left-color:purple ; */
+
+            /* border-color:crimson black yellow purple ; */
+            /* border-color:crimson black yellow  ; */
+            /* border-color:crimson black ; */
+            /* border-color:crimson ; */
+
+          /*  border: 5px solid chocolate;
+        } */
+
+
+
+
+
+
+
+
+
+        .card {
+            width: 400px;
+            height: 400px;
+            padding: 45px;
+            border: 5px solid chocolate;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        .card__title {
+            margin-bottom: 15px;
+            margin-top: 15px;
+        }
+
+        .card__paragraph {
+            margin-bottom: 30px;
+        }
+
+
+
+
+
+
+
+        /* 
+.main{
+    background-color: steelblue;
+    color: white;
+    padding: 0.1px;
+}
+
+.main__title{
+    margin-bottom: 50px;
+}
+
+.footer{
+    background-color: slateblue;
+    color: white;
+} */
+    </style>
+</head>
+
+<body class="contenedor">
+    <div class="card card--one">
+        <h2 class="card__title">Aprende CSS</h2>
+        <p class="card__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error voluptatem iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt, non. Eum suscipit dicta quaerat animi?</p>
+    </div>
+
+    <!-- <main class="main">
+        <h1 class="main__title">Hola mundo</h1>
+    </main>
+    <footer class="footer">
+        <h2 class="footer__title">Footer</h2>
+    </footer> -->
+
+
+</body>
+
+</html>
