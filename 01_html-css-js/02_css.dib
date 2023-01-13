@@ -590,7 +590,7 @@ Las dos propiedades principales de la capa de contenido o `content` son `width` 
 
 #!markdown
 
-La propiedad principal de la capa de relleno o `padding` es justamente el `padding`. Con la propiedad `padding` podemos utilizar un shorthand o propiedad abreviada, esto permite establecer los valores de varias propiedades simultáneamente en una sola. La propiedad padding puede recibir de 1 a 4 valores. Los 4 valores se corresponden con las 4 direcciones en sobre las que aplica el relleno del elemento, superior, derecha, inferior e izquierda, considerando el giro de la aguja del reloj, en CSS estas propiedades serian `padding-top`, `padding-right`, `padding-button` y `padding-left`.
+La propiedad principal de la capa de relleno o `padding` es justamente el `padding`. La `padding` es un `shorthand` o propiedad abreviada, esto significa que con ella podemos establecer los valores de varias propiedades simultáneamente en una sola. La propiedad padding puede recibir de 1 a 4 valores. Los 4 valores se corresponden con las 4 direcciones en sobre las que aplica el relleno del elemento, superior, derecha, inferior e izquierda, considerando el giro de la aguja del reloj, en CSS estas propiedades serian `padding-top`, `padding-right`, `padding-button` y `padding-left`.
 
 #!html
 
@@ -691,6 +691,96 @@ La propiedad principal de la capa de relleno o `padding` es justamente el `paddi
             iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
             non. Eum suscipit dicta quaerat animi?</p>
     </div>
+</body>
+
+</html>
+
+#!markdown
+
+### Capa de borde o `border`
+
+#!markdown
+
+La propiedad principal de la capa de borde o `border` es justamente `border`. Esta capa permite definir la línea del borde de la caja con diferentes propiedades que modifican su estilo, tamaño y color. Para que el borde sea visible tenemos que definir al menos 2 de sus 3 propiedades, el estilo del borde y el tamaño del borde, el color viene definido por defecto pero podemos modificarlo. La propiedad `border` es un `shorthand` o propiedad abreviada, esto significa que con ella podemos establecer los valores de varias propiedades simultáneamente en una sola. La propiedad `border` puede recibir como máximo 4 valores y como mínimo 2. Cuando definimos los 3 valores que puede recibir la propiedad `border` estamos definiendo el valor de `border-width`, `border-style` y `border-color`.
+
+#!html
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box-Model</title>
+    <style>
+        .contenedor {
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Georgia;
+        }
+        
+        /* estás propiedades son de uso general en cualquier elemento o caja */
+        .card {
+            background-color: royalblue;
+            color: white;
+            width: auto;
+        }
+
+        .cardBorder01 {
+
+            /* definimos los 3 valores del shorthand border */
+            border: 3px solid salmon;
+        }
+        
+
+/* border-top-width:20px;
+    border-right-width: 30px;
+    border-bottom-width: 50px;
+    border-left-width:70px ; */
+
+        /* border-width: 20px; */
+
+
+        /* double, dashed, dotted, groove, ridge */
+        /* border-top-style: dotted;
+    border-right-style:dashed ;
+    border-bottom-style: double;
+    border-left-style: solid; */
+
+        /* border-style:dotted dashed double solid ; */
+        /* border-style:dotted dashed double  ; */
+        /* border-style:dotted dashed; */
+        /* border-style:dotted; */
+
+        /* border-top-color: crimson;
+    border-right-color: black;
+    border-bottom-color:yellow ;
+    border-left-color:purple ; */
+
+        /* border-color:crimson black yellow purple ; */
+        /* border-color:crimson black yellow  ; */
+        /* border-color:crimson black ; */
+        /* border-color:crimson ; */
+
+        /*  border: 5px solid chocolate;
+        } */
+
+
+        
+    </style>
+</head>
+
+<body class="contenedor">
+    <div class="card cardBorder01 card--one">
+        <h2 class="cardBorder01__title">Aprende CSS</h2>
+        <p class="cardBorder01__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error voluptatem
+            iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
+            non. Eum suscipit dicta quaerat animi?</p>
+    </div>
+
+
+
 </body>
 
 </html>
