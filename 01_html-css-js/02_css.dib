@@ -524,7 +524,7 @@ Las capas que cambian el tamaño final del elemento son `content + padding + bor
 
 #!markdown
 
-Las dos propiedades principales de la capa de contenido o `content` son `width` y `height` que representan el ancho y el alto de la capa respectivamente. Ambas permiten establecer un valor máximo y mínimo que, en caso de estar indicados los valores normales de ancho y alto, van a tener mayor y se van a aplicar por encima de las propiedades comunes.
+Las dos propiedades principales de la capa de contenido o `content` son `width` y `height` que representan el ancho y el alto de la capa respectivamente. Ambas permiten establecer un valor máximo y mínimo que, en caso de estar indicados los valores normales de ancho y alto, van a tener mayor preponderancia y se van a aplicar por encima de las propiedades comunes.
 
 #!html
 
@@ -541,40 +541,79 @@ Las dos propiedades principales de la capa de contenido o `content` son `width` 
             margin: 0;
             box-sizing: border-box;
             font-family: Georgia;
+            
         }
 
-        .cardContent {
-            /* estás propiedades son de uso general en cualquier elemento o caja */
+        .card {
             background-color: royalblue;
-            color: white;
+            color: white;            
+        }
 
+        .cardContent__title {
+            background-color: darkolivegreen;
+        }
 
-            /* PROPIEDADES DE LA CAPA DE CONTENIDO O CONTENT */
+        .cardContent__paragraph {
+            background-color: midnightblue;
+        }
 
-            /* width permite cambiar el ancho del contenido de la caja o elemento HTML*/
-            width: 300px;
+        /* PROPIEDADES DE LA CAPA DE CONTENIDO O CONTENT */
+        
+        /* width permite definir el ancho de la capa de contenido */
+        .cardContent1 {            
+            width: 500px;
+        }
 
-            /* max-width permite definir el ancho máximo del contenido de la caja, aunque width tenga un valor mayor y esté indicado como !important va a aplicar el valor de la propiedad max-width sobre la de width */
+        /* min-width y max-width permiten definir el ancho mínimo y máximo de la capa de contenido, aunque width tenga un valor menor al mínimo o mayor al máximo, y esté indicado como !important, de todas formas van a aplicar los valores de estas 2 propiedades */
+        .cardContent2 {
+            width : 500px !important;
             max-width: 400px;
-
-            /* min-width define el ancho mínimo de la capa de contenido. funciona similar a max-width respecto a width */
             min-width: 200px;
+        }
 
-            /* height define la altura de la capa de contenido. por defecto la propiedad, si no se escribe, está como height: auto ya que el contenido, cuando sobrepasa el tamaño de la caja, se desborda, es decir, se muestra fuera de esta */
-            height: 300px;
+        /* height permite definir el alto de la capa de contenido. Por defecto la propiedad, si no se escribe, está como height: auto ya que el contenido, cuando sobrepasa el tamaño de la caja, se desborda, es decir, se muestra fuera de esta */
+        .cardContent3 {
+            max-width: 400px;         
+            height: 200px;
+        }
 
-            /* max-height define el alto máximo de la capa de contenido. funciona similar a max-width respecto a width cuando se trata de ponderación */
-            max-height: 400px;
-
-            /* min-height define el alto mínimo de la capa de contenido. funciona similar a max-width respecto a width cuando se trata de ponderación */
-            min-height: 300px;
+        /* min-height y max-height permiten definir el alto mínimo y máximo de la capa de contenido, aunque height tenga un valor menor al mínimo o mayor al máximo, y esté indicado como !important, de todas formas van a aplicar los valores de estas 2 propiedades */
+        .cardContent4 {
+            max-width: 400px; 
+            height: 600px !important;
+            max-height: 400px;            
+            min-height: 200px;
         }
     </style>
 </head>
 
 <body class="contenedor">
-    <div class="cardContent card--one">
-        <h2 class="cardContent__title">Capa de contenido</h2>
+    <div class="card cardContent1">
+        <h2 class="cardContent__title">Propiedad width</h2>
+        <p class="cardContent__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+            voluptatem
+            iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
+            non. Eum suscipit dicta quaerat animi? </p>
+    </div>
+    <br>
+    <div class="card cardContent2">
+        <h2 class="cardContent__title">Propiedades max-width y min-width</h2>
+        <p class="cardContent__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+            voluptatem
+            iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
+            non. Eum suscipit dicta quaerat animi?</p>
+    </div>
+    <br>
+    <div class="card cardContent3">
+        <h2 class="cardContent__title">Propiedad height</h2>
+        <p class="cardContent__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+            voluptatem
+            iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
+            non. Eum suscipit dicta quaerat animi?</p>
+    </div>
+    <br>
+    <div class="card cardContent4">
+        <h2 class="cardContent__title">Propiedades max-height y min-heiht</h2>
         <p class="cardContent__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
             voluptatem
             iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
@@ -590,7 +629,7 @@ Las dos propiedades principales de la capa de contenido o `content` son `width` 
 
 #!markdown
 
-La propiedad principal de la capa de relleno o `padding` es justamente el `padding`. La `padding` es un `shorthand` o propiedad abreviada, esto significa que con ella podemos establecer los valores de varias propiedades simultáneamente en una sola. La propiedad padding puede recibir de 1 a 4 valores. Los 4 valores se corresponden con las 4 direcciones en sobre las que aplica el relleno del elemento, superior, derecha, inferior e izquierda, considerando el giro de la aguja del reloj, en CSS estas propiedades serian `padding-top`, `padding-right`, `padding-button` y `padding-left`.
+La propiedad principal de la capa de relleno o `padding` es justamente el `padding`. La propiedad `padding` es un `shorthand` o propiedad abreviada, esto significa que con ella podemos establecer los valores de varias propiedades simultáneamente en una sola. El `shorthand padding` puede recibir como máximo 4 valores y como mínimo 1. Los 4 valores se corresponden con las 4 propiedades que representan las direcciones sobre las que podemos dar valores al relleno del elemento, superior, derecha, inferior e izquierda, considerando el giro de las agujas del reloj. En CSS estas propiedades son `padding-top`, `padding-right`, `padding-button` y `padding-left`.
 
 #!html
 
@@ -612,81 +651,85 @@ La propiedad principal de la capa de relleno o `padding` es justamente el `paddi
         .card {
             background-color: royalblue;
             color: white;
-            width: auto;
+            width: 400px;
+        }
+
+        .cardPadding__title {
+            background-color: darkolivegreen;
+        }
+
+        .cardPadding__paragraph {
+            background-color: midnightblue;
         }
 
         /* PROPIEDADES DE LA CAPA DE RELLENO O PADDING */
-        .cardPadding01 {
-
-            /* padding aumenta el padding general del elemento, es decir, la distancia desde la capa de contenido hasta la capa de borde, en las 4 direcciones posibles, superior, derecho, inferior e izquierdo, en la cantidad indicada por el valor de la propiedad. la propiedad padding puede recibir como máximo 4 valores y como mínimo 1 */
+        
+        /* el shorthand padding aumenta de la capa de relleno en forma general, es decir, la distancia desde la capa de contenido hasta la capa de borde, en las 4 direcciones posibles y en la cantidad indicada por el valor de la propiedad */
+        .cardPadding01 {            
             padding: 50px;
         }
 
+        /* las propiedades que modifican cada uno de las direcciones de la capa de relleno son para el padding superior padding-top, para el padding derecho padding-right, para el padding inferior padding-bottom, para el padding izquierdo padding-left */
         .cardPadding02 {
-
-            /* en el orden de las agujas del reloj tenemos padding superior padding-top, padding derecho padding-right, padding inferior padding-bottom, padding izquierdo padding-left */
             padding-top: 30px;
             padding-right: 60px;
             padding-bottom: 40px;
             padding-left: 50px;
         }
 
-        .cardPadding03 {
-
-            /* podemos abreviar las 4 propiedades de padding en una sola. En el ejemplo indicando los valores que va a tener cada uno de los padding en el orden presentados en el comentario anterior */
+        /* el shorthand padding puede recibir 4 valores que se corresponden con las 4 propiedades que representan las direcciones de la capa de relleno. Los valores que recibe se corresponden con padding: top right bottom left */
+        .cardPadding03 { 
             padding: 60px 20px 40px 70px;
         }
 
+        /* el shorthand padding puede recibir 3 valores donde el primero se corresponde con el padding-top, el segundo se corresponde con el padding-left y padding-right en un mismo valor y el tercero se corresponde con el padding-button. De esta forma los valores que recibe se corresponden con padding: top right-left bottom */
         .cardPadding04 {
-
-            /* en el caso de usar 3 valores vamos a configurar en el primero el padding-top en el segundo el padding-left y padding-right en un mismo valor y en el tercero el padding-button */
             padding: 50px 90px 30px;
         }
 
-        .cardPadding05 {
-
-            /* en el caso de usar 2 valores vamos a configurar en el primero el padding-top y padding-button y en el segundo el padding-right y padding-left */
+        /* el shorthand padding puede recibir 2 valores donde el primero se corresponde con el padding-top y padding-button, y el segundo se corresponde con el padding-right y padding-left. De esta forma los valores que recibe se corresponden con padding: top-bottom right-left */
+        .cardPadding05 {            
             padding: 30px 50px;
         }
     </style>
 </head>
 
 <body class="contenedor">
-    <div class="card cardPadding01 card--one">
-        <h2 class="card cardPadding01__title">Capa de relleno cardPadding01</h2>
-        <p class="card cardPadding01__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+    <div class="card cardPadding01">
+        <h2 class="card cardPadding__title">Shorthand padding</h2>
+        <p class="card cardPadding__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
             voluptatem
             iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
             non. Eum suscipit dicta quaerat animi?</p>
     </div>
     <br>
-    <div class="card cardPadding02 card--one">
-        <h2 class="card cardPadding02__title">Capa de relleno cardPadding02</h2>
-        <p class="card cardPadding02__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+    <div class="card cardPadding02">
+        <h2 class="card cardPadding__title">Propiedades padding-top, padding-right, padding-bottom y padding-left</h2>
+        <p class="card cardPadding__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
             voluptatem
             iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
             non. Eum suscipit dicta quaerat animi?</p>
     </div>
     <br>
-    <div class="card cardPadding03 card--one">
-        <h2 class="card cardPadding03__title">Capa de relleno cardPadding03</h2>
-        <p class="card cardPadding03__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+    <div class="card cardPadding03">
+        <h2 class="card cardPadding__title">Shorthand padding con 4 valores</h2>
+        <p class="card cardPadding__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
             voluptatem
             iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
             non. Eum suscipit dicta quaerat animi?</p>
     </div>
     <br>
-    <div class="card cardPadding04 card--one">
-        <h2 class="card cardPadding04__title">Capa de relleno cardPadding04</h2>
-        <p class="card cardPadding04__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+    <div class="card cardPadding04">
+        <h2 class="card cardPadding__title">Shorthand padding con 3 valores</h2>
+        <p class="card cardPadding__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
             voluptatem
             iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
             non. Eum suscipit dicta quaerat animi?</p>
     </div>
     <br>
-    <div class="card cardPadding05 card--one">
-        <h2 class="card cardPadding05__title">Capa de relleno cardPadding05</h2>
-        <p class="card cardPadding05__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+    <div class="card cardPadding05">
+        <h2 class="card cardPadding__title">Shorthand padding con 2 valores</h2>
+        <p class="card cardPadding__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
             voluptatem
             iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
             non. Eum suscipit dicta quaerat animi?</p>
@@ -719,7 +762,7 @@ La propiedad principal de la capa de borde o `border` es justamente `border`. Es
             box-sizing: border-box;
             font-family: Georgia;
         }
-        
+
         /* estás propiedades son de uso general en cualquier elemento o caja */
         .card {
             background-color: royalblue;
@@ -727,19 +770,42 @@ La propiedad principal de la capa de borde o `border` es justamente `border`. Es
             width: auto;
         }
 
+        /* definimos los 3 valores del shorthand border */
         .cardBorder01 {
-
-            /* definimos los 3 valores del shorthand border */
             border: 3px solid salmon;
         }
-        
 
-/* border-top-width:20px;
-    border-right-width: 30px;
-    border-bottom-width: 50px;
-    border-left-width:70px ; */
+        /* definimos las 3 propiedades de la capa borde por separado. Las tres propiedades por su cuenta también son shorthands */
+        .cardBorder02 {
+            border-width: 20px;
+            border-style: solid;
+            border-color: purple;
+        }
 
-        /* border-width: 20px; */
+        /* a las propiedades de border-width, es decir, las propiedades del ancho de la capa borde, podemos asignarle el valor de palabras reservadas como thin, medium o thick, que significan pequeño, mediano y grande respectivamente. En general definimos valores en las 4 direcciones del elemento, superior, derecha, inferior e izquierda */
+        .cardBorder03 {
+            border-top-width: 20px;
+            border-right-width: 30px;
+            border-bottom-width: 50px;
+            border-left-width: 70px;
+
+            border-style: solid;
+        }
+
+        /* el shorthand border-width puede recibir 4 valores, correspondientes a las 4 direcciones del elemento, en el orden de las agujas del reloj, es decir, superior, derecha, inferior e izquierda. Funciona de forma similar al padding cuando asignamos 3 o 2 valores, es decir, los 3 valores se corresponden al top, right-left y bottom, mientras que los 2 valores se corresponden a top-bottom y right-left */
+        .cardBorder04 {
+            border-width: 15px 25px 10px 30px;
+            border-style: solid;
+        }
+
+        /* el shorthand border-style puede recibir 4 valores correspondientes a las 4 direcciones del elemento, superior, derecha, inferior e izquierda */
+        .cardBorder05 {
+            border-width: 20px;
+            border-style: double dashed dotted groove;
+            border-color: blueviolet;
+        }
+
+
 
 
         /* double, dashed, dotted, groove, ridge */
@@ -765,16 +831,47 @@ La propiedad principal de la capa de borde o `border` es justamente `border`. Es
 
         /*  border: 5px solid chocolate;
         } */
-
-
-        
     </style>
 </head>
 
 <body class="contenedor">
     <div class="card cardBorder01 card--one">
-        <h2 class="cardBorder01__title">Aprende CSS</h2>
-        <p class="cardBorder01__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error voluptatem
+        <h2 class="cardBorder01__title">Shorthand border</h2>
+        <p class="cardBorder01__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+            voluptatem
+            iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
+            non. Eum suscipit dicta quaerat animi?</p>
+    </div>
+    <br>
+    <div class="card cardBorder02 card--one">
+        <h2 class="cardBorder02__title">Shorthands border-width, border-style y border-color juntos</h2>
+        <p class="cardBorder02__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+            voluptatem
+            iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
+            non. Eum suscipit dicta quaerat animi?</p>
+    </div>
+    <br>
+    <div class="card cardBorder03 card--one">
+        <h2 class="cardBorder03__title">Propiedades border-top-width, border-right-width, border-bottom-width y
+            border-left-width</h2>
+        <p class="cardBorder03__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+            voluptatem
+            iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
+            non. Eum suscipit dicta quaerat animi?</p>
+    </div>
+    <br>
+    <div class="card cardBorder04 card--one">
+        <h2 class="cardBorder04__title">Shorthand border-width asignando 4 valores</h2>
+        <p class="cardBorder04__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+            voluptatem
+            iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
+            non. Eum suscipit dicta quaerat animi?</p>
+    </div>
+    <br>
+    <div class="card cardBorder05 card--one">
+        <h2 class="cardBorder05__title">Shorthand border-width asignando 4 valores</h2>
+        <p class="cardBorder05__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+            voluptatem
             iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
             non. Eum suscipit dicta quaerat animi?</p>
     </div>
