@@ -871,18 +871,18 @@ La propiedad `border-width` define el ancho de la capa de borde. La propiedad `b
         .cardBorder07 {
             border-width: 30px 45px;
             border-style: solid;
-        }  
+        }
 
         /* el shorthand border-width puede recibir como valor las palabras reservadas thin, medium o thick, que significan pequeño, mediano y grande respectivamente */
         .cardBorder08 {
             border-width: thick;
             border-style: solid;
-        } 
+        }
     </style>
 </head>
 
 <body class="contenedor">
-    <div class="card cardBorder03 card--one">
+    <div class="card cardBorder03">
         <h2 class="cardBorder__title">Shorthand border-width</h2>
         <p class="cardBorder__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
             voluptatem
@@ -890,15 +890,16 @@ La propiedad `border-width` define el ancho de la capa de borde. La propiedad `b
             non. Eum suscipit dicta quaerat animi?</p>
     </div>
     <br>
-    <div class="card cardBorder04 card--one">
-        <h2 class="cardBorder__title">Propiedades border-top-width, border-right-width, border-bottom-width y border-left-width</h2>
+    <div class="card cardBorder04">
+        <h2 class="cardBorder__title">Propiedades border-top-width, border-right-width, border-bottom-width y
+            border-left-width</h2>
         <p class="cardBorder__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
             voluptatem
             iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
             non. Eum suscipit dicta quaerat animi?</p>
     </div>
     <br>
-    <div class="card cardBorder05 card--one">
+    <div class="card cardBorder05">
         <h2 class="cardBorder__title">Shorthand border-width asignado 4 valores</h2>
         <p class="cardBorder__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
             voluptatem
@@ -906,7 +907,7 @@ La propiedad `border-width` define el ancho de la capa de borde. La propiedad `b
             non. Eum suscipit dicta quaerat animi?</p>
     </div>
     <br>
-    <div class="card cardBorder06 card--one">
+    <div class="card cardBorder06">
         <h2 class="cardBorder__title">Shorthand border-width asignado 3 valores</h2>
         <p class="cardBorder__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
             voluptatem
@@ -914,7 +915,7 @@ La propiedad `border-width` define el ancho de la capa de borde. La propiedad `b
             non. Eum suscipit dicta quaerat animi?</p>
     </div>
     <br>
-    <div class="card cardBorder06 card--one">
+    <div class="card cardBorder07">
         <h2 class="cardBorder__title">Shorthand border-width asignado 2 valores</h2>
         <p class="cardBorder__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
             voluptatem
@@ -922,7 +923,7 @@ La propiedad `border-width` define el ancho de la capa de borde. La propiedad `b
             non. Eum suscipit dicta quaerat animi?</p>
     </div>
     <br>
-    <div class="card cardBorder06 card--one">
+    <div class="card cardBorder08">
         <h2 class="cardBorder__title">Shorthand border-width asignado una palabra reservada</h2>
         <p class="cardBorder__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
             voluptatem
@@ -940,7 +941,7 @@ La propiedad `border-width` define el ancho de la capa de borde. La propiedad `b
 
 #!markdown
 
-La propiedad `border-width` define el ancho de la capa de borde. La propiedad `border-width` es un `shorthand` o propiedad abreviada, esto significa que con ella podemos establecer los valores de varias propiedades simultáneamente en una sola. El `shorthand border-width` puede recibir como máximo 4 valores y como mínimo 1. Los 4 valores se corresponden con las 4 propiedades que representan las direcciones sobre las que podemos dar valores al borde del elemento, es decir, la dirección superior, derecha, inferior e izquierda, considerando el giro de las agujas del reloj. En CSS estas propiedades son `border-top-width`, `border-right-width`, `border-bottom-width` y `border-left-width`.
+La propiedad `border-style` define el estilo de la capa de borde. La propiedad `border-style` es un `shorthand` o propiedad abreviada, esto significa que con ella podemos establecer los valores de varias propiedades simultáneamente en una sola. El `shorthand border-style` puede recibir como máximo 4 valores y como mínimo 1. Los 4 valores se corresponden con las 4 propiedades que representan las direcciones sobre las que podemos dar valores al borde del elemento, es decir, la dirección superior, derecha, inferior e izquierda, considerando el giro de las agujas del reloj. En CSS estas propiedades son `border-top-width`, `border-right-width`, `border-bottom-width` y `border-left-width`. Las propiedades que definen el estilo de la capa de borde pueden tomar los valores `solid` que es el valor por defecto, `dotted`, `dashed`, `double`, `groove` y `ridge`.
 
 #!html
 
@@ -963,159 +964,213 @@ La propiedad `border-width` define el ancho de la capa de borde. La propiedad `b
             background-color: royalblue;
             color: white;
             width: 500px;
-        }     
-
-
-        /* el shorthand border-style puede recibir 4 valores correspondientes a las 4 direcciones del elemento, superior, derecha, inferior e izquierda */
-
-        /* double, dashed, dotted, groove, ridge */
-        /* border-top-style: dotted;
-    border-right-style:dashed ;
-    border-bottom-style: double;
-    border-left-style: solid; */
-
-        /* border-style:dotted dashed double solid ; */
-        /* border-style:dotted dashed double  ; */
-        /* border-style:dotted dashed; */
-        /* border-style:dotted; */
-
-        /* border-top-color: crimson;
-    border-right-color: black;
-    border-bottom-color:yellow ;
-    border-left-color:purple ; */
-
-        /* border-color:crimson black yellow purple ; */
-        /* border-color:crimson black yellow  ; */
-        /* border-color:crimson black ; */
-        /* border-color:crimson ; */
-
-        /*  border: 5px solid chocolate;
-        } */
-
-
-        /* el shorthand border-width aumenta el ancho de la capa de borde en forma general, es decir, la distancia desde la capa de relleno hasta la capa de margen, en las 4 direcciones posibles y en la cantidad indicada por el valor de la propiedad */
-        .cardBorder03 {
-            border-width: 50px;
-
-            border-style: solid;
+            border-color: red;
         }
 
-        /* las propiedades que modifican el ancho de cada una de las direcciones de la capa de borde son para el borde superior border-top-width, para el borde derecho border-right-width, para el borde inferior border-bottom-width, para el borde izquierdo border-left-width */
-        .cardBorder04 {
-            border-top-width: 20px;
-            border-right-width: 30px;
-            border-bottom-width: 50px;
-            border-left-width: 70px;
+        /* el shorthand border-style modifica el estilo de la capa de borde en forma general, es decir, en las 4 direcciones posibles y con el estilo indicado por el valor de la propiedad */
+        .cardBorder09 {
+            border-width: 10px;
 
-            border-style: solid;
+            border-style: dotted;            
         }
 
-        /* el shorthand border-width puede recibir 4 valores que se corresponden con las 4 propiedades que representan las direcciones de la capa de borde. Los valores que recibe se corresponden con border: top right bottom left */
-        .cardBorder05 {
-            border-width: 15px 25px 10px 30px;
-            border-style: solid;
+        /* las propiedades que modifican el estilo de cada una de las direcciones de la capa de borde son para el borde superior border-top-style, para el borde derecho border-right-style, para el borde inferior border-bottom-style, para el borde izquierdo border-left-style */
+        .cardBorder10 {
+            border-width: 10px;
+
+            border-top-style: dotted;
+            border-right-style: dashed;
+            border-bottom-style: double;
+            border-left-style: solid;
         }
 
-        /* el shorthand border-width puede recibir 3 valores donde el primero se corresponde con el border-top-width, el segundo se corresponde con el  border-right-width y border-left-width en un mismo valor y el tercero se corresponde con el border-bottom-width. De esta forma los valores que recibe se corresponden con border: top right-left bottom */
-        .cardBorder06 {
-            border-width: 25px 40px 10px;
-            border-style: solid;
+        /* el shorthand border-style puede recibir 4 valores que se corresponden con las 4 propiedades que representan las direcciones de la capa de borde. Los valores que recibe se corresponden con border-style: top right bottom left */
+        .cardBorder11 {
+            border-width: 10px;
+
+            border-style: dotted dashed double solid;
         }
 
-        /* el shorthand border-width puede recibir 2 valores donde el primero se corresponde con el border-top-width y border-bottom-width, y el segundo se corresponde con el border-right-width y border-left-width. De esta forma los valores que recibe se corresponden con border-width: top-bottom right-left */
-        .cardBorder07 {
-            border-width: 30px 45px;
-            border-style: solid;
+        /* el shorthand border-style puede recibir 3 valores donde el primero se corresponde con el border-top-style, el segundo se corresponde con el  border-right-style y border-left-style en un mismo valor y el tercero se corresponde con el border-bottom-style. De esta forma los valores que recibe se corresponden con border-style: top right-left bottom */
+        .cardBorder12 {
+            border-width: 10px;
+
+            border-style: dotted dashed double;
+        }
+
+        /* el shorthand border-style puede recibir 2 valores donde el primero se corresponde con el border-top-style y border-bottom-style, y el segundo se corresponde con el border-right-style y border-left-style. De esta forma los valores que recibe se corresponden con border-style: top-bottom right-left */
+        .cardBorder13 {
+            border-width: 10px;
+
+            border-style:dotted dashed;
         }  
 
-        /* el shorthand border-width puede recibir como valor las palabras reservadas thin, medium o thick, que significan pequeño, mediano y grande respectivamente */
-        .cardBorder08 {
-            border-width: thick;
-            border-style: solid;
-        } 
-
-
-
-        /* el shorthand border-style puede recibir 4 valores correspondientes a las 4 direcciones del elemento, superior, derecha, inferior e izquierda */
-
-
-
-
-
-        /* double, dashed, dotted, groove, ridge */
-        /* border-top-style: dotted;
-    border-right-style:dashed ;
-    border-bottom-style: double;
-    border-left-style: solid; */
-
-        /* border-style:dotted dashed double solid ; */
-        /* border-style:dotted dashed double  ; */
-        /* border-style:dotted dashed; */
-        /* border-style:dotted; */
-
-        /* border-top-color: crimson;
-    border-right-color: black;
-    border-bottom-color:yellow ;
-    border-left-color:purple ; */
-
-        /* border-color:crimson black yellow purple ; */
-        /* border-color:crimson black yellow  ; */
-        /* border-color:crimson black ; */
-        /* border-color:crimson ; */
-
-        /*  border: 5px solid chocolate;
-        } */
     </style>
 </head>
 
 <body class="contenedor">
-    <div class="card cardBorder03 card--one">
-        <h2 class="cardBorder__title">Shorthand border-width</h2>
+    <div class="card cardBorder09 card--one">
+        <h2 class="cardBorder__title">Shorthand border-style</h2>
         <p class="cardBorder__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
             voluptatem
             iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
             non. Eum suscipit dicta quaerat animi?</p>
     </div>
     <br>
-    <div class="card cardBorder04 card--one">
-        <h2 class="cardBorder__title">Propiedades border-top-width, border-right-width, border-bottom-width y border-left-width</h2>
+    <div class="card cardBorder10 card--one">
+        <h2 class="cardBorder__title">Propiedades border-top-style, border-right-style, border-bottom-style y
+            border-left-style</h2>
         <p class="cardBorder__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
             voluptatem
             iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
             non. Eum suscipit dicta quaerat animi?</p>
     </div>
     <br>
-    <div class="card cardBorder05 card--one">
-        <h2 class="cardBorder__title">Shorthand border-width asignado 4 valores</h2>
+    <div class="card cardBorder11 card--one">
+        <h2 class="cardBorder__title">Shorthand border-style asignado 4 valores</h2>
         <p class="cardBorder__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
             voluptatem
             iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
             non. Eum suscipit dicta quaerat animi?</p>
     </div>
     <br>
-    <div class="card cardBorder06 card--one">
-        <h2 class="cardBorder__title">Shorthand border-width asignado 3 valores</h2>
+    <div class="card cardBorder12 card--one">
+        <h2 class="cardBorder__title">Shorthand border-style asignado 3 valores</h2>
         <p class="cardBorder__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
             voluptatem
             iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
             non. Eum suscipit dicta quaerat animi?</p>
     </div>
     <br>
-    <div class="card cardBorder06 card--one">
-        <h2 class="cardBorder__title">Shorthand border-width asignado 2 valores</h2>
+    <div class="card cardBorder13 card--one">
+        <h2 class="cardBorder__title">Shorthand border-style asignado 2 valores</h2>
+        <p class="cardBorder__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+            voluptatem
+            iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
+            non. Eum suscipit dicta quaerat animi?</p>
+    </div>    
+
+</body>
+
+</html>
+
+#!markdown
+
+#### `border-color`
+
+#!markdown
+
+La propiedad `border-color` define el color de la capa de borde. La propiedad `border-color` es un `shorthand` o propiedad abreviada, esto significa que con ella podemos establecer los valores de varias propiedades simultáneamente en una sola. El `shorthand border-color` puede recibir como máximo 4 valores y como mínimo 1. Los 4 valores se corresponden con las 4 propiedades que representan las direcciones sobre las que podemos dar valores al borde del elemento, es decir, la dirección superior, derecha, inferior e izquierda, considerando el giro de las agujas del reloj. En CSS estas propiedades son `border-top-color`, `border-right-color`, `border-bottom-color` y `border-left-color`.
+
+#!html
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box-Model</title>
+    <style>
+        .contenedor {
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Georgia;
+        }
+
+        .card {
+            background-color: royalblue;
+            color: white;
+            width: 500px;
+        }
+
+        /* el shorthand border-color modifica el color de la capa de borde en forma general, es decir, en las 4 direcciones posibles y con el color indicado por el valor de la propiedad */
+        .cardBorder14 {
+            border-width: 10px;
+            border-style: solid;
+            border-top-color: crimson;
+        }
+
+        /* las propiedades que modifican el color de cada una de las direcciones de la capa de borde son para el borde superior border-top-color, para el borde derecho border-right-color, para el borde inferior border-bottom-color, para el borde izquierdo border-left-color */
+        .cardBorder15 {
+            border-width: 10px;
+            border-style: solid;
+
+            border-top-color:darkblue;
+            border-right-color: darkcyan;
+            border-bottom-color: darkgoldenrod;
+            border-left-color: darkgray;
+        }
+
+        /* el shorthand border-color puede recibir 4 valores que se corresponden con las 4 propiedades que representan las direcciones de la capa de borde. Los valores que recibe se corresponden con border-color: top right bottom left */
+        .cardBorder16 {
+            border-width: 10px;
+            border-style: solid;
+
+            border-color: lightblue lightcoral lightcyan lightgreen;
+        }
+
+        /* el shorthand border-color puede recibir 3 valores donde el primero se corresponde con el border-top-color, el segundo se corresponde con el  border-right-color y border-left-color en un mismo valor y el tercero se corresponde con el border-bottom-color. De esta forma los valores que recibe se corresponden con border-color: top right-left bottom */
+        .cardBorder17 {
+            border-width: 10px;
+            border-style: solid;
+
+            border-color: mediumaquamarine mediumblue mediumorchid;
+        }
+
+        /* el shorthand border-color puede recibir 2 valores donde el primero se corresponde con el border-top-color y border-bottom-color, y el segundo se corresponde con el border-right-color y border-left-color. De esta forma los valores que recibe se corresponden con border-color: top-bottom right-left */
+        .cardBorder18 {
+            border-width: 10px;
+            border-style: solid;
+
+            border-color: palegoldenrod palevioletred;
+        }  
+
+    </style>
+</head>
+
+<body class="contenedor">
+    <div class="card cardBorder14">
+        <h2 class="cardBorder__title">Shorthand border-color</h2>
         <p class="cardBorder__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
             voluptatem
             iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
             non. Eum suscipit dicta quaerat animi?</p>
     </div>
     <br>
-    <div class="card cardBorder06 card--one">
-        <h2 class="cardBorder__title">Shorthand border-width asignado una palabra reservada</h2>
+    <div class="card cardBorder15">
+        <h2 class="cardBorder__title">Propiedades border-top-color, border-right-color, border-bottom-color y
+            border-left-color</h2>
         <p class="cardBorder__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
             voluptatem
             iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
             non. Eum suscipit dicta quaerat animi?</p>
     </div>
+    <br>
+    <div class="card cardBorder16">
+        <h2 class="cardBorder__title">Shorthand border-color asignado 4 valores</h2>
+        <p class="cardBorder__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+            voluptatem
+            iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
+            non. Eum suscipit dicta quaerat animi?</p>
+    </div>
+    <br>
+    <div class="card cardBorder17">
+        <h2 class="cardBorder__title">Shorthand border-color asignado 3 valores</h2>
+        <p class="cardBorder__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+            voluptatem
+            iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
+            non. Eum suscipit dicta quaerat animi?</p>
+    </div>
+    <br>
+    <div class="card cardBorder18">
+        <h2 class="cardBorder__title">Shorthand border-color asignado 2 valores</h2>
+        <p class="cardBorder__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+            voluptatem
+            iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
+            non. Eum suscipit dicta quaerat animi?</p>
+    </div>    
 
 </body>
 
