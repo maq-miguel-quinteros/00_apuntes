@@ -988,7 +988,7 @@ La propiedad `border-style` define el estilo de la capa de borde. La propiedad `
         .cardBorder09 {
             border-width: 10px;
 
-            border-style: dotted;            
+            border-style: dotted;
         }
 
         /* las propiedades que modifican el estilo de cada una de las direcciones de la capa de borde son para el borde superior border-top-style, para el borde derecho border-right-style, para el borde inferior border-bottom-style, para el borde izquierdo border-left-style */
@@ -1019,9 +1019,8 @@ La propiedad `border-style` define el estilo de la capa de borde. La propiedad `
         .cardBorder13 {
             border-width: 10px;
 
-            border-style:dotted dashed;
-        }  
-
+            border-style: dotted dashed;
+        }
     </style>
 </head>
 
@@ -1065,7 +1064,7 @@ La propiedad `border-style` define el estilo de la capa de borde. La propiedad `
             voluptatem
             iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
             non. Eum suscipit dicta quaerat animi?</p>
-    </div>    
+    </div>
 
 </body>
 
@@ -1407,3 +1406,151 @@ La propiedad principal de la capa de margen o `margin` es justamente el `margin`
 #!markdown
 
 #### Colapso de márgenes
+
+#!markdown
+
+El colapso de margenes sucede cuando dos margenes se combinan y se vuelven uno solo. Esto solo sucede con los margenes verticales, es decir, `margin-top` y `margin-bottom`.
+* Colapso de margenes de elementos hermanos: cuando las cajas de dos elementos hermanos chocan sus margenes, ambos margenes se funcionan convirtiéndose en un único margen. Predomina el margen con mayor tamaño.
+* Colapso de margenes de elementos hijo: esto sucede, por lo general, con las cajas del primer y último elemento hijo respecto de la caja su elemento padre. Si el elemento hijo tiene un `margin-top` o `margin-button`, estos se fusionan con el `margin-top` o `margin-bottom` del elemento padre, sin respetar el margen de la caja contenedora que es el elemento padre.
+
+#!html
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box-Model</title>
+    <style>
+
+        /* colapsan los margenes de las cajas de los elementos main01 y footer01. En este caso se aplica un margen combinado de 100px, que es el valor mayor y que corresponde a main01 */
+        .main01 {
+            background-color: steelblue;
+            color: white;
+            margin-bottom: 100px;
+        }
+
+        .footer01 {
+            background-color: slateblue;
+            color: white;
+            margin-top: 50px;
+        }
+
+        /* colapsan los margenes de las cajas de los elementos main02 y main02__title haciendo que la caja del elemento main02 sea de 50px, es decir, el margin-top de la caja del primer elemento hijo que es main02__title */
+        .main02 {
+            background-color: steelblue;
+            color: white;
+            margin-top: 30px;
+        }
+        .main02__title {
+            margin-top: 50px;
+        }
+
+        .footer02 {
+            background-color: slateblue;
+            color: white;
+            margin-top: 50px;
+        }
+
+        /* solucionamos el problema de colapso de margenes de las cajas del primer y último elemento hijo respecto a la caja del elemento padre agregando a la caja del elemento padre una capa como padding: 0.1px o border: 0.1px solid transparent */
+        .main03 {
+            background-color: steelblue;
+            color: white;
+            border: 0.1px solid transparent;
+        }
+        .main03__title {
+            margin-top: 50px;
+        }
+
+        .footer03 {
+            background-color: slateblue;
+            color: white;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="main01">
+        <h1 class="main01__title">main con margin-bottom de 100px</h1>
+    </main>
+    <footer class="footer01">
+        <h2 class="footer01__title">footer con margin-top de 50px</h2>
+    </footer>
+    <br>
+    <main class="main02">
+        <h1 class="main02__title">main con margin-top de 30px y h1 con margin-top de 50px</h1>
+    </main>
+    <footer class="footer02">
+        <h2 class="footer02__title">footer</h2>
+    </footer>
+    <br>
+    <main class="main03">
+        <h1 class="main03__title">main con margin-top de 30px y h1 con margin-top de 50px</h1>
+    </main>
+    <footer class="footer03">
+        <h2 class="footer03__title">footer</h2>
+    </footer>
+</body>
+
+</html>
+
+#!markdown
+
+#### `box-sizing`
+
+#!markdown
+
+Las propiedades de las capas de contenido, relleno y borde afectar al tamaño final de la caja del elemento. Estas propiedades se suman en la composición final de la caja. Si necesitamos diseñar una la caja de un elemento de un tamaño especifico, para evitar tener que calcular los valores de cada una de las propiedades que afectan al tamaño de la caja, utilizamos la propiedad `box-sizing` con el valor `border-box`. El valor por defecto de esta propiedad es `content-box`, lo que significa que trata los valores de las 3 capas que afectan el tamaño de la caja por separado. Para aplicar esta propiedad a todos los elementos del documento HTML podemos usar el selector universal de la forma:
+```
+* {
+    box-sizing: border-box;
+}
+```
+
+#!html
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box-Model</title>
+    <style>
+        .contenedor {
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Georgia;
+        }
+
+        .card {
+            background-color: royalblue;
+            color: white;
+            width: 500px;
+        }
+
+        /* la propiedad box-sizing: border-box indica que los valores de width y height son valores definitivos, es decir, que los tamaños de padding y border se van a repartir dentro del tamaño indicado por width y height. La forma de trabajar de la propiedad es, aplicar el borde, después el padding y el tamaño sobrante de la caja para el contenido */
+        .cardBoxSizing {
+            box-sizing: border-box;
+            width: 300px;
+            height: 5000px;
+            padding: 40px;
+            border: 10px solid salmon;
+        }
+    </style>
+
+<body class="contenedor">
+    <div class="card cardBoxSizing">
+        <h2 class="cardBoxSizing__title">Shorthand margin</h2>
+        <p class="cardBoxSizing__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+            voluptatem
+            iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
+            non. Eum suscipit dicta quaerat animi?</p>
+    </div>
+</body>
+
+</html>
