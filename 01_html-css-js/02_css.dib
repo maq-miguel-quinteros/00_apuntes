@@ -1276,6 +1276,31 @@ La propiedad principal de la capa de margen o `margin` es justamente el `margin`
 
             margin: 30px 50px;
         }
+
+        /* las propiedades de margin-right y margin-left pueden recibir el valor auto, que solo funciona de forma horizontal en la capa de margen. Para que el valor tenga efecto además la caja tiene que tener las propiedades display: block y width con un valor definido. En el ejemplo no haría falta display: block ya que los elementos div por defecto son display: block. Esta combinación de propiedades hace que la caja quede centrada en el documento */
+        .cardMargin06 {
+            border-width: 10px;
+            border-style: solid;
+            border-color: crimson;
+
+            display: block;
+            width: 500px;
+            
+            margin-right: auto; 
+            margin-left: auto;            
+        }
+
+        /* el shorthand margin puede recibir el valor auto junto con otro valor para centrar la caja como en el ejemplo anterior. Los requisitos de display y width permanecen vigentes */
+        .cardMargin07 {
+            border-width: 10px;
+            border-style: solid;
+            border-color: crimson;
+
+            display: block;
+            width: 500px;
+            
+            margin: 0 auto;
+        }
     </style>
 </head>
 
@@ -1360,6 +1385,25 @@ La propiedad principal de la capa de margen o `margin` es justamente el `margin`
             non. Eum suscipit dicta quaerat animi?</p>
     </div>
     <br>
+    <div class="card cardMargin06">
+        <h2 class="cardMargin__title">Propiedades margin-left auto y margin-right auto</h2>
+        <p class="cardMargin__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+            voluptatem
+            iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
+            non. Eum suscipit dicta quaerat animi?</p>
+    </div>
+    <br>
+    <div class="card cardMargin07">
+        <h2 class="cardMargin__title">Shorthand margin 0 auto</h2>
+        <p class="cardMargin__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+            voluptatem
+            iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
+            non. Eum suscipit dicta quaerat animi?</p>
+    </div>
 </body>
 
 </html>
+
+#!markdown
+
+#### Colapso de márgenes
