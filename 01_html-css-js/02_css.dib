@@ -1114,7 +1114,7 @@ La propiedad `border-color` define el color de la capa de borde. La propiedad `b
             border-width: 10px;
             border-style: solid;
 
-            border-top-color:darkblue;
+            border-top-color: darkblue;
             border-right-color: darkcyan;
             border-bottom-color: darkgoldenrod;
             border-left-color: darkgray;
@@ -1142,8 +1142,7 @@ La propiedad `border-color` define el color de la capa de borde. La propiedad `b
             border-style: solid;
 
             border-color: palegoldenrod palevioletred;
-        }  
-
+        }
     </style>
 </head>
 
@@ -1187,7 +1186,7 @@ La propiedad `border-color` define el color de la capa de borde. La propiedad `b
             voluptatem
             iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
             non. Eum suscipit dicta quaerat animi?</p>
-    </div>    
+    </div>
 
 </body>
 
@@ -1199,4 +1198,168 @@ La propiedad `border-color` define el color de la capa de borde. La propiedad `b
 
 #!markdown
 
-La propiedad principal de la capa de margen o `margin` es justamente el `margin`. Esta propiedad permite establecer la distancia entre una caja o elemento y la nuestra. La propiedad `margin` es un `shorthand` o propiedad abreviada, esto significa que con ella podemos establecer los valores de varias propiedades simultáneamente en una sola. El `shorthand margin` puede recibir como máximo 4 valores y como mínimo 1. Los 4 valores se corresponden con las 4 propiedades que representan las direcciones sobre las que podemos dar valores al margen del elemento, es decir, la dirección superior, derecha, inferior e izquierda, considerando el giro de las agujas del reloj. En CSS estas propiedades son `margin-top`, `margin-right`, `margin-button` y `margin-left`.
+La propiedad principal de la capa de margen o `margin` es justamente el `margin`. Esta propiedad permite establecer la separación entre una caja o elemento y la nuestra. Si la caja se encuentra bordeando los limites del documento `margin` permite establecer la separación entre la caja y ese límite. La propiedad `margin` es un `shorthand` o propiedad abreviada, esto significa que con ella podemos establecer los valores de varias propiedades simultáneamente en una sola. El `shorthand margin` puede recibir como máximo 4 valores y como mínimo 1. Los 4 valores se corresponden con las 4 propiedades que representan las direcciones sobre las que podemos dar valores al margen del elemento, es decir, la dirección superior, derecha, inferior e izquierda, considerando el giro de las agujas del reloj. En CSS estas propiedades son `margin-top`, `margin-right`, `margin-button` y `margin-left`.
+
+#!html
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box-Model</title>
+    <style>
+        .contenedor {
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Georgia;
+        }
+
+        .card {
+            background-color: royalblue;
+            color: white;
+            width: 500px;
+        }
+
+        .cardMargin {
+            border-width: 10px;
+            border-style: solid;
+            border-color: darkgoldenrod;
+        }
+
+        /* el shorthand margin modifica el margen de la capa de borde en forma general, es decir, en las 4 direcciones posibles y con el valor indicado por el valor de la propiedad */
+        .cardMargin01 {
+            border-width: 10px;
+            border-style: solid;
+            border-color: crimson;
+
+            margin: 50px;
+        }
+
+        /* las propiedades que modifican el margen de cada una de las direcciones de la capa de margen son para el borde superior margin-top, para el borde derecho margin-right, para el borde inferior margin-bottom, para el borde izquierdo margin-left */
+        .cardMargin02 {
+            border-width: 10px;
+            border-style: solid;
+            border-color: crimson;
+
+            margin-top: 20px;
+            margin-right: 50px;
+            margin-bottom: 30px;
+            margin-left: 10px;
+        }
+
+        /* el shorthand margin puede recibir 4 valores que se corresponden con las 4 propiedades que representan las direcciones de la capa de borde. Los valores que recibe se corresponden con margin: top right bottom left */
+        .cardMargin03 {
+            border-width: 10px;
+            border-style: solid;
+            border-color: crimson;
+
+            margin: 40px 5px 30px 20px;
+        }
+
+        /* el shorthand margin puede recibir 3 valores donde el primero se corresponde con el margin-top, el segundo se corresponde con el  margin-right y margin-left en un mismo valor y el tercero se corresponde con el margin-bottom. De esta forma los valores que recibe se corresponden con margin: top right-left bottom */
+        .cardMargin04 {
+            border-width: 10px;
+            border-style: solid;
+            border-color: crimson;
+
+            margin: 30px 15px 20px;
+        }
+
+        /* el shorthand margin puede recibir 2 valores donde el primero se corresponde con el margin-top y margin-bottom, y el segundo se corresponde con el margin-right y margin-left. De esta forma los valores que recibe se corresponden con margin: top-bottom right-left */
+        .cardMargin05 {
+            border-width: 10px;
+            border-style: solid;
+            border-color: crimson;
+
+            margin: 30px 50px;
+        }
+    </style>
+</head>
+
+<body class="contenedor">
+    <div class="card cardMargin01">
+        <h2 class="cardMargin__title">Shorthand margin</h2>
+        <p class="cardMargin__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+            voluptatem
+            iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
+            non. Eum suscipit dicta quaerat animi?</p>
+    </div>
+    <br>
+    <div class="card cardMargin">
+        <h2 class="cardMargin__title">Tarjeta de referencia para el margen inferior</h2>
+        <p class="cardMargin__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+            voluptatem
+            iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
+            non. Eum suscipit dicta quaerat animi?</p>
+    </div>
+    <br>
+    <div class="card cardMargin02">
+        <h2 class="cardMargin__title">Propiedades margin-top, margin-right, margin-bottom y margin-left</h2>
+        <p class="cardMargin__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+            voluptatem
+            iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
+            non. Eum suscipit dicta quaerat animi?</p>
+    </div>
+    <br>
+    <div class="card cardMargin">
+        <h2 class="cardMargin__title">Tarjeta de referencia para el margen inferior</h2>
+        <p class="cardMargin__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+            voluptatem
+            iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
+            non. Eum suscipit dicta quaerat animi?</p>
+    </div>
+    <br>
+    <div class="card cardMargin03">
+        <h2 class="cardMargin__title">Shorthand margin con 4 valores</h2>
+        <p class="cardMargin__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+            voluptatem
+            iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
+            non. Eum suscipit dicta quaerat animi?</p>
+    </div>
+    <br>
+    <div class="card cardMargin">
+        <h2 class="cardMargin__title">Tarjeta de referencia para el margen inferior</h2>
+        <p class="cardMargin__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+            voluptatem
+            iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
+            non. Eum suscipit dicta quaerat animi?</p>
+    </div>
+    <br>
+    <div class="card cardMargin04">
+        <h2 class="cardMargin__title">Shorthand margin con 3 valores</h2>
+        <p class="cardMargin__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+            voluptatem
+            iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
+            non. Eum suscipit dicta quaerat animi?</p>
+    </div>
+    <br>
+    <div class="card cardMargin">
+        <h2 class="cardMargin__title">Tarjeta de referencia para el margen inferior</h2>
+        <p class="cardMargin__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+            voluptatem
+            iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
+            non. Eum suscipit dicta quaerat animi?</p>
+    </div>
+    <br>
+    <div class="card cardMargin05">
+        <h2 class="cardMargin__title">Shorthand margin con 2 valores</h2>
+        <p class="cardMargin__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+            voluptatem
+            iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
+            non. Eum suscipit dicta quaerat animi?</p>
+    </div>
+    <br>
+    <div class="card cardMargin">
+        <h2 class="cardMargin__title">Tarjeta de referencia para el margen inferior</h2>
+        <p class="cardMargin__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid error
+            voluptatem
+            iste quia eligendi corrupti molestias repellat aperiam quod velit, exercitationem nemo voluptate. Nesciunt,
+            non. Eum suscipit dicta quaerat animi?</p>
+    </div>
+    <br>
+</body>
+
+</html>
