@@ -29,7 +29,7 @@ selector {
 
 #!markdown
 
-## Trabajar con css en documentos html
+## Trabajar con CSS en documentos html
 
 #!markdown
 
@@ -71,7 +71,7 @@ Para comodidad del trabajo con notebooks vamos a cargar los estilos mediante la 
 
 #!markdown
 
-## Selectores css
+## Selectores CSS
 
 #!markdown
 
@@ -83,7 +83,7 @@ Los selectores son la primera parte de una regla css. Definen que elementos html
 
 #!markdown
 
-El ***selector universal*** permite seleccionar al todos los elementos del documento html. Siempre que se use tiene que ir primero que todos los demás selectores en el archivo css. El selector universal tiene una especificidad de 0, lo que quiere decir .................. Mediante el * indicamos que estamos seleccionando a todos los elementos. Si modificamos todos los elementos mediante el selector universal utilizando una propiedad, y más adelante en el documento css, volvemos a cambiar esa propiedad en otra regla, la segunda tiene más ponderación que la primera por lo que la modificación del selector universal deja de aplicarse. Todos los selectores tienen implícito el selector universal, ya que aplican a todos los elementos de ese tipo, clase o id. La regla se vería de la forma `*.nombreClase{...}`, pero como está implícito ese primer * no se escribe quedando como `.nombreClase{...}`.
+El ***selector universal*** permite seleccionar al todos los elementos del documento HTML. Siempre que se use tiene que ir primero que todos los demás selectores en el archivo CSS. El selector universal tiene una especificidad de 0, lo que quiere decir cualquier otro elemento que esté mas abajo en la lista de estilos, o que tenga al menos el valor 1 de especificidad, va a tener preponderancia sobre este selector, es decir, va a aplicarse esa regla por encima de la del selector universar. Mediante el * indicamos que estamos seleccionando a todos los elementos. Si modificamos todos los elementos mediante el selector universal utilizando una propiedad, y más adelante en el documento css, volvemos a cambiar esa propiedad en otra regla, la segunda tiene más ponderación que la primera por lo que la modificación del selector universal deja de aplicarse. Todos los selectores tienen implícito el selector universal, ya que aplican a todos los elementos de ese tipo, clase o id. La regla se vería de la forma `*.nombreClase{...}`, pero como está implícito ese primer * no se escribe quedando como `.nombreClase{...}`.
 
 #!markdown
 
@@ -122,11 +122,11 @@ El ***selector de id*** selecciona elementos por el valor que tiene el atributo 
 
         /* SELECTORES DE TIPO O ETIQUETA */
 
-        /* modificamos el elemento body, que es el padre de todos los demás elementos visibles, para establecer una fuente para todo el documento */
-        body {
+        /* modificamos el elemento body, que es el padre de todos los demás elementos visibles, para establecer una fuente para todo el documento. Si ejecutamos el selector de tipo se modifica la notebook sobre la que estamos trabajando, por eso simulamos modificar el body y los elemento li mediante una clase */
+        .body {
             font-family: 'Arial';
         }
-        li {
+        .li {
             color: slateblue;
             font-size: 20px;
         }
@@ -158,20 +158,20 @@ El ***selector de id*** selecciona elementos por el valor que tiene el atributo 
         }
     </style>
 </head>
-<body>
+<body class="body">
     <h2 class="peliculas">Spiderman</h2>
     <ul>
-        <li class="pelicula">Spiderman 1</li>
+        <li class="li pelicula">Spiderman 1</li>
 
         <!-- el elemento se ve afectado por las modificaciones de la clase pelicula y la clase favoritas -->
-        <li class="pelicula favoritas">Spiderman 2</li>
-        <li class="pelicula espaciado" id="spidermanNoWayHome">Spider verse</li>
+        <li class="li pelicula favoritas">Spiderman 2</li>
+        <li class="li pelicula espaciado" id="spidermanNoWayHome">Spider verse</li>
     </ul>
     <h2 class="series">The office</h2>
     <ul>
-        <li class="temporadas">Temporada 1</li>
-        <li class="temporadas">Temporada 2</li>
-        <li class="temporadas" id="temporada3">Temporada 3</li>
+        <li class="li temporadas">Temporada 1</li>
+        <li class="li temporadas">Temporada 2</li>
+        <li class="li temporadas" id="temporada3">Temporada 3</li>
     </ul>
 </body>
 </html>
