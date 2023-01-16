@@ -1293,7 +1293,7 @@ console.log( persona );
 
 #!markdown
 
-# Objetos
+## Objetos
 
 #!markdown
 
@@ -1326,7 +1326,7 @@ console.log(persona);
 
 #!markdown
 
-## Agregar métodos a los objetos
+### Agregar métodos a los objetos
 
 #!markdown
 
@@ -1362,7 +1362,7 @@ console.log(persona);
 
 #!markdown
 
-## Crear objetos
+### Crear objetos
 
 #!markdown
 
@@ -1395,7 +1395,7 @@ console.log( persona2.tel );
 
 #!markdown
 
-## Acceder a atributos o métodos de objetos. Uso de `for in`
+### Acceder a atributos o métodos de objetos. Uso de `for in`
 
 #!markdown
 
@@ -1427,7 +1427,7 @@ for( nombrePropiedad in persona){
 
 #!markdown
 
-## Agregar o eliminar atributos y métodos de objetos
+### Agregar o eliminar atributos y métodos de objetos
 
 #!markdown
 
@@ -1459,7 +1459,7 @@ console.log( persona );
 
 #!markdown
 
-## Formas de imprimir objetos
+### Formas de imprimir objetos
 
 #!markdown
 
@@ -1497,7 +1497,7 @@ console.log( personaString );
 
 #!markdown
 
-## Método `get` y `set` en objetos
+### Método `get` y `set` en objetos
 
 #!markdown
 
@@ -1573,7 +1573,7 @@ console.log( persona.idioma );
 
 #!markdown
 
-## Constructor de objetos
+### Constructor de objetos
 
 #!markdown
 
@@ -1609,7 +1609,7 @@ console.log( madre );
 
 #!markdown
 
-## Agregar métodos a un constructor de objetos
+### Agregar métodos a un constructor de objetos
 
 #!markdown
 
@@ -1644,7 +1644,7 @@ console.log( madre );
 
 #!markdown
 
-## Distintas formas de crear objetos
+### Distintas formas de crear objetos
 
 #!markdown
 
@@ -1674,7 +1674,7 @@ let miFuncion2 = function(){};
 
 #!markdown
 
-## Uso de `prototype`
+### Uso de `prototype`
 
 #!markdown
 
@@ -1717,7 +1717,7 @@ console.log(madre2.tel);
 
 #!markdown
 
-## Uso del método `call`
+### Uso del método `call`
 
 #!markdown
 
@@ -1748,7 +1748,7 @@ console.log( persona1.nombreCompleto.call( persona2 ) );
 
 #!markdown
 
-## Paso de argumentos al método `call`
+### Paso de argumentos al método `call`
 
 #!markdown
 
@@ -1778,7 +1778,7 @@ console.log( persona1.nombreCompleto.call( persona2, 'Ing', '5544332211' ) );
 
 #!markdown
 
-## Uso del método `apply`
+### Uso del método `apply`
 
 #!markdown
 
@@ -1810,11 +1810,11 @@ console.log(persona1.nombreCompleto.apply(persona2, ['Lic', '55448822']) );
 
 #!markdown
 
-# Clases
+## Clases
 
 #!markdown
 
-## Definición de clases
+### Definición de clases
 
 #!markdown
 
@@ -1845,7 +1845,7 @@ console.log( persona2 );
 
 #!markdown
 
-## Métodos `get` y `set`
+### Métodos `get` y `set`
 
 #!markdown
 
@@ -1886,7 +1886,7 @@ console.log(persona1.nombre);
 
 #!markdown
 
-## Hoisting y clases
+### Hoisting y clases
 
 #!markdown
 
@@ -1920,7 +1920,7 @@ console.log( persona2 );
 
 #!markdown
 
-## Herencia
+### Herencia
 
 #!markdown
 
@@ -1976,7 +1976,7 @@ console.log( empleado1.nombre );
 
 #!markdown
 
-## Herencia de métodos
+### Herencia de métodos
 
 #!markdown
 
@@ -2030,7 +2030,7 @@ console.log( empleado1.nombreCompleto() );
 
 #!markdown
 
-## Sobrescribir métodos
+### Sobrescribir métodos
 
 #!markdown
 
@@ -2091,7 +2091,7 @@ console.log( empleado1.nombreCompleto() );
 
 #!markdown
 
-## Clase `Object` y polimorfismo
+### Clase `Object` y polimorfismo
 
 #!markdown
 
@@ -2169,11 +2169,11 @@ Polimorfismo significa multiples formas en tiempo de ejecución, es decir, que e
 
 #!markdown
 
-# Palabra reservada `static`
+## Palabra reservada `static`
 
 #!markdown
 
-## Métodos estáticos
+### Métodos estáticos
 
 #!markdown
 
@@ -2256,7 +2256,7 @@ persona1.saludar();
 
 #!markdown
 
-## Atributos estáticos
+### Atributos estáticos
 
 #!markdown
 
@@ -2340,7 +2340,7 @@ console.log( Empleado.contadorObjetosPersona );
 
 #!markdown
 
-## Atributos estáticos vs no estáticos
+### Atributos estáticos vs no estáticos
 
 #!markdown
 
@@ -2423,7 +2423,7 @@ console.log( Empleado.email);
 
 #!markdown
 
-## Ejemplo de uso de atributos estáticos
+### Ejemplo de uso de atributos estáticos
 
 #!javascript
 
@@ -2498,7 +2498,7 @@ console.log( Persona.contadorPersonas);
 
 #!markdown
 
-## Crear constantes estáticas
+### Crear constantes estáticas
 
 #!markdown
 
@@ -2586,11 +2586,11 @@ console.log( persona5.toString() );
 
 #!markdown
 
-# Ejercicios de ejemplo
+## Ejercicios de ejemplo
 
 #!markdown
 
-## Ejercicio de herencia
+### Ejercicio de herencia
 
 #!markdown
 
@@ -2726,7 +2726,7 @@ console.log(cliente2.toString());
 
 #!markdown
 
-## Sistema de ventas
+### Sistema de ventas
 
 #!markdown
 
@@ -2844,7 +2844,7 @@ orden2.mostrarOrden();
 
 #!markdown
 
-## Mundo PC
+### Mundo PC
 
 #!markdown
 
@@ -3017,7 +3017,7 @@ orden2.mostrarOrden();
 
 #!markdown
 
-# Modo strict
+## Modo strict
 
 #!markdown
 
@@ -3053,11 +3053,11 @@ function miFuncion() {
 
 #!markdown
 
-# Programación orientada a objetos
+## Programación orientada a objetos
 
 #!markdown
 
-## Sobreescritura
+### Sobreescritura
 
 #!markdown
 
@@ -3110,7 +3110,7 @@ console.log( gerente1.obtenerDetalles() );
 
 #!markdown
 
-## Polimorfismo
+### Polimorfismo
 
 #!markdown
 
@@ -3157,7 +3157,7 @@ imprimir( gerente1 );
 
 #!markdown
 
-## Palabra reservada `instance of`
+### Palabra reservada `instance of`
 
 #!markdown
 
@@ -3220,11 +3220,11 @@ determinarTipo( gerente1 );
 
 #!markdown
 
-# Manejo de errores
+## Manejo de errores
 
 #!markdown
 
-## Bloque `try catch finally`
+### Bloque `try catch finally`
 
 #!markdown
 
@@ -3264,7 +3264,7 @@ console.log('continuamos...');
 
 #!markdown
 
-## Cláusula `throws`
+### Cláusula `throws`
 
 #!markdown
 
@@ -3300,7 +3300,7 @@ finally{
 
 #!markdown
 
-# Funciones flecha
+## Funciones flecha
 
 #!markdown
 
@@ -3381,11 +3381,11 @@ console.log( funcionConVariosParametros2(3,5));
 
 #!markdown
 
-# Funciones callback `setTimeout` y `setInterval`
+## Funciones callback `setTimeout` y `setInterval`
 
 #!markdown
 
-## Funciones callback
+### Funciones callback
 
 #!markdown
 
@@ -3433,7 +3433,7 @@ sumar(5, 3, imp);
 
 #!markdown
 
-## Función `setTimeout`
+### Función `setTimeout`
 
 #!markdown
 
@@ -3458,7 +3458,7 @@ setTimeout( () => console.log('saludo asíncrono 3'), 1000);
 
 #!markdown
 
-## Función `setInterval`
+### Función `setInterval`
 
 #!markdown
 
@@ -3481,7 +3481,7 @@ setInterval(reloj, 1000);
 
 #!markdown
 
-# Promesas
+## Promesas
 
 #!markdown
 
@@ -3534,7 +3534,7 @@ miPromesa.then(valor => console.log(valor)).catch(error => console.log(error));
 
 #!markdown
 
-## Función `setTimeout` y promesas
+### Función `setTimeout` y promesas
 
 #!javascript
 
@@ -3558,7 +3558,7 @@ promesa.then(valor => console.log(valor));
 
 #!markdown
 
-## Palabra reservada `async`
+### Palabra reservada `async`
 
 #!markdown
 
@@ -3580,7 +3580,7 @@ miFuncionConPromesa().then(valor => console.log(valor));
 
 #!markdown
 
-## Palabra reservada `await`
+### Palabra reservada `await`
 
 #!markdown
 
@@ -3610,7 +3610,7 @@ funcionConPromesaYAwait();
 
 #!markdown
 
-## Uso de promesas con `async`, `await` y `setTimeout`
+### Uso de promesas con `async`, `await` y `setTimeout`
 
 #!markdown
 
@@ -3644,11 +3644,11 @@ funcionConPromesaAwaitTimeout();
 
 #!markdown
 
-# Manejo del DOM HTML
+## Manejo del DOM HTML
 
 #!markdown
 
-## DOM HTML
+### DOM HTML
 
 #!markdown
 
@@ -3660,7 +3660,7 @@ DOM significa Document Object Model. El DOM esta formado por diferentes elemento
 
 #!markdown
 
-## Crear un documento HTML
+### Crear un documento HTML
 
 #!markdown
 
@@ -3687,7 +3687,7 @@ Las sentencias de JavaScript con las que vamos a trabajar tenemos que escribirla
 
 #!markdown
 
-## Acceder a elementos del DOM
+### Acceder a elementos del DOM
 
 #!markdown
 
@@ -3730,7 +3730,7 @@ console.log(`valor parrafo: ${parrafo.innerHTML}`);
 
 #!markdown
 
-## Modificar elementos del DOM
+### Modificar elementos del DOM
 
 #!markdown
 
@@ -3762,7 +3762,7 @@ parrafo.innerHTML = 'Nuevo valor para el párrafo';
 
 #!markdown
 
-## Método getElementByTagName
+### Método getElementByTagName
 
 #!markdown
 
@@ -3803,7 +3803,7 @@ for (let i = 0; i < elementos.length; i++){
 
 #!markdown
 
-## Método `getElementByClassName`
+### Método `getElementByClassName`
 
 #!markdown
 
@@ -3843,7 +3843,7 @@ for (let elemento of elementos) {
 
 #!markdown
 
-## Método `querySelectorAll`
+### Método `querySelectorAll`
 
 #!markdown
 
@@ -3886,7 +3886,7 @@ for (let elemento of elementos) {
 
 #!markdown
 
-## Manejo de formularios
+### Manejo de formularios
 
 #!markdown
 
@@ -3941,7 +3941,7 @@ Al formulario le damos un id para poder referenciar e iterar sobre sus elementos
 
 #!markdown
 
-## Manejo individual de elementos del formulario
+### Manejo individual de elementos del formulario
 
 #!markdown
 
@@ -3990,7 +3990,7 @@ Para acceder a un elemento en particular de un formulario podemos utilizar su at
 
 #!markdown
 
-## Método `write`
+### Método `write`
 
 #!markdown
 
@@ -4024,7 +4024,7 @@ Mediante el método `write`, cuya sintaxis es `document.write()`, podemos imprim
 
 #!markdown
 
-## Cambio de estilo css en el DOM
+### Cambio de estilo CSS en el DOM
 
 #!markdown
 
@@ -4055,7 +4055,7 @@ En el caso de los estilos de css cada elemento HTML tiene como atributo un objet
 
 #!markdown
 
-# Manejo de eventos en el DOM
+## Manejo de eventos en el DOM
 
 #!markdown
 
@@ -4092,7 +4092,7 @@ Los eventos de JavaScript se indican en el elemento HTML. siempre empieza con on
 
 #!markdown
 
-## Asociar eventos a elementos
+### Asociar eventos a elementos
 
 #!markdown
 
@@ -4126,7 +4126,7 @@ Podemos asociar un evento a un elemento desde el documento HTML. También podemo
 
 #!markdown
 
-## Manejo de evento `onload`
+### Manejo de evento `onload`
 
 #!markdown
 
@@ -4169,7 +4169,7 @@ Un evento `onload` se ejecuta cuando se carga el documento HTML.
 
 #!markdown
 
-## Manejo de evento `onchange`
+### Manejo de evento `onchange`
 
 #!markdown
 
@@ -4204,7 +4204,7 @@ Por lo general utilizamos el evento `onchange` cuando modificamos los valores de
 
 #!markdown
 
-## Eventos `onmouseover` y `onmouseout`
+### Eventos `onmouseover` y `onmouseout`
 
 #!markdown
 
@@ -4237,7 +4237,7 @@ Los eventos `onmouseover` y `onmouseout` responden a las acciones colocar el mou
 
 #!markdown
 
-## Eventos `onmousedown` y `onmouseup`
+### Eventos `onmousedown` y `onmouseup`
 
 #!markdown
 
@@ -4278,7 +4278,7 @@ Los eventos `onmousedown` y `onmouseup` se ejecutan al hacer click sobre un elem
 
 #!markdown
 
-## Eventos `onfocus` y `onblur`
+### Eventos `onfocus` y `onblur`
 
 #!markdown
 
@@ -4312,7 +4312,7 @@ El evento `onfocus` se ejecuta cuando damos click sobre una caja de texto, es de
 
 #!markdown
 
-## Método `addEventListener`
+### Método `addEventListener`
 
 #!markdown
 
@@ -4362,7 +4362,7 @@ Mediante el método `addEventListener` agregamos eventos a elementos del documen
 
 #!markdown
 
-## Funciones flecha con eventos
+### Funciones flecha con eventos
 
 #!markdown
 
@@ -4411,7 +4411,7 @@ En lugar de definir funciones por separado y llamarlas desde el `addEventListene
 
 #!markdown
 
-## Delegación de eventos o `useCapture`
+### Delegación de eventos o `useCapture`
 
 #!markdown
 
@@ -4453,11 +4453,11 @@ Podemos aplicar eventos a varios elementos de un mismo formulario. Es decir, pro
 
 #!markdown
 
-# Ejemplos
+## Ejemplos
 
 #!markdown
 
-## Calculadora
+### Calculadora
 
 #!markdown
 
@@ -4527,7 +4527,7 @@ Para poder probar el ejemplo tenemos que guardar lo siguiente como un documento 
 
 #!markdown
 
-## Aplicación listado de personas
+### Aplicación listado de personas
 
 #!html
 
@@ -4629,7 +4629,7 @@ Para poder probar el ejemplo tenemos que guardar lo siguiente como un documento 
 
 #!markdown
 
-## Aplicación reloj digital
+### Aplicación reloj digital
 
 #!html
 
