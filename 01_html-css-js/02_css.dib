@@ -1835,3 +1835,220 @@ Para poder utilizar elementos en linea pero con todas las propiedades del box-mo
 </body>
 
 </html>
+
+#!markdown
+
+## Dibujar en CSS box-shadow y border-radius
+
+#!markdown
+
+### Propiedad `border-radius`
+
+#!markdown
+
+La propiedad `border-radius` permite redondear las esquinas de la caja de un elemento. Esto permite generar distintas formas levemente redondeadas,  circulares u ovaladas. Podemos usar varias unidades de medida como pixels o porcentajes. La propiedad `border-radius` es un `shorthand` o propiedad abreviada, esto significa que con ella podemos establecer los valores de varias propiedades simultáneamente en una sola. El `shorthand border-radius` puede recibir como máximo 4 valores y como mínimo 1. Los 4 valores se corresponden con las 4 propiedades que representan las esquinas sobre las que podemos dar valores al radio del borde del elemento, es decir, la dirección superior izquierda, superior derecha, inferior derecha e inferior izquierda, considerando el giro de las agujas del reloj. En CSS estas propiedades son `border-top-left-radius`, `border-top-right-radius`, `border-bottom-right-radius` y `border-bottom-left-radius`.
+
+#!html
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radius & Shadow</title>
+    <style>
+        /* simulamos el selector universal con una clase en body */
+        .universal {
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .body {
+            font-family: Arial;
+            background-color: #F7996E;
+        }
+
+        /* con el shorthand border-radius: 50% y las propiedades width y height con un mismo valor tenemos un circulo. Si asignamos un valor superior a width o height tenemos un óvalo */
+        .img01 {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            margin: 20px;
+            border-radius: 50%;
+        }
+
+        .img02 {
+            width: 350px;
+            height: 250px;
+            object-fit: cover;
+            margin: 20px;
+            border-radius: 50%;
+        }
+
+        /* las propiedades que modifican el radio del borde de cada una de las esquinas de la capa de borde son para la esquina superior izquierda border-top-left-radius, superior derecha border-top-right-radius, inferior derecha border-bottom-right-radius e inferior izquierda border-bottom-left-radius */
+        .img03 {
+            width: 350px;
+            height: 250px;
+            object-fit: cover;
+            margin: 20px;
+            border-top-left-radius: 50%;
+            border-top-right-radius: 60px;
+            border-bottom-right-radius: 110px;
+            border-bottom-left-radius: 30px;
+        }
+
+        /* el shorthand border-radius puede recibir 4 valores que se corresponden con las 4 propiedades que representan las esquinas de la capa de borde. Los valores que recibe se corresponden con border-radius: top-left top-right bottom-right bottom-left */
+        .img04 {
+            width: 350px;
+            height: 250px;
+            object-fit: cover;
+            margin: 20px;
+
+            border-radius: 60px 50% 30px 110px;
+        }
+
+        /* el shorthand border-radius puede recibir 3 valores donde el primero se corresponde con el border-top-left-radius, el segundo se corresponde con el  border-top-right-radius y border-bottom-left-radius en un mismo valor, es decir, las esquinas opuestas opuestas como dibujando un /, y el tercero se corresponde con el border-bottom-right-radius. De esta forma los valores que recibe se corresponden con border-radius: top-left top-right-bottom-left bottom-right */
+        .img05 {
+            width: 350px;
+            height: 250px;
+            object-fit: cover;
+            margin: 20px;
+
+            border-radius: 30px 10px 60px;
+        }
+
+        /* el shorthand border-radius puede recibir 2 valores donde el primer valor se corresponde con el border-top-left-radius y border-bottom-right-radius, es decir, como dibujando un \, y el segundo valor se corresponde con el border-top-right-radius y border-bottom-left-radius, es decir, como dibujando un /. De esta forma los valores que recibe se corresponden con border-radius: top-left-bottom-right top-right-bottom-left */
+        .img06 {
+            width: 350px;
+            height: 250px;
+            object-fit: cover;
+            margin: 20px;
+
+            border-radius: 30px 50%;
+        }
+    </style>
+</head>
+
+<body class="universal body">
+    <img src="https://picsum.photos/250/250" class="img01">
+    <img src="https://picsum.photos/250/250" class="img02">
+    <img src="https://picsum.photos/250/250" class="img03">
+    <img src="https://picsum.photos/250/250" class="img04">
+    <img src="https://picsum.photos/250/250" class="img05">
+    <img src="https://picsum.photos/250/250" class="img06">
+</body>
+
+</html>
+
+#!markdown
+
+### Propiedad box-shadow
+
+#!markdown
+
+La propiedad `box-shadow` permite agregar sombras a la caja de un elemento. La sombra en CSS es la copia exacta del elemento, tanto en forma como en tamaño. La sombra se modifica con las siguientes propiedades, siendo obligatorias solo `offset-x` y `offset-y`:
+* `offset-x`: permite el movimiento hacia la izquierda si el valor es negativo o hacia la derecha si el valor es positivo.
+* `offset-y`: permite el movimiento hacia arriba si el valor es negativo o hacia abajo si el valor es positivo
+* `blur`: es el difuminado de la sombra.
+* `spread`: es el esparcimiento de la sombra, es decir, mediante esta valor indicamos que la sombra se haga mas grande que el elemento.
+* `color`.
+
+#!html
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radius & Shadow</title>
+    <style>
+        /* simulamos el selector universal con una clase en body */
+        .universal {
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .body {
+            font-family: Arial;
+            background-color: #F7996E;
+        }
+
+        /* la damos valores a la propiedad box-shadow: offset-x offset-y. movemos a la derecha y hacia abajo la sombra cambiando el color por defecto de la caja del elemento */
+        .img07 {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            margin: 20px;
+            color: darkslateblue;
+            border-radius: 50%;
+
+            box-shadow: 50px -20px;
+
+        }
+
+        /* el tercer valor de box-shadow corresponde al difuminado */
+        .img08 {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            margin: 20px;
+            border-radius: 50%;
+            color: darkslateblue;
+
+            box-shadow: 50px -20px 20px;
+            
+        }
+
+        /* el difuminado permite obtener efectos interesantes como por ejemplo */
+        .img09 {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            margin: 20px;
+            border-radius: 50%;
+            color: darkorange;
+
+            box-shadow: 0 0 40px;
+            
+        }
+
+        /* el cuarto valor que podemos asignar a box-shadow es spread y el quinto es el color de la sombra. Si no tiene establecido un color, la sombra va a tomar el color por defecto del elemento */
+        .circulo01 {
+            display: inline-block;
+            width: 250px;
+            height: 250px;
+            margin: 20px;
+            border-radius: 50%;
+            background-color: darkorange;
+
+            box-shadow: 0 0 40px 30px cornflowerblue;
+            
+        }
+
+        /* podemos crear mas de una sombra para la caja de un elemento, para hacerlo damos parámetros a la nueva sombra poniendo una coma después de los parámetros de la anterior */
+        .img10 {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            margin: 20px;
+            border-radius: 50%;
+            color: darkorange;
+
+            box-shadow: 0 -50px cornflowerblue, 50px 0 30px darkgoldenrod, -50px 0 0 30px rebeccapurple;
+        }
+    </style>
+</head>
+
+<body class="universal body">
+    <img src="https://picsum.photos/250/250" class="img07">
+    <img src="https://picsum.photos/250/250" class="img08">
+    <img src="https://picsum.photos/250/250" class="img09">
+    <div class="circulo01">círculo</div>
+    <img src="https://picsum.photos/250/250" class="img10">
+</body>
+
+</html>
