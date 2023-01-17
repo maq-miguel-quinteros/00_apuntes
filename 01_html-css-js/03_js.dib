@@ -93,13 +93,13 @@ console.log(typeof simbolo);
 
 #!markdown
 
-El tipo de dato `class` (clase) es un tipo `function`. Por lo general  se define la clase con su nombre en singular y empezando en mayúsculas. Para poder definir objetos de esta clase necesitamos un constructor. Con la palabra reservada `this` seguida de .A indicamos que al atributo A, propio de la clase, le asignamos el valor de B que viene por parámetros en el constructor de la forma `this.A = B`.
+El tipo de dato `class` (clase) es un tipo `function`. Por lo general  se define la clase con su nombre en singular y empezando en mayúsculas. Para poder definir objetos de esta clase necesitamos un método o función, propio de la clase, llamado constructor. Con la palabra reservada `this` seguida de `.atributo` indicamos que al atributo, propio de la clase, le asignamos un `valor`, que viene por parámetros en el constructor, de la forma `this.atributo = valor`.
 
 #!javascript
 
 class Persona {
 
-  /** constructor de la clase recibe por parametros nombreNuevo, apellidoNuevo */
+  /** método constructor de la clase recibe por parametros nombreNuevo, apellidoNuevo */
   constructor(nombreNuevo, apellidoNuevo) {
   
     /** asignamos a los atributos nombre y apellido, propios de la clase, lo que llega por parametro */
@@ -143,7 +143,7 @@ console.log(typeof autos);
 
 #!markdown
 
-Para el caso de las cadenas vacías su tipo de dato es `string` pero al consultar su contenido nos devuelve `empty string`. `empty string` no es un tipo de dato sino un valor (el contenido de una variable).
+Para el caso de las cadenas vacías su tipo de dato es `string` pero al consultar su contenido nos devuelve `empty string`, que no es un tipo de dato sino un valor (el contenido de una variable).
 
 #!javascript
 
@@ -182,7 +182,7 @@ console.log(nombreCompleto2);
 
 #!markdown
 
-La lectura de la operación se hace de izquierda a derecha. Si comienza con números, realizar la operación matemática hasta que encuentra un string, a partir del string realiza la concatenación. Se atiende primero las operaciones que están dentro de los paréntesis, luego lo que está afuera.
+La lectura de las operaciones, ya sea aritméticas o de concatenación de `string`, se hace de izquierda a derecha. Si comienza con números, realizar la operación matemática hasta que encuentra un `string`, a partir del este realiza la concatenación. Se atiende primero las operaciones que están dentro de los paréntesis, luego lo que está afuera.
 
 #!javascript
 
@@ -203,7 +203,11 @@ console.log(x);
 
 #!markdown
 
-Un literal es un dato, un string, number, boolean, etc. Los siguientes son literales:
+#### Literales
+
+#!markdown
+
+Un literal es un dato suelto, que podemos asignar a una variable. Un literal tiene un tipo, como las variables, el tipo de un literal puede ser `string`, `number`, `boolean`, etc. Los siguientes son literales:
 
 #!javascript
 
@@ -213,7 +217,7 @@ Un literal es un dato, un string, number, boolean, etc. Los siguientes son liter
 
 #!markdown
 
-A una variable le asignamos un literal. Podemos decir que dentro de una variable guardamos un literal.
+Cuando asignamos un literal a una variable, podemos decir que guardamos el literal dentro de la variable.
 
 #!javascript
 
@@ -221,7 +225,11 @@ var nombre = 'Andrea';
 
 #!markdown
 
-Ya no se recomienda usar `var` para declarar una variable, ahora usamos `let` para una variable. A su vez tampoco es necesario indicar `let` para declara la variable, se pueden declara solo escribiendo el nombre, pero una buena práctica es escribir `let` antes del nombre de la variable. Podemos declarar primero la variable y asignarle el valor a la misma luego, en otra línea de código distinta.
+#### Uso de `var`, `let` y `const`
+
+#!markdown
+
+Ya no se recomienda usar la palabra reservada `var` para declarar una variable, sino la palabra reservada `let`. A su vez tampoco es necesario utilizar `let` para declarar la variable, se pueden declarar solo escribiendo el nombre, pero una buena práctica es escribir `let` antes del nombre de la variable. Podemos declarar primero la variable y asignarle el valor a la misma luego, o declarar la variable en una línea de código, y asignarle el valor en otra línea de código distinta.
 
 #!javascript
 
@@ -233,22 +241,13 @@ console.log( nombre );
 
 #!markdown
 
- Para declarar una constante usamos `const`. A diferencia de las variables a las constantes no se puede reasignar su valor.
+Para declarar una constante utilizamos la palabra reservada `const`. A diferencia de las variables, a las constantes no podemos volver a asignarle un valor luego de hacerlo la primera vez.
 
 #!javascript
 
 const apellido = "Perez";
 console.log(apellido);
 apellido = "Gomez"; // dará error
-
-#!markdown
-
-La palabra reservada `console` es un objeto. `log` es un método del objeto y el argumento es lo que recibe el método para trabajar  `console.log(argumento)`.
-
-#!javascript
-
-let nombreCompleto = "Juan Perez";
-console.log( nombreCompleto );
 
 #!markdown
 
@@ -263,7 +262,16 @@ console.log(z);
 
 #!markdown
 
-Javascript es sensible a mayúsculas y minúsculas para los nombres de las variables o funciones. No se puede comenzar el nombre de una variable o función con un número. Para el inicio del nombre se permiten mayúsculas, minúsculas y los signos _ y $. No se pueden utilizar las palabras reservadas como nombre de variable o función.
+Javascript es sensible a mayúsculas y minúsculas para los nombres de las variables o funciones. No se puede comenzar el nombre de una variable o función con un número. Para el inicio del nombre se permiten mayúsculas, minúsculas y los signos `_` y `$`. No se pueden utilizar las palabras reservadas como nombre de variable o función.
+
+#!markdown
+
+La palabra reservada `console` es un objeto, por su parte `log` es un método del objeto `console`, por lo que al escribir la sentencia `console.log()` estamos llamando a un método que se encarga de mostrar valores por consola. A esto solo queda indicar el argumento que va a recibir el método de la forma `console.log(argumento)`.
+
+#!javascript
+
+let nombreCompleto = "Juan Perez";
+console.log( nombreCompleto );
 
 #!markdown
 
@@ -387,10 +395,10 @@ console.log("z: " + z);
 
 #!markdown
 
-Las expresiones se evalúan de izquierda a derecha. Siempre se evalúan primero las expresiones que están dentro de los paréntesis, desde el mas interior hasta el mas exterior. El orden de prioridad de los operadores es el siguiente:
-1.   Paréntesis: () 
-2.   División y multiplicación: / *
-3.   Suma y resta: + -
+Las expresiones se evalúan de izquierda a derecha. Siempre se evalúan primero las expresiones que están dentro de los paréntesis, desde los más internos hasta los más externos. El orden de prioridad de los operadores es el siguiente:
+1.   Paréntesis: `()`
+2.   División y multiplicación: `/ *`
+3.   Suma y resta: `+ -`
 
 #!javascript
 
