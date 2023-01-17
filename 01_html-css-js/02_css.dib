@@ -1775,10 +1775,18 @@ Para poder utilizar elementos en linea pero con todas las propiedades del box-mo
         }
 
         .card__img {
+
+            /* la imagen va a ocupar el 100% del ancho de la caja que la contiene que es un elemento con clase card */
             width: 100%;
             height: 250px;
+
+            /* las cajas de los elementos img tiene el mismo comportamiento que las cajas con la propiedad display:inline-block, por eso hacemos su caja como la de un elemento de bloque, lo que permite que ocupe todo el espacio de la caja que la contiene y hace el salto de línea al final */
             display: block;
+
+            /* esta propiedad hace que la imagen, de 500px por 500px, al reducir su tamaño, tenga buena calidad */
             object-fit: cover;
+
+            /* mediante el valor inherit heredamos el valor del border-radius del elemento padre que es el de la caja card */
             border-radius: inherit;
         }
 
@@ -1786,6 +1794,8 @@ Para poder utilizar elementos en linea pero con todas las propiedades del box-mo
             margin-top: 30px;
             margin-bottom: 15px;
             padding-bottom: 10px;
+
+            /* generamos la línea entre el título y el párrafo */
             border-bottom: 1px solid white;
         }
 
@@ -1794,12 +1804,18 @@ Para poder utilizar elementos en linea pero con todas las propiedades del box-mo
         }
 
         .card__cta {
+
+            /* convertimos en caja de bloque la caja del elemento a que por efecto es inline */
             display: block;
             background-color: white;
             color: #15273F;
+
+            /* quitamos el subrayado del enlace */
             text-decoration: none;
             margin-top: 20px;
             padding: 15px 0;
+
+            /* hacemos la fuente del elemento negrita */
             font-weight: bold;
             border-radius: 5px;
         }
@@ -1808,7 +1824,7 @@ Para poder utilizar elementos en linea pero con todas las propiedades del box-mo
 
 <body class="universal body">
     <div class="card">
-        <img src="https://picsum.photos/250/250" class="card__img">
+        <img src="https://picsum.photos/500/500" class="card__img">
 
         <h2 class="card__title">Nuevo Mazda</h2>
         <p class="card__paragraph">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
