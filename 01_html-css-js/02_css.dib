@@ -2077,7 +2077,7 @@ La propiedad `box-shadow` permite agregar sombras a la caja de un elemento. La s
             font-family: Arial;
             background-color: #F7996E;
         }
-        
+
         .notebook {
             width: 300px;
             height: 400px;
@@ -2086,7 +2086,7 @@ La propiedad `box-shadow` permite agregar sombras a la caja de un elemento. La s
             border-radius: 10px;
             box-shadow: 10px 10px #fff, 20px 20px rgba(0, 0, 0, 0.13);
             padding-top: .1px;
-        }
+        } 
 
         .circle {
             width: 14px;
