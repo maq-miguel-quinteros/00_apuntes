@@ -2078,6 +2078,7 @@ La propiedad `box-shadow` permite agregar sombras a la caja de un elemento. La s
             background-color: #F7996E;
         }
 
+        /* la tapa del cuaderno se hace con el background-color de la caja del elemento #7765B5, hojas del cuaderno con el box-shadow color #fff y la sombra del cuaderno con el box-shadow color rgba(0, 0, 0, 0.13) */
         .notebook {
             width: 300px;
             height: 400px;
@@ -2085,9 +2086,12 @@ La propiedad `box-shadow` permite agregar sombras a la caja de un elemento. La s
             margin: 50px;
             border-radius: 10px;
             box-shadow: 10px 10px #fff, 20px 20px rgba(0, 0, 0, 0.13);
-            padding-top: .1px;
-        } 
 
+            /* sucede colapso de márgenes con la caja del elemento hijo .cicle, para solucionarlo utilizamos esta propiedad */
+            padding-top: .1px;
+        }
+
+        /* creamos un circulo para representar los orificios de las hojas */
         .circle {
             width: 14px;
             height: 14px;
@@ -2096,10 +2100,15 @@ La propiedad `box-shadow` permite agregar sombras a la caja de un elemento. La s
             border-radius: 50%;
             margin-top: 30px;
             margin-left: 7px;
+
+            /* mediante box-shadow del mismo color del circulo original, pero alejados de este hacia abajo, creamos los otros círculos que representan los orificios de las hojas */
             box-shadow: 0 40px, 0 80px, 0 120px, 0 160px, 0 200px, 0 240px, 0 280px, 0 320px;
+
+            /* sucede colapso de márgenes con la caja del elemento hijo .line, para solucionarlo utilizamos esta propiedad */
             padding-top: .1px;
         }
 
+        /* creamos una linea para representar las argollas de las hojas */
         .line {
             margin-top: 4px;
             margin-left: -20px;
@@ -2108,6 +2117,8 @@ La propiedad `box-shadow` permite agregar sombras a la caja de un elemento. La s
             width: 30px;
             height: 8px;
             border-radius: 10px;
+
+            /* mediante box-shadow del mismo color la línea original, pero alejados de esta hacia abajo, creamos los otros lineas que representan las argollas de las hojas */
             box-shadow: 0 40px, 0 80px, 0 120px, 0 160px, 0 200px, 0 240px, 0 280px, 0 320px;
         }
     </style>
@@ -2118,6 +2129,105 @@ La propiedad `box-shadow` permite agregar sombras a la caja de un elemento. La s
         <div class="circle">
             <div class="line"></div>
         </div>
+    </div>
+
+</body>
+
+</html>
+
+#!markdown
+
+## Colores y fondos
+
+#!markdown
+
+### Colores
+
+#!markdown
+
+Tenemos varias propiedades que permiten modificar el color en CSS.
+* `color`: indica el color que van a tener los textos en las cajas de los elementos.
+
+#!markdown
+
+Tenemos varias formas de indicar un valor de color en CSS.
+* Mediante una palabra clave que representa un color. Indicamos como valor, básicamente, el nombre del color, por ejemplo, `red`, `green`, `blue`, u otros como `tomato`, `aquamarine`, `hotpink`, etc. Podemos consultar la lista completa de palabras clave que representan colores desde la web [https://www.w3schools.com/cssref/css_colors.php](https://www.w3schools.com/cssref/css_colors.php).
+* Mediante la función `rgb()`, que nos permite definir el color en base a 3 colores primarios. Las siglas `rgb` significan `red`, `green` y `blue`, y mediante estos 3 colores es que vamos a definir el color deseado. La función `rgb()` recibe como mínimo 3 valores, separados por coma, que van del 0 a 255 y se corresponden con valores de los colores `red`, `green` y `blue` de la forma `rgb(red, green, blue)`. 
+
+#!html
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fondos & Colores</title>
+    <style>
+        .universal {
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .body {
+            font-family: Arial;
+        }
+
+        /* color por palabra clave */
+        .colores_h201{
+            font-size: 42px;
+
+            color:tomato;
+        }
+
+        /* color por función rgb */
+        .colores_h202{
+            font-size: 42px;
+
+            color:rgb(0, 0, 0);
+        }
+        .colores_p01{
+            color: rgb(255, 255, 255)
+        }
+        .colores_p02{
+            color: rgb(125, 125, 125)
+        }
+
+        /* si damos de valor 255 a alguno de los tres parámetros y 0 a los otros dos obtenemos el color al que refiere el parámetro con 255, es decir, si damos valores rgb(0,255,0) obtenemos el color green que es el que corresponde al segundo parámetro */
+        .colores_p03{
+            color: rgb(255, 0, 0)
+        }
+        .colores_p04{
+            color: rgb(30, 88, 200)
+        }
+
+
+
+
+
+
+
+
+        .colores_container {
+            margin: 50px auto;
+            width: 90%;
+            height: 500px;
+            background-image: linear-gradient(#d62eceaf, #283198a8), url('imagen.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+
+<body class="universal body">
+    <h2 class="colores_h201">Color por palabra clave </h2>
+    <h2 class="colores_h202">Color por función rgb(0,0,0)</h2>
+    <p class="colores_p01">Color por función rgb(255, 255, 255)</p>
+    <p class="colores_p02">Color por función rgb(125, 125, 125)</p>
+    <p class="colores_p03">Color por función rgb(255, 0, 0)</p>
+    <p class="colores_p04">Color por función rgb(30, 88, 200)</p>
+    <div class="">        
     </div>
 
 </body>
