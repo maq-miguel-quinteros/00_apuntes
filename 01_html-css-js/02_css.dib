@@ -2147,12 +2147,18 @@ La propiedad `box-shadow` permite agregar sombras a la caja de un elemento. La s
 
 Tenemos varias propiedades que permiten modificar el color en CSS.
 * `color`: indica el color que van a tener los textos en las cajas de los elementos.
+* `background-color`: indica el color que va a tener la capa de contenido y la capa de relleno de la caja del elemento, es decir, el color de fondo de la caja del elemento.
+* `border-color`: indica el color de la capa de borde del elemento.
+
+A su vez tenemos varias formas de indicar un valor para la propiedad `color`, `background-color` o `border-color`.
 
 #!markdown
 
-Tenemos varias formas de indicar un valor de color en CSS.
-* Mediante una palabra clave que representa un color. Indicamos como valor, básicamente, el nombre del color, por ejemplo, `red`, `green`, `blue`, u otros como `tomato`, `aquamarine`, `hotpink`, etc. Podemos consultar la lista completa de palabras clave que representan colores desde la web [https://www.w3schools.com/cssref/css_colors.php](https://www.w3schools.com/cssref/css_colors.php).
-* Mediante la función `rgb()`, que nos permite definir el color en base a 3 colores primarios. Las siglas `rgb` significan `red`, `green` y `blue`, y mediante estos 3 colores es que vamos a definir el color deseado. La función `rgb()` recibe como mínimo 3 valores, separados por coma, que van del 0 a 255 y se corresponden con valores de los colores `red`, `green` y `blue` de la forma `rgb(red, green, blue)`. 
+#### Valor de color por palabra clave
+
+#!markdown
+
+Mediante una palabra clave podemos indicar un valor para una propiedad de color. Indicamos como valor, básicamente, el nombre del color, por ejemplo, `red`, `green`, `blue`, u otros como `tomato`, `aquamarine`, `hotpink`, etc. Podemos consultar la lista completa de palabras clave que representan colores desde la web [https://www.w3schools.com/cssref/css_colors.php](https://www.w3schools.com/cssref/css_colors.php).
 
 #!html
 
@@ -2179,6 +2185,179 @@ Tenemos varias formas de indicar un valor de color en CSS.
             font-size: 42px;
 
             color:tomato;
+            background-color: aquamarine;
+        }
+
+        
+    </style>
+</head>
+
+<body class="universal body">
+    <h2 class="colores_h201">Color por palabra clave </h2>
+</body>
+
+</html>
+
+#!markdown
+
+#### Valores de color mediante la función `rgb()`
+
+#!markdown
+
+Mediante la función `rgb()` podemos indicar un valor para una propiedad de color. La función `rgb()` que nos permite definir el color en base a 3 colores primarios. Las siglas `rgb` significan `red`, `green` y `blue`, y mediante estos 3 colores es que vamos a definir el color deseado. La función `rgb()` recibe como mínimo 3 valores, separados por coma, que van del 0 a 255 y se corresponden con valores de los colores `red`, `green` y `blue` de la forma `rgb(red, green, blue)`. La función `rgb()` puede un cuarto valor correspondiente a la transparencia, que por defecto se encuentra en 1, indicando que no hay transparencia o que hay 0% de transparencia, y su valor mínimo, que es 0, que indica 100% de transparencia. Un ejemplo de un color con transparencia del 50% sería `rgb(263, 127, 78, 0.5)`. Esta forma de la función `rgb()` se conoce como rgba, donde a representa la letra `alpha`.
+
+#!html
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fondos & Colores</title>
+    <style>
+        .universal {
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .body {
+            font-family: Arial;
+        }
+
+        /* color por función rgb */
+        .colores_h202{
+            font-size: 42px;
+
+            color:rgb(0, 0, 0);
+
+            /* color rgb con transparencia del 50% */
+            background-color: rgb(30, 88, 200,0.5 );
+        }
+        .colores_p01{
+            /* color con transparencia del 70% */
+            color: rgb(255, 255, 255,0.3)
+        }
+        .colores_p02{
+            color: rgb(125, 125, 125);
+            background-color: rgb(255, 227, 194);
+        }
+
+        /* si damos de valor 255 a alguno de los tres parámetros y 0 a los otros dos obtenemos el color al que refiere el parámetro con 255, es decir, si damos valores rgb(0,255,0) obtenemos el color green que es el que corresponde al segundo parámetro */
+        .colores_p03{
+            color: rgb(255, 0, 0)
+        }
+        .colores_p04{
+
+            /* color con transparencia del 30% */
+            color: rgb(30, 88, 200, 0.7)
+        }
+    </style>
+</head>
+
+<body class="universal body">
+    <h2 class="colores_h202">Color por función rgb(0,0,0) y background-color rgb(30, 88, 200, 0.5) con transparencia</h2>
+    <p class="colores_p01">Color por función rgb(255, 255, 255,0.3) con transparencia</p>
+    <p class="colores_p02">Color por función rgb(125, 125, 125) y background-color rgb(255, 227, 194)</p>
+    <p class="colores_p03">Color por función rgb(255, 0, 0)</p>
+    <p class="colores_p04">Color por función rgb(30, 88, 200, 0.7) con transparencia</p>
+    <div class="">        
+    </div>
+
+</body>
+
+</html>
+
+#!markdown
+
+#### Valor de color mediante un número hexadecimal
+
+#!markdown
+
+Mediante un número hexadecimal podemos indicar un valor para una propiedad de color. Los números hexadecimales van desde el `0` hasta la letra `f`. Para indicar valor de color mediante un número hexadecimal tenemos que escribir `#` seguido de, como mínimo, 3 valores que indican el número hexadecimal, pero la mayoría de las veces vamos a escribir 6 valores de la forma `color: #ff0000`. Los primeros dos valores del número hexadecimal se corresponden con `red`, los dos del medio con `green` y los dos últimos con `blue`, similar a la función `rgb()`. Agregando 2 valores más a los 6 que componen el número hexadecimal del color tenemos la transparencia del mismo.
+
+#!html
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fondos & Colores</title>
+    <style>
+        .universal {
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .body {
+            font-family: Arial;
+        }
+
+        /* color por valor hexadecimal */
+        .colores_h203{
+            font-size: 42px;
+
+            color:#000000;
+
+            /* color por valor hexadecimal con transparencia del 50% */
+            background-color: #1e58c880;
+        }
+        .colores_p05{
+            /* color por valor hexadecimal con transparencia del 70% */
+            color: #ffffff4d
+        }
+        .colores_p06{
+            color: #7d7d7d;
+            background-color: #ffe3c2;
+        }
+
+        /* si damos de valor ff a alguno de las tres partes del número y 0 a las otras dos obtenemos el color al que refiere la parte con ff, es decir, si damos valores #00ff00 obtenemos el color green que es el que corresponde la segunda parte del número */
+        .colores_p07{
+            color: #ff0000
+        }
+        .colores_p08{
+
+            /* color por valor hexadecimal con transparencia del 30% */
+            color: #1e58c8b3
+        }
+    </style>
+</head>
+
+<body class="universal body">
+    <h2 class="colores_h203">Color por valor hexadecimal #000000 y background-color #1e58c880 con transparencia</h2>
+    <p class="colores_p05">Color por valor hexadecimal #ffffff4d con transparencia</p>
+    <p class="colores_p06">Color por valor hexadecimal #7d7d7d y background-color #ffe3c2</p>
+    <p class="colores_p07">Color por valor hexadecimal #ff0000</p>
+    <p class="colores_p08">Color por valor hexadecimal #1e58c8b3 con transparencia</p>
+    <div class="">        
+    </div>
+
+</body>
+
+</html>
+
+#!markdown
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fondos & Colores</title>
+    <style>
+        .universal {
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .body {
+            font-family: Arial;
         }
 
         /* color por función rgb */
