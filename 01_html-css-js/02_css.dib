@@ -2298,31 +2298,41 @@ Mediante un número hexadecimal podemos indicar un valor para una propiedad de c
         }
 
         /* color por valor hexadecimal */
-        .colores_h203{
+        .colores_h203 {
             font-size: 42px;
 
-            color:#000000;
+            color: #000000;
 
             /* color por valor hexadecimal con transparencia del 50% */
             background-color: #1e58c880;
         }
-        .colores_p05{
+
+        .colores_p05 {
             /* color por valor hexadecimal con transparencia del 70% */
             color: #ffffff4d
         }
-        .colores_p06{
+
+        .colores_p06 {
             color: #7d7d7d;
             background-color: #ffe3c2;
         }
 
         /* si damos de valor ff a alguno de las tres partes del número y 0 a las otras dos obtenemos el color al que refiere la parte con ff, es decir, si damos valores #00ff00 obtenemos el color green que es el que corresponde la segunda parte del número */
-        .colores_p07{
+        .colores_p07 {
             color: #ff0000
         }
-        .colores_p08{
+
+        .colores_p08 {
 
             /* color por valor hexadecimal con transparencia del 30% */
             color: #1e58c8b3
+        }
+
+        .colores_p08 {
+
+            /* si los valores son similares en los pares de números que componen el valor hexadecimal podemos abreviar de la forma color: #00cc00 es lo mismo a color: #0c0 */
+            color: #00cc00;
+            color: #0c0;
         }
     </style>
 </head>
@@ -2333,14 +2343,22 @@ Mediante un número hexadecimal podemos indicar un valor para una propiedad de c
     <p class="colores_p06">Color por valor hexadecimal #7d7d7d y background-color #ffe3c2</p>
     <p class="colores_p07">Color por valor hexadecimal #ff0000</p>
     <p class="colores_p08">Color por valor hexadecimal #1e58c8b3 con transparencia</p>
-    <div class="">        
-    </div>
+    <p class="colores_p09">Color por valor hexadecimal #1e58c8b3 con transparencia</p>
+
 
 </body>
 
 </html>
 
 #!markdown
+
+#### Valores de color mediante la función `hsl()`
+
+#!markdown
+
+Mediante la función `hsl()` podemos indicar un valor para una propiedad de color. La función `hsl()` que nos permite definir el color en base a 3 parámetros distintos. Las siglas `hsl` significan `hue`, `saturation` y `lightness`, y mediante estos 3 parámetros es que vamos a definir el color deseado. La función `hsl()` recibe como mínimo 3 parámetros, separados por coma. El primero es `hue`, que significa tono o matiz del color, y toma como valor un número que va de 0 a 360, correspondiendo con los grados del círculo cromático. El segundo parámetro es `saturation`, que significa saturación y toma como valor un número del 0% al 100%. El tercer parámetro es `lightness`, que significa luminosidad y toma como valor un número del 0% al 100%. La función `hsl()` puede recibir un cuarto parámetro correspondiente a la transparencia, que por defecto se encuentra en 1, indicando que no hay transparencia o que hay 0% de transparencia, y su valor mínimo, que es 0, que indica 100% de transparencia. Un ejemplo de un color con transparencia del 50% sería `hsl(240, 100%, 50%, 0.5)`. Esta forma de la función `hsl()` se conoce como hsla, donde a representa la letra `alpha`.
+
+#!html
 
 <!DOCTYPE html>
 <html lang="es">
@@ -2361,54 +2379,47 @@ Mediante un número hexadecimal podemos indicar un valor para una propiedad de c
         }
 
         /* color por función rgb */
-        .colores_h202{
+        .colores_h204{
             font-size: 42px;
 
-            color:rgb(0, 0, 0);
-        }
-        .colores_p01{
-            color: rgb(255, 255, 255)
-        }
-        .colores_p02{
-            color: rgb(125, 125, 125)
-        }
+            color: hsl(0, 100%, 0%);
 
-        /* si damos de valor 255 a alguno de los tres parámetros y 0 a los otros dos obtenemos el color al que refiere el parámetro con 255, es decir, si damos valores rgb(0,255,0) obtenemos el color green que es el que corresponde al segundo parámetro */
-        .colores_p03{
-            color: rgb(255, 0, 0)
+            /* color hsl con transparencia del 50% */
+            background-color: hsla(220, 74%, 45%, 0.5);
         }
-        .colores_p04{
-            color: rgb(30, 88, 200)
+        .colores_p10{
+            /* color con transparencia del 70% */
+            color: hsla(0, 0%, 100%, 0.3)
+        }
+        .colores_p11{
+            color: hsl(0, 0%, 49%);
+            background-color: hsl(32, 100%, 88%);
         }
 
+        .colores_p12{
+            color: hsl(0, 100%, 50%)
+        }
+        .colores_p13{
 
-
-
-
-
-
-
-        .colores_container {
-            margin: 50px auto;
-            width: 90%;
-            height: 500px;
-            background-image: linear-gradient(#d62eceaf, #283198a8), url('imagen.jpg');
-            background-size: cover;
-            background-position: center;
+            /* color con transparencia del 30% */
+            color: hsla(220, 74%, 45%, 0.7)
         }
     </style>
 </head>
 
 <body class="universal body">
-    <h2 class="colores_h201">Color por palabra clave </h2>
-    <h2 class="colores_h202">Color por función rgb(0,0,0)</h2>
-    <p class="colores_p01">Color por función rgb(255, 255, 255)</p>
-    <p class="colores_p02">Color por función rgb(125, 125, 125)</p>
-    <p class="colores_p03">Color por función rgb(255, 0, 0)</p>
-    <p class="colores_p04">Color por función rgb(30, 88, 200)</p>
+    <h2 class="colores_h204">Color por función rgb(0,0,0) y background-color rgb(30, 88, 200, 0.5) con transparencia</h2>
+    <p class="colores_p10">Color por función rgb(255, 255, 255,0.3) con transparencia</p>
+    <p class="colores_p11">Color por función rgb(125, 125, 125) y background-color rgb(255, 227, 194)</p>
+    <p class="colores_p12">Color por función rgb(255, 0, 0)</p>
+    <p class="colores_p13">Color por función rgb(30, 88, 200, 0.7) con transparencia</p>
     <div class="">        
     </div>
 
 </body>
 
 </html>
+
+#!markdown
+
+### Fondos
