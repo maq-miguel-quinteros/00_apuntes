@@ -2423,3 +2423,132 @@ Mediante la función `hsl()` podemos indicar un valor para una propiedad de colo
 #!markdown
 
 ### Fondos
+
+#!markdown
+
+Para agregar fondos a las cajas de los elementos en HTML utilizar el `shorthand` `background`. Los fondos afectan a la capa de contenido `content` y a la capa de relleno `padding`.
+
+* `background-color`: modificamos el color de fondo de las cajas del elemento de la misma forma que con la propiedad `color`.
+* `background-image`: agregamos una imagen de fondo mediante la función `url()`. Si la imagen es mas pequeña que la caja donde la ubicamos como fondo, la imagen se va a repetir hasta rellenar el total
+
+#!html
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fondos & Colores</title>
+    <style>
+        .universal {
+            margin: 0;
+            box-sizing: border-box;
+            padding: 0;
+        }
+
+        .body {
+            font-family: Arial;
+        }
+
+        .container {
+            width: 200px;
+            height: 200px;
+            display: inline-block;
+        }
+
+        .font {
+            color: red;
+        }
+
+        /* background-color */
+        .container01 {
+            background-color: brown;
+        }
+
+        .container02 {
+            background-color: rgb(210, 105, 30, 0.7);
+        }
+
+        /* background-image */
+        .container03 {
+            /* si el tamaño de la imagen es menor que las capas que la contienen por defecto la imagen se repite hasta rellenar  */
+            background-image: url("https://picsum.photos/100/100");
+        }
+
+        .container04 {
+            background-color: blanchedalmond;
+            background-image: url("https://picsum.photos/100/100");
+
+            /* podemos evitar que la imagen se repita o indicar que lo haga en la dirección de x o de y, además la propiedad admite otras opciones de repetición de la imagen */
+            background-repeat: no-repeat;
+
+            /* podemos ubicar la imagen dentro de las capas mediante la propiedad background-position que admite valores numéricos y de porcentajes, además de los valores top, right, bottom, left y center  */
+            background-position: right bottom;
+        }
+
+        .container05 {
+            background-color: blanchedalmond;
+            background-image: url("https://picsum.photos/200/300");
+            background-repeat: no-repeat;
+            background-position: right bottom;
+            
+            /* podemos cambiar el tamaño de la imagen según creamos conveniente indicando 2 valores a background-size siendo el primero en ancho y el segundo el alto */
+            background-size: 100px 50%;
+        }
+
+        .container06 {
+            background-color: blanchedalmond;
+            background-image: url("https://picsum.photos/200/300");
+            background-repeat: no-repeat;
+
+            /* mediante palabras clave podemos indicar el tamaño de la imagen para que, con la palabra reservada cover se estire al tamaño de las cajas quedando fuera de estas lo que excede de la imagen al tamaño de estas, o la palabra reservada contain que ajusta el tamaño de la imagen a las cajas, dejando espacios vacíos si si el ancho o alto de la imagen es menor en relación a las cajas */
+            background-size: contain;
+        }
+
+        .container07 {
+            background-color: blanchedalmond;
+            background-image: url("https://picsum.photos/200/300");
+            background-repeat: no-repeat;
+
+            background-size: cover;
+        }
+
+        .container08 {
+            /* podemos agregar degradado de colores encima de la imagen modificando su tonalidad mediante el uso de las funciones linear-gradient y url para la imagen */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(255, 0, 0, 0.4)), url("https://picsum.photos/200/200");            
+            
+        }
+    </style>
+</head>
+
+<body class="universal body">
+    <div class="container container01">
+        <p>background-color: brown</p>
+    </div>
+    <div class="container container02">
+        <p>background-color:rgb(210, 105, 30, 0.7)</p>
+    </div>
+    <div class="container container03 font">
+        <p>background-image: url("ruta de imagen")</p>
+    </div>
+    <div class="container container04 font">
+        <p>background-image: url("ruta de imagen")</p>
+    </div>
+    <div class="container container05 font">
+        <p>background-image: url("ruta de imagen")</p>
+    </div>
+    <div class="container container06 font">
+        <p>background-image: url("ruta de imagen")</p>
+    </div>
+        <div class="container container07 font">
+        <p>background-image: url("ruta de imagen")</p>
+    </div>
+    <div class="container container08 font">
+        <p>background-image: url("ruta de imagen")</p>
+    </div>
+
+</body>
+
+</html>
