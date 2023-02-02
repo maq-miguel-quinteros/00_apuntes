@@ -67,7 +67,7 @@ El código siguiente muestra una regla CSS muy simple que proporcionaría el est
     font-size: 5em;
 }
 </style>
-<h1 class="titlo">Título</h1>
+<h1 class="titulo">Título</h1>
 
 #!markdown
 
@@ -108,3 +108,148 @@ Una vez se ha especificado el CSS, solo es útil en el desarrollo de páginas we
 #!markdown
 
 ## Empezar con CSS
+
+#!markdown
+
+### Agregar CSS a un documento
+
+#!markdown
+
+Lo primero que se debe hacer es decirle al documento HTML que hay algunas reglas CSS que queremos que use. Hay tres formas diferentes de aplicar CSS a un documento HTML.
+
+1. Vincular un archivo CSS desde el encabezado del documento.
+
+2. otra
+
+3. otra
+
+#!markdown
+
+#### Vincular un archivo CSS
+
+#!markdown
+
+Crea un archivo en la misma carpeta que tu documento HTML o en otra de tu elección, y guárdalo como `styles.css`. La extensión .css muestra que es un archivo CSS.
+
+Para vincular `styles.css` a `index.html`, añade la siguiente línea en algún lugar dentro del `<head>` del documento HTML:
+
+```
+<link rel="stylesheet" href="styles.css">
+```
+Este elemento `<link>` le dice al navegador que hay una hoja de estilo con el atributo `rel` y la ubicación de esa hoja de estilo como el valor del atributo `href`.
+
+Guarda los archivos HTML y CSS antes de volver a cargar la página en un navegador web.
+
+#!markdown
+
+### Dar formato a elementos HTML
+
+#!markdown
+
+Para dar formato a un elemento HTML utilizamos un _selector de elementos_. El selector de elementos es un selector que coincide directamente con el nombre de un elemento HTML. Por ejemplo, para determinar todos los párrafos del documento, se usa el selector `p`.
+
+#!html
+
+<style>
+    
+    /* mediante el selector de elementos p indicamos que todos los elementos de etiqueta p tengan la fuente en color verde */
+    p {
+        color: green;
+    }
+</style>
+<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta modi dolores quibusdam fugiat et in, explicabo consequatur fugit officiis neque minus nihil repudiandae? Aliquam, earum rem. Eos laudantium itaque officia!</p>
+
+#!markdown
+
+Puedes determinar múltiples selectores a la vez, separándolos con una coma.
+
+#!html
+
+<style>
+
+    /* mediante el selector de elementos p indicamos que todos los elementos de etiqueta p tengan la fuente en color verde */
+    h1, li {
+        color: red;
+    }
+</style>
+<h1>I am a level one heading</h1>
+<ol>
+    <li>Item one</li>
+    <li>Item two</li>
+    <li>Item <em>three</em></li>
+</ol>
+
+#!markdown
+
+### Cambiar el comportamiento predeterminado de los elementos
+
+#!markdown
+
+Cuando miramos un documento HTML bien marcado, incluso con algo tan simple como nuestro ejemplo, podemos ver que el navegador facilita la legibilidad de este documento HTML al añadir un estilo predeterminado. Los títulos se muestran grandes y en negrita, y la lista tiene viñetas. Esto sucede porque los navegadores tienen hojas de estilo internas que contienen estilos predeterminados, los cuales se aplican a todas las páginas por defecto. Todos los navegadores modernos muestran el contenido HTML por defecto de la misma manera.
+
+Mediante CSS podemos escoger el elemento HTML que queremos cambiar y utilizar una regla CSS para cambiar su apariencia.  Por ejemplo el elemento `<ul>`, que muestra una lista desordenada, tiene viñetas y, si decidimos que no las queremos, podemos eliminarlas.
+
+#!html
+
+<style>
+
+    /* utilizamos el selector de elemento ul e indicamos mediante la propiedad y valor list-style-type: none que no queremos ver las viñetas que el elemento tiene por defecto */
+    ul {
+        list-style-type: none;
+    }
+</style>
+<ul>
+    <li>Item one</li>
+    <li>Item two</li>
+    <li>Item <em>three</em></li>
+</ul>
+
+#!markdown
+
+### Añadir una clase
+
+#!markdown
+
+Hasta ahora, hemos utilizado elementos cuyo nombre se basa en el nombre de elemento que reciben en HTML. Para seleccionar un subconjunto de los elementos sin que cambien los demás la forma más común es añadir una clase al elemento HTML y determinarla. En tu documento HTML, añade un atributo de clase de la forma `class="nombre_clase"`. En tu CSS, puedes seleccionar una clase special creando un selector que comience con un carácter de punto final de la forma `.nombre_clase`.
+
+#!html
+
+<style>
+    
+    /* utilizamos el selector de clase .special y modificamos el color de la fuente y su peso */
+    .special {
+        color: orange;
+        font-weight: bold;
+    }
+</style>
+<ul>
+    <li>Punto uno</li>
+
+    <!-- añadimos un atributo de clase al elemento li -->
+    <li class = "special">Punto dos</li>
+    <li>Punto <em>tres</em></li>
+</ul>
+
+#!markdown
+
+Puedes aplicar la clase special a cualquier elemento de la página que desees que tenga el mismo aspecto que este elemento de lista. Por ejemplo, es posible que desees que el `<span>` del párrafo también sea naranja y en negrita.
+
+A veces verás reglas con un selector que enumera el selector de elementos HTML junto con la clase:
+
+```
+li.special {
+  color: orange;
+  font-weight: bold;
+}
+```
+Esta sintaxis significa «determina cualquier elemento li que tenga una clase special». Si hicieras esto, ya no podrías aplicar la clase a un elemento <span> u otro elemento simplemente añadiéndole la clase; tendrías que añadir ese elemento a la lista de selectores:
+```
+li.special, span.special {
+  color: orange;
+  font-weight: bold;
+}
+```
+
+#!markdown
+
+### Dar formato según la ubicación en un documento
