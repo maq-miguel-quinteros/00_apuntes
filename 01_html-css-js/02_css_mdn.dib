@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"name":"csharp","aliases":["c#","C#"],"languageName":"C#"},{"name":"fsharp","aliases":["f#","F#"],"languageName":"F#"},{"name":"pwsh","aliases":["powershell"],"languageName":"PowerShell"},{"name":"javascript","aliases":["js"],"languageName":"JavaScript"},{"name":"html","aliases":[],"languageName":"HTML"},{"name":"sql","aliases":[],"languageName":"SQL"},{"name":"kql","aliases":[],"languageName":"KQL"},{"name":"mermaid","aliases":[],"languageName":"Mermaid"},{"name":"httpRequest","languageName":"http","aliases":[]},{"name":"value","aliases":[]},{"name":".NET","aliases":[]},{"name":"vscode","aliases":["frontend"]},{"name":"webview","aliases":[]}]}}
 
 #!markdown
 
@@ -34,7 +34,7 @@ Usando CSS se pueden controlar con precisión cómo se ven los elementos HTML en
 
 #!markdown
 
-### ¿Para qué sirve el CSS?
+#### ¿Para qué sirve el CSS?
 
 #!markdown
 
@@ -50,7 +50,7 @@ El CSS se puede usar para estilos de texto muy básicos como, por ejemplo, cambi
 
 #!markdown
 
-### Sintaxis del CSS
+#### Sintaxis del CSS
 
 #!markdown
 
@@ -79,7 +79,7 @@ Antes de los dos puntos, tenemos la propiedad; y después, el valor. Las propied
 
 #!markdown
 
-### Módulos CSS
+#### Módulos CSS
 
 #!markdown
 
@@ -87,7 +87,7 @@ Como hay tantas cosas que se podrían diseñar usando CSS, el lenguaje se divide
 
 #!markdown
 
-#### Especificaciones CSS
+##### Especificaciones CSS
 
 #!markdown
 
@@ -107,11 +107,11 @@ Una vez se ha especificado el CSS, solo es útil en el desarrollo de páginas we
 
 #!markdown
 
-## Empezar con CSS
+### Empezar con CSS
 
 #!markdown
 
-### Agregar CSS a un documento
+#### Agregar CSS a un documento
 
 #!markdown
 
@@ -125,7 +125,7 @@ Lo primero que se debe hacer es decirle al documento HTML que hay algunas reglas
 
 #!markdown
 
-#### Vincular un archivo CSS
+##### Vincular un archivo CSS
 
 #!markdown
 
@@ -142,7 +142,7 @@ Guarda los archivos HTML y CSS antes de volver a cargar la página en un navegad
 
 #!markdown
 
-### Dar formato a elementos HTML
+#### Dar formato a elementos HTML
 
 #!markdown
 
@@ -181,7 +181,7 @@ Puedes determinar múltiples selectores a la vez, separándolos con una coma.
 
 #!markdown
 
-### Cambiar el comportamiento predeterminado de los elementos
+#### Cambiar el comportamiento predeterminado de los elementos
 
 #!markdown
 
@@ -206,7 +206,7 @@ Mediante CSS podemos escoger el elemento HTML que queremos cambiar y utilizar un
 
 #!markdown
 
-### Añadir una clase
+#### Añadir una clase
 
 #!markdown
 
@@ -252,7 +252,7 @@ li.special, span.special {
 
 #!markdown
 
-### Dar formato según la ubicación en un documento
+#### Dar formato según la ubicación en un documento
 
 #!markdown
 
@@ -287,7 +287,7 @@ Podemos dar formato un elemento que venga directamente a continuación de otro e
 
 #!markdown
 
-### Dar formato según el estado
+#### Dar formato según el estado
 
 #!markdown
 
@@ -312,7 +312,7 @@ Podemos dar formato a los elementos en función de su estado. Para utilizarlos e
 
 #!markdown
 
-### Combinaciones de selectores y combinadores
+#### Combinaciones de selectores y combinadores
 
 #!markdown
 
@@ -333,15 +333,15 @@ Vale la pena señalar que puedes hacer múltiples combinaciones de selectores y 
 
 #!markdown
 
-## Cómo se estructura el CSS
+### Cómo se estructura el CSS
 
 #!markdown
 
-### Aplicar CSS al HTML
+#### Aplicar CSS al HTML
 
 #!markdown
 
-#### Hoja de estilo externa
+##### Hoja de estilo externa
 
 #!markdown
 
@@ -384,7 +384,7 @@ En el ejemplo anterior, el archivo CSS está en la misma carpeta que el document
 
 #!markdown
 
-#### Hoja de estilo interna
+##### Hoja de estilo interna
 
 #!markdown
 
@@ -422,7 +422,7 @@ Esto puede ser útil en algunas circunstancias, pero no es tan eficiente como la
 
 #!markdown
 
-#### Estilos en línea
+##### Estilos en línea
 
 #!markdown
 
@@ -437,7 +437,7 @@ Los estilos en línea son declaraciones CSS que afectan a un solo elemento, cont
 
 #!markdown
 
-### Selectores
+#### Selectores
 
 #!markdown
 
@@ -457,8 +457,82 @@ Cada regla CSS comienza con un selector o una lista de selectores que indican al
 
 #!markdown
 
-#### Especificidad
+##### Especificidad
 
 #!markdown
 
-A menudo habrá situaciones en las que dos selectores podrían determinar un mismo elemento HTML. 
+A menudo habrá situaciones en las que dos selectores podrían determinar un mismo elemento HTML. Digamos que en nuestro documento HTML hay un párrafo con una clase `special` y tenemos reglas de estilos, tanto para el elemento `p` como para la clase `special`. Ambas reglas podrían aplicarse. ¿Cuál ganará?
+
+El lenguaje CSS tiene reglas para controlar cuál ganará en caso de colisión; estas reglas reciben el nombre de cascada y especificidad. En caso de tener dos selectores iguales aplican las reglas que aparece más abajo en la hoja de estilo, y los estilos posteriores anulan a los anteriores. Así funciona la regla de la cascada. Sin embargo, en el caso de tener reglas para un elemento que contiene un selector de clase y reglas para su selector de elementos, la clase ganará. Una clase se describe de forma más específica o con más especificidad que el selector de elementos, razón por la que gana.
+
+#!markdown
+
+#### Propiedades y valores
+
+#!markdown
+
+En su nivel más básico, el CSS consta de dos componentes básicos:
+
+* Propiedades: Identificadores legibles por los humanos que indican qué características de estilo (por ejemplo, `font-size`, `width`, `background-color`) deseas cambiar.
+
+* Valores: A cada propiedad especificada se le asigna un valor que indica cómo quieres que cambien esas características de estilo (por ejemplo, lo que quieres que cambie de la fuente, el ancho o el color de fondo).
+
+La siguiente imagen resalta una sola propiedad y valor. El nombre de la propiedad es `color` y el valor `blue`.
+```
+h1 {
+    color: blue;
+    background-color: yellow;
+}
+```
+Una propiedad emparejada con un valor se denomina declaración CSS. Las declaraciones CSS se colocan dentro de los bloques de declaración CSS. Finalmente, los bloques de declaración CSS se combinan con selectores para producir conjuntos de reglas CSS (o reglas CSS).
+
+Establecer las propiedades de CSS según valores específicos es la función principal del lenguaje CSS. El motor CSS calcula qué declaraciones se aplican a cada elemento de una página para darle la compaginación y los estilos adecuados.
+>Advertencia: Las propiedades y valores de CSS son sensibles a mayúsculas y minúsculas. La propiedad y el valor de cada par están separados por dos puntos `(:)`.
+
+>Advertencia: Si una propiedad es desconocida o si un valor no es válido para una propiedad determinada, la declaración se considera inválida y el motor CSS del navegador la ignora por completo.
+
+#!markdown
+
+##### Las funciones
+
+#!markdown
+
+Si bien la mayoría de valores son palabras clave relativamente simples o valores numéricos, es posible que algunos valores tomen la forma de una función. Un ejemplo sería la función `calc()`. Esta función te permite hacer operaciones matemáticas sencillas desde tu CSS.
+
+#!html
+
+<style>
+    .outer {
+        border: 5px solid black;
+    }
+
+    .box {
+        padding: 10px;
+        /* indicamos que el ancho de esta caja sea del 90% del ancho del bloque que la contiene, menos 30 píxeles */
+        width: calc(90% - 30px);
+        background-color: rebeccapurple;
+        color: white;
+    }
+</style>
+<div class="outer"> <div class="box">La caja interior es del 90% - 30px.</div></div>
+
+#!markdown
+
+Una función consta del nombre de la función y, a continuación, unos paréntesis entre los que se colocan los valores permitidos para esa función. Otro ejemplo serían los diversos valores para `transform`, como `rotate()`.
+
+#!html
+
+<style>
+    .box2 {
+        margin: 30px;
+        width: 100px;
+        height: 100px;
+        background-color: rebeccapurple;
+        transform: rotate(0.8turn)
+    }
+</style>
+<div class="box2"></div>
+
+#!markdown
+
+#### @rules
