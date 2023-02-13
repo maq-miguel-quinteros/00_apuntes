@@ -2429,7 +2429,8 @@ Mediante la función `hsl()` podemos indicar un valor para una propiedad de colo
 Para agregar fondos a las cajas de los elementos en HTML utilizar el `shorthand` `background`. Los fondos afectan a la capa de contenido `content` y a la capa de relleno `padding`.
 
 * `background-color`: modificamos el color de fondo de las cajas del elemento de la misma forma que con la propiedad `color`.
-* `background-image`: agregamos una imagen de fondo mediante la función `url()`. Si la imagen es mas pequeña que la caja donde la ubicamos como fondo, la imagen se va a repetir hasta rellenar el total
+
+* `background-image`: agregamos una imagen de fondo mediante la función `url()`. Si la imagen es mas pequeña que la caja donde la ubicamos como fondo, la imagen se va a repetir hasta rellenar el total.
 
 #!html
 
