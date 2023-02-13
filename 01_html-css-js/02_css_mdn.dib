@@ -880,3 +880,138 @@ blockquote {
 #!markdown
 
 #### Comprender la cascada
+
+#!markdown
+
+Vamos a echar un vistazo a la forma en que el concepto de cascada define qué reglas CSS se aplican cuando más de un elemento de estilo puede aplicar estilo a un elemento.
+
+Hay que considerar tres factores, que se enumeran a continuación en orden de importancia creciente. Los posteriores invalidan los anteriores:
+
+* Orden en el código
+
+* Especificidad
+* Importancia
+
+#!markdown
+
+##### Orden en el código
+
+#!markdown
+
+El orden en el código es importante en el concepto de cascada. Si tienes más de una regla con exactamente el mismo peso, la que ocupa el último lugar en el CSS gana. Puedes entenderlo como que las reglas que están más cerca del elemento considerado sobreescriben las anteriores hasta que la última gana y da formato al elemento.
+
+#!markdown
+
+##### Especificidad
+
+#!markdown
+
+ Te encontrarás en alguna situación en la que sabes cuál es la última norma en la hoja de estilo, pero se aplica una regla anterior. Esto se debe a que la regla anterior tiene una especificidad mayor, es decir, es más específica y, por lo tanto, el navegador la escoge como la que debe dar forma al elemento.
+
+ Un selector de clase tiene más peso que un selector de elemento, por lo que las propiedades que se definen en la clase tienen prioridad sobre las que se aplican directamente en el elemento.
+
+ Un elemento que hay que tener en cuenta es que aunque pensamos en términos de selectores y reglas que se aplican a lo que estos seleccionan, no es toda la regla lo que se sobrescribe, sino solo las propiedades que entran en conflicto.
+
+ Este comportamiento ayuda a evitar repeticiones en el CSS. Una práctica común es definir estilos genéricos para los elementos básicos y luego, crear clases para los elementos que son diferentes.
+
+#!html
+
+<style>
+h2 {
+    font-size: 2em;
+    color: greenyellow;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+        
+.small {
+    font-size: 1em;
+}
+        
+.bright {
+    color: fuchsia;
+} 
+</style>
+<h2>Heading with no class</h2>
+<h2 class="small">Heading with class of small</h2>
+<h2 class="bright">Heading with class of bright</h2>
+
+#!markdown
+
+Ahora vamos a echar un vistazo a cómo el navegador calcula la especificidad. Ya sabemos que un selector de elemento tiene una especificidad baja y se puede sobrescribir con un elemento de clase. Esencialmente se otorga un valor de puntos a los diferentes tipos de selectores y la suma de estos establece la importancia de ese selector en particular, que a continuación puede evaluarse ante otras posibles coincidencias.
+
+La cantidad de especificidad de un selector se mide usando cuatro valores diferentes (o componentes), que pueden describirse como millares, centenas, decenas y unidades (cuatro dígitos individuales dispuestos en cuatro columnas):
+
+* Millares: Se suma un punto en esta columna si la declaración está en un atributo de style o, como suelen denominarse, estilos en línea. Tales declaraciones no tienen selectores, por lo que su especificidad siempre es 1000.
+
+* Centenas: Se suma un punto en esta columna por cada selector con ID particular que esté contenido en el selector general.
+* Decenas: Se suma un punto en esta columna por cada selector de clase, de atributo o pseudoclase que estén contenidos en el selector general.
+* Unidades: Se suma un punto en esta columna por cada selector o pseudoelemento que esté contenido en el selector general.
+
+>Nota: El selector universal (*), los operadores de combinación (+, >, ~, ' ') y la pseudo-clase de negación (:not) no tienen ningún efecto sobre la especificidad.
+
+#!markdown
+
+La tabla siguiente muestra algunos ejemplos concretos.
+|Selector|Millares|Centenas|Decenas|Unidades|Especificidad total|
+|---|---|---|---|---|---|
+|h1|0|0|0|1|0001|
+|h1 + p::first-letter|0|0|0|3|0003|
+|li > a[href*="en-US"] > .inline-warning|0|0|2|2|0022|
+|#identifier|0|1|0|0|0100|
+|Sin selector, con una regla en el atributo de un elemento style|1|0|0|0|1000|
+
+#!html
+
+<style>
+    /* 1. specificity: 1-0-1 */
+#outer a {
+    background-color: red;
+}
+/* 2. specificity: 2-0-1 */
+#outer #inner a {
+    background-color: blue;
+}
+
+/* 3. specificity: 1-0-4 */
+#outer div ul li a {
+    color: yellow;
+}
+
+/* 4. specificity: 1-1-3 */
+#outer div ul .nav a {
+    color: white;
+}
+
+/* 5. specificity: 0-2-4 */
+div div li:nth-child(2) a:hover {
+    border: 10px solid black;
+}
+
+/* 6. specificity: 0-2-3 */
+div li:nth-child(2) a:hover {
+    border: 10px dashed black;
+}
+
+/* 7. specificity: 0-3-3 */
+div div .nav:nth-child(2) a:hover {
+    border: 10px double black;
+}
+
+a {
+    display: inline-block;
+    line-height: 40px;
+    font-size: 20px;
+    text-decoration: none;
+    text-align: center;
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style-type: none;
+}
+</style>
