@@ -962,56 +962,70 @@ La tabla siguiente muestra algunos ejemplos concretos.
 
 #!html
 
+<!-- Ejemplo de niveles de especificidad -->
 <style>
     /* 1. specificity: 1-0-1 */
-#outer a {
-    background-color: red;
-}
-/* 2. specificity: 2-0-1 */
-#outer #inner a {
-    background-color: blue;
-}
-
-/* 3. specificity: 1-0-4 */
-#outer div ul li a {
-    color: yellow;
-}
-
-/* 4. specificity: 1-1-3 */
-#outer div ul .nav a {
-    color: white;
-}
-
-/* 5. specificity: 0-2-4 */
-div div li:nth-child(2) a:hover {
-    border: 10px solid black;
-}
-
-/* 6. specificity: 0-2-3 */
-div li:nth-child(2) a:hover {
-    border: 10px dashed black;
-}
-
-/* 7. specificity: 0-3-3 */
-div div .nav:nth-child(2) a:hover {
-    border: 10px double black;
-}
-
-a {
-    display: inline-block;
-    line-height: 40px;
-    font-size: 20px;
-    text-decoration: none;
-    text-align: center;
-    width: 200px;
-    margin-bottom: 10px;
-}
-
-ul {
-    padding: 0;
-}
-
-li {
-    list-style-type: none;
-}
+    #outer a {
+        background-color: red;
+    }        
+    /* 2. specificity: 2-0-1 */
+    #outer #inner a {
+        background-color: blue;
+    }
+    /* 3. specificity: 1-0-4 */
+    #outer div ul li a {
+        color: yellow;
+    }
+    /* 4. specificity: 1-1-3 */
+    #outer div ul .nav a {
+        color: white;
+    }
+    /* 5. specificity: 0-2-4 */
+    div div li:nth-child(2) a:hover {
+        border: 10px solid black;
+    }
+    /* 6. specificity: 0-2-3 */
+    div li:nth-child(2) a:hover {
+        border: 10px dashed black;
+    }
+    /* 7. specificity: 0-3-3 */
+    div div .nav:nth-child(2) a:hover {
+        border: 10px double black;
+    }
+    a {
+        display: inline-block;
+        line-height: 40px;
+        font-size: 20px;
+        text-decoration: none;
+        text-align: center;
+        width: 200px;
+        margin-bottom: 10px;
+    }
+    ul {
+        padding: 0;
+    }
+    li {
+        list-style-type: none;
+    }    
 </style>
+<div id="outer" class="container">
+    <div id="inner" class="container">
+        <ul>
+            <li class="nav"><a href="#">One</a></li>
+            <li class="nav"><a href="#">Two</a></li>
+        </ul>
+    </div>
+</div>
+
+#!markdown
+
+¿Que es lo que sucede?
+
+* Los dos primeros selectores compiten sobre el estilo del color del fondo del vínculo (el segundo gana y por eso el color de fondo es azul, porque en la cadena hay un selector con ID particular extra: la especificidad es de 201 contra 101).
+
+* El tercer y el cuarto selector compiten sobre el estilo del color del texto del enlace (el segundo gana y hace que el texto sea blanco porque, aunque tiene un selector de elemento de menos, el selector que falta se sustituye por un selector de clase, con un valor de decena en vez de un valor de unidad). Así que la especificidad es de 113 contra 104.
+* Los selectores 5-7 compiten por el estilo del borde del vínculo cuando el cursor se desplaza sobre estos. El sexto selector pierde claramente ante el quinto con una especificidad de 23 contra 24. En la cadena hay un selector de elemento de menos. El séptimo selector, sin embargo, los supera a ambos: en la cadena hay el mismo número de estos subselectores que en el quinto, pero se ha intercambiado un elemento por un selector de clase. Así que la especificidad es de 33 contra 23 y 24.
+
+>Nota: Cada tipo de selector tiene su nivel de especificidad propio, que no pueden sobrescribir los selectores con un nivel de especificidad menor. Por ejemplo, un millar de selectores de clase combinados no serían capaces de sobrescribir las reglas de un selector ID. 
+
+>Una forma más precisa de evaluar la especificidad sería anotar los niveles de especificidad individualmente de mayor a menor. Solo cuando hay empate entre las puntuaciones de los selectores dentro de un nivel especifico será necesario evaluar el nivel inferior siguiente; de lo contrario, puedes prescindir de los selectores de especificidad de los niveles inferiores, ya que nunca pueden sobrescribir los niveles de especificidad más altos.
