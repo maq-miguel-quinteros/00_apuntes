@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"csharp","items":[{"name":"csharp","languageName":"C#","aliases":["c#","C#"]},{"name":"fsharp","languageName":"F#","aliases":["f#","F#"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML","aliases":[]},{"name":"sql","languageName":"SQL","aliases":[]},{"name":"kql","languageName":"KQL","aliases":[]},{"name":"mermaid","languageName":"Mermaid","aliases":[]},{"name":"httpRequest","languageName":"http","aliases":[]},{"name":"value","aliases":[]},{"name":".NET","aliases":[]},{"name":"vscode","aliases":["frontend"],"languageName":null},{"name":"webview","aliases":[]}]}}
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"name":"csharp","aliases":["c#","C#"],"languageName":"C#"},{"name":"fsharp","aliases":["f#","F#"],"languageName":"F#"},{"name":"pwsh","aliases":["powershell"],"languageName":"PowerShell"},{"name":"javascript","aliases":["js"],"languageName":"JavaScript"},{"name":"html","aliases":[],"languageName":"HTML"},{"name":"sql","aliases":[],"languageName":"SQL"},{"name":"kql","aliases":[],"languageName":"KQL"},{"name":"mermaid","aliases":[],"languageName":"Mermaid"},{"name":"httpRequest","languageName":"http","aliases":[]},{"name":"value","aliases":[]},{"name":".NET","aliases":[]},{"name":"vscode","aliases":["frontend"]},{"name":"webview","aliases":[]}]}}
 
 #!markdown
 
@@ -1029,3 +1029,222 @@ La tabla siguiente muestra algunos ejemplos concretos.
 >Nota: Cada tipo de selector tiene su nivel de especificidad propio, que no pueden sobrescribir los selectores con un nivel de especificidad menor. Por ejemplo, un millar de selectores de clase combinados no serían capaces de sobrescribir las reglas de un selector ID. 
 
 >Una forma más precisa de evaluar la especificidad sería anotar los niveles de especificidad individualmente de mayor a menor. Solo cuando hay empate entre las puntuaciones de los selectores dentro de un nivel especifico será necesario evaluar el nivel inferior siguiente; de lo contrario, puedes prescindir de los selectores de especificidad de los niveles inferiores, ya que nunca pueden sobrescribir los niveles de especificidad más altos.
+
+#!markdown
+
+##### Propiedad `!important`
+
+#!markdown
+
+La propiedad `!important` se puede utilizar para anular todos los cálculos anteriores. Se utiliza para convertir una propiedad y un valor particular en el elemento más específico, de modo que se invalidan las reglas normales de la cascada.
+
+#!html
+
+<style>
+    #winning {
+        background-color: red;
+        border: 1px solid black;
+    }    
+    .better {
+        background-color: gray;
+        border: none !important;
+    }    
+    p {
+        background-color: blue;
+        color: white;
+        padding: 5px;
+    }          
+</style>
+<p class="better">This is a paragraph.</p>
+<p class="better" id="winning">One selector to rule them all!</p>
+
+#!markdown
+
+¿Qué es lo que sucede?
+* Se han aplicado los valores de `color` y `padding` de la tercera regla pero no el de `background-color`. ¿Por qué? Deberían haberse aplicado para los tres porque las reglas que se encuentran más adelante en el orden en el código fuente prevalecen sobre las reglas anteriores.
+
+* Sin embargo, ganan las reglas que están antes porque los selectores de clase tienen mayor especificidad que selectores de elemento.
+* En ambos bloques de código hay una clase class con el valor `better`, pero en el segundo bloque de código hay un id con el valor `winning`. Puesto que los identificadores tienen una especificidad incluso mayor que las clases, el primer bloque de código tendría un fondo de color gris y ningún borde, según lo que especifica la clase, mientras que al segundo bloque de código se aplicarían tanto el color de fondo rojo como el borde negro de 1 píxel.
+* El segundo elemento, en cambio, se muestra con el fondo de color rojo pero sin borde. ¿Por qué? Porque la declaración `!important` que hay en la segunda regla, después de `border: none` significa que esta declaración tendrá más valor que la regla anterior, aunque el ID de esta tenga mayor especificidad.
+
+> Nota: La única manera de anular la declaración `!important` sería incluir otra declaración `!important` en una declaración con la misma especificidad que aparezca más adelante en el orden del código fuente, o con una especificidad superior.
+
+__Te recomendamos que no utilices `!important` a menos que sea absolutamente necesario__. `!important` cambia el modo en que suele funcionar la cascada, por lo que puede dificultar mucho la depuración de problemas en el CSS, especialmente en una hoja de estilo grande.
+
+#!markdown
+
+### Selectores CSS
+
+#!markdown
+
+#### ¿Qué es un selector?
+
+#!markdown
+
+Un selector CSS es la primera parte de una regla CSS. Es un patrón de elementos y otros términos que indican al navegador qué elementos HTML se seleccionan para aplicarles una regla que incluye los valores de las propiedades CSS. El elemento o los elementos seleccionados por el selector se denominan _sujeto del selector_.
+
+En CSS, los selectores se definen en la especificación de selectores de CSS correspondiente; al igual que cualquier otro elemento de CSS, es necesario que los navegadores los admitan para que funcionen. La mayoría de los selectores que encontrarás se definen en especificación de [nivel 3 de selectores](https://www.w3.org/TR/selectors-3/), que es una especificación consolidada y, por lo tanto, la mayoría de navegadores admitirán esos selectores.
+
+#!markdown
+
+#### Listas de selectores
+
+#!markdown
+
+Si más de un elemento utiliza el mismo CSS, puedes combinar los selectores en una lista de selectores para que la regla se aplique a cada uno de los selectores individuales.
+```
+h1, .special {
+  color: blue;
+}
+```
+
+Cuando agrupas los selectores de esta manera, si alguno de los selectores no es válido, el navegador sencillamente ignora toda la regla.
+
+#!markdown
+
+#### Tipos de selectores
+
+#!markdown
+
+##### Selectores de tipo, de clase y de ID
+
+#!markdown
+
+Este grupo incluye selectores que delimitan un elemento HTML, como por ejemplo un `h1 { }`, una clase `.box { }` o un ID `#unique { }`.
+
+#!markdown
+
+##### Selectores de atributo
+
+#!markdown
+
+Este grupo de selectores te proporciona diferentes formas de seleccionar elementos según la presencia de un atributo determinado en un elemento `a[title] { }`, o incluso hacer una selección basada en la presencia de un atributo que tiene un valor particular asignado `a[href="https://example.com"] { }`.
+
+#!markdown
+
+##### Las pseudoclases y los pseudoelementos
+
+#!markdown
+
+Este grupo de selectores incluye pseudoclases, que aplican estilo a ciertos estados de un elemento. La pseudoclase `:hover`, por ejemplo, selecciona un elemento solo cuando se le pasa el ratón por encima. La sintaxis es la siguiente `a: hover {}`.
+
+También incluye pseudoelementos, que seleccionan una parte determinada de un elemento en vez del elemento en sí. Por ejemplo, ::first-line siempre selecciona la primera línea del texto que se encuentra dentro de un elemento, por ejemplo, `p::first-line { }`.
+
+#!markdown
+
+##### Combinadores
+
+#!markdown
+
+El último grupo de selectores combina otros selectores con el fin de delimitar elementos de nuestros documentos. El ejemplo siguiente selecciona los párrafos que son hijos directos del elemento `<article>` utilizando el operador de combinación hijo (`>`): `article > p { }`.
+
+#!markdown
+
+#### Selectores de tipo, clase e ID
+
+#!markdown
+
+##### Selector de tipo
+
+#!markdown
+
+Un __selector de tipo__ también recibe el nombre de _selector de nombre de etiqueta_ o _selector de elemento_ porque selecciona un elemento/etiqueta HTML del documento. Los estilos se aplican a todas las instancias del elemento al que hace referencia el selector.
+
+#!html
+
+<style>
+    span {
+        background-color: yellow;
+    }
+    strong {
+        color: rebeccapurple;
+    }
+    em {
+        color: rebeccapurple;
+    }    
+</style>
+<h1>Type selectors</h1>
+<p>Veggies es bonus vobis, proinde vos postulo essum magis <span>kohlrabi welsh onion</span> daikon amaranth tatsoi tomatillo melon azuki bean garlic.</p>
+<p>Gumbo beet greens corn soko <strong>endive</strong> gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.</p>
+<p>Turnip greens yarrow ricebean rutabaga <em>endive cauliflower</em> sea lettuce kohlrabi amaranth water spinach avocado daikon napa cabbage asparagus winter purslane kale. Celery potato scallion desert raisin horseradish spinach</p>
+
+#!markdown
+
+##### El selector universal
+
+#!markdown
+
+El selector universal se indica con un asterisco (`*`) y selecciona todos los elementos del documento (o del elemento padre si está encadenado con otro elemento y un operador de combinación descendente, por ejemplo).
+
+#!html
+
+<style>
+    /* utilizamos el selector universal para eliminar los márgenes en todos los elementos */
+    * {
+        margin: 0;
+    }
+</style>
+<h1>Universal selector</h1>
+<p>Veggies es bonus vobis, proinde vos postulo essum magis <span>kohlrabi welsh onion</span> daikon amaranth tatsoi tomatillo melon azuki bean garlic.</p>
+<p>Gumbo beet greens corn soko <strong>endive</strong> gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.</p>
+
+#!markdown
+
+Es posible observar este tipo de comportamiento en las «hojas de estilo de puesta a cero» (o «hojas de estilo reset»), que anulan el formato del navegador.
+
+#!markdown
+
+##### Uso del selector universal para facilitar la legibilidad de tus selectores
+
+#!markdown
+
+Uno de los usos del selector universal es facilitar la legibilidad de los selectores y clarificar sus funciones. Por ejemplo, si quiero seleccionar el primer elemento hijo de cualquier elemento `<article>` y poner ese elemento, cualquiera que sea, en negrita, puedo utilizar el selector `:first-child`, que veremos con mayor detalle más adelante en el artículo de `pseudoclases` y `pseudoelementos`, como selector descendente junto con el selector de elemento `<article>`.
+
+Sin embargo, esto podría confundirse con `article:first-child`, que selecciona cualquier elemento `<article>` que sea el primer elemento hijo de otro elemento.
+
+Para evitar esta confusión podemos añadir al selector `:first-child` el selector universal. De este modo la función del selector resulta obvia: seleccionará cualquier elemento que entre en la jerarquía de primer hijo de un elemento `<article>`.
+
+#!markdown
+
+#### Selectores de clase
+
+#!markdown
+
+El selector de clase comienza con un punto (`.`) y selecciona todo elemento del documento que esté afectado por esa clase.
+
+#!html
+
+<style>
+    /* creamos una clase llamada .highlight y la aplicamos en varios lugares del documento */
+    .highlight {
+        background-color: yellow;
+    }
+</style>
+<h1 class="highlight">Class selectors</h1>
+<p>Veggies es bonus vobis, proinde vos postulo essum magis <span class="highlight">kohlrabi welsh onion</span> daikon amaranth tatsoi tomatillo melon azuki bean garlic.</p>
+<p class="highlight">Gumbo beet greens corn soko <strong>endive</strong> gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.</p>
+
+#!markdown
+
+##### Delimitación de clases en elementos particulares
+
+#!markdown
+
+Puedes crear un selector que seleccionará los elementos concretos que estén afectados por esa clase. Para ello hay que anexar esa clase al selector de tipo correspondiente al elemento que queremos delimitar, sin dejar entre ellos ningún espacio.
+
+Este enfoque hace el elemento CSS menos reutilizable porque la clase solo se aplicará a ese elemento en particular y tendrás que agregar otro selector en caso que quieras que las normas también se apliquen a otros elementos.
+
+#!html
+
+<style>
+    /* modificamos el color de fondo en un elemento <span> con una clase highlight, y hacemos los mismo, pero con otro color en un elemento <h1> con clase highlight. */
+    span.highlight {
+        background-color: yellow;
+    }
+    h1.highlight {
+        background-color: pink;
+    }
+</style>
+<h1 class="highlight">Class selectors</h1>
+<p>Veggies es bonus vobis, proinde vos postulo essum magis <span class="highlight">kohlrabi welsh onion</span> daikon amaranth tatsoi tomatillo melon azuki bean garlic.</p>
+<p class="highlight">Gumbo beet greens corn soko <strong>endive</strong> gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.</p>  
