@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"csharp","items":[{"name":"csharp","aliases":["c#","C#"],"languageName":"C#"},{"name":"fsharp","aliases":["f#","F#"],"languageName":"F#"},{"name":"pwsh","aliases":["powershell"],"languageName":"PowerShell"},{"name":"javascript","aliases":["js"],"languageName":"JavaScript"},{"name":"html","aliases":[],"languageName":"HTML"},{"name":"sql","aliases":[],"languageName":"SQL"},{"name":"kql","aliases":[],"languageName":"KQL"},{"name":"mermaid","aliases":[],"languageName":"Mermaid"},{"name":"httpRequest","languageName":"http","aliases":[]},{"name":"value","aliases":[]},{"name":".NET","aliases":[]},{"name":"vscode","aliases":["frontend"]},{"name":"webview","aliases":[]}]}}
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"name":"csharp","languageName":"C#","aliases":["c#","C#"]},{"name":"fsharp","languageName":"F#","aliases":["f#","F#"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML","aliases":[]},{"name":"sql","languageName":"SQL","aliases":[]},{"name":"kql","languageName":"KQL","aliases":[]},{"name":"mermaid","languageName":"Mermaid","aliases":[]},{"name":"httpRequest","languageName":"http","aliases":[]},{"name":"value","aliases":[]},{"name":".NET","aliases":[]},{"name":"vscode","aliases":["frontend"],"languageName":null},{"name":"webview","aliases":[]}]}}
 
 #!markdown
 
@@ -12,11 +12,11 @@ CSS (Cascading Style Sheets - en español Hojas de Estilo en Cascadas) es usado 
 
 #!markdown
 
-## Primeros pasos en CSS
+# Primeros pasos en CSS
 
 #!markdown
 
-### ¿Qué es el CSS?
+## ¿Qué es el CSS?
 
 #!markdown
 
@@ -34,7 +34,7 @@ Usando CSS se pueden controlar con precisión cómo se ven los elementos HTML en
 
 #!markdown
 
-#### ¿Para qué sirve el CSS?
+### ¿Para qué sirve el CSS?
 
 #!markdown
 
@@ -50,7 +50,7 @@ El CSS se puede usar para estilos de texto muy básicos como, por ejemplo, cambi
 
 #!markdown
 
-#### Sintaxis del CSS
+### Sintaxis del CSS
 
 #!markdown
 
@@ -79,7 +79,7 @@ Antes de los dos puntos, tenemos la propiedad; y después, el valor. Las propied
 
 #!markdown
 
-#### Módulos CSS
+### Módulos CSS
 
 #!markdown
 
@@ -87,7 +87,7 @@ Como hay tantas cosas que se podrían diseñar usando CSS, el lenguaje se divide
 
 #!markdown
 
-##### Especificaciones CSS
+#### Especificaciones CSS
 
 #!markdown
 
@@ -99,7 +99,7 @@ El CSS Working Group desarrolla o especifica características nuevas del CSS. Al
 
 #!markdown
 
-#### Soporte del navegador
+### Soporte del navegador
 
 #!markdown
 
@@ -107,11 +107,11 @@ Una vez se ha especificado el CSS, solo es útil en el desarrollo de páginas we
 
 #!markdown
 
-### Empezar con CSS
+## Empezar con CSS
 
 #!markdown
 
-#### Agregar CSS a un documento
+### Agregar CSS a un documento
 
 #!markdown
 
@@ -125,7 +125,7 @@ Lo primero que se debe hacer es decirle al documento HTML que hay algunas reglas
 
 #!markdown
 
-##### Vincular un archivo CSS
+#### Vincular un archivo CSS
 
 #!markdown
 
@@ -142,7 +142,7 @@ Guarda los archivos HTML y CSS antes de volver a cargar la página en un navegad
 
 #!markdown
 
-#### Dar formato a elementos HTML
+### Dar formato a elementos HTML
 
 #!markdown
 
@@ -181,7 +181,7 @@ Puedes determinar múltiples selectores a la vez, separándolos con una coma.
 
 #!markdown
 
-#### Cambiar el comportamiento predeterminado de los elementos
+### Cambiar el comportamiento predeterminado de los elementos
 
 #!markdown
 
@@ -206,7 +206,7 @@ Mediante CSS podemos escoger el elemento HTML que queremos cambiar y utilizar un
 
 #!markdown
 
-#### Añadir una clase
+### Añadir una clase
 
 #!markdown
 
@@ -252,7 +252,7 @@ li.special, span.special {
 
 #!markdown
 
-#### Dar formato según la ubicación en un documento
+### Dar formato según la ubicación en un documento
 
 #!markdown
 
@@ -287,7 +287,7 @@ Podemos dar formato un elemento que venga directamente a continuación de otro e
 
 #!markdown
 
-#### Dar formato según el estado
+### Dar formato según el estado
 
 #!markdown
 
@@ -312,7 +312,7 @@ Podemos dar formato a los elementos en función de su estado. Para utilizarlos e
 
 #!markdown
 
-#### Combinaciones de selectores y combinadores
+### Combinaciones de selectores y combinadores
 
 #!markdown
 
@@ -333,15 +333,15 @@ Vale la pena señalar que puedes hacer múltiples combinaciones de selectores y 
 
 #!markdown
 
-### Cómo se estructura el CSS
+## Cómo se estructura el CSS
 
 #!markdown
 
-#### Aplicar CSS al HTML
+### Aplicar CSS al HTML
 
 #!markdown
 
-##### Hoja de estilo externa
+#### Hoja de estilo externa
 
 #!markdown
 
@@ -384,7 +384,7 @@ En el ejemplo anterior, el archivo CSS está en la misma carpeta que el document
 
 #!markdown
 
-##### Hoja de estilo interna
+#### Hoja de estilo interna
 
 #!markdown
 
@@ -422,7 +422,7 @@ Esto puede ser útil en algunas circunstancias, pero no es tan eficiente como la
 
 #!markdown
 
-##### Estilos en línea
+#### Estilos en línea
 
 #!markdown
 
@@ -437,7 +437,7 @@ Los estilos en línea son declaraciones CSS que afectan a un solo elemento, cont
 
 #!markdown
 
-#### Selectores
+### Selectores
 
 #!markdown
 
@@ -457,7 +457,7 @@ Cada regla CSS comienza con un selector o una lista de selectores que indican al
 
 #!markdown
 
-##### Especificidad
+#### Especificidad
 
 #!markdown
 
@@ -467,7 +467,7 @@ El lenguaje CSS tiene reglas para controlar cuál ganará en caso de colisión; 
 
 #!markdown
 
-#### Propiedades y valores
+### Propiedades y valores
 
 #!markdown
 
@@ -493,7 +493,7 @@ Establecer las propiedades de CSS según valores específicos es la función pri
 
 #!markdown
 
-##### Las funciones
+#### Las funciones
 
 #!markdown
 
@@ -535,7 +535,7 @@ Una función consta del nombre de la función y, a continuación, unos paréntes
 
 #!markdown
 
-##### @rules
+#### @rules
 
 #!markdown
 
@@ -545,7 +545,7 @@ Una de las `@rules` más comunes con las que te encontrarás es `@media`, que pe
 
 #!markdown
 
-##### Abreviaturas
+#### Abreviaturas
 
 #!markdown
 
@@ -582,7 +582,7 @@ Algunas propiedades como `font`, `background`, `padding`, `border` y `margin` se
 
 #!markdown
 
-#### Comentarios
+### Comentarios
 
 #!markdown
 
@@ -590,7 +590,7 @@ Los comentarios en el CSS comienzan con `/*` y terminan con `*/`.
 
 #!markdown
 
-#### Espacio en blanco
+### Espacio en blanco
 
 #!markdown
 
@@ -606,11 +606,11 @@ Debes asegurarte siempre de separar los valores distintos entre sí por al menos
 
 #!markdown
 
-### Cómo funciona CSS
+## Cómo funciona CSS
 
 #!markdown
 
-#### ¿Cómo funciona realmente el CSS?
+### ¿Cómo funciona realmente el CSS?
 
 #!markdown
 
@@ -630,7 +630,7 @@ Cuando un navegador muestra un documento, ha de combinar el contenido con la inf
 
 #!markdown
 
-#### Acerca del DOM
+### Acerca del DOM
 
 #!markdown
 
@@ -638,7 +638,7 @@ Un DOM tiene una estructura en forma de árbol. Cada elemento, atributo o bloque
 
 #!markdown
 
-##### Una representación real de un DOM
+#### Una representación real de un DOM
 
 #!html
 
@@ -667,7 +667,7 @@ Así es como un navegador interpreta el código HTML anterior, interpreta el ár
 
 #!markdown
 
-##### La aplicación de CSS al DOM
+#### La aplicación de CSS al DOM
 
 #!html
 
@@ -691,7 +691,7 @@ El navegador analizará el código HTML y creará un DOM a partir de este. A con
 
 #!markdown
 
-#### ¿Qué ocurre si un navegador encuentra CSS que no entiende?
+### ¿Qué ocurre si un navegador encuentra CSS que no entiende?
 
 #!markdown
 
@@ -709,11 +709,11 @@ Esto funciona especialmente bien cuando quieres utilizar un valor que es bastant
 
 #!markdown
 
-## Bloques de construcción CSS
+# Bloques de construcción CSS
 
 #!markdown
 
-### Cascada y herencia
+## (1) Cascada y herencia
 
 #!markdown
 
@@ -721,7 +721,7 @@ El objetivo de este artículo es desarrollar la comprensión de algunos de los c
 
 #!markdown
 
-#### Reglas conflictivas
+### Reglas conflictivas
 
 #!markdown
 
@@ -733,7 +733,7 @@ También es significativo el concepto de herencia, que significa que algunas pro
 
 #!markdown
 
-##### Cascada
+#### Cascada
 
 #!markdown
 
@@ -741,7 +741,7 @@ En un primer nivel de simplicidad, la cascada en las hojas de estilo significa q
 
 #!markdown
 
-##### Especificidad
+#### Especificidad
 
 #!markdown
 
@@ -753,7 +753,7 @@ La especificidad es el modo que tiene el navegador de decidir qué regla se apli
 
 #!markdown
 
-##### Herencia
+#### Herencia
 
 #!markdown
 
@@ -765,7 +765,7 @@ Algunas propiedades no se heredan. Por ejemplo, si para un elemento se establece
 
 #!markdown
 
-#### Comprender la herencia
+### Comprender la herencia
 
 #!markdown
 
@@ -814,7 +814,7 @@ La anchura, los márgenes, el relleno y los bordes no se heredan. Las propiedade
 
 #!markdown
 
-##### Control de la herencia
+#### Control de la herencia
 
 #!markdown
 
@@ -852,7 +852,7 @@ CSS proporciona cuatro valores de propiedad universales especiales para el contr
 
 #!markdown
 
-##### Restablecer todos los valores de propiedad
+#### Restablecer todos los valores de propiedad
 
 #!markdown
 
@@ -879,7 +879,7 @@ blockquote {
 
 #!markdown
 
-#### Comprender la cascada
+### Comprender la cascada
 
 #!markdown
 
@@ -894,7 +894,7 @@ Hay que considerar tres factores, que se enumeran a continuación en orden de im
 
 #!markdown
 
-##### Orden en el código
+#### Orden en el código
 
 #!markdown
 
@@ -902,7 +902,7 @@ El orden en el código es importante en el concepto de cascada. Si tienes más d
 
 #!markdown
 
-##### Especificidad
+#### Especificidad
 
 #!markdown
 
@@ -1032,7 +1032,7 @@ La tabla siguiente muestra algunos ejemplos concretos.
 
 #!markdown
 
-##### Propiedad `!important`
+#### Propiedad `!important`
 
 #!markdown
 
@@ -1073,11 +1073,11 @@ __Te recomendamos que no utilices `!important` a menos que sea absolutamente nec
 
 #!markdown
 
-### Selectores CSS
+## (2) Selectores CSS
 
 #!markdown
 
-#### ¿Qué es un selector?
+### ¿Qué es un selector?
 
 #!markdown
 
@@ -1087,7 +1087,7 @@ En CSS, los selectores se definen en la especificación de selectores de CSS cor
 
 #!markdown
 
-#### Listas de selectores
+### Listas de selectores
 
 #!markdown
 
@@ -1102,11 +1102,11 @@ Cuando agrupas los selectores de esta manera, si alguno de los selectores no es 
 
 #!markdown
 
-#### Tipos de selectores
+### Tipos de selectores
 
 #!markdown
 
-##### Selectores de tipo, de clase y de ID
+#### Selectores de tipo, de clase y de ID
 
 #!markdown
 
@@ -1114,7 +1114,7 @@ Este grupo incluye selectores que delimitan un elemento HTML, como por ejemplo u
 
 #!markdown
 
-##### Selectores de atributo
+#### Selectores de atributo
 
 #!markdown
 
@@ -1122,7 +1122,7 @@ Este grupo de selectores te proporciona diferentes formas de seleccionar element
 
 #!markdown
 
-##### Las pseudoclases y los pseudoelementos
+#### Las pseudoclases y los pseudoelementos
 
 #!markdown
 
@@ -1132,7 +1132,7 @@ También incluye pseudoelementos, que seleccionan una parte determinada de un el
 
 #!markdown
 
-##### Combinadores
+#### Combinadores
 
 #!markdown
 
@@ -1140,11 +1140,11 @@ El último grupo de selectores combina otros selectores con el fin de delimitar 
 
 #!markdown
 
-#### Selectores de tipo, clase e ID
+### (2.1) Selectores de tipo, clase e ID
 
 #!markdown
 
-##### Selector de tipo
+#### Selector de tipo
 
 #!markdown
 
@@ -1241,10 +1241,505 @@ Este enfoque hace el elemento CSS menos reutilizable porque la clase solo se apl
     span.highlight {
         background-color: yellow;
     }
+
     h1.highlight {
         background-color: pink;
     }
 </style>
 <h1 class="highlight">Class selectors</h1>
-<p>Veggies es bonus vobis, proinde vos postulo essum magis <span class="highlight">kohlrabi welsh onion</span> daikon amaranth tatsoi tomatillo melon azuki bean garlic.</p>
-<p class="highlight">Gumbo beet greens corn soko <strong>endive</strong> gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.</p>  
+<p>Veggies es bonus vobis, proinde vos postulo essum magis <span class="highlight">kohlrabi welsh onion</span> daikon
+    amaranth tatsoi tomatillo melon azuki bean garlic.</p>
+<p class="highlight">Gumbo beet greens corn soko <strong>endive</strong> gumbo gourd. Parsley shallot courgette tatsoi
+    pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko
+    zucchini.</p>
+
+#!markdown
+
+##### Delimitar un elemento afectado por más de una clase
+
+#!markdown
+
+Puedes aplicar más de una clase a un elemento y delimitarlos de forma individual o seleccionar el elemento cuando todas las clases están presentes en el selector. Puede ser útil cuando se trabaja con componentes que se pueden combinar de maneras diferentes en tu página web.
+
+Para decirle al navegador que solo queremos seleccionar el elemento si incluye todas estas clases, las encadenamos juntas sin ningún espacio entre ellas.
+
+#!html
+
+<style>
+    /* En el ejemplo siguiente hay un elemento <div> que contiene una nota. El borde gris se aplica cuando la caja tiene una clase notebox. Si además tiene una clase warning o danger, la propiedad border-color cambia. */
+    .notebox {
+        border: 4px solid #666;
+        padding: .5em;
+    }
+    .notebox.warning {
+        border-color: orange;
+        font-weight: bold;
+    }
+    .notebox.danger {
+        border-color: red;
+        font-weight: bold;
+    }
+</style>
+<div class="notebox">
+    This is an informational note.
+</div>
+<div class="notebox warning">
+    This note shows a warning.
+</div>
+<div class="notebox danger">
+    This note shows danger!
+</div>
+<div class="danger">
+    This won't get styled — it also needs to have the notebox class
+</div>
+
+#!markdown
+
+#### Selectores de ID
+
+#!markdown
+
+Un selector de ID comienza con un carácter `#` en lugar de un punto, pero se utiliza básicamente de la misma manera que un selector de clase. Sin embargo, un ID se puede utilizar una sola vez en cada documento, y a cada elemento solo se le puede aplicar un único `id`.
+
+#!html
+
+<style>
+#one {
+    background-color: yellow;
+}
+h1#heading {
+    color: rebeccapurple;
+}
+</style>
+<h1 id="heading">ID selector</h1>
+<p>Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.</p>
+<p id="one">Gumbo beet greens corn soko <strong>endive</strong> gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.</p>
+
+#!markdown
+
+>Nota: un ID tiene una especificidad muy alta y anula la mayoría de los otros selectores. Esto puede dificultar su uso. En la mayoría de los casos es preferible añadir una clase al elemento en lugar de utilizar un ID.
+
+#!markdown
+
+### (2.2) Selectores de atributo
+
+#!markdown
+
+Los elementos pueden tener atributos que proporcionan un nivel de detalle mayor sobre el elemento que delimitan. En el CSS puedes utilizar selectores de atributo para seleccionar elementos definidos con unos atributos determinados.
+
+#!markdown
+
+#### Selectores de presencia y valor
+
+#!markdown
+
+Estos selectores permiten seleccionar un elemento solo a partir de la presencia de un atributo (por ejemplo `href`) o a partir de varias coincidencias diferentes con respecto al valor del atributo.
+
+#!markdown
+
+| Selector      | Ejemplo | Descripción |
+| ----------- | ----------- | ----------- |
+| `[attr]`      | `a[title]`       | Relaciona elementos con un mismo nombre de atributo, `attr` (el valor que se indica entre corchetes). |
+|  `[attr=value]`  |    `a[href="https://example.com"]`	     |Relaciona elementos con un mismo nombre de atributo, `attr`, cuyo valor es exactamente el mismo, `value` (la cadena de caracteres que se indica entre corchetes).  |
+|  `[attr~=value]`	  |     `p[class~="special"]`	    | 	Relaciona los elementos con un mismo nombre de atributo, `attr`, cuyo valor es exactamente `value`, o los elementos con un mismo atributo `attr` que contiene uno o más valores de los cuales, al menos uno, coincide con `value`. Ten en cuenta que en una lista que incluya más de un valor, los distintos valores se separan con un espacio.  |
+|  `[attr\|=value]`  |     `div[lang\|="zh"]`	    | Relaciona los elementos con un mismo nombre de atributo, `attr`, cuyo valor puede ser exactamente `value` o puede comenzar con `value` seguido inmediatamente por un guion. |
+
+#!html
+
+<style>
+    /* Mediante el uso de li[class] podemos relacionar cualquier selector con un atributo de clase. Los relaciona todos menos el primer elemento de la lista. */
+    li[class] {
+        font-size: 200%;
+    }
+    /* li[class="a"] relaciona un selector con una clase de a, pero no un selector con una clase de a con otra clase separada por un espacio como parte del valor. Selecciona el segundo elemento de la lista. */
+    li[class="a"] {
+        background-color: yellow;
+    }
+    /* li[class~="a"] coincidirá con una clase a pero también con un valor que contenga la clase de a como parte de una lista de elementos separados por un espacio. Selecciona el segundo y el tercer elemento de la lista. */
+    li[class~="a"] {
+        color: red;
+    }
+</style>
+<h1>Attribute presence and value selectors</h1>
+<ul>
+    <li>Item 1</li>
+    <li class="a">Item 2</li>
+    <li class="a b">Item 3</li>
+    <li class="ab">Item 4</li>
+</ul>
+
+#!markdown
+
+#### Selectores coincidentes con subcadenas
+
+#!markdown
+
+Estos selectores permiten un tipo más avanzado de relación entre las subcadenas de caracteres que constituyen el valor del atributo.
+
+#!markdown
+
+| Selector      | Ejemplo |Descripción |
+| ----------- | ----------- | ----------- |
+| `[attr^=value]`      | `li[class^="box-"]` | Relaciona elementos con un mismo nombre de atributo, `attr`, cuyo valor empieza exactamente con la subcadena de caracteres `value`. |
+| `[attr$=value]`	   | `li[class$="-box"]` | Relaciona elementos con un mismo nombre de atributo, `attr`, cuyo valor termina exactamente con la subcadena de caracteres `value`. |
+| `[attr*= ]`| `li[class*="box"]`| 	Relaciona elementos con un mismo nombre de atributo, `attr`, cuyo valor incluye al menos una ocurrencia de la subcadena `value` en algún punto de la cadena. |
+
+#!html
+
+<style>
+    /* li[class^="a"] relaciona cualquier valor de atributo que empieza con a; luego, relaciona los dos primeros elementos de la lista se verán iguales. */
+    li[class^="a"] {
+        font-size: 200%;
+    }
+    /* li[class$="a"] relaciona cualquier valor de atributo que termina con a; luego, relaciona el primer y el tercer elemento de la lista. */
+    li[class$="a"] {
+        background-color: yellow;
+    }
+    /* li[class*="a"] relaciona cualquier valor de atributo que contiene a en cualquier posición; luego, relaciona todos los elementos de la lista. */
+    li[class*="a"] {
+        color: red;
+    }
+</style>
+<h1>Attribute substring matching selectors</h1>
+<ul>
+    <li class="a">Item 1</li>
+    <li class="ab">Item 2</li>
+    <li class="bca">Item 3</li>
+    <li class="bcabc">Item 4</li>
+</ul>
+
+#!markdown
+
+#### Mayúsculas y minúsculas
+
+#!markdown
+
+Si quieres relacionar los valores de atributo tanto si están escritos en mayúsculas como en minúsculas, puedes utilizar el valor i antes del paréntesis de cierre. Este indicador informa al navegador de que debe relacionar todos los caracteres ASCII independientemente de si las letras son mayúsculas o minúsculas. Sin este indicador, los valores se relacionarán según las directrices del lenguaje del documento con respecto a la distinción entre mayúsculas y minúsculas; en el caso del HTML, se distinguirá entre mayúsculas y minúsculas.
+
+#!html
+
+<style>
+    /* relaciona valores que empiezan con a; luego, solo coincide el primer elemento de la lista porque los otros dos comienzan con una A mayúscula. */
+    li[class^="a"] {
+        background-color: yellow;
+    }
+    /* utiliza el indicador de no distinción entre mayúsculas y minúsculas, así que relaciona todos los elementos de la lista. */
+    li[class^="a" i] {
+        color: red;
+    }
+</style>
+<h1>Case-insensitivity</h1>
+<ul>
+    <li class="a">Item 1</li>
+    <li class="A">Item 2</li>
+    <li class="Ab">Item 3</li>
+</ul>
+
+#!markdown
+
+### (2.3) Pseudoclases y pseudoelementos
+
+#!markdown
+
+#### Pseudoclase
+
+#!markdown
+
+Una pseudoclase es un selector que marca los elementos que están en un estado específico, por ejemplo, los que son el primer elemento de su tipo, o aquellos por los que el cursor les pasa por encima. Tienden a actuar como si hubieras aplicado una clase en una parte determinada del documento y, a menudo, ayudan a reducir el exceso de clases. Las pseudoclases son palabras clave que comienzan con dos puntos:
+```
+:pseudo-class-name
+```
+
+#!markdown
+
+##### Ejemplos simples de pseudoclases
+
+#!html
+
+<style>
+    /* Si queremos el primer párrafo de un artículo en letra más grande y en negrita podríamos utilizar el selector de pseudoclase :first-child, que siempre seleccionará el primer elemento hijo del artículo */
+    article p:first-child {
+        font-size: 120%;
+        font-weight: bold;
+    }   
+</style>
+<article>
+    <p>Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic </p>
+
+    <p>Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.</p>
+</article>
+
+#!markdown
+
+>Nota: Es válido escribir pseudoclases y pseudoelementos sin que les preceda un selector de elemento. En el ejemplo anterior, podría escribirse `:first-child` y la regla se aplicaría a cualquier elemento que sea el primer hijo de un elemento `<article>`, no solo un párrafo primer hijo. `:first-child` equivale a `*:first-child`. Pero normalmente se quiere más control y hay que ser más específico.
+
+#!markdown
+
+Todas las pseudoclases se comportan del mismo modo. Seleccionan un fragmento del documento que está en un estado determinado y se comportan como si se hubiera añadido una clase a su HTML.
+
+* :last-child
+
+* :only-child
+* :invalid
+
+#!markdown
+
+##### Pseudoclases de acción de usuario
+
+#!markdown
+
+Algunas pseudoclases solo intervienen cuando el usuario interactúa con el documento de alguna manera. Estas pseudoclases de acción de usuario, que también reciben el nombre de pseudoclases dinámicas, actúan como si se añadiese una clase al elemento cuando el usuario interactúa con él. Por ejemplo
+
+* `:hover`: solo interviene si el usuario pasa el cursor sobre un elemento, normalmente un enlace.
+
+* `:focus`: solo interviene si el usuario selecciona el elemento con los controles del teclado.
+
+#!html
+
+<style>
+    a:link,
+    a:visited {
+        color: rebeccapurple;
+        font-weight: bold;
+    }
+    a:hover {
+        color:hotpink;
+    }  
+</style>
+<p><a href="">Hover over me</a></p>
+
+#!markdown
+
+#### Pseudoelemento
+
+#!markdown
+
+Los pseudoelementos actúan como si hubieras añadido un elemento HTML totalmente nuevo en el marcado, en lugar de haber aplicado una clase nueva a los elementos presentes. Los pseudoelementos empiezan con un doble signo de dos puntos `::`.
+```
+::pseudo-element-name
+```
+>Nota: Algunos de los primeros pseudoelementos utilizaban la sintaxis de un solo signo de dos puntos, así que puede ser que en ocasiones los veas escritos de esta forma en algún código o ejemplo. Los navegadores modernos leen tanto los pseudoelementos con la sintaxis de los dos puntos simple como la de los dos puntos doble para garantizar la compatibilidad retrospectiva.
+
+#!html
+
+<style>
+    /* si deseas seleccionar la primera línea de un párrafo simplemente puedes delimitarlo con el elemento <span> y utilizar un selector de elementos. Sin embargo, fallará si el número de palabras que has delimitado resulta ser más largo o más corto que el ancho del elemento padre. El pseudoelemento ::first-line soluciona este problema: no importa si el número de palabras aumenta o disminuye, siempre se selecciona la primera línea. */
+    article p::first-line {
+        font-size: 120%;
+        font-weight: bold;
+        color:red;
+    } 
+</style>
+<article>
+<p>Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.</p>
+<p>Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.</p>
+</article>
+
+#!markdown
+
+Actúa como si hubiera un elemento `<span>` mágicamente delimitando esa primera línea, que se actualiza cada vez que la longitud de la línea cambia.
+
+#!markdown
+
+#### Combinar pseudoclases y pseudoelementos
+
+#!html
+
+<style>
+    /* Si quieres poner en negrita la primera línea del primer párrafo, puedes encadenar los selectores :first-child y ::first-line. */
+    article p:first-child::first-line {
+        font-size: 120%;
+        font-weight: bold;
+        color: green;
+    }
+</style>
+<article>
+<p>Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.</p>
+<p>Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.</p>
+</article>
+
+#!markdown
+
+#### Generar contenido con `::before` y `::after`
+
+#!markdown
+
+Hay un par de pseudoelementos especiales que se utilizan junto con la propiedad de content para introducir contenido en el documento usando el CSS.
+
+#!html
+
+<style>
+    /* agrega contenido antes del contenido propio del elemento HTML */
+    .box::before {
+        content: "This should show before the other content. "
+    }
+    /* agrega contenido después del contenido propio del elemento HTML */
+    .box2::after {
+        content: " This should show after the other content."
+    }
+</style>
+<p class="box">Content in the box in my HTML page.</p>
+<p class="box2">Content in the box 2 in my HTML page.</p>
+
+#!markdown
+
+Sin embargo, en realidad no es habitual insertar cadenas de texto desde el CSS, porque ese texto resulta inaccesible para algunos lectores de pantalla y puede ser difícil de buscar y modificar en el futuro. Un uso más adecuado de estos pseudoelementos es insertar un icono
+
+#!html
+
+<style>
+    .box::after {
+        content: " ➥"
+    } 
+</style>
+<p class="box">Content in the box in my HTML page.</p>
+
+#!markdown
+
+Estos pseudoelementos también se utilizan con frecuencia para insertar una cadena vacía a la que luego se le puede aplicar estilo, como a cualquier otro elemento de la página.
+
+#!html
+
+<style>
+    .box::before {
+        content: "";
+        display: block;
+        width: 100px;
+        height: 100px;
+        background-color: rebeccapurple;
+        border: 1px solid black;
+    }  
+</style>
+<p class="box">Content in the box in my HTML page.</p>
+
+#!markdown
+
+#### Sección de referencia
+
+#!markdown
+
+* [Pseudoclases](https://developer.mozilla.org/es/docs/Learn/CSS/Building_blocks/Selectors/Pseudo-classes_and_pseudo-elements#las_pseudoclases)
+
+* [Pseudoelementos](https://developer.mozilla.org/es/docs/Learn/CSS/Building_blocks/Selectors/Pseudo-classes_and_pseudo-elements#pseudoelementos)
+
+#!markdown
+
+### (2.4) Combinadores
+
+#!markdown
+
+Los llamados selectores de combinación se llaman así porqué combinan otros selectores de manera que proporciona una relación útil entre ellos y la ubicación del contenido en el documento.
+
+#!markdown
+
+#### Selector de descendientes
+
+#!markdown
+
+Son selectores que tienen espacios entre ellos. Seleccionan elementos que son descendientes de otros selectores. No es necesario que sean hijos directos.
+
+#!html
+
+<style>
+    /* seleccionamos solo el elemento <p> que hay dentro de un elemento con una clase .box. */
+    .box p {
+        color: red;
+    }  
+</style>
+<div class="box"><p>Text in .box</p></div>
+<p>Text not in .box</p>
+
+#!markdown
+
+#### Selector de combinación de elementos hijo
+
+#!markdown
+
+El selector de combinación de elementos hijo es un símbolo de «mayor que» (`>`), que selecciona solo cuando los selectores identifican elementos que son hijos directos. Los elementos descendientes que se encuentran más abajo en la jerarquía no se seleccionan.
+```
+article > p
+```
+
+#!html
+
+<style>
+    /* tenemos una lista ordenada anidada dentro de otra lista no ordenada. Utilizamos los selectores de elementos hijo para seleccionar solo los elementos <li> que son hijos directos de <ul> y les aplicamos un borde superior. */
+    ul > li {
+        border-top: 5px solid red;
+    }  
+</style>
+<ul>
+    <li>Unordered item</li>
+    <li>Unordered item
+        <ol>
+            <li>Item 1</li>
+            <li>Item 2</li>
+        </ol>
+    </li>
+</ul>
+
+#!markdown
+
+#### Hermanos adyacentes
+
+#!markdown
+
+El selector de elementos hermanos adyacentes (`+`) se utiliza para seleccionar un elemento que se encuentra justo al lado de otro elemento en el mismo nivel de la jerarquía.
+```
+p + img
+```
+
+#!html
+
+<style>
+    /* vamos a buscar un párrafo que sea directamente adyacente a <h1> y le vamos a aplicar un estilo */
+    h1 + p {
+        font-weight: bold;
+        background-color: #333;
+        color: #fff;
+        padding: .5em;
+    }    
+</style>
+<article>
+    <h1>A heading</h1>
+    <p>Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.</p>
+
+    <p>Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.</p>
+</article>
+
+#!markdown
+
+Si insertas algún otro elemento, como `<h2>` entre las etiquetas `<h1>` y `<p>`, verás que el selector ya no selecciona el párrafo y no se muestra con los mismos colores de fondo y de primer plano que cuando es adyacente.
+
+#!markdown
+
+#### Hermanos generales
+
+#!markdown
+
+Si deseas seleccionar los hermanos de un elemento, incluso si no son directamente adyacentes, puedes utilizar el combinador de hermanos general (`~`).
+```
+p ~ img
+```
+
+#!html
+
+<style>
+    /* seleccionamos todos los elementos <p> que vienen después de <h1>, y aunque en el documento también hay un <div>, se selecciona incluso la etiqueta <p> que viene después */
+    h1 ~ p {
+        font-weight: bold;
+        background-color: #333;
+        color: #fff;
+        padding: .5em;
+    }   
+</style>
+<article>
+    <h1>A heading</h1>
+    <p>I am a paragraph.</p>
+    <div>I am a div</div>
+    <p>I am another paragraph.</p>
+</article>
+
+#!markdown
+
+## (3) El modelo de cajas
