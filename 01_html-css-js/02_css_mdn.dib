@@ -1,6 +1,10 @@
 #!meta
 
+<<<<<<< HEAD
 {"kernelInfo":{"defaultKernelName":"csharp","items":[{"name":"csharp","aliases":["c#","C#"],"languageName":"C#"},{"name":"fsharp","aliases":["f#","F#"],"languageName":"F#"},{"name":"pwsh","aliases":["powershell"],"languageName":"PowerShell"},{"name":"javascript","aliases":["js"],"languageName":"JavaScript"},{"name":"html","aliases":[],"languageName":"HTML"},{"name":"sql","aliases":[],"languageName":"SQL"},{"name":"kql","aliases":[],"languageName":"KQL"},{"name":"mermaid","aliases":[],"languageName":"Mermaid"},{"name":"httpRequest","languageName":"http","aliases":[]},{"name":"value","aliases":[]},{"name":".NET","aliases":[]},{"name":"vscode","aliases":["frontend"]},{"name":"webview","aliases":[]}]}}
+=======
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"name":"csharp","languageName":"C#","aliases":["c#","C#"]},{"name":"fsharp","languageName":"F#","aliases":["f#","F#"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML","aliases":[]},{"name":"sql","languageName":"SQL","aliases":[]},{"name":"kql","languageName":"KQL","aliases":[]},{"name":"mermaid","languageName":"Mermaid","aliases":[]},{"name":"httpRequest","languageName":"http","aliases":[]},{"name":"value","aliases":[]},{"name":".NET","aliases":[]},{"name":"vscode","aliases":["frontend"],"languageName":null},{"name":"webview","aliases":[]}]}}
+>>>>>>> 8ad40e4f0627b65f2b39bb7ad0ff8059cea74f71
 
 #!markdown
 
@@ -1743,3 +1747,189 @@ p ~ img
 #!markdown
 
 ## (3) El modelo de cajas
+
+#!markdown
+
+### Cajas en bloque y en línea
+
+#!markdown
+
+En CSS, en general, hay dos tipos de cajas: __cajas en bloque__ y __cajas en línea__. Estas características se refieren al modo como se comporta la caja en términos de flujo de página y en relación con otras cajas de la página.
+
+Si una caja se define como un bloque:
+
+* La caja fuerza un salto de línea al llegar al final de la línea.
+
+* La caja se extenderá en la dirección de la línea para llenar todo el espacio disponible que haya en su contenedor. En la mayoría de los casos, esto significa que la caja será tan ancha como su contenedor, y llenará el 100% del espacio disponible.
+* Se respetan las propiedades `width` y `height`.
+* El relleno, el margen y el borde mantienen a los otros elementos alejados de la caja.
+
+A menos que decidamos cambiar el tipo de visualización a en línea, elementos como los encabezados (por ejemplo, `<h1>`) y todos los elementos `<p>` usan por defecto `block` como tipo de visualización externa.
+
+Si una caja tiene una visualización externa de tipo `inline`:
+
+* La caja no fuerza ningún salto de línea al llegar al final de la línea.
+
+* Las propiedades width y height no se aplican.
+* Se aplican relleno, margen y bordes verticales, pero no mantienen alejadas otras cajas en línea.
+* Se aplican relleno, margen y bordes horizontales, y mantienen alejadas otras cajas en línea.
+
+El elemento `<a>`, que se utiliza para los enlaces, y los elementos `<span>`, `<em>` y `<strong>` son ejemplos de elementos que se muestran en línea por defecto.
+
+El tipo de caja que se aplica a un elemento está definido por los valores de propiedad `display`, como `block` y `inline`, y se relaciona con el valor externo (`outer`) de visualización (`display`).
+
+#!markdown
+
+### Tipos de visualización interna y externa
+
+#!markdown
+
+Las cajas en CSS tienen un tipo de visualización externa, que define si se trata de una caja en bloque o en línea.
+
+ Las cajas también tienen un tipo de visualización interna, que determina cómo se disponen los elementos dentro de esa caja. De forma predeterminada, los elementos dentro de una caja se presentan en flujo normal, lo que significa que se comportan como otros elementos de tipo en bloque o en línea.
+
+ Podemos cambiar el tipo de visualización interna utilizando valores de `display`, como `flex`. Si en un elemento establecemos `display: flex`, el tipo de visualización externa es de tipo bloque (`block`), pero el tipo de visualización interna cambia a flexible (`flex`). Cualquier elemento que sea hijo directo de esta caja pasará a comportarse como un elemento de tipo `flex`.
+
+ Sin embargo, la disposición en bloque y en línea es la forma predeterminada cómo se comportan las cosas en la web; como ya dijimos, a veces esto se conoce como _flujo normal_, porque nuestras cajas se dispondrán en bloque o en línea, si no reciben ninguna otra instrucción.
+
+#!markdown
+
+### Modelo de cajas CSS
+
+#!markdown
+
+El modelo de cajas CSS completo se aplica a cajas que presentan comportamiento en bloque; las cajas con comportamiento en línea solo usan una parte del comportamiento definido en el modelo de cajas. El modelo define cómo funcionan juntas las diferentes partes de una caja (margen, borde, relleno y contenido) para crear una caja que puedas ver en tu página. Para complicarlo un poco más, hay un modelo de cajas estándar y un modelo de cajas alternativo.
+
+#!markdown
+
+#### Partes de una caja
+
+#!markdown
+
+Al hacer una caja de tipo bloque en CSS tenemos los elementos siguientes:
+
+* El __contenido de la caja__ (o _content box_): El área donde se muestra el contenido, cuyo tamaño puede cambiarse utilizando propiedades como `width` y `height`.
+
+* El __relleno de la caja__ (o _padding box_): El relleno es espacio en blanco alrededor del contenido; es posible controlar su tamaño usando la propiedad `padding` y otras propiedades relacionadas.
+* El __borde de la caja__ (o _border box_): El borde de la caja envuelve el contenido y el de relleno. Es posible controlar su tamaño y estilo utilizando la propiedad `border` y otras propiedades relacionadas.
+* El __margen de la caja__ (o _margin box_): El margen es la capa más externa. Envuelve el contenido, el relleno y el borde como espacio en blanco entre la caja y otros elementos. Es posible controlar su tamaño usando la propiedad `margin` y otras propiedades relacionadas.
+
+#!markdown
+
+![box-model](data:image/png;base64,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)
+
+#!markdown
+
+#### El modelo de cajas CSS estándar y alternativo
+
+#!markdown
+
+##### El modelo de cajas CSS estándar
+
+#!markdown
+
+En el modelo de cajas estándar, cuando estableces los atributos `width` y `height` para una caja, defines el ancho y el alto del contenido de la caja. Cualquier área de relleno y borde se añade a ese ancho y alto para obtener el tamaño total que ocupa la caja.
+
+#!html
+
+<style>
+    /* El espacio que ocupa nuestra caja usando el modelo de cajas estándar será, en realidad, para su ancho 410 px (350 + 25 + 25 + 5 + 5); y para su altura 210 px (150 + 25 + 25 + 5 + 5), porque el área de relleno y el borde se añaden al ancho que se utiliza para el contenido de la caja. */
+    .box {
+        background-color: rebeccapurple;
+
+        width: 350px;
+        height: 150px;
+        margin: 10px;
+        padding: 25px;
+        border: 5px solid black;
+    }
+</style>
+<div class="box"></div>
+
+#!markdown
+
+> Nota: El margen no se cuenta para el tamaño real de la caja; por supuesto, afecta al espacio total que la caja ocupa en la página, pero solo al espacio de fuera de la caja. El área de la caja se termina en el borde, no se extiende hasta el margen.
+
+#!markdown
+
+##### El modelo de cajas CSS alternativo
+
+#!markdown
+
+ Es más bien incómodo tener que sumar el borde y el área de relleno para obtener el tamaño real de la caja. CSS introdujo un modelo de caja alternativo algún tiempo después del modelo de cajas estándar. Con este modelo, cualquier ancho es el ancho de la caja visible en la página, por lo tanto, el ancho del área de contenido es ese ancho menos el ancho para el relleno y el borde.
+
+ Por defecto, los navegadores usan el modelo de cajas estándar. Si deseas activar el modelo de cajas alternativo para un elemento, hazlo configurando `box-sizing: border-box`. Con ello, le dices al navegador que tome como el borde de la caja el área definida por cualquier tamaño que establezcas.
+
+#!html
+
+<style>
+    .box2 {
+        background-color: rebeccapurple;
+        
+        box-sizing: border-box;
+        width: 350px;
+        height: 150px;
+        margin: 10px;
+        padding: 25px;
+        border: 5px solid black;
+    }
+</style>
+<div class="box2"></div>
+
+#!markdown
+
+Si quieres que todos tus elementos usen el modelo de cajas alternativo (opción común entre los desarrolladores) debes establecer la propiedad box-sizing en el elemento `<html>`. Luego debes configurar todos los demás elementos para que hereden ese valor.
+```
+html {
+    box-sizing: border-box;
+    }
+    
+*, *::before, *::after {
+    box-sizing: inherit;
+    }
+```
+
+#!markdown
+
+#### Utilizar las DevTools del navegador para ver el modelo de cajas
+
+#!markdown
+
+Las herramientas del desarrollador de tu navegador pueden facilitar la comprensión del modelo de cajas. Si inspeccionas un elemento con las DevTools de Firefox, puedes ver el tamaño del elemento más su margen, área de relleno y borde. Inspeccionar un elemento de esta manera es un modo excelente de descubrir si tu caja es en realidad del tamaño que crees que es.
+
+#!markdown
+
+![box-model-devtools](data:image/png;base64,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)
+
+#!markdown
+
+#### Márgenes, relleno y bordes
+
+#!markdown
+
+Las propiedades `margin`, `padding` y `border` son propiedades abreviadas (_shorthand_) que nos permiten establecer valores para los cuatro lados de la caja a la vez. Estas propiedades abreviadas también tienen propiedades sin abreviar equivalentes, que permiten tener control sobre los diferentes lados de la caja de forma individual.
+
+#!markdown
+
+##### Margen
+
+#!markdown
+
+El margen es un espacio invisible que hay alrededor de la caja. Aleja el resto de elementos de la caja. Los márgenes pueden tener valores positivos o negativos. Establecer un margen negativo para un lado de tu caja puede hacer que se superponga con otros elementos de la página. Tanto si utilizas el modelo de cajas estándar como el alternativo, el margen siempre se añade después de haber calculado el tamaño de la caja que se ve.
+
+Podemos controlar los margenes en las 4 direcciones del elemento utilizando las propiedades de margen sin abreviar.
+
+#!html
+
+<style>
+    .box4{
+        border: 2px solid blue;
+        margin-top: -40px;
+        margin-right: 30px;
+        margin-bottom: 40px;
+        margin-left: 4em;
+    }
+</style>
+<div class="arriba">
+    <div class="box4">Change my margin.</div>
+</div>
