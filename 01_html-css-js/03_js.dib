@@ -884,7 +884,7 @@ console.log("Fin ciclo for");
 
 #!markdown
 
-### Palabra reservada break
+### Palabra reservada `break`
 
 #!markdown
 
@@ -902,7 +902,7 @@ for (let contador = 0; contador <= 10; contador++){
 
 #!markdown
 
-### Palabra reservada continue
+### Palabra reservada `continue`
 
 #!markdown
 
