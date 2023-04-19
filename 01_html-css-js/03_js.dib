@@ -1729,7 +1729,7 @@ console.log(madre2.tel);
 
 #!markdown
 
-El método `call` nos permite llamar un método que está definido en un objeto desde otro objeto. El método `call` utiliza los atributos del objeto que le pasamos como parametro como si fueran los atributos del objeto donde está definido el método que queremos utilizar.
+El método `call` nos permite llamar un método que está definido en un objeto desde otro objeto. El método `call` utiliza los atributos del objeto que le pasamos como parámetro como si fueran los atributos del objeto donde está definido el método que queremos utilizar.
 
 #!javascript
 
