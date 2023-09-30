@@ -1,0 +1,25 @@
+# Project general idea
+
+Vamos a programar una API web RESTful en JAVA para el manejo del stock de libros de una librería.
+
+>__`¿Qué es una API?`__ Una interfaz de programa de aplicación (API) define las reglas que se deben seguir para comunicarse con otros sistemas de software. Los desarrolladores exponen o crean API para que otras aplicaciones puedan comunicarse con sus aplicaciones mediante programación. __`¿Qué es REST?`__ La transferencia de estado representacional (REST) es una arquitectura de software que impone condiciones sobre cómo debe funcionar una API. __`¿Qué es API RESTful?`__ Los desarrolladores de API pueden diseñar API por medio de varias arquitecturas diferentes. Las API que siguen el estilo arquitectónico de REST se llaman API REST. Los servicios web que implementan una arquitectura de REST son llamados servicios web RESTful. El término API RESTful suele referirse a las API web RESTful.
+
+Para poder diagramar las entidades que van a componer el proyecto de stock de libros, que van a ser las clases en java y las tablas en la base de datos, pensamos la composición del stock en base a sus objetos, que en este caso son los libros. De esta forma tenemos una primera entidad `book`.
+
+Los libros cuentan con datos como un isbn, que es un valor único de identificación para el libro, un título y un año de publicación. Estos pueden representar los primeros atributos propios del libro.
+
+A su vez el libro cuenta con uno o varios autores. Estos autores son, en sí, otra entidad en el proyecto a la que llamamos `author`, ya que los mismos cuentan con atributos propios como nombre y apellido.
+
+Tenemos de esta forma dos entidades que se relacionan. A partir de la entidad libro podemos decir que un libro puede tener uno o muchos autores. Y a partir de la entidad autor podemos decir que un autor puede haber escrito uno o varios libros. Esto da como resultado una relación de uno a muchos (1...N) de libro hacia autor y desde autor hacia libro.
+
+Tenemos que normalizar esta relación de uno a muchos entre ambas entidades, para hacerlo generamos una nueva entidad intermedia, más abstracta y que no se corresponde, necesariamente, con un objeto en la realidad del stock, que es la entidad `Book_Author`. Esta entidad contendrá, fundamentalmente, los atributos de `id` o identificación de las entidades `book` y `author`, lo que va a permitir identificar inequívocamente un el o los autores de un libro y cada uno de los libros en los que participó un autor. Esta entidad intermedia puede tener atributos propios también, además de su correspondiente `id`.
+
+Bajo está lógica armamos un diagrama de las entidades que representan el stock y sus relaciones. Este primer diagrama no es definitivo y puede ir mutando. Cambiando entidades, atributos o relaciones. Este diagrama nos dará un vistazo general de las clases que vamos a tener que crear en la programación de la API y de las tablas que se van a crear a partir de estas clases en la base de datos.
+
+#  ERD Entity Relationship Diagram
+
+Un diagrama entidad-relación, también conocido como modelo entidad relación o ERD, es un tipo de diagrama de flujo que ilustra cómo las "entidades", como personas, objetos o conceptos, se relacionan entre sí dentro de un sistema.
+
+En el caso de nuestro sistema de stock de libros, una primera versión del ERD quedaría de la siguiente manera.
+
+![erd_01](https://raw.githubusercontent.com/maq-miguel-quinteros/00_apuntes/main/03_java-python/API%20RESTful%20Java%20and%20SpringBoot/wip/img/erd_01.png)
