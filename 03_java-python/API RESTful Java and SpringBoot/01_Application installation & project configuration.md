@@ -75,9 +75,9 @@ Para ejecutar el proyecto y probar que todo esté funcionando correctamente vamo
 ![bootRun](https://raw.githubusercontent.com/maq-miguel-quinteros/00_apuntes/main/03_java-python/API%20RESTful%20Java%20and%20SpringBoot/wip/img/bootRun.png)
 
 Vamos a ver, en la parte inferior del IntelliJ, que aparece la consola de ejecución con los registros de qué está sucediendo a medida que inicia la aplicación. Cuando veamos el mensaje
-
-        `Started StockApplication in ... seconds (JVM running for ...)`
-
+```
+    Started StockApplication in ... seconds (JVM running for ...)
+```
 significa que la aplicación ya inició. Si ingresamos, desde el navegador, a la ruta [__localhost:8080__](http://localhost:8080/) vamos a ver un JSON con una entrada llamada profile, parece poco pero hasta ahora lograste crear una aplicación Gradle de Java con Spring Boot, importarla en el IntelliJ, compilarla y ejecutarla.
 
 Para detener la aplicación pulsa sobre el botón rojo ubicado a la izquierda del panel de ejecución o arriba a la derecha del IntelliJ.
