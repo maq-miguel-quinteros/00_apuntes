@@ -553,10 +553,10 @@
       {
         "value": "stock_models_01\nbase entities",
         "ui": {
-          "active": true,
+          "active": false,
           "left": 9.166674249701757,
           "top": 5.000003774960698,
-          "zIndex": 9,
+          "zIndex": 8,
           "width": 127.83333330021965,
           "height": 100
         },
