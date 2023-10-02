@@ -9,6 +9,8 @@ Generamos un nuevo `package` llamado `models`. En este vamos a guardar guardar l
 * Mediante `@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")` y `@GenericGenerator(name = "native", strategy = "native")` indicamos la forma en que se van a generar los valores para el atributo `id`. Básicamente indicamos que los valores se generen de forma automática con funcionalidades de la base de datos utilizadas para esto.
 * Atributos de la clase: los atributos de la clase van a representar columnas en la tabla que se genera en la base de datos.
 
+* `@Lob`: mediante la `annotation @Lob` indicamos que el atributo siguiente va a ser una un `String` de muchos más caracteres de los que la base de datos asigna a las variables de texto en general.
+
 * `Constructor, Getters y Setters`: tienen que estar declarados el constructor vacío y el que permite generar objetos del tipo de la clase. Nótese que el constructor no asigna valores al atributo `id` por que los valores de mismo se generan en forma automática en la base de datos. Tienen que estar declarados todos los `getters` y `setters` a excepción del `setter` de id.
 
 
@@ -23,6 +25,8 @@ public class Book {
     private String isbn;
     private String title;
     private LocalDate date;
+    
+    @Lob
     private String synopsis;
 
     public Book() {}
@@ -105,10 +109,10 @@ Generamos un nuevo `package` llamado `services`. En este vamos a guardar `interf
 public interface BookService {
     
     // CREATE
-    void createBook(Book book);
+    void create(Book book);
     
     // READ
-    List<BookDTO> readAllBooks();
+    List<BookDTO> readAll();
 }
 ```
 
@@ -143,7 +147,7 @@ public class BookServiceImplement implements BookService {
     private BookRepository bookRepository;
 
     @Override
-    public void createBook(Book book) {
+    public void create(Book book) {
         bookRepository.save(book);
     }
 
@@ -215,10 +219,18 @@ public class BookController {
     BookService bookService;
 
     @GetMapping("/books")
-    public List<BookDTO> readAllBooks(){
+    public List<BookDTO> readAll(){
         return bookService.readAll();
     }
 }
 ```
 
+# Test controller
 
+Mediante el archivo `Controller test.ipynb`, que es un documento de jupyter notebook, corremos el primer test para probar el método `readAll` del controlador `BookController`. Ya que la respuesta de este método va a cambiar, a medida que modifiquemos el controlador, es que traemos una imagen de lo que nos devuelve la prueba. Para llamar al método `readAll` utilizamos el método `HTTP GET` como sigue. Si hacemos clic sobre la ruta también vamos a poder ver la respuesta en el navegador. En caso de que la respuesta sea de error debemos verificar que esté iniciado el servidor y como está configurado el método en el controlador
+
+> GET http://localhost:8080/api/books
+
+![http_get_books_01](https://raw.githubusercontent.com/maq-miguel-quinteros/00_apuntes/main/03_java-python/API%20RESTful%20Java%20and%20SpringBoot/wip/img/http_get_books_01.png)
+
+![http_get_books_02](https://raw.githubusercontent.com/maq-miguel-quinteros/00_apuntes/main/03_java-python/API%20RESTful%20Java%20and%20SpringBoot/wip/img/http_get_books_02.png)
