@@ -3,11 +3,11 @@
     "version": "2.2.11",
     "width": 2000,
     "height": 2000,
-    "scrollTop": -188.3333258496394,
-    "scrollLeft": -31.666665408346446,
-    "zoomLevel": 1,
+    "scrollTop": -99.99999602635722,
+    "scrollLeft": -99.99999602635721,
+    "zoomLevel": 0.9,
     "show": {
-      "tableComment": false,
+      "tableComment": true,
       "columnComment": false,
       "columnDataType": true,
       "columnDefault": false,
@@ -143,7 +143,7 @@
           "active": false,
           "left": 459.9995,
           "top": 442.1674,
-          "zIndex": 3,
+          "zIndex": 13,
           "widthName": 60,
           "widthComment": 60
         },
@@ -638,19 +638,44 @@
         "id": "6e71bef9-97ea-4666-952e-d5184443ea33"
       },
       {
-        "name": "anum genero",
-        "comment": "",
-        "columns": [],
+        "name": "",
+        "comment": "enumeration",
+        "columns": [
+          {
+            "name": "",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "694d5072-f427-45f3-ac58-9fd81d0534e8"
+          }
+        ],
         "ui": {
           "active": true,
-          "left": 853.3336,
-          "top": 479.9998,
-          "zIndex": 14,
-          "widthName": 78.60986328125,
-          "widthComment": 60
+          "left": 838.056,
+          "top": 424.1661,
+          "zIndex": 68,
+          "widthName": 60,
+          "widthComment": 74.26806640625,
+          "color": "#607D8B00"
         },
         "visible": true,
-        "id": "db14407f-2219-45cc-b67c-37c31980ad23"
+        "id": "669988c2-a17c-4450-9e4c-4f776edd8071"
       }
     ],
     "indexes": []
