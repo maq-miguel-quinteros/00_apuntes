@@ -27,7 +27,7 @@
     "bracketType": "none",
     "setting": {
       "relationshipDataTypeSync": true,
-      "relationshipOptimization": false,
+      "relationshipOptimization": true,
       "columnOrder": [
         "columnName",
         "columnDataType",
