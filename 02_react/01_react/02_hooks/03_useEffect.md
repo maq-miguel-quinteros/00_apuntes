@@ -305,3 +305,46 @@ function DataFetching() {
 
 export default DataFetching
 ```
+
+## fetch de datos de una API con useEffect y useState para mostrar loading y error
+
+```javascriptreact
+import React, {useState, useEffect} from 'react'
+import axios from 'axios';
+
+function DataFetchingOne() {
+	// declaramos las variables de estado que van a manejar los tres momentos, loading, success y error
+	const [loading, setLoading] = useState(true)
+	const [error, setError] = useState('')
+	const [post, setPost] = useState({})
+
+	useEffect(() => {
+		axios
+			.get(`https://jsonplaceholder.typicode.com/posts/1`)
+			.then(response => {
+				// cambiamos el valor de la variable de estado loading a false para que deje de mostrarse el mensaje Loading en la pantalla
+				setLoading(false)
+				setPost(response.data)
+				// limpiamos la variable de estado error por si quedó con algún valor de una carga anterior
+				setError('')
+			})
+			.catch(error => {
+				setLoading(false)
+				// limpiamos la variable de estado post por si quedo con algún valor de una carga anterior
+				setPost({})
+				setError('Something went wrong!, error: '+ error)
+			})
+	}, [])
+
+	return (
+		<div>
+			{/* mientras se traen los datos va a mostrar el mensaje loading, al ejecutarse el then en el useEffect va a mostrar el valor del atributo title de la variable de estado post */}
+			{loading ? 'Loading' : post.title}
+			{/* si hay un error al traer los datos en catch indicamos guardar el log del error en la variable de estado error que se muestra solo si su valor no es '' */}
+			{error ? error : null}
+		</div>
+	)
+}
+
+export default DataFetchingOne
+```
