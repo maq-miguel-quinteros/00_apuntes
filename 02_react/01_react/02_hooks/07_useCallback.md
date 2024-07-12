@@ -87,7 +87,7 @@ Utilizamos el hook useCallback. Este hook recibe como parámetros una función, 
 
 Modificamos `ParentComponent.jsx`:
 
-```javascriptreact
+```js
 import { useState, useMemo, useCallback } from 'react'
 import Count from './Count'
 import Button from './Button'
