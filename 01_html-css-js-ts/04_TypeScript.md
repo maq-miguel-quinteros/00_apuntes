@@ -434,6 +434,7 @@ interface ICategory {
 	title: string;
 }
 
+// pasamos como tipo de dato el type Author
 const testMe3: IPostEvenBetter<Author> = {
 	id: 1,
 	title: "post title",
@@ -441,6 +442,7 @@ const testMe3: IPostEvenBetter<Author> = {
 	extra: [{ id: 1, username: "john" }],
 };
 
+// pasamos como tipo de dato la interface ICategory
 const testMe4: IPostEvenBetter<ICategory> = {
 	id: 1,
 	title: "post title",
