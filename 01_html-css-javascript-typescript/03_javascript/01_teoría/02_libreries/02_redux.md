@@ -39,4 +39,41 @@ El empleado: realiza la venta | __reducer__ | Lleva a cabo el cambio de estado d
 
 ## Tres principios de Redux
 
+1. Todos los estados de la aplicación se guardan en un árbol de objetos dentro de una única __store__: mantiene el estado de la aplicación en un único objeto, que será manejado por el __Redux store__.
+2. La única forma de cambiar un estado es mediante una __action__, que es un objeto que describe que es lo que debe suceder con ese estado: para actualizar el estado de la aplicación necesitamos indicarle a Redux lo que queremos hacer mediante la acción, no podemos actualizar el objeto de estados directamente.
+3. Para especificar como modificar el árbol de estados, mediante las acciones, escribimos __reducers__ puros: los __reducers__ son funciones de javascript puras que reciben el estado anterior y una acción, y devuelven el nuevo estado `(previousState, action) => newState`.
 
+(volver a ver el video y sumar una captura de gráfico del final )
+https://www.youtube.com/watch?v=_KhGdZEWC4c&list=PLC3y8-rFHvwheJHvseC3I0HuYI2f46oAK&index=4
+
+## Implementamos Redux
+
+### action
+
+Las _action_ son la única forma en que nuestra aplicación puede interactuar con la _store_. Llevan información desde la aplicación a la _Redux store_. Las acciones son objetos planos de javascript. Tienen una propiedad _type_ que indican el tipo de acción que deben realizar. La propiedad type por lo general se define como una constante de tipo string.
+```js
+// definimos la constante. Esto no es estrictamente necesario pero por convención se realiza
+const BUY_CAKE = 'BUY_CAKE';
+
+// definimos la acción
+{
+    type: BUY_CAKE,
+    info: 'Primera acción'
+
+}
+```
+
+Redux requiere que implementemos una función para la acción, a la que llamamos action creator, que simplemente crea la acción. En el código sería una función que devuelve una acción.
+```js
+const BUY_CAKE = 'BUY_CAKE';
+
+// definimos el action creator, que es una función que devuelve una acción
+function buyCake() {
+    return {
+        type: BUY_CAKE,
+        info: 'Primera acción'
+    
+    }
+}
+
+```
