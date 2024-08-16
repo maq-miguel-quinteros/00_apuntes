@@ -1,3 +1,4 @@
+
 # Redux
 
 Redux es un contenedor de estados previsible para apps creadas con JavaScript.
@@ -10,36 +11,32 @@ Redux es un contenedor de estados previsible para apps creadas con JavaScript.
 
 * Redux es predecible: En Redux, todas las transiciones de estado, es decir, todas las modificaciones que se le hace a un estado son explicitas. Que sean explicitas significa que son conocidas y que es posible y rastrearlas, saber donde se hicieron. Con Redux, los cambios de estado de la aplicación se vuelven predecibles.
 
-prueba 
-```mermaid
+## Instalación
 
-graph TD;
-	A-->B;
-	A-->C;
-	B-->D;
-	C-->D;
-```
+En la carpeta de nuestro proyecto, en la consola instalamos redux con el comando `npm install redux`.
 
-## otra
+## Tres conceptos fundamentales de Redux
 
-```javascript
-let a = 20;
-```
+En un caso de ejemplo, el de venta de un pastel en una tienda de pasteles, podemos reconocer tres situaciones entidades:
+* La tienda
+* El empleado
+* El cliente
 
-```mermaid
+Estas tres entidades se relacionan en la actividad o acción de la venta de un pastel:
+* El cliente
+    * compra un pastel
+* El empleado
+    * revisa si hay stock y entrega el pastel
+    * genera el recibo para el seguimiento de la venta
 
-graph TD;
-	A-->B;
-	A-->C;
-	B-->D;
-	C-->D;
-```
+Podemos traducir este ejemplo en los tres conceptos fundamentales de redux
 
-```mermaid
+Escenario tienda de pasteles | Concepto en Redux | Explicación
+--- | --- | ---
+La tienda: guarda los pasteles en su deposito | __store__ | Guarda el estado de la aplicación
+El cliente: quiere comprar un pastel | __action__ | Indica los cambios que se van a hacer en el estado de la aplicación
+El empleado: realiza la venta | __reducer__ | Lleva a cabo el cambio de estado de la aplicación dependiendo de la acción
 
-graph TD;
-	A-->B;
-	A-->C;
-	B-->D;
-	C-->D;
-```
+## Tres principios de Redux
+
+
