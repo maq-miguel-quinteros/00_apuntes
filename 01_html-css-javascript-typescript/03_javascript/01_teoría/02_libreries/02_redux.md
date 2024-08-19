@@ -157,9 +157,30 @@ const reducer = (state = initialState, action) => {
 
 // * Guarda el estado de la aplicación
 // el método createStore de redux recibe como parámetro un método reducer, este método reducer tiene a su vez como parámetro el objeto state que, al momento de declararlo en el método reducer, lo hacemos igual al objeto initialState. De esta forma, mediante los parámetros del método reducer, pasamos a createStore el estado inicial de la aplicación, es decir, el estado de la aplicación
-const store = createStore()
+const store = createStore(reducer)
 
+// * Permite acceder al estado de la aplicación mediante métodos `getState()`
+// el método getState es parte del paquete de redux. Para consultar el estado actual de la aplicación podemos hacer console.log
+console.log('estado inicial: ' + store.getState())
 
+// * Permite a la aplicación registrar listeners mediante un método llamado suscribe de la forma `subscribe(listener)`
+// la función que va a recibir subscribe en el ejemplo es un console.log. Está función se va a ejecutar cada vez que se actualize el estado de la aplicación. La ejecución de store.suscribe devuelve una función que usaremos para cancelar suscripción
+const unsubscribe = store.subscribe(()=>{
+    console.log('nuevo estado: ' + store.getState())
+})
 
+// * Permite modificar el estado de la aplicación mediante un método llamado __dispatch__ que recibe como parámetro una __action__ de la forma `dispatch(action)`
+// puedo ejecutar la acción todas las veces que quiera mediante el dispatch. Cada vez que lo ejecute además se va a ejecutar el console.log indicando en store.suscribe()
+store.dispatch(buyCake)
+store.dispatch(buyCake)
+store.dispatch(buyCake)
 
+// * Permite a la aplicación desregistrar __listeners__, es decir, dejar de ejecutar cierta función cada vez que se actualiza el estado de la aplicación
+// llamamos a la función unsubscribe para dejar de ejecutar el código de subscribe cada vez que se actualiza el estado de la aplicación
+unsubscribe()
+store.dispatch(buyCake) // esta ejecución no llamará al console.log de store.subscribe
 ```
+
+Para trabar con Redux creamos un objeto __initialState__ con atributos que pueden ser modificados, una función __action creator__ que devuelve un objeto __action__ que indica cual es la acción que vamos a realizar y una función __reducer__, que recibe como parámetro el el objeto _initialState_ y una variable _action_, y que modifica devuelve un nuevo objeto _state_ modificado según lo indicando por la variable _action_. En reducer es donde indicamos como se va a modificar el estado en base al tipo de acción.
+
+Teniendo esto creado podemos armar el circuito de Redux. Primero creamos una store mediante la función redux.createStore(reducer). El método createS recibe como parámetro la función reducer, y por ende, el valor inicial del estado de la aplicación. Tenemos disponible el método store.getState() para saber el valor del estado al momento de llamar al método. Creamos un listener, una función que se va a ejecutar cada vez que se actualice el estado de la aplicación, para hacerlo utilizamos store.subscribe(listener). subscribe nos devuelve una función a la que podemos llamar unsubscribe, que vamos a utilizar para cancelar el listener. Podemos modificar el estado de la aplicación mediante store.dispatch(action), método al que le pasamos la action, lo que queremos que haga el reducer que pasamos cuando creamos la store. Cuando no queremos que se siga ejecutando subscribe utilizamos el método unsubscribe.
