@@ -184,3 +184,221 @@ store.dispatch(buyCake) // esta ejecución no llamará al console.log de store.s
 Para trabar con Redux creamos un objeto __initialState__ con atributos que pueden ser modificados, una función __action creator__ que devuelve un objeto __action__ que indica cual es la acción que vamos a realizar y una función __reducer__, que recibe como parámetro el el objeto _initialState_ y una variable _action_, y que modifica devuelve un nuevo objeto _state_ modificado según lo indicando por la variable _action_. En reducer es donde indicamos como se va a modificar el estado en base al tipo de acción.
 
 Teniendo esto creado podemos armar el circuito de Redux. Primero creamos una store mediante la función redux.createStore(reducer). El método createS recibe como parámetro la función reducer, y por ende, el valor inicial del estado de la aplicación. Tenemos disponible el método store.getState() para saber el valor del estado al momento de llamar al método. Creamos un listener, una función que se va a ejecutar cada vez que se actualice el estado de la aplicación, para hacerlo utilizamos store.subscribe(listener). subscribe nos devuelve una función a la que podemos llamar unsubscribe, que vamos a utilizar para cancelar el listener. Podemos modificar el estado de la aplicación mediante store.dispatch(action), método al que le pasamos la action, lo que queremos que haga el reducer que pasamos cuando creamos la store. Cuando no queremos que se siga ejecutando subscribe utilizamos el método unsubscribe.
+
+## Multiples reducers
+
+En el caso de tener estados de la aplicación que tienen multiples atributos, mediante acciones diferentes, podemos utilizar una única función reducer para modificar ese estado.
+
+```js
+import redux from 'redux'
+const createStore = redux.createStore
+
+// ACTION
+const BUY_CAKE = 'BUY_CAKE';
+
+// creamos una nueva acción
+const BUY_ICECREAM = 'BUY_ICECREAM';
+
+function buyCake() {
+    return {
+        type: BUY_CAKE,
+        info: 'Reduce el número de cakes en 1'    
+    }
+}
+
+// creamos un nuevo action creator
+function buyIceCream() {
+    return {
+        type: BUY_ICECREAM
+    }
+}
+
+// STATE
+const initialState = {
+    numOfCakes: 10,
+	// agregamos un atributo al estado de la aplicación
+	numOfIceCreams: 20,
+    other: 50
+}
+
+// REDUCER FUNCTION
+// agregamos cases al switch para las diferentes acciones que modifican los diferentes atributos del estado de la aplicación
+const reducer = (state = initialState, action) => {
+    switch (action.type){
+        case BUY_CAKE:
+            return {...state, numOfCakes: state.numOfCakes - 1}
+		// agregamos un case para la acción BUY_ICECREAM
+		case BUY_ICECREAM:
+				return {...state, numOfIceCreams: state.numOfIceCreams - 1}
+        default:
+            return state;
+    }
+}
+
+// STORE
+const store = createStore(reducer)
+
+// GET METHOD
+console.log('estado inicial: ' + store.getState())
+
+// LISTENER
+const unsubscribe = store.subscribe(()=>{
+    console.log('nuevo estado: ' + store.getState())
+})
+
+// DISPATCH
+store.dispatch(buyCake)
+store.dispatch(buyIceCream)
+store.dispatch(buyCake)
+
+// UNSUBSCRIBE LISTENER
+unsubscribe()
+store.dispatch(buyIceCream)
+```
+
+La otra forma de resolves esto es trabajar con multiples reducers. Para ello vamos a dividir el estado y las funciones reducer. De esta forma tenemos un reducer y su lógica trabajando sobre un estado y otro diferente trabajando sobre el otro estado.
+
+```js
+import redux from 'redux'
+const createStore = redux.createStore
+
+// ACTION
+const BUY_CAKE = 'BUY_CAKE';
+const BUY_ICECREAM = 'BUY_ICECREAM';
+function buyCake() {
+    return {
+        type: BUY_CAKE,
+        info: 'Reduce el número de cakes en 1'    
+    }
+}
+function buyIceCream() {
+    return {
+        type: BUY_ICECREAM
+    }
+}
+
+// STATE
+// dividimos en dos el estado de la aplicación
+const initialCakeState = {
+    numOfCakes: 10
+}
+const initialIceCreamState = {
+	numOfIceCreams: 20
+}
+
+// REDUCER FUNCTION
+// dividimos en dos la función reducer
+const cakeReducer = (state = initialCakeState, action) => {
+    switch (action.type){
+        case BUY_CAKE:
+            return {...state, numOfCakes: state.numOfCakes - 1}
+        default:
+            return state;
+    }
+}
+const iceCreamReducer = (state = initialIceCreamState, action) => {
+    switch (action.type){
+		case BUY_ICECREAM:
+				return {...state, numOfIceCreams: state.numOfIceCreams - 1}
+        default:
+            return state;
+    }
+}
+
+// STORE
+const store = createStore(reducer)
+
+// GET METHOD
+console.log('estado inicial: ' + store.getState())
+
+// LISTENER
+const unsubscribe = store.subscribe(()=>{
+    console.log('nuevo estado: ' + store.getState())
+})
+
+// DISPATCH
+store.dispatch(buyCake)
+store.dispatch(buyIceCream)
+store.dispatch(buyCake)
+
+// UNSUBSCRIBE LISTENER
+unsubscribe()
+store.dispatch(buyIceCream)
+```
+
+### Combinar reducers en Redux
+
+En redux podemos tener solo una store, por ende, para trabajar con mas de un objeto de estado y más de un reducer tenemos que combinar estos mediante un método de redux. De esta forma podemos tener objetos de estado separados cada uno con sus tipos de acciones y reducer.
+
+```js
+import redux from 'redux'
+const createStore = redux.createStore
+
+// traemos el método de redux combineReducers
+const combineReducers = redux.combineReducers
+
+// ACTION
+const BUY_CAKE = 'BUY_CAKE';
+const BUY_ICECREAM = 'BUY_ICECREAM';
+function buyCake() {
+    return {
+        type: BUY_CAKE,
+        info: 'Reduce el número de cakes en 1'    
+    }
+}
+function buyIceCream() {
+    return {
+        type: BUY_ICECREAM
+    }
+}
+// STATE
+const initialCakeState = {
+    numOfCakes: 10,
+	other: 20
+}
+const initialIceCreamState = {
+	numOfIceCreams: 20
+}
+// REDUCER FUNCTION
+const cakeReducer = (state = initialCakeState, action) => {
+    switch (action.type){
+        case BUY_CAKE:
+            return {...state, numOfCakes: state.numOfCakes - 1}
+        default:
+            return state;
+    }
+}
+const iceCreamReducer = (state = initialIceCreamState, action) => {
+    switch (action.type){
+		case BUY_ICECREAM:
+				return {...state, numOfIceCreams: state.numOfIceCreams - 1}
+        default:
+            return state;
+    }
+}
+
+// COMBINE REDUCERS
+// el método combineReducers recibe como parámetro un objeto, este tiene como atributos los métodos reducer. A la hora de consultar el estado vamos a ver que cake se convierte en un objeto que como atributos los numOfCakes: 10 y other: 20. A su vez iceCream se convierte en un objeto que tiene como atributos numOfIceCreams: 20
+const rootReducer = combineReducers({
+	cake: cakeReducer,
+	iceCream: iceCreamReducer
+})
+
+// STORE
+// creamos la store pasando como parámetro el objeto con los reducer como atributos
+const store = createStore(rootReducer)
+
+// GET METHOD
+console.log('estado inicial: ' + store.getState())
+// LISTENER
+const unsubscribe = store.subscribe(()=>{
+    console.log('nuevo estado: ' + store.getState())
+})
+// DISPATCH
+store.dispatch(buyCake)
+store.dispatch(buyIceCream)
+store.dispatch(buyCake)
+// UNSUBSCRIBE LISTENER
+unsubscribe()
+store.dispatch(buyIceCream)
+```
