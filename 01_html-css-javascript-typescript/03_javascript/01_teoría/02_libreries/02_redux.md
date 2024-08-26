@@ -402,3 +402,138 @@ store.dispatch(buyCake)
 unsubscribe()
 store.dispatch(buyIceCream)
 ```
+
+## Middleware
+
+Middleware es la forma sugerida para extender Redux utilizando funcionalidades externas. Provee un espacio de extensión para funciones de terceros entre el envío de una acción y el momento que llega al reducer. Usamos middleware para logging, reporte de errores, realizar tareas asincrónicas, etc. Para utilizar estas funciones de terceros utilizamos un método de redux llamado applyMiddleware y le pasamos la función que queremos ejecutar como parámetro. Esta función applyMiddleware irá como segundo parámetro de createStore cuando creamos la store
+
+### Redux logger
+
+Esta extensión genera un console.log de toda la información relacionada con Redux dentro de nuestra aplicación. Instalamos el paquete de extensión mediante el comando `npm install redux-logger`.
+
+```js
+import redux from 'redux'
+
+// importamos el paquete
+import reduxLogger from 'redux-logger'
+
+const createStore = redux.createStore
+const combineReducers = redux.combineReducers
+
+// creamos la función que permite aplicar middleware
+const applyMiddleware = redux.applyMiddleware
+
+// creamos la función logger
+const logger = reduxLogger.createLogger()
+
+// ACTION
+const BUY_CAKE = 'BUY_CAKE';
+const BUY_ICECREAM = 'BUY_ICECREAM';
+function buyCake() {
+    return {
+        type: BUY_CAKE,
+        info: 'Reduce el número de cakes en 1'    
+    }
+}
+function buyIceCream() {
+    return {
+        type: BUY_ICECREAM
+    }
+}
+// STATE
+const initialCakeState = {
+    numOfCakes: 10,
+	other: 20
+}
+const initialIceCreamState = {
+	numOfIceCreams: 20
+}
+// REDUCER FUNCTION
+const cakeReducer = (state = initialCakeState, action) => {
+    switch (action.type){
+        case BUY_CAKE:
+            return {...state, numOfCakes: state.numOfCakes - 1}
+        default:
+            return state;
+    }
+}
+const iceCreamReducer = (state = initialIceCreamState, action) => {
+    switch (action.type){
+		case BUY_ICECREAM:
+				return {...state, numOfIceCreams: state.numOfIceCreams - 1}
+        default:
+            return state;
+    }
+}
+// COMBINE REDUCERS
+const rootReducer = combineReducers({
+	cake: cakeReducer,
+	iceCream: iceCreamReducer
+})
+// STORE
+// pasamos como segundo parámetro la función de terceros que queremos que ejecute el reducer cuando creamos la store, utilizamos la función de redux applyMiddleware pasando como parámetro de esta la función de tercero logger
+const store = createStore(rootReducer, applyMiddleware(logger))
+// GET METHOD
+console.log('estado inicial: ' + store.getState())
+// LISTENER
+const unsubscribe = store.subscribe(()=>{
+	// quitamos el console.log ya que, en adelante, la función de terceros logger va a hacer un log de los cambios en los estados de la store
+    // console.log('nuevo estado: ' + store.getState())
+})
+// DISPATCH
+store.dispatch(buyCake)
+store.dispatch(buyIceCream)
+store.dispatch(buyCake)
+// UNSUBSCRIBE LISTENER
+unsubscribe()
+store.dispatch(buyIceCream)
+```
+
+### Asynchronous actions
+
+Las acciones sincrónicas son acciones que al ser enviadas (dispatch) actualizan inmediatamente el estado de la aplicación. Las acciones asincrónicas demoran en modificar el estado de la aplicación, por ejemplo, cuando hacemos el llamado a una API solicitando un dato que tenemos que usar para mostrar en la aplicación. Este llamado tiene una demora. A la hora de manejar esto con redux vamos a tener los siguiente componentes:
+
+* STATE:
+
+```js
+const state = {
+	// esta bandera nos indica que los datos se están trayendo. Se utiliza para notificar eso mismo mediante un mensaje
+	loading: true, 
+	// los datos de usuario que solicitamos en un array de objetos. Mientras loading es true este atributo va a estar vacío
+	data: [],
+	// si el llamado devuelve un error lo vamos a guardar en este atributo. Lo usamos para mostrar el error al usuario
+	error: ''
+}
+```
+
+* ACTIONS
+	* FETCH_USERS_REQUEST: realiza el llamado a la API para traer un listado de usuarios
+	* FETCH_USERS_SUCCESS: si el llamado anterior fue correcto ejecutamos esta segunda acción
+	* FETCH_USERS_FAILURE: si el llamado fue incorrecto o dio un error
+
+* REDUCERS
+
+```js
+// para la action FETCH_USERS_REQUEST
+state = {
+	loading: true
+}
+
+// para la action FETCH_USERS_SUCCESS
+state = {
+	loading: false,
+	data: dataFromAPI
+}
+
+// para la action FETCH_USERS_FAILURE
+state = {
+	loading: false,
+	error: errorFromAPI
+}
+```
+
+El código quedaría de la siguiente manera:
+
+```js
+// STATE
+```
