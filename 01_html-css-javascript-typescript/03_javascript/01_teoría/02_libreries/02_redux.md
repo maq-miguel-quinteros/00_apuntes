@@ -491,6 +491,8 @@ store.dispatch(buyIceCream)
 
 ### Asynchronous actions
 
+#### Configuration
+
 Las acciones sincrónicas son acciones que al ser enviadas (dispatch) actualizan inmediatamente el estado de la aplicación. Las acciones asincrónicas demoran en modificar el estado de la aplicación, por ejemplo, cuando hacemos el llamado a una API solicitando un dato que tenemos que usar para mostrar en la aplicación. Este llamado tiene una demora. A la hora de manejar esto con redux vamos a tener los siguiente componentes:
 
 * STATE:
@@ -512,6 +514,7 @@ const state = {
 	* FETCH_USERS_FAILURE: si el llamado fue incorrecto o dio un error
 
 * REDUCERS
+Dependiendo de la acción que realicemos el reducer va a modificar la variable de estado de la siguiente manera:
 
 ```js
 // para la action FETCH_USERS_REQUEST
@@ -535,5 +538,185 @@ state = {
 El código quedaría de la siguiente manera:
 
 ```js
+// LLAMAMOS A LAS LIBRERÍAS
+import redux from 'redux'
+const createStore = redux.createStore
+
 // STATE
+const initialState = {
+	loading: false,
+	users: [],
+	error: ''
+}
+
+// ACTIONS
+const FETCH_USERS_REQUEST = 'FETCH_USERS_REQUEST'
+const FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS'
+const FETCH_USERS_FAILURE = 'FETCH_USERS_FAILURE'
+// ACTION CREATOR
+const fetchUsersRequest = () =>{
+	return {
+		type: FETCH_USERS_REQUEST
+	}
+}
+// para el typo de action FETCH_USERS_SUCCESS vamos a devolver también los users
+const fetchUsersSuccess = users =>{
+	return {
+		type: FETCH_USERS_SUCCESS,
+		payload: users
+	}
+}
+const fetchUsersFailure = error =>{
+	return {
+		type: FETCH_USERS_FAILURE,
+		payload: error
+	}
+}
+
+// REDUCER
+const reducer = (state = initialState, action) => {
+	switch(action.type){
+		case FETCH_USERS_REQUEST:
+			return {
+				...state,
+				loading: true
+			}
+		break
+		case FETCH_USERS_SUCCESS:
+			return {
+				loading: false,
+				users: action.payload,
+				error: ''
+			}
+		break
+		case FETCH_USERS_FAILURE:
+			return {
+				loading: false,
+				users: [],
+				error: action.payload
+			}
+		break
+		default:
+			return state
+		break
+	}
+}
+
+// STORE DE REDUX
+const store = createStore(reducer)
+```
+
+#### Async actions creator
+
+Vamos a utilizar las siguientes dependencias para hacer los llamados a la API
+* axios: se utiliza para realizar llamados a una API
+* redux-thunk: lo utilizamos para definir action creator asincrónicos. Esto es un middleware que vamos a utilizar en la store.
+
+Redux-thunk permite que un action creator, en lugar de solo devolver un objeto que representa una acción, es capaz de devolver una función que no tiene que ser una función pura.
+
+Instalamos `npm install axios` y `npm install redux-thunk`.
+
+El código quedaría de la siguiente manera:
+
+```js
+// LLAMAMOS A LAS LIBRERÍAS
+import redux from 'redux'
+import reduxThunk from 'redux-thunk'
+import axios from 'axios'
+
+const createStore = redux.createStore
+// creamos las funciones para utilizar el middleware
+const applyMiddleware = redux.applyMiddleware
+const thunkMiddleware = reduxThunk.default
+
+// STATE
+const initialState = {
+	loading: false,
+	users: [],
+	error: ''
+}
+
+// ACTIONS
+const FETCH_USERS_REQUEST = 'FETCH_USERS_REQUEST'
+const FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS'
+const FETCH_USERS_FAILURE = 'FETCH_USERS_FAILURE'
+// ACTION CREATOR
+const fetchUsersRequest = () =>{
+	return {
+		type: FETCH_USERS_REQUEST
+	}
+}
+// para el typo de action FETCH_USERS_SUCCESS vamos a devolver también los users
+const fetchUsersSuccess = users =>{
+	return {
+		type: FETCH_USERS_SUCCESS,
+		payload: users
+	}
+}
+const fetchUsersFailure = error =>{
+	return {
+		type: FETCH_USERS_FAILURE,
+		payload: error
+	}
+}
+
+// REDUCER
+const reducer = (state = initialState, action) => {
+	switch(action.type){
+		case FETCH_USERS_REQUEST:
+			return {
+				...state,
+				loading: true
+			}
+		break
+		case FETCH_USERS_SUCCESS:
+			return {
+				loading: false,
+				users: action.payload,
+				error: ''
+			}
+		break
+		case FETCH_USERS_FAILURE:
+			return {
+				loading: false,
+				users: [],
+				error: action.payload
+			}
+		break
+		default:
+			return state
+		break
+	}
+}
+
+// creamos un action creator que va a devolver una función. Esta función recibe el método dispatch la store
+const fetchUsers = () => {
+	return function (dispatch) {
+		// llamamos a dispatch de redux con la action fetchUsersRequest que hace a loading true
+		dispatch(fetchUsersRequest)
+
+		// axios get devuelve una promesa haciendo un llamado a la API de jsonplaceholder
+		axios.get('https://jsonplaceholder.typicode.com/users')
+
+			// cuando llega la respuesta y es correcta
+			.then(response => {
+				// solo vamos a guardar un array de id de los users
+				const users = response.data.map(user => user.id)
+
+				// llamamos a dispatch de redux con la action fetchUsersSuccess que hace a loading false y a users lo que está en users
+				dispatch(fetchUsersSuccess(users))
+			})
+			// cuando llega la respuesta y es un error
+			.catch(error => {				
+				dispatch(fetchUsersFailure(error.message))
+			})
+	}
+}
+
+// STORE DE REDUX
+// pasamos a la store el middleware
+const store = createStore(reducer, applyMiddleware(thunkMiddleware))
+store.subscribe(() => { console.log(store.getState()) })
+// en lugar de pasar una action pasamos action creator fetchUsers (permitido por el middleware redux-thunk), la función que pasamos, que devuelve el action creator, recibe como parámetro la función dispatch de store. De está forma dentro de de esa función devuelta por fetchUsers llamamos a dispatch con sus correspondientes actions que, según el caso, se van a ir ejecutando
+store.dispatch(fetchUsers())
 ```
