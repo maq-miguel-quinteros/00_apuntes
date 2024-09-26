@@ -345,3 +345,119 @@ WHERE
         OR
         Fecha > '20180731' AND NOT Cantidad >= 50
 ```
+
+# Cláusula IN
+
+## Cláusula IN
+
+Utilizamos `IN` para conocer cuales, de una lista de valores, se encuentran en los datos almacenados en una columna. En el ejemplo filtramos los registros en los cuales `Codigo` contenga algunos de los calores de la lista `('ARG', 'AGO', 'AND')`. Utilizamos `IN` cuando queremos comparar el valor de una columna con una lista de valores.
+
+```sql
+SELECT *
+FROM Paises
+WHERE Codigo IN ('ARG', 'AGO', 'AND')
+```
+
+Podemos utilizar NOT para negar esta condición.
+
+```sql
+SELECT *
+FROM Paises
+WHERE Codigo NOT IN ('ARG', 'AGO', 'AND')
+```
+
+Se pueden realizar consultas con `IN` para valores numéricos y de fechas con el formato `'AAAAMMDD'`.
+
+## Ejercicios
+
+### Ejercicio 1
+
+```sql
+-- Devolver cliente cuyos apellidos sean Myers, Lewis, Kent, Case o Berger
+SELECT *
+FROM Clientes
+WHERE
+        Apellido IN ('Myers', 'Lewis', 'Kent', 'Case', 'Berger')
+```
+
+### Ejercicio 2
+
+```sql
+-- Devolver Codigo, Nombre Continente y Region de todos los paises de America
+SELECT Codigo, Nombre, Continente, Region
+FROM Paises
+WHERE Continente IN ('North America', 'South America')
+```
+
+### Ejercicio 3
+
+```sql
+-- Devolver todas las ciudades de los paises hispanoparlantes
+
+-- Necesitamos conseguir el idioma de los paises
+-- SELECT PaisCodigo FROM PaisesIdioma WHERE PaisIdioma = 'Spanish'
+
+SELECT Nombre, CodigoPais, Distrito
+FROM Ciudades
+WHERE CodigoPais IN ('...INGRESAMOS LOS 28 PaisCodigo DE LA CONSULTA ANTERIOR')
+```
+
+# Cláusula BETWEEN
+
+## Cláusula BETWEEN
+
+Cuando necesitamos acotar una búsqueda a un rango entre dos valores, por ejemplo un valor para la columna `Id` que vaya del `100` al `200`, utilizamos la sintaxis `WHERE Id >= 100 AND Id <=200`. Podemos obtener el mismo resultado mediante la cláusula `BETWEEN`. La cláusula `BETWEEN` incluye a lo extremos, es decir, si no queremos tomar los valores de `100` y `200` debemos indicar `101` y `199`.
+
+```sql
+SELECT *
+FROM Ciudades
+WHERE Id BETWEEN 100 AND 200
+```
+
+Podemos utilizar `BETWEEN` para consultar rangos de fechas.
+
+```sql
+SELECT *
+FROM Clientes
+WHERE FechaNacimiento BETWEEN '19900101' AND '19901231'
+```
+
+## Ejercicios
+
+### Ejercicio 1
+
+```sql
+-- Devolver clientes nacidos entre 1950 y 1980 y clientes nacidos entre 1990 y 2010
+SELECT *
+FROM Clientes
+WHERE FechaNacimiento 
+        BETWEEN '19500101' AND '19800101' OR 
+        BETWEEN '19900101' AND '20100101'
+```
+
+### Ejercicio 2
+
+```sql
+-- Devolver ordenes realizadas: antes de enero de 2016, entre marzo y noviembre de 2017 o marzo y noviembre de 2018, después de enero de 2019
+
+SELECT *
+FROM Ordenes
+WHERE
+        Fecha < '20160101' OR
+        Fecha BETWEEN '20170301' AND '20171130' OR 
+        Fecha BETWEEN '20180301' AND '20181201' OR
+        Fecha > '20190131'
+
+```
+
+### Ejercicio 3
+
+```sql
+-- Devolver Id, Nombre, Apellido y Direccion de los clientes con Id mayores a 80 pero menores a 125, excepto por los clientes 99 y 100. Y ademas devolver los clientes con Id 13, 17, 19, 28 y 56
+
+SELECT ID, Nombre, Apellido, Direccion
+FROM Clientes
+WHERE
+        Id BETWEEN 80 AND 125 AND Id NOT In (99, 100) OR
+        Id IN (13, 17, 19, 28 y 56)
+```
