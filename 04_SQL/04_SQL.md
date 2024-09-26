@@ -241,3 +241,107 @@ WHERE
 ```
 
 # Cláusulas AND OR y NOT
+
+### Cláusulas AND y OR
+
+Podemos utilizar operaciones lógicas dentro de la cláusula `WHERE`. Para hacerlos disponemos de los operadores lógicos `AND`, `OR` y `NOT`. En el ejemplo va a devolver todos los registros que cumplan con ambas condiciones.
+
+```sql
+SELECT *
+FROM
+        Clientes
+WHERE
+        Nombre = 'Carla' AND Apellido = 'Snider'
+```
+
+Mediante la cláusula `OR` podemos evaluar que se cumpla mas de una condición para una columna. En el ejemplo va a devolver todos los registros cuyo nombre sea `Carla` o `Abel`.
+
+```sql
+SELECT *
+FROM
+        Clientes
+WHERE
+        Nombre = 'Carla' AND Nombre = 'Abel'
+```
+
+## Combinar operadores
+
+Cuando utilizamos operadores lógicos el orden es importante. Pero algunos operadores lógicos tiene prioridad sobre otros.
+* La evaluación se hace de izquierda a derecha.
+
+* Se evalúan primer lo que está dentro de los paréntesis.
+* Se evalúan los `NOT`, luego los `AND` y finalmente los `OR`.
+
+En el ejemplo `Nombre = 'Carla' OR Nombre = 'Abel' AND Apellido = 'Snider'` se evalúa primero `Nombre = 'Abel' AND Apellido = 'Snider'` que no devuelve valores, por que no hay registros que cumplan esas dos condiciones. Al resultado de esto se evalúa `Nombre = 'Carla' OR` que va a devolver solo registros con `Nombre = 'Carla'`, ya que la primera parte no devuelve valores.
+
+Para solucionar esto damos prioridad a `Nombre = 'Carla' OR Nombre = 'Abel'` mediante los `()`.
+
+```sql
+SELECT *
+FROM
+        Clientes
+WHERE
+        (Nombre = 'Carla' OR Nombre = 'Abel') AND Apellido = 'Snider'
+```
+
+## Cláusula NOT
+
+La cláusula `NOT` se utiliza para negar la expresión que le sigue. En el ejemplo traemos todos los registros cuyo valor de la columna `Nombre` no sea `Carla`. El ejemplo también se puede resolver como `Nombre != 'Carla'`.
+
+```sql
+SELECT *
+FROM
+        Clientes
+WHERE
+        NOT Nombre = 'Carla'
+```
+
+Podemos aplicar la cláusula a un conjunto de operadores. En el ejemplo vamos a solicitar los registros cuyo `Nombre` no es `Abel` o cuyo `Apellido` no es `Snider`. `NOT` niega las comprobaciones de igual, es decir, las vuelve en `!=` pero también niega el `AND`, es decir, la vuelve en `OR`.
+
+```sql
+SELECT *
+FROM
+        Clientes
+WHERE
+        Nombre = 'Carla' OR NOT (Nombre = 'Abel' AND Apellido = 'Snider')
+```
+
+## Ejercicios
+
+### Ejercicio 1
+
+```sql
+-- Devolver todos los productos cuyo precio sea mayor que el costo incrementado en un 40% o la ganancia sea de al menos 25
+SELECT *
+        Costo * 1.4 As CostoIncrementado
+FROM
+        Productos
+WHERE
+        Precio > Costo * 1.4 OR (Precio - Costo > 25 ) 
+```
+
+### Ejercicio 2
+
+```sql
+-- Devolver todas las ciudades argentinas y todas las ciudades brasileras excepto aquellas que pertenezcan a los de Buenos Aires y Racife
+
+SELECT *
+FROM
+        Ciudades
+WHERE
+        (CodigoPais = 'ARG' AND NOT Distrito = 'Buenos Aires') OR 
+        (CodigoPais = 'BRA' AND NOT Distrito = 'Racife')
+```
+
+### Ejercicio 3
+
+```sql
+-- Devolver las ordenes realizadas antes de febrero de 2018 que hayan vendido mas de 100 productos o ordenes realizadas después de julio del 2018 que no hayan vendido más de 50 productos
+
+SELECT *
+FROM ordenes
+WHERE 
+        Fecha < '20180201' AND Cantidad > 100
+        OR
+        Fecha > '20180731' AND NOT Cantidad >= 50
+```
