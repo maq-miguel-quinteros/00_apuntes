@@ -694,6 +694,80 @@ INNER JOIN Categorias c On p.CategoriaId = c.Id
 
 
 
+Podemos hacer múltiples combinaciones mediante INNER JOIN. De la misma forma que con el ejemplo de Categorias usamos la clave foranea para buscar las coincidencias en las siguientes tablas.
+
 ```sql
+SELECT *
+FROM Productos p
+INNER JOIN Categorias c On p.CategoriaId = c.Id
+INNER JOIN Proveedores pr On p.ProveedorId = pr.Id
+```
+
+En el caso de tener valores nulos en la columna CategoriaId o ProveedorID ese registro no va a aparecer en el resultado. Esto sucede por que `INNER JOIN` no devuelve filas donde el valor que se evalua es nulo. Es decir si, por ejemplo, si ProveedorId de Productos tiene valor `NULL` ese registro, junto con las columnas de Categorias y las columnas de Proveedores, no va a aparecer en el resultado de la consulta.
+
+Para que los valores de la consulta aparezcan tiene que cumplirse las condiciones de los dos `JOIN`
+
+## Palabras opcionales
+
+La palabra INNER es opcional. Podemos realizar la consulta indicando solo `JOIN`. Por defecto los `JOIN` son `INNER JOIN` a menos que indiquemos algo diferente. La consulta puede quedar de la siguiente manera:
+
+```sql
+SELECT *
+FROM Productos p
+JOIN Categorias c On p.CategoriaId = c.Id
+JOIN Proveedores pr On p.ProveedorId = pr.Id
+```
+
+## Ejercicios
+
+### Ejercicio 1
+
+```sql
+-- Devolver nombre de proveedores, precio y costo de productos cuya ganacia sea mayor a 20
+
+SELECT 
+        p.Nombre
+        Precio
+        Costo
+FROM Productos
+JOIN Proveedores p On ProveedorId = p.Id
+WHERE Precio - Costo > 20
 
 ```
+
+### Ejercicio 2
+
+```sql
+-- Devolver Fecha, Apellido y nombre del cliente y nombre de producto de todos los clientes que hayan comprado productos entre 2016 y 2019 ordenado primero por mas reciente y segundo por apellido A - Z
+
+SELECT Fecha, c.Apellido, c.Nombre, p.Nombre
+FROM Ordenes
+JOIN Clientes c On ClienteId = c.Id
+JOIN Productos p On ProductoId = p.Id
+WHERE Fecha BETWEEN '20160101' AND '20191231'
+ORDER BY Fecha DESC, c.Apellido
+```
+
+### Ejercicio 3
+
+```sql
+-- Devolver Fecha, Apellido, nombre y pais del cliente y nombre de producto de todos los clientes que hayan comprado productos entre 2016 y 2019 ordenado primero por mas reciente y segundo por apellido A - Z
+
+SELECT Fecha, c.Apellido, c.Nombre, pais.Nombre, p.Nombre
+FROM Ordenes
+JOIN Clientes c On ClienteId = c.Id
+
+JOIN Ciudades ciu On c.CiudadId = ciu.Id
+JOIN Paises pais On ciu.CodigoPais = Pais.Codigo
+
+JOIN Productos p On ProductoId = p.Id
+
+WHERE Fecha BETWEEN '20160101' AND '20191231'
+ORDER BY Fecha DESC, c.Apellido
+```
+
+# Cláusula OUTER JOIN
+
+## LEFT JOIN
+
+
