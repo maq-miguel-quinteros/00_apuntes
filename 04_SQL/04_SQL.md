@@ -770,4 +770,22 @@ ORDER BY Fecha DESC, c.Apellido
 
 ## LEFT JOIN
 
+Cuando hacemos un `JOIN` entre dos tablas, por ejemplo una tabla Clientes y una tabla Ordenes, los valores devueltos van a ser todos los que cumplan condición de igualdad en ambas tablas. Cuando queremos que la consulta nos devuelva, además de los datos que cumplen con la condición, también los datos que no cumplen con la condición, de la primera tabla, la tabla Clientes, utilizamos `LEFT JOIN`. `LEFT JOIN` va a devolver los datos que cumplan con la condición del JOIN y los datos de la tabla de la izquierda de la consulta que no cumplan con la condición. En el ejemplo la consulta devuelve todos los registros de la tabla Clientes, aunque estos no tengan ninguna orden realizada. En la respuesta, en las columnas de la tabla Ordenes sus valores aparecerán como NULL, para los clientes que no tengan ninguna orden hecha.
 
+```sql
+SELECT *
+FROM Clientes c
+LEFT JOIN Ordenes o On o.ClienteId = c.Id
+ORDER BY c.Id
+```
+
+## RIGHT JOIN
+
+Funciona de la misma manera que `LEFT JOIN` solo que va a traer todos los compos de la tabla de la derecha de la consulta en lugar que los campos de la tabla de la izquierda. La consulta devuelve todos los campos que cumplen con la condición del ´, de la tabla de la izquierda, y todos los campos, aunque no cumplan con la condición, de la tabla de la derecha del `JOIN`. El ejemplo devuelve lo mismo que el ejemplo anterior al estar invertidas el orden de las tablas en la consulta 
+
+```sql
+SELECT *
+FROM Ordenes o
+LEFT JOIN Clientes c On o.ClienteId = c.Id
+ORDER BY c.Id
+```
