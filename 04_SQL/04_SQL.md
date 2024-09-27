@@ -461,3 +461,203 @@ WHERE
         Id BETWEEN 80 AND 125 AND Id NOT In (99, 100) OR
         Id IN (13, 17, 19, 28 y 56)
 ```
+
+# Cláusula LIKE
+
+## Cláusula LIKE y comodín '%'
+
+A la sentencia `WHERE Apellido = 'Guerra'` la podemos reemplazar por `WHERE Apellido LIKE 'Guerra'`. El resultado es el mismo pero con con la cláusula `LIKE` podemos usar comodines. Los comodines son caracteres especiales que se utilizan para reemplazar otros caracteres. Los comodines son:
+
+* % : iguala cualquier cantidad de caracteres.
+* _ : iguala solo un caracter
+
+De esta forma si queremos una respuesta con todos los clientes cuyo apellido comienza con G utilizamos `LIKE` mas el comodín.
+
+```sql
+SELECT *
+FROM Clientes
+WHERE Apellido LIKE 'G%'
+```
+
+Podemos utilizar el comodín de forma inversa. Es decir, los apellidos que terminan con uno o varios caracteres.
+
+```sql
+SELECT *
+FROM Clientes
+WHERE Apellido LIKE '%ne'
+```
+
+Si queremos buscar los apellidos que contienen ciertos caracteres.
+
+```sql
+SELECT *
+FROM Clientes
+WHERE Apellido LIKE '%ue%'
+```
+
+## Comodín '_'
+
+El comodín '_' reemplaza solo un caracter en la búsqueda que realizamos mediante `LIKE`. En el ejemplo va a devolver todos los apellidos que terminen en `uerra` y comiencen con cualquier caracter.
+
+```sql
+SELECT *
+FROM Clientes
+WHERE Apellido LIKE '_uerra'
+```
+
+Cada '_' representa un caracter. Podemos hacer búsquedas combinadas.
+
+```sql
+SELECT *
+FROM Clientes
+WHERE Apellido LIKE '_u__ra'
+```
+
+## Ejercicios
+
+### Ejercicio 1
+
+```sql
+-- Devolver Id, Nombre, Costo y Precio de todos los productos relacionados con queso siempre y cuando su costo no se menor a 10 ni mayor a 30
+
+SELECT Id, Nombre, Costo, Precio
+FROM Productos
+WHERE Nombre LIKE '%queso%' AND Costo BETWEEN 10 AND 30
+```
+
+### Ejercicio 2
+
+```sql
+-- Devolver todos los clientes cuyo nombre tenga como segunda letra, la letra 'a' y termine con la letra 'e'
+
+SELECT *
+FROM Clientes
+WHERE Nombre LIKE '_a%e'
+```
+
+### Ejercicio 3
+
+```sql
+-- Devolver todos los clientes cuyo apellido no tenga la letra 'r' en la tercera posición y su penúltima posición sea la letra 'e'
+
+SELECT *
+FROM Clientes 
+WHERE Apellido NOT LIKE '__r%' AND Apellido LIKE '%e_'
+```
+
+# Cláusula IS NULL
+
+## Cláusula IS NULL
+
+Utilizamos `IS NULL` para devolver todos los registros de una columna que no tengan valores asignados. Cuando un registro de una columna no tiene datos esta aparece como NULL.
+
+```sql
+SELECT *
+FROM Clientes
+WHERE Telefono IS NULL
+```
+
+Si queremos conocer todos los clientes que si tienen valores en una columna en particular, es decir, todos los que no son `NULL`, podemos utilizar `NOT`. Podemos indicarlo como el ejemplo o de la forma `IS NOT NULL`. En el ejemplo traemos todos los registros cuyo teléfono no tiene valor `NULL`.
+
+```sql
+SELECT *
+FROM Clientes
+WHERE NOT Telefono IS NULL
+```
+
+## Ejercicios
+
+### Ejercicio 1
+
+```sql
+-- Devolver todos los productos que tengan proveedor
+
+SELECT *
+FROM Productos
+WHERE ProveedorId IS NOT NULL
+```
+
+### Ejercicio 2
+
+```sql
+-- Devolver todos los clientes que no tengan telefono
+
+SELECT *
+FROM Clientes
+WHERE Telefono IS NULL
+```
+
+# Cláusula ORDER BY
+
+## ORDER BY DESC
+
+La Cláusula `ORDER BY` se utiliza para establecer el orden en que queremos devolver los datos de una consulta. Si no especificamos un orden, por defecto los datos se van a devolver en orden ascendente de la clave primaria. La cláusula `ORDER BY` se coloca siempre al final de la consulta y soporta una lista de columnas. Si no especificamos el tipo de orden para la cláusula `ORDER BY` por defecto será ascendente. Para modificar esto utilizamos `DESC`.
+
+```sql
+SELECT *
+FROM Clientes
+ORDER BY Apellido DESC
+```
+
+## ORDER BY ASC
+
+Podemos hacer explicito el orden ascendente mediante `ASC`.
+
+```sql
+SELECT *
+FROM Clientes
+ORDER BY Apellido ASC
+```
+
+## Combinar ordenes
+
+El orden de las columnas que indicamos a `ORDER BY`. En el ejemplo se va a ordenar primero por FechaNacimiento y si dos registros coinciden en su FechaNacimiento se va a ordenar por Apellido. 
+
+```sql
+SELECT FechaNacimiento, Apellido
+FROM Clientes
+ORDER BY FechaNacimiento, Apellido
+```
+
+Podemos indicar diferentes ordenes para cada una de las columnas. En el ejemplo, se va a ordenar por FechaNacimiento en forma ascendente (por defecto) y por Apellido en forma descendente.
+
+```sql
+SELECT FechaNacimiento, Apellido
+FROM Clientes
+ORDER BY FechaNacimiento, Apellido DESC
+```
+
+## Ejercicios
+
+### Ejercicio 1
+
+```sql
+-- Devolver Nombre, Apellido y Direccion de todos los clientes ordenados por facha de nacimiento desde el mes mas reciente al mas antiguo
+
+SELECT Nombre, Apellido, Direccion
+FROM Clientes
+ORDER BY FechaNacimiento DESC
+```
+
+### Ejercicio 2
+
+```sql
+-- Devolver Nombre, ProveedorId y Ganancia de todos los productos, ordenados de mayor a menor, con el product de mayor ganacia primero en la lista
+
+SELECT Nombre, ProveedorId,
+        Precio - Costo As Ganancia
+FROM Productos
+ORDER BY Precio - Costo DESC
+```
+
+### Ejercicio 3
+
+```sql
+-- Devolver todos los clientes y ordenarlos por nombre de A a Z, si el nombre coincide ordenar por Apellido de Z a A, si ambos coinciden elegir primer el cliente con mayor edad
+
+SELECT *
+FROM Clientes
+ORDER BY Nombre, Apellido DESC, FechaNacimiento
+```
+
+# Cláusula INNER JOIN
