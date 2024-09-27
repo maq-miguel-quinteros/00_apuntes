@@ -661,3 +661,39 @@ ORDER BY Nombre, Apellido DESC, FechaNacimiento
 ```
 
 # Cláusula INNER JOIN
+
+## Cláusula INNER JOIN
+
+Podemos combinar más de una tabla utilizando `INNER JOIN`. Para hacerlo utilizamos las claves foráneas, es decir, las columnas que hacen referencia al Id de otra tabla de la base. Por ejemplo la tabla Productos tiene las columnas ProveedorId y CategoriaId que hacen referencia a registros en las tablas Proveedores y Categorias respectivamente.
+
+En el ejemplo estamos indicando solicitando que se devuelvan todos los registros de la tabla Productos y todos los registros de la tabla Categorias siempre que CategoriasId de la tabla Productos sea igual Id de la tabla Categorias.
+
+```sql
+SELECT *
+FROM Productos
+INNER JOIN Categorias On CategoriaId = Id
+```
+
+La consulta anterior va a generar un error. Esto sucede por que ambas tablas, Productos y Categorias tiene una columna Id que va a ser devuelva por la consulta. Para solucionarlo utilizamos los Alias. En el ejemplo indicamos como alias de Productos la letra p y como alias de Categorias la letra c. Cuando vamos a hacer la comparación de valores de Id indicamos p.CategoriaId, es decir, la columna CategoriaId de la tabla Productos con alias p se debe comparar con c.Id, es decir, la columna Id de la tabla Categorias con alias c.
+
+```sql
+SELECT *
+FROM Productos As p
+INNER JOIN Categorias As c On p.CategoriaId = c.Id
+```
+
+Esto mismo se puede indicar sin la cláusula `As`.
+
+```sql
+SELECT *
+FROM Productos p
+INNER JOIN Categorias c On p.CategoriaId = c.Id
+```
+
+## Múltiples JOIN
+
+
+
+```sql
+
+```
