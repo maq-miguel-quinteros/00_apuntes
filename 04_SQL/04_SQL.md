@@ -789,3 +789,21 @@ FROM Ordenes o
 LEFT JOIN Clientes c On o.ClienteId = c.Id
 ORDER BY c.Id
 ```
+
+La palabra `OUTER` en `LEFT OUTER JOIN` o `RIGHT OUTER JOIN` es opcional, puede escribirse directamente `LEFT JOIN` y `RIGHT JOIN`.
+
+## Ejercicios
+
+### Ejercicio 1
+
+```sql
+-- Devolver nombre y apellido del cliente que no hayan realizado ninguna orden, no hayan realizado una orden fuera del año 2018
+
+SELECT c.Nombre, c.Apellido
+FROM Clientes c
+LEFT JOIN Ordenes On ClienteId = c.id
+-- en lugar de aplicar where, que va a descartar los registros con fecha null, es decir, los registros de los clientes que no tengan hechas ordenes, hacemos un and a la condición del left join indicando que queremos que descarte los de las fechas indicadas en el between
+    AND Fecha NOT BETWEEN '20180101' AND '20181231'
+```
+
+### Ejercicio 2
