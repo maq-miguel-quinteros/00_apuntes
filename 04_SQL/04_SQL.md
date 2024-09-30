@@ -1003,3 +1003,117 @@ WHERE p.CategoriaId NOT IN (1, 4, 6) -- Resto de los productos
 
 ORDER BY c.Nombre
 ```
+
+# Cláusula GROUP BY
+
+## GROUP BY
+
+`GROUP BY` permite organizar las filas de una consulta en grupos, que están determinados por las columnas que se especifican en la consulta. La consulta va a devolver las filas sin repetir valores para ProveedorId, es decir, varios productos tienen el mismo ProveedorId, la consulta va a devover solo una fila por cada valor de ProveedorId diferente.
+
+```sql
+SELECT ProveedorId
+FROM Productos
+GROUP BY ProveedorId
+```
+
+Podemos traer los nombres de los Proveedores que se corresponden con el ProveedorId del producto, de esta forma solo vamos a tener el nombre de cada proveedor sin repeticiones.
+
+```sql
+SELECT ProveedorId, p.Nombre
+FROM Productos
+    JOIN Proveedores p On ProveedorId = p.Id
+GROUP BY ProveedorId, p.Nombre
+```
+
+En la cláusula `SELECT` tenemos que tener todas las columnas que indicamos agrupar con `GROUP BY`.
+
+## Ejercicios
+
+### Ejercicio 1
+
+```sql
+-- Devolver solo paises de la tabla ciudades
+
+SELECT p.Nombre
+FROM Ciudades
+    JOIN Paises p On CodigoPais = p.CodigoPais
+GROUP BY p.Nombre
+```
+
+# Cláusula COUNT
+
+## COUNT
+
+`COUNT` es una función de agregado que se utiliza con `GROUP BY`. Se utiliza para contar cuantas veces aparece un valor indicado dentro de un grupo. En el ejemplo traemos los nombres de los proveedores y contamos cuantas veces cada uno de estos se repiten en la tabla Productos, es decir, contamos la cantidad de productos que tenemos para cada proveedor.
+
+```sql
+SELECT prov.Nombre, COUNT(prod.Id) As CantidadProductos
+FROM Productos prod
+    JOIN Proveedores prov On prov.Id = prod.ProveedorId
+GROUP BY prov.Nombre
+ORDER BY prov.Nombre
+```
+
+## COUNT (*) y COUNT DISTINCT
+
+* `COUNT (*)`: nos permite contar todas las filas de una tabla en particular. El ejemplo devuelve un registro con el número de filas de la tabla Clientes.
+
+```sql
+SELECT COUNT(*)
+FROM CLientes
+```
+
+```sql
+-- Devuelve la cuenta de clientes con Nombre = 'Carla'
+SELECT COUNT(*)
+FROM CLientes
+WHERE Nombre = 'Carla'
+```
+
+* `COUNT DISTINCT`: devuelve la cantidad de filas donde no se repite el valor que indicamos entre paréntesis. En el ejemplo va a contar la cantidad de nombres distintos que hay en la tabla clientes.
+
+```sql
+SELECT COUNT(DISTINCT Nombre)
+FROM CLientes
+```
+
+## Ejercicios
+
+### Ejercicio 1
+
+```sql
+-- Devolver la cantidad de productos vendidos por categoría, ordenado de mayor a menor
+
+SELECT cat.Nombre, COUNT(cat.CategoriaId)
+FROM Ordenes
+    INNER JOIN Productos prod On Prod.Id = ProductoId
+    INNER JOIN Categorias cat On cat.Id = Prod.CategoriaId
+GROUP BY prod.CategoriaId, cat.Nombre
+ORDER BY COUNT(cat.CategoriaId) DESC
+```
+
+### Ejercicio 2
+
+```sql
+-- Devolver la cantidad de clientes que alguna vez ordenaron algo, por pais
+
+SELECT pais.Codigo, pais.Nombre, COUNT(pais.codigo) As Cantidad
+FROM Ordenes
+    INNER JOIN Clientes cli On cli.Id = ClienteId
+    INNER JOIN Ciudades ciu On ciu.Id = cli.CiudadId
+    INNER JOIN Paises pais On Pais.CodigoPais = ciu.CodigoPais
+GROUP BY pais.Nombre, COUNT(cli.Id)
+```
+
+### Ejercicio 3
+
+```sql
+-- Devolver la cantidad de productos cuya ganancia está entre 5 y 20 y su proveedor no está vacío.
+
+SELECT COUNT(*)
+FROM Productos
+WHERE (Precio - Costo) BETWEEN 5 AND 20 AND ProveedorId IS NOT NULL
+
+```
+
+# Cláusula SUM
