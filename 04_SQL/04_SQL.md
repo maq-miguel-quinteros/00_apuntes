@@ -799,7 +799,8 @@ La palabra `OUTER` en `LEFT OUTER JOIN` o `RIGHT OUTER JOIN` es opcional, puede 
 ```sql
 -- Devolver nombre y apellido del cliente que no hayan realizado ninguna orden, no hayan realizado una orden fuera del año 2018
 
-SELECT c.Nombre, c.Apellido
+-- mediante distinct indicamos que no traiga clientes repetidos
+SELECT DISTINCT c.Nombre, c.Apellido
 FROM Clientes c
 LEFT JOIN Ordenes On ClienteId = c.id
 -- en lugar de aplicar where, que va a descartar los registros con fecha null, es decir, los registros de los clientes que no tengan hechas ordenes, hacemos un and a la condición del left join indicando que queremos que descarte los de las fechas indicadas en el between
@@ -807,3 +808,198 @@ LEFT JOIN Ordenes On ClienteId = c.id
 ```
 
 ### Ejercicio 2
+
+```sql
+-- Devolver Id y nombre de todos los productos que nunca se han vendido
+
+SELECT DISTINCT p.Id, p.Nombre
+FROM Productos p
+LEFT JOIN Ordenes o On o.ProductoId = p.Id
+WHERE o.Id = NULL
+```
+
+### Ejercicio 3
+
+```sql
+-- Devolver nombre y código de paises que tengan clientes pero nunca hayan participado en una transacción
+
+SELECT DISTINCT pais.Nombre, pais.CodigoPais
+FROM Paises pais
+    INNER JOIN Ciudades ciu ON ciu.CodigoPais = pais.Codigo
+    INNER JOIN Clientes cli ON cli.CiudadId = ciu.Id
+    LEFT JOIN Ordenes o ON o.ClienteId = cli.Id
+WHERE Id = NULL
+```
+
+# Cláusula UNION
+
+## UNION ALL
+
+La cláusula `UNION` permite concatenar el resultado de dos consultas, es decir, si con `JOIN` combinamos columnas con `UNION` combinamos filas. En el ejemplo, después de mostrar todas las filas de la columnas Apellido de la tabla Clientes, que pueden ser 100 por ejemplo, va a mostrar todas las filas de la columna Nombre de la tabla Proveedores, que pueden ser otras 100. En total mostraría como resultado una columna con 200 filas (100 de Apellido y 100 de Nombre)
+
+```sql
+SELECT Apellido
+FROM CLientes
+
+UNION ALL
+
+SELECT Nombre
+FROM Proveedores
+```
+
+## UNION y ORDER BY
+
+Algunas particularidades de la cláusula `UNION`:
+
+* La cantidad de columnas de las consultas que unimos tiene que ser la misma. En el ejemplo, hacemos la consulta de dos columnas de Clientes y queremos hacer `UNION` con solo una columna de Proveedores, esto dará un error.
+
+```sql
+SELECT Apellido, Nombre
+FROM CLientes
+
+UNION ALL
+
+SELECT Nombre
+FROM Proveedores
+```
+
+* El título de la columna de resultado en un `UNION` va a estar dado por la primer consulta. En el ejemplo el título de la columna resultado de la `UNION` va a ser Apellido, a menos que le brindemos otro.
+
+```sql
+-- Se van a generar 2 columnas, una con título Tipo que, para los Apellidos de la tabla Clientes va a mostrar la palabra Cliente, y para los Nombre de la tabla Proveedor va a mostrar Proveedor. La segunda columna va a tener el dato correspondiente al Cliente o Proveedor y se va a llamar CLienteProveedor
+SELECT 'Cliente' As Tipo, Apellido As ClienteProveedor
+FROM CLientes
+
+UNION ALL
+
+    -- Los alias que indicamos aquí no van a tener efecto
+SELECT 'Preveedor' As TipoSinEfecto, Nombre As NombreSinEfecto
+FROM Proveedores
+```
+
+* Para ordenar una consulta con `UNION`, la cláusula `ORDER BY` tiene que ir al final de todas las consultas, además se debe ordenar por una columna de la primera consulta. En el ejemplo ordenamos por Apellido pero la cláusula `ORDER BY` va después de la segunda consulta
+
+```sql
+SELECT 'Cliente' As Tipo, Apellido As ClienteProveedor
+FROM CLientes
+
+UNION ALL
+
+SELECT 'Preveedor' As TipoSinEfecto, Nombre As NombreSinEfecto
+FROM Proveedores
+ORDER BY Apellido
+```
+
+* `UNION ALL` concatena todas las filas de las columnas indicadas. La cláusula `UNION` sola elimina los valores duplicados de la respuesta a la consulta.
+
+```sql
+-- Si hay apellidos duplicados no van a aparecer en la respuesta
+SELECT 'Cliente' As Tipo, Apellido As ClienteProveedor
+FROM CLientes
+
+UNION
+
+-- Si hay nombres duplicados no van a aparecer en la respuesta
+SELECT 'Proveedor' As TipoSinEfecto, Nombre As NombreSinEfecto
+FROM Proveedores
+ORDER BY Apellido
+```
+
+## UNION en la misma tabla
+
+Podemos hacer un `UNION` de filas de la misma tabla. En el ejemplo va a traer los productos cuya ganancia sea mayor a 50 como prioritarios y de 20 a 50 como no prioritarios.
+
+```sql
+SELECT 'Prioritaros' As Tipo, *
+FROM Productos
+WHERE Precio - Costo > 50
+
+UNION
+
+SELECT 'No prioritaros' As Tipo, *
+FROM Productos
+WHERE Precio - Costo BETWEEN 20 AND 50
+```
+
+## Ejercicios
+
+### Ejercicio 1
+
+```sql
+-- Devolver un único listado:
+-- Id y nombre de productos cuyo costo sea mayor a 80 pero menor a 100
+-- Id y nombre de categorias que no comiencen con la letra C
+-- Id y Nombre de proveedores cuya segunda letra no sea e ni su última letra sea n
+
+SELECT 'Producto' As Tipo, p.Id, p.Nombre
+FROM Productos p
+WHERE Costo BETWEEN 80 AND 100
+
+UNION ALL
+
+SELECT 'Categoria' As Tipo, c.Id, c.Nombre 
+FROM Categorias c
+WHERE c.Nombre NOT LIKE 'C%'
+
+UNION ALL
+
+SELECT 'Proveedor' As Tipo, pr.Id, pr.Nombre
+FROM Proveedores pr
+WHERE pr.Nombre NOT LIKE '_e%' AND pr.Nombre NOT LIKE '%n'
+```
+
+### Ejercicio 2
+
+```sql
+-- Devolver nombre de producto, apellido y nombre como cliente, fecha de orden y texto mayorista para aquellas ordenes con pedidos mayores a 50 y texto minorista para aquellas ordenes con pedidos menores a 50
+
+SELECT p.Nombre, c.Apellido + ', ' + c.Nombre As Cliente, Fecha, 'Mayorista' As Tipo
+FROM Ordenes
+    INNER JOIN Productos p On ProductoId = p.Id
+    INNER JOIN Clientes c On ClienteId = c.Id
+WHERE Cantidad > 50
+
+UNION ALL
+
+SELECT p.Nombre, c.Apellido + ' ' + c.Nombre As Cliente, Fecha, 'Minorista' As Tipo
+FROM Ordenes
+    INNER JOIN Productos p On ProductoId = p.Id
+    INNER JOIN Clientes c On ClienteId = c.Id
+WHERE Cantidad < 50
+```
+
+### Ejercicio 3
+
+```sql
+-- Devolver un solo listado de productos, precio y nombre de categoria con precios actualizados
+-- descuento del 10% para bebidas, aumento del 15 para carnes
+-- agregar un impuesto fijo de 13.5 para lacteos
+
+SELECT p.Nombre, p.Precio - (Precio * 0.1) As Precio, c.Nombre As Categoria
+FROM Productos p
+    INNER JOIN Categorias c On CategoriaId = c.Id
+WHERE p.CategoriaId = 1 -- bebidas
+
+UNION ALL
+
+SELECT p.Nombre, p.Precio + (Precio * 0.15) As Precio, c.Nombre As Categoria
+FROM Productos p
+    INNER JOIN Categorias c On CategoriaId = c.Id
+WHERE p.CategoriaId = 4 -- carnes
+
+UNION ALL
+
+SELECT p.Nombre, p.Precio + 13.5 As Precio, c.Nombre As Categoria
+FROM Productos p
+    INNER JOIN Categorias c On CategoriaId = c.Id
+WHERE p.CategoriaId = 6 -- lacteos
+
+UNION
+
+SELECT p.Nombre, p.Precio As Precio, c.Nombre As Categoria
+FROM Productos p
+    INNER JOIN Categorias c On CategoriaId = c.Id
+WHERE p.CategoriaId NOT IN (1, 4, 6) -- Resto de los productos
+
+ORDER BY c.Nombre
+```
