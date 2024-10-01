@@ -709,7 +709,7 @@ Para que los valores de la consulta aparezcan tiene que cumplirse las condicione
 
 ## Palabras opcionales
 
-La palabra INNER es opcional. Podemos realizar la consulta indicando solo `JOIN`. Por defecto los `JOIN` son `INNER JOIN` a menos que indiquemos algo diferente. La consulta puede quedar de la siguiente manera:
+La palabra `INNER` es opcional. Podemos realizar la consulta indicando solo `JOIN`. Por defecto los `JOIN` son `INNER JOIN` a menos que indiquemos algo diferente. La consulta puede quedar de la siguiente manera:
 
 ```sql
 SELECT *
@@ -1117,3 +1117,155 @@ WHERE (Precio - Costo) BETWEEN 5 AND 20 AND ProveedorId IS NOT NULL
 ```
 
 # Cláusula SUM
+
+## Cláusula SUM
+
+Es una función de agregado que suma las filas de la columna que le indicamos. El ejemplo suma todos los valores de la columna precio en la tabla productos. Los devuelve como una única celda.
+
+```sql
+SELECT SUM(Precio)
+FROM Productos
+```
+
+En el ejemplo traemos todos los proveedores por nombre y la suma de los costos de estos proveedores en los productos.
+
+```sql
+SELECT prov.Nombre, SUM(prod.Costo) As CostoProducto
+FROM Productos prod
+    JOIN Proveedores prov On prov.Id = prod.ProveedorId
+GROUP BY prov.Nombre
+ORDER By prov.Nombre
+```
+
+Dentro de la función `SUM` podemos pasar una expresión. En el ejemplo calculamos la ganancia que tenemos de cada proveedor.
+
+```sql
+SELECT prov.Nombre, SUM(prod.Precio - prod.Costo) As ProveedorGanancia
+FROM Productos prod
+    JOIN Proveedores prov On prov.Id = prod.ProveedorId
+GROUP BY prov.Nombre
+ORDER By prov.Nombre
+```
+
+## Ejercicios
+
+### Ejercicio 1
+
+```sql
+-- Determinar cual es la categoria mas existosa calculado el total vendido por categoria
+
+SELECT cat.Id, cat.Nombre, SUM(prod.Precio * ord.Cantidad) As TotalVendido
+FROM Ordenes ord
+    JOIN Productos prod On prod.Id = ord.ProductoId
+    JOIN Categorias cat On cat.Id = prod.CategoriaId
+GROUP BY cat.Id, cat.Nombre
+ORDER BY SUM(prod.Precio * ord.Cantidad) DESC
+```
+
+### Ejercicio 2
+
+```sql
+-- Determinar cual es el proveedor mas costoso del sistema calculando el total por proveedor
+
+SELECT prov.Id, prov.Nombre, SUM(prod.Costo) As CostoTotal
+FROM Ordenes ord
+    JOIN Productos prod On prod.Id = ord.ProductoId
+    JOIN Proveedores prov On prov.Id = prod.ProveedorId
+GROUP BY prov.Id, prov.Nombre
+ORDER BY SUM(prod.Costo) DESC
+```
+
+### Ejercicio 3
+
+```sql
+-- Mostrar el total consumido por idioma del cliente y ordenado de mayor a menor
+
+SELECT idio.PaisIdioma, SUM(prod.Precio * ord.Cantidad)
+FROM Ordenes ord
+    JOIN Productos prod On prod.Id = ord.ProductoId
+    JOIN Clientes cli On cli.Id = ord.ClienteId
+    JOIN Ciudades ciu On ciu.Id = cli.CiudadId
+    JOIN Paises pais On pais.Codigo = ciu.CodigoPais
+    JOIN PaisesIdioma idio On idio.CodigoPais = pais.Codigo
+GROUP BY idio.PaisIdioma
+ORDER BY SUM(prod.Precio * ord.Cantidad) DESC
+```
+
+# Cláusula AVG
+
+## Cláusula AVG
+
+`AVG` significa average, es una cláusula que se utiliza para calcular el promedio de un grupo de valores. En el ejemplo obtenemos el precio promedio de todos los productos de la tabla.
+
+```sql
+SELECT AVG(Precio)
+FROM Productos
+
+```
+
+En el ejemplo obtenemos el precio promedio de los productos por cada proveedor.
+
+```sql
+SELECT prov.Nombre, AVG(prod.Precio) As PrecioPromedio
+FROM Productos prod
+    JOIN Proveedores prov On prov.Id = prod.ProveedorId
+GROUP BY prov.Nombre
+ORDER BY prov.Nombre
+```
+
+Podemos tener expresiones dentro de la función `AVG`. El ejemplo devuelve la ganancia promedio de cada proveedor.
+
+```sql
+SELECT prov.Nombre, AVG(prod.Precio - prod.Costo) As GananciaPromedio
+FROM Productos prod
+    JOIN Proveedores prov On prov.Id = prod.ProveedorId
+GROUP BY prov.Nombre
+ORDER BY prov.Nombre
+```
+
+## Ejercicios
+
+### Ejercicio 1
+
+```sql
+-- Determinar el promedio vendido por ciudad ordenados de mayor a menor
+
+SELECT ciu.Nombre, AVG(prod.Precio * ord.Cantidad) As PromedioVendido
+FROM Ordenes ord
+    JOIN Productos prod On prod.Id = ord.ProductoId
+    JOIN Clientes cli On cli.Id = ord.ClienteId
+    JOIN Ciudades ciu On ciu.Id = cli.CiudadId
+GROUP BY ciu.Nombre
+ORDER BY AVG(ord.Cantidad) DESC
+```
+
+### Ejercicio 2
+
+```sql
+-- Determinar el promedio vendido a clientes nacidos entre 1930 y 1970
+
+SELECT clie.Id, cli.Nombre, cli.Apellido, AVG (prod.Precio * ord.Cantidad) As PromedioVendido
+FROM Ordenes ord
+    JOIN Productos prod On prod.Id = ord.ProductoId
+    JOIN Clientes cli On cli.Id = ord.ClienteId
+WHERE FechaNacimiento BETWEEN '19300101' AND '19701231'
+GROUP BY clie.Id, cli.Nombre, cli.Apellido
+```
+
+### Ejercicio 3
+
+```sql
+-- Determinar el promedio invertido por proveedor para productos con al menos 1 venta 
+
+SELECT prov.Id, prov.Nombre, AVG(prod.Costo) As PromedioInvertido
+FROM Ordenes ord
+    JOIN Productos prod On prod.Id = ord.ProductoId
+    JOIN Proveedores prov On prov.Id = prod.ProveedorId
+WHERE ord.Cantidad >= 1
+GROUP BY prov.Id, prov.Nombre
+ORDER BY AVG(prod.Costo) DESC
+```
+
+# Cláusulas MAX y MIN
+
+## MAX y MIN
