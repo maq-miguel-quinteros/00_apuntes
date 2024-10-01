@@ -1269,3 +1269,71 @@ ORDER BY AVG(prod.Costo) DESC
 # Cláusulas MAX y MIN
 
 ## MAX y MIN
+
+La función de agregado `MAX` devuelve el máximo valor de una columna. El ejemplo devuelve una celda con el valor del mayor precio de la tabla productos. 
+
+```sql
+SELECT MAX(Precio)
+FROM Productos
+```
+
+La función de agregado `MIN` devuelve el menor valor de una columna. 
+
+```sql
+SELECT MIN(Precio)
+FROM Productos
+```
+
+Las funciones soportan valores de tipo texto. Si le pasamos a las funciones columnas con datos de tipo texto nos va a devolver el primero registro o el último en orden alfabético. Para valores de tipo fecha devuelve también la fecha mas antigua con `MIN` y la fecha más reciente con `MAX`.
+
+Las funciones MAX y MIN ignoran los valores nulos en las columnas.
+
+## Ejercicios
+
+### Ejercicio 1
+
+```sql
+--Encontrar el cliente mas joven que alguna vez haya realizado una compra
+
+SELECT cli.Id, cli.Nombre, cli.Apellido, MAX(cli.FechaNacimiento)
+FROM Ordenes ord
+    JOIN Clientes cli On cli.Id = ord.ClienteId
+GROUP BY cli.Id, cli.Nombre, cli.Apellido
+ORDER BY MAX(cli.FechaNacimiento) DESC
+```
+
+### Ejercicio 2
+
+```sql
+-- Determinar el producto de menor costo en cada categoria que se haya vendido al menos una vez
+
+SELECT cat.Nombre, prod.Nombre, MIN(prod.Costo) As MenorCosto
+FROM Ordenes ord
+    JOIN Productos prod On prod.Id = ord.ProductoId
+    JOIN Categorias cat On cat.Id = ord.CategoriaId
+GROUP BY cat.Nombre, prod.Nombre
+ORDER BY MIN(prod.Costo) DESC
+```
+
+### Ejercicio 3
+
+```sql
+-- Determinar cual es el pais al cual se realizaron la mayor y la menor venta, ordenando los resultados
+
+SELECT pais.Codigo, pais.Nombre, MAX(ord.Cantidad * prod.Precio) As TotalVendido
+FROM Ordenes ord
+    JOIN Productos prod On prod.Id = ord.ProductoId
+    JOIN Clientes cli On cli.Id = ord.ClienteId
+    JOIN Ciudades ciu On ciu.Id = cli.CiudadId
+    JOIN Paises pais On pais.Codigo = ciu.CodigoPais
+GROUP BY pais.Codigo, pais.Nombre
+ORDER BY MAX(ord.Cantidad * prod.Precio) DESC
+```
+
+# Cláusula HAVING
+
+
+
+```sql
+
+```
