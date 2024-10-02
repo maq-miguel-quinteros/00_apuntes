@@ -1485,5 +1485,32 @@ Para volver los cambios atrás, y volver al punto anterior a `BEGIN TRANSACTION`
 ### Ejercicio 1
 
 ```sql
+-- Actualizar la dirección de James Bond a 'Una base secreta'
 
+UPDATE Clientes
+SET Direccion = 'Una base secreta'
+WHERE Nombre = 'Jamen' AND Apellido = 'Bond'
+```
+
+### Ejercicio 2
+
+```sql
+-- Cambiar la categoria del producto Chocolate amargo de reposteria a lacteos
+
+UPDATE Productos
+SET CategoriaId = (SELECT Id FROM Categorias WHERE Nombre = 'Lácteos')
+WHERE Nombre = 'Chocolate amargo'
+
+```
+
+# Cláusula DELETE
+
+## DELETE
+
+`DELETE` se utiliza para eliminar filas existentes en nuestra tabla. Utilizamos la cláusula WHERE para indicar que filas deben ser eliminadas. Si no tenemos cláusula `WHERE` se van a eliminar todas las filas de la tabla. En el ejemplo eliminamos las filas correspondientes a los clientes con Id 202 y 203.
+
+```sql
+DELETE
+FROM Clientes 
+WHERE Id In (202, 203)
 ```
