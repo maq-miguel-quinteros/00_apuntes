@@ -1334,6 +1334,86 @@ ORDER BY MAX(ord.Cantidad * prod.Precio) DESC
 
 
 
-```sql
+## HAVING
 
+La cláusula `HAVING` se utiliza para filtrar grupos en base a condiciones específicas. Cumple la misma función que la cláusula `WHERE` pero para los grupos. Con la cláusula `HAVING` solo los grupos que cumplen con la condición son devueltos en la consulta. En el ejemplo, para ver los proveedores con precio total mayor a 100 no podemos usar `WHERE`, por que `WHERE` se ejecuta antes de `GROUP BY`. Para filtrar los datos después de generar los grupos usamos `HAVING`.
+
+```sql
+SELECT prov.Nombre, SUM(prod.Precio) As PrecioTotal
+FROM Productos prod
+    JOIN Proveedores prov On prov.Id = prod.ProveedorId
+-- aqui va la cláusula WHERE
+GROUP BY prov.Nombre
+HAVING SUM(prod.Precio) > 100
+ORDER BY prov.Nombre
 ```
+
+En la cláusula `HAVING` podemos utilizar todas los modificadores que utilizamos en la cláusula `WHERE`.
+
+```sql
+SELECT prov.Nombre, SUM(prod.Precio) As PrecioTotal
+FROM Productos prod
+    JOIN Proveedores prov On prov.Id = prod.ProveedorId
+GROUP BY prov.Nombre
+HAVING SUM(prod.Precio) BETWEEN 100 AND 200
+ORDER BY prov.Nombre
+```
+
+## Ejercicios
+
+### Ejercicio 1
+
+```sql
+-- devolver solo aquellos proveedores en donde el precio promedio de sus productos supere el valor de su producto mas caro dividido por dos. El proveedor debe tener un productos que se haya vendido una vez
+
+SELECT prov.Nombre, AVG(prod.Precio) As PromedioTotal, MAXC(prod.Precio) As ProductoMasCaro
+FROM Ordenes ord
+    JOIN Productos prod On prod.Id = ord.ProductoId
+    JOIN Proveedores prov On prov.Id = prod.ProveedorId
+GROUP BY prov.Nombre
+HAVING AVG(prod.Precio) > (MAX(prod.Precio) / 2)
+ORDER BY AVG(prod.Precio)
+```
+
+### Ejercicio 2
+
+```sql
+-- Mostrar el total y el promedio consumido por
+-- idioma de cliente
+-- ordenado de mayor a menor 
+-- solo para los idiomas en donde la mitad de lo consumido es mayor al promedio total consumido
+
+SELECT  
+        idio.PaisIdioma, 
+        SUM(ord.Cantidad * prod.Precio) As TotalConsumido, 
+        AVG(ord.Cantidad * prod.Precio) As PromedioConsumido
+FROM Ordenes ord
+    JOIN Productos prod On prod.Id = ord.ProductoId
+    JOIN Clientes cli On cli.Id = ord.ClienteId
+    JOIN Ciudades ciu On ciu.Id = cli.CiudadId
+    JOIN Paises pais On pais.Codigo = ciu.CodigoPais
+    JOIN PaisesIdioma idio On idio.CodigoPais = pais.Codigo
+GROUP BY idio.PaisIdioma
+HAVING SUM(ord.Cantidad * prod.Precio) / 2 > AVG(ord.Cantidad * prod.Precio)
+ORDER BY SUM(ord.Cantidad * prod.Precio)
+```
+
+# Cláusula INSERT
+
+## INSERT
+
+`INSERT` se utiliza para insertar nuevos registros en una tabla. Se puede utilizar especificando columnas y valores a ser insertados. En el ejemplo no indicamos la columna Id ya que la misma se genera en forma automática cada vez que se crea un nuevo registro. AL hacer el INSERT nos va a devolver un mensaje indicando que una fila fue afectada.
+
+```sql
+INSERT INTO Clientes (Nombre, Apellido, FechaNacimiento, CiudadId, Telefono, Direccion) 
+    VALUES ('Quentin', 'Tarantino', '19630327', 3794, NULL, '9601 Wilshire Blvd, 3rd Floor, Beverly Hills, CA 90210-5213')
+```
+
+Podemos indicar solo las columnas sobre las que queremos insertar los datos. Las columnas que no indicamos quedan con sus valores en `NULL`.
+
+```sql
+INSERT INTO Clientes (Nombre, Apellido, FechaNacimiento, CiudadId) 
+    VALUES ('Steven', 'Spielberg', '19461218', 3794)
+```
+
+Si estamos agregando valores para todas las columnas de la tabla, no es necesario indicar las columnas de la tabla, solo los `VALUES` que vamos a insertar. En este caso es importante el orden de los valores, ya que tienen que insertarse en el orden en que está configurada la tabla.
