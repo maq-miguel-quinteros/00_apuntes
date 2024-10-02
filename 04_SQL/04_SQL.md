@@ -1417,3 +1417,73 @@ INSERT INTO Clientes (Nombre, Apellido, FechaNacimiento, CiudadId)
 ```
 
 Si estamos agregando valores para todas las columnas de la tabla, no es necesario indicar las columnas de la tabla, solo los `VALUES` que vamos a insertar. En este caso es importante el orden de los valores, ya que tienen que insertarse en el orden en que está configurada la tabla.
+
+## Ejercicios
+
+### Ejercicio 1
+
+```sql
+-- Insertar al cliente James Bond, de Amsterdam que haya nacido el 26 de mayo del 83
+
+INSERT INTO Clientes (Nombre, Apellido, FechaNacimiento, CiudadId, Telefono, Direccion)
+    VALUES ('James', 'Bond', '19830526',
+
+            -- Dentro de la cláusula VALUES hacemos una consulta para traer el valor de Id de la ciudad Amsterdam que se va a guardar en la columna CiudadId del nuevo cliente 
+            (SELECT Id FROM Ciudades WHERE Nombre = 'Amsterdam'),
+            
+            '007', 'Top Secret')
+```
+
+### Ejercicio 2
+
+```sql
+-- Insertar un nuevo producto en la categoria reposteria, llamado Chocolate amargo, El producto pertenece a un nuevo proveedor 'Fabrica de Chocolate', su costo es 6 y su precio de venta es 15
+
+INSERT INTO Proveedores (Nombre) VALUES ('Fabrica de Chocolate')
+
+INSERT INTO Productos (Nombre, ProveedorId, Costo, Precio, CategoriaId)
+    VALUES ('Chocolate amargo',
+            (SELECT Id FROM Proveedores WHERE Nombre = 'Fabrica de Chocolate'),
+            6, 15,
+            (SELECT Id FROM Categorias WHERE Nombre = 'Repostería'))
+```
+
+# Cláusula UPDATE
+
+## UPDATE
+
+`UPDATE` se utiliza para modificar valores existentes en una tabla. Hace una actualización de un registro en nuestra base de datos. Utilizamos `SET` para indicar cual es la columna y el valor que se debe actualizar en esa columna. Utilizamos `WHERE` para indicar cuales son los registros de la tabla que deben ser actualizados. Si no se agrega una condición `WHERE` se van a modificar todas las filas de la tabla. En el ejemplo modificamos el cliente con `Id = 202`, del cliente modificamos su Nombre y Apellido solamente.
+
+```sql
+UPDATE Clientes
+SET Nombre = 'Juan', Apellido = 'Perez'
+WHERE Id 202
+```
+
+Podemos actualizar mas de un registro a la vez. En el ejemplo se va a actualizar la dirección de los clientes con Id 202 y 203
+
+```sql
+UPDATE Clientes
+SET Direccion = 'Algún lugar en California'
+WHERE Id IN (202, 203)
+```
+
+## BEGIN TRANSACTION
+
+Podemos utilizar la cláusula `BEGIN TRANSACTION`, la misma le indica al motor que las siguientes consultas que realicemos van a ser parte de una transacción. Ser parte de una transacción da la posibilidad de volver atrás las modificaciones que realizamos en las tablas en caso de ser necesario. El concepto de transacción indica que se van a realizar una o mas modificaciones sobre las tablas y que si alguna no es correcta o da un error, se puede volver atrás, al momento en que comenzamos la transacción con `BEGIN TRANSACTION`. El ejemplo se inicia la transacción y se modifican todas las direcciones de todos los registros de la tabla clientes por el texto 'Algún lugar en California'
+
+```sql
+BEGIN TRANSACTION
+UPDATE Clientes
+SET Direccion = 'Algún lugar en California'
+```
+
+Para volver los cambios atrás, y volver al punto anterior a `BEGIN TRANSACTION` utilizamos la cláusula `ROLLBACK TRANSACTION`. Para confirmar los cambios realizados durante la transacción y modificar de forma definitiva las tablas afectadas utilizamos `COMMIT TRANSACTION`.
+
+## Ejercicios
+
+### Ejercicio 1
+
+```sql
+
+```
