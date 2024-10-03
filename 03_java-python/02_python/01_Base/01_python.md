@@ -296,8 +296,78 @@ if not age == 16:
 
 ## Condicionales anidados
 
-Para anidar los `if` seguimos utilizando el espacio de tab para indicar el código que pertenece a cada nivel de `if`.
+Para anidar los `if` seguimos utilizando el espacio de tab para indicar el código que pertenece a cada nivel de `if`. El máximo de anidaciones recomendables es de 3 `if`.
 
 ```py3
+age = int(input('Ingresa la edad: '))
+month = int(input('Ingresa el número del mes de nacimiento: '))
 
+if age >= 18:
+    print('Es mayor de edad')
+    if month == 1:
+        print('Naciste en enero')
+    elif month == 2:
+        print('Naciste en febrero')
+    elif month == 3:
+        print('Naciste en marzo')
+else:
+    print('Es menor de edad')
+    if month > 3:
+        print('Naciste después de marzo')
+```
+
+# Bucles
+
+## Bucle for
+
+Utilizamos `for` indicando una variable donde guarda el elemento sobre el que itera en ese momento y mediante `in` indicamos la lista o el iterable que vamos a recorrer. En el ejemplo, cada vez que itera el valor del elemento se guarda en `num`.
+
+```py3
+numbers = [1, 55, 88, 43, 4, 7, 9, 0, 22]
+
+for num in numbers:
+    print(num)
+```
+
+Si queremos crear una lista genérica de elementos, para iterar en, por ejemplo, el bucle `for`, utilizamos la función `range()`. En el ejemplo se crea una lista que va del 0 y que ocupa 20 elementos, es decir, los valores de esos elementos van del 0 al 19, que en total suman los 20 elementos.
+
+```py3
+list20 = range(0,20)
+print(list20)
+
+for item in list20:
+    print(f'valor de item: {item}')
+```
+
+## Bucle while
+
+Mediante `for` podemos recorrer un iterable. Mediante `while` podemos generar un bucle que va a suceder hasta que se cumpla una condición de salida. Para establecer la condición de salida podemos utilizar con contador.
+
+```py3
+count = 1
+
+while count <= 10:
+    print(f'Valor de count: {count}')
+    count = count + 1
+
+```
+
+# Clases y objetos
+
+## Clases
+
+Para crear una nueva clase utilizamos la palabra reservada `class`. Si la clase va a quedar sin atributos ni métodos, es decir, vacía, utilizamos la palabra reservada `pass`. La clase vacía representaría los planos del objeto.
+
+```py3
+class Person:
+    pass
+```
+
+Para crear un objeto de la clase que declaramos, es decir, crear una instancia de la clase, en la asignación de valor de la variable llamamos a la clase como si fuera una función.
+
+```py3
+class Person:
+    pass
+
+person1 = Person()
 ```
