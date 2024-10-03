@@ -268,7 +268,7 @@ Para el caso de `bool()`, si el valor que ingresa en `input()` es 0 el valor de 
 
 # Condicionales
 
-## Condicional if else
+## Condicional if, else e if not
 
 Cuando utilizamos condicionales como `if`, `else`, o `if not`, para indicar el código que se encuentra dentro del condicional utilizamos el espacio de la tecla tab.
 
@@ -292,4 +292,12 @@ if age != 16:
 # funciona de la misma forma que el if anterior
 if not age == 16:
     print('Puede pasar')
+```
+
+## Condicionales anidados
+
+Para anidar los `if` seguimos utilizando el espacio de tab para indicar el código que pertenece a cada nivel de `if`.
+
+```py3
+
 ```
