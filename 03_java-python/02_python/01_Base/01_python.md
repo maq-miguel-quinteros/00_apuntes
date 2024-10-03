@@ -361,6 +361,7 @@ Para crear una nueva clase utilizamos la palabra reservada `class`. Si la clase 
 ```py3
 class Person:
     pass
+
 ```
 
 ## Objetos
