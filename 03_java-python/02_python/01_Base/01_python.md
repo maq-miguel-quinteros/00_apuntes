@@ -363,11 +363,118 @@ class Person:
     pass
 ```
 
-Para crear un objeto de la clase que declaramos, es decir, crear una instancia de la clase, en la asignación de valor de la variable llamamos a la clase como si fuera una función.
+## Objetos
+
+Para crear un objeto de la clase que declaramos, es decir, crear una instancia de la clase, en la asignación de valor de la variable llamamos a la clase como si fuera una función. Lo que estamos haciendo es construir un objeto de esa clase. Para que el objeto tenga atributos y métodos tenemos que declararlos en la definición de la clase.
 
 ```py3
 class Person:
-    pass
+    name = ''
+    last_name = ''
+    age = 0 # 0 va a ser el valor por defecto del objeto que creamos, si no le damos nosotros un valor al crearlo
 
 person1 = Person()
+print(person1) # vemos como está identificado el objeto coche y a que valor en memoria apunta
+
+print(person1.name) # vemos el contenido del atributo name que es un string vacío
 ```
+
+Para dar valores a los atributos del objeto cuando lo creamos tenemos que definir en la clase el método `__init__()`. Para hacer esta definición utilizamos la palabra reservada `def`. Dentro de los parámetros que acompañan al método `__init__()` siempre tenemos que indicar primero `self`. Vamos a utilizar `self` para acceder a los atributos propios de la clase que vayamos a modificar mediante `__init__()` cuando construyamos un nuevo objeto de esa clase.
+
+```py3
+class Person:
+    name = ''
+    last_name = ''
+    age = 0
+
+    def __init__(self, name, last_name, age):
+        self.name = name # self.name refiere a la variable name definida al comienzo de la clase mientras que name refiere al parámetro del método __init__()
+        self.last_name = last_name
+        self.age = age
+
+person1 = Person()
+print(person1) 
+
+print(person1.name) 
+```
+
+Cuando vayamos a crear el objeto, cuando llamamos a la clase entre los paréntesis damos valores a los parámetros que indicamos en `__init__()` en el orden en que fueron declarados. Esto no aplica para el parámetro `self`, el cual no recibe ningún valor.
+
+```py3
+class Person:
+    name = ''
+    last_name = ''
+    age = 0
+
+    def __init__(self, name, last_name, age):
+        self.name = name
+        self.last_name = last_name
+        self.age = age
+
+person1 = Person('Miguel', 'Quinteros', 39)
+print(person1) 
+print(person1.name)
+
+person2 = Person('Daniela', 'Diaz', 37)
+print(person2) 
+print(person2.last_name)
+```
+
+Para cambiar el valor de alguno de los atributos de un objeto creado, solo le asignamos el nuevo valor seleccionando el nombre del atributo del objeto mediante la notación de punto `.`.
+
+```py3
+class Person:
+    name = ''
+    last_name = ''
+    age = 0
+
+    def __init__(self, name, last_name, age):
+        self.name = name
+        self.last_name = last_name
+        self.age = age
+
+person1 = Person('Miguel', 'Quinteros', 39)
+print(person1) 
+print(person1.name)
+
+person1.name = 'Ángel'
+print(person1) 
+print(person1.name)
+```
+
+Para agregar más atributos a la clase lo hacemos en la definición de la misma.
+
+```py3
+class Person:
+    name = ''
+    last_name = ''
+    age = 0
+    phone = 0
+
+    def __init__(self, name, last_name, age, phone):
+        self.name = name
+        self.last_name = last_name
+        self.age = age
+        self.phone = phone
+
+person1 = Person('Miguel', 'Quinteros', 39, 3815355225)
+print(person1) 
+print(person1.phone)
+```
+
+Podemos no declarar los nombres de los atributos al comienzo de la clase y declararlos directamente en el método `__init__()`.
+
+```py3
+class Person:
+    def __init__(self, name, last_name, age, phone):
+        self.name = name
+        self.last_name = last_name
+        self.age = age
+        self.phone = phone
+
+person1 = Person('Miguel', 'Quinteros', 39, 3815355225)
+print(person1) 
+print(person1.phone)
+```
+
+## Métodos
