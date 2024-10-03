@@ -139,4 +139,157 @@ print(list)
 
 ## Tuplas
 
-Una tupla es un array
+Una tupla es un array. Una tupla es inmutable, es decir, los datos que definimos en una tupla no se pueden modificar. Los elementos de las tuplas los definimos entre paréntesis en lugar de corchetes.
+
+```py3
+tupla = ('Python', 'Django', 'React', 'Vue')
+print(tupla)
+```
+
+Si una tupla cuenta con un solo elemento, debe finalizar con coma y luego el cierre del paréntesis.
+
+```py3
+tupla = ('Python', )
+print(tupla)
+```
+
+Para acceder a un elemento de una tupla utilizamos los corchetes `[]` indicando su índice. El uso de valores negativos es igual al de las listas. Al ser inmutables tratar de asignar un nuevo valor a un elemento de una tupla mediante su índice dará un error.
+
+```py3
+tupla = ('Python', 'Django', 'React', 'Vue')
+print(tupla[1])
+print(tupla[-2])
+
+tupa[1] = 'Java' # dará un error
+```
+
+## Diccionarios
+
+Son similares a los objetos. Sus elementos cuentas con dos partes una clave y un valor, o `key` y `value`, donde la clave va entre comillas y el valor respeta la forma de escribir el tipo de dato que sea.
+
+```py3
+dictionary = {
+    'name': 'Miguel',
+    'last_name': 'Quinteros',
+    'age': 39
+}
+print(dictionary)
+```
+
+Para acceder a un elemento en particular del diccionario utilizamos los corchetes `[]` indicando dentro la clave que queremos consultar.
+
+```py3
+dictionary = {
+    'name': 'Miguel',
+    'last_name': 'Quinteros',
+    'age': 39
+}
+print(dictionary['name'])
+print(f"Mi nombre es: {dictionary['name']}")
+```
+
+Para añadir elementos a un diccionario solo debemos indicar entre los corchetes el nombre de la clave que agregamos y asignarle un valor.
+
+```py3
+dictionary = {
+    'name': 'Miguel',
+    'last_name': 'Quinteros',
+    'age': 39
+}
+dictionary['city'] = 'San Miguel de Tucumán'
+print(dictionary)
+```
+
+Para eliminar un elemento del diccionario utilizamos la palabra reservada `del`.
+
+```py3
+dictionary = {
+    'name': 'Miguel',
+    'last_name': 'Quinteros',
+    'age': 39
+}
+del dictionary['age']
+print(dictionary)
+```
+
+Para conocer la cantidad de claves con que cuenta el diccionario, es decir, conocer el tamaño del diccionario, utilizamos la función `len`.
+
+```py3
+dictionary = {
+    'name': 'Miguel',
+    'last_name': 'Quinteros',
+    'age': 39
+}
+print(len(dictionary))
+```
+
+# Entrada y salida de datos
+
+Para ingresar datos desde la terminar utilizamos la función `input()`, tenemos que asignar esta función a una variable para poder trabajar después con lo ingresado. La cadena que pasamos como parámetro a la función `input()` se va a mostrar en la consola antes de capturar el valor de entrada.
+
+```py3
+name = input('Ingresa tu nombre: ')
+print(f'El nombre ingresado es: {name}')
+```
+
+Los valores capturados por `input()` se guardan de forma automática como `String`. Para poder realizar operaciones numéricas tenemos que convertir los valores a números mediante la función `int()`.
+
+```py3
+num1 = input('Ingres el primer valor: ')
+num2 = input('Ingres el segundo valor: ')
+
+result = int(num1) + int(num2)
+
+print(f'La suma de los valores es: {result}')
+print(f'La suma de los valores es: {int(num1) + int(num2)}')
+```
+
+# Control de datos
+
+Cuando introducimos los datos por pantalla, que por defecto se guardan como `String` en la variable, podemos convertirlos en el tipo de dato que necesitemos utilizar. Mediante `int()` podemos convertir lo que ingresa por `input()` en un dato numérico entero.
+
+```py3
+num1 = int(input('Ingres el primer valor: '))
+num2 = int(input('Ingres el segundo valor: '))
+
+print(f'La suma de los valores es: {num1 + num2}')
+
+```
+
+Los tipos de datos a los que podemos convertir lo que ingresa por input son:
+
+* Enteros: `int()`.
+
+* Decimales: `float()`.
+* Booleanos: `bool()`.
+* Cadenas (String): `str()`.
+
+Para el caso de `bool()`, si el valor que ingresa en `input()` es 0 el valor de la variable será `False`, si ingresa otro valor será `True`
+
+# Condicionales
+
+## Condicional if else
+
+Cuando utilizamos condicionales como `if`, `else`, o `if not`, para indicar el código que se encuentra dentro del condicional utilizamos el espacio de la tecla tab.
+
+```py3
+age = int(input('Ingresa la edad: '))
+
+if age >= 18:
+    print('Es mayor de edad')
+else:
+    print('Es menor de edad')
+```
+
+Para excluir valores mediante el condicional `if` podemos negar el valor a comprar mediante `!=` o utilizar `if not`. En el ejemplo solo las van a ser excluidos cuando `age` sea 16.
+
+```py3
+age = int(input('Ingresa la edad: '))
+
+if age != 16:
+    print('Puede pasar')
+
+# funciona de la misma forma que el if anterior
+if not age == 16:
+    print('Puede pasar')
+```
