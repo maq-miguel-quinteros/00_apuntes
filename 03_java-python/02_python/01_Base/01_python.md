@@ -526,7 +526,7 @@ person1.say_hello()
 
 ```
 
-Para encapsular los atributos de una clase, cuando declaramos el atributo los hacemos con dos guiones bajos `__` previos al nombre del mismo.
+Para encapsular los atributos de una clase, cuando declaramos el atributo los hacemos con dos guiones bajos `__` previos al nombre del mismo. En el ejemplo el atributo `other_phone`, al no tener los dos guión bajo puede ser accedido desde fuera del objeto
 
 ```py3
 class Person:
@@ -535,19 +535,148 @@ class Person:
     __age = 0
     __phone = 0
 
-    def __init__(self, name, last_name, age, phone):
+    def __init__(self, name, last_name, age, phone, other_phone):
         self.__name = name
         self.__last_name = last_name
         self.__age = age
         self.__phone = phone
+        self.other_phone = other_phone
 
     def say_hello(self):
-        print(f'Hola, mi nombre es {self.__name}')
+        print(f'Hola, mi nombre es {self.__name}, y mi otro teléfono es {self.other_phone}')
 
-person1 = Person('Miguel', 'Quinteros', 39, 3815355225)
+person1 = Person('Miguel', 'Quinteros', 39, 3815355225, 4271907)
 
 person1.name = 'Angel' # dará un error
 person1.__name = 'Angel' # dará un error
+person1.other_phone = '0303456' # funciona correctamente 
+
 person1.say_hello()
 
 ```
+
+# Herencia
+
+Una clase hijo hereda de una clase padre. Para indicar la herencia, en la declaración de la clase hijo, mediante paréntesis, indicamos cual es la clase padre desde la que va a heredar. Heredar implica que la clase hijo va a contar con todos los atributos u métodos de la clase padre, va a poder redefinir estos y va a poder tener los suyos propios. En el ejemplo utilizamos los atributos, el constructor `__init__` y el método `say_hello` de la clase `Person` en la clase `Client`.
+
+```py3
+class Person:
+    def __init__(self, name, last_name, age, phone):
+        self.name = name
+        self.last_name = last_name
+        self.age = age
+        self.phone = phone
+    
+    def say_hello(self):
+        print(f'Hola, mi nombre es {self.name}')
+
+class Client(Person):
+    pass
+
+client1 = Client('Miguel', 'Quinteros', 39, 3815355225, 4271997)
+client1.say_hello()
+```
+
+Para agregar atributos al constructor de `Client` redefinimos el método `__init__`. En el mismo vamos a seguir utilizando los atributos de `Person` pero le vamos a sumar atributos propios de `Client`.
+
+```py3
+class Person:
+    def __init__(self, name, last_name, age, phone):
+        self.name = name
+        self.last_name = last_name
+        self.age = age
+        self.phone = phone
+    
+    def say_hello(self):
+        print(f'Hola, mi nombre es {self.name}')
+
+class Client(Person):
+    corporate_phone = 0
+
+    def __init__(self, name, last_name, age, phone, corporate_phone):
+        self.name = name
+        self.last_name = last_name
+        self.age = age
+        self.corporate_phone = corporate_phone
+    
+    def say_corporate_phone(self):
+        print(f'Hola, mi nombre es {self.name} y mi teléfono corporativo es {self.corporate_phone}' )
+
+client1 = Client('Miguel', 'Quinteros', 39, 3815355225, 4271997)
+client1.say_hello()
+client1.say_corporate_phone()
+```
+
+# Herencia múltiple
+
+Para realizar la herencia múltiple solo tenemos que agregar una coma `,` y la siguiente clase desde la que queremos heredar en la definición de la clase hijo.
+
+```py3
+class Person:
+    def __init__(self, name, last_name, age, phone):
+        self.name = name
+        self.last_name = last_name
+        self.age = age
+        self.phone = phone    
+    def say_hello(self):
+        print(f'Hola, mi nombre es {self.name}')
+class Male:
+    pass
+
+class Female:
+    __pregnant: false
+    def set_pregnant(self, pregnant):
+        self.__pregnant = pregnant
+
+class Client(Person, Female):
+    corporate_phone = 0
+    def __init__(self, name, last_name, age, phone, corporate_phone):
+        self.name = name
+        self.last_name = last_name
+        self.age = age
+        self.corporate_phone = corporate_phone    
+    def say_corporate_phone(self):
+        print(f'Hola, mi nombre es {self.name} y mi teléfono corporativo es {self.corporate_phone}' )
+
+client1 = Client('Daniela', 'Diaz', 37, 3815355225, 4271997)
+client1.say_hello()
+client1.say_corporate_phone()
+client1.set_pregnant(True)
+```
+
+# Importaciones
+
+Podemos guardar las clases relacionadas con `Person`, o solamente la clase `Person` en un archivo `.py` y hacer lo mismo con cada una de las clases. Cuando necesitamos utilizar la clase, sus atributos y métodos la podemos importar.
+
+En un archivo `person.py` vamos a guardar los siguiente.
+
+```py3
+class Person:
+    def __init__(self, name, last_name, age, phone):
+        self.name = name
+        self.last_name = last_name
+        self.age = age
+        self.phone = phone    
+    def say_hello(self):
+        print(f'Hola, mi nombre es {self.name}')
+
+class Female:
+    __pregnant: false
+    def set_pregnant(self, pregnant):
+        self.__pregnant = pregnant
+```
+
+En el archivo `main.py` importamos la clase `Person`. Si indicamos `import person` traemos todo el contenido del archivo `person.py` que además de la clase `Person` puede contener otras cosas que no nos interesan. Para importar solo la clase utilizamos la palabra reservada `from`. Si necesitamos importar más de una clase del mismo archivo podemos utilizar una coma en la sentencia del `from import`
+
+```py3
+from person import Person, Female
+
+class Client(Person, Female):
+    pass
+
+client1 = Client('Daniela', 'Diaz', 37, 3815355225, 4271997)
+client1.say_hello()
+client1.set_pregnant(True)
+```
+
+En caso de encontrarse dentro de carpetas las clases que queremos importar utilizamos la notación de punto de la forma `from Class.Persons.person import Person, Female`.
