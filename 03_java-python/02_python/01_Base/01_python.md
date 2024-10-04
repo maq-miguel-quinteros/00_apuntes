@@ -479,3 +479,75 @@ print(person1.phone)
 ```
 
 ## Métodos
+
+Mediante los métodos añadimos funciones a nuestros objetos, es decir, cosas que pueden hacer.
+
+```py3
+class Person:
+    def __init__(self, name, last_name, age, phone):
+        self.name = name
+        self.last_name = last_name
+        self.age = age
+        self.phone = phone
+    
+    def say_hello(self):
+        print(f'Hola, mi nombre es {self.name}')
+
+    def say_hello_to_someone(self, someone_name)
+        print(f'Hola {someone_name}, mi nombre es {self.name}')
+
+
+person1 = Person('Miguel', 'Quinteros', 39, 3815355225)
+person1.say_hello()
+
+person1.say_hello_to_someone('Daniela')
+```
+
+# Encapsulamiento
+
+Cuando encapsulamos un atributo de una clase, lo que hacemos es evitar que pueda accederse a ese atributo por fuera de la clase. Solo se puede acceder o modificar estos atributos mediante métodos de la clase que creamos previamente.
+
+```py3
+class Person:
+    def __init__(self, name, last_name, age, phone):
+        self.name = name
+        self.last_name = last_name
+        self.age = age
+        self.phone = phone
+    
+    def say_hello(self):
+        print(f'Hola, mi nombre es {self.name}')
+
+person1 = Person('Miguel', 'Quinteros', 39, 3815355225)
+
+person1.name = 'Angel' # podemos modificar el valor del atributo desde fuera de la clase
+person1.say_hello()
+
+
+```
+
+Para encapsular los atributos de una clase, cuando declaramos el atributo los hacemos con dos guiones bajos `__` previos al nombre del mismo.
+
+```py3
+class Person:
+    __name = ''
+    __last_name = ''
+    __age = 0
+    __phone = 0
+
+    def __init__(self, name, last_name, age, phone):
+        self.__name = name
+        self.__last_name = last_name
+        self.__age = age
+        self.__phone = phone
+
+    def say_hello(self):
+        print(f'Hola, mi nombre es {self.__name}')
+
+person1 = Person('Miguel', 'Quinteros', 39, 3815355225)
+
+person1.name = 'Angel' # dará un error
+person1.__name = 'Angel' # dará un error
+person1.say_hello()
+
+```
