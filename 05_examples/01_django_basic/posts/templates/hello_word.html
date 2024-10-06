@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts</title>
+</head>
+<body>
+    <h1>Hola Mundo</h1>
+
+    <!-- Utilizamos {{ name }} para indicar que en ese espacio tiene que mostrar el contenido de la variable name que viene en el context -->
+    <p>Mi nombre es {{ name }}</p>
+    <p>Tengo {{ age }}</p>
+    <h3>Lenguajes</h3>
+
+    <!-- Mediante {% code %} indicamos que lo contenido en ese espacio es código de python que utilizamos para renderizar varios componentes o para discriminarlos mediante un if -->
+    {% for language in languages %}
+        <li>{{ language }}</li>
+
+    <!-- indicamos con endfor que termina la ejecución del for que va a mostrar la lista de lenguajes -->
+    {% endfor %}
+</body>
+</html>
