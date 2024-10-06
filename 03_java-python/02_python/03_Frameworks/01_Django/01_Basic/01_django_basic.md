@@ -205,4 +205,84 @@ Para que los datos que pasamos mediante el parámetro `context` del método `ren
 
 ## Modelos
 
+Con Django no tenemos que crear tablas de forma manual en la base de datos, creamos modelos, y a partir de esos modelos se crean, de forma automática en nuestra base de datos, las tablas y registros correspondientes, gracias al ORM de Django.
 
+Para crear el modelo, en la carpeta de nuestra app posts editamos el archivo `models.py`.
+
+```py3
+# Importamos models, que nos permite crear los modelos
+from django.db import models
+
+class Post(models.Model):
+    # Los atributos de la clase Post van a ser del tipo de las clases en models
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+
+    # Mediante auto_created=True indicamos que, al crearse un nuevo registro, la fecha se crea de forma automática con el valor de la fecha de ese momento
+    created_at = models.DateTimeField(auto_created=True)
+```
+
+## Migraciones
+
+Una vez que creamos el modelo de datos tenemos que indicar a Django que es lo que tiene que hacer con el mismo en la base de datos. Lo que hacemos es la migración. En la terminal corremos el siguiente comando. Al hacerlo Django va a buscar en todos los modelos que tengamos creados en nuestra aplicación y, si encuentra un modelo que no tenga su correspondencia en la base de datos, va a generar la tabla.
+
+```shellscript
+python manage.py makemigrations
+```
+
+Al hacerlo se crea una nueva carpeta en la carpeta de nuestra app, la carpeta post. La carpeta que se crea se llama `migrations` y dentro va a tener un archivo llamado con números y seguido de `_initial.py`. Este archivo contiene las instrucciones para crear la nueva tabla en la base de datos cuando ejecutemos el comando `migrate`.
+
+```shellscript
+python manage.py migrate
+```
+
+En la base de datos de SQLite tenemos una tabla llamada `django_migrations`. Una ves ejecutado migrate se crea la tabla `Post` en la base de datos pero ademas se crea un registro en la tabla `django_migrations`. Esta tabla le indica a Django que la migración correspondiente a la tabla `Post` ya fue realizada. Si volvemos a ejecutar el comando `makemigrations` o `migrate` no habrá cambios.
+
+### Modificar el modelo
+
+Si modificamos el modelo y agregamos, por ejemplo, un nuevo atributo al mismo, para que este cambio se vea reflejado en la base de datos tenemos que volver a ejecutar `makemigratios` y `migrate`.
+
+```py3
+from django.db import models
+
+class Post(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    created_at = models.DateTimeField(auto_created=True)
+
+    # Agregamos este atributo después de haber creado la tabla en la base de datos mediante makemigrations y migrate
+    order = models.IntegerField()
+```
+
+Si al hacer makemigratios aparece el mensaje a continuación, seleccionamos la opción 1 y después ingresamos el valor '1'.
+
+```polyglot-notebook
+It is impossible to add a non-nullable field 'order' to post without specifying a default. This is because the database needs something to populate existing rows.
+Please select a fix:
+	1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+	2) Quit and manually define a default value in models.py.
+Select an option:
+```
+
+Nuevamente se crea un nuevo archivo con números en la carpeta migrations pero está vez indicando en que modelo es el cambio que se realizó. En este caso podemos ver que, en `dependencies` indica el modelo anterior y luego, en operations indica que va a agregar una columna a la tabla post en la base de datos. El contenido del archivo se va a ver similar a lo siguiente.
+
+```py3
+dependencies = [
+        ('posts', '0001_initial'),
+    ]
+
+    operations = [
+        migrations.AddField(
+            model_name='post',
+            name='order',
+            field=models.IntegerField(default='1'),
+            preserve_default=False,
+        ),
+    ]
+```
+
+Para completar la actualización de la tabla post con la nueva columna ejecutamos `migrate`
+
+### Eliminar una migración
+
+Si eliminamos alguno de los archivos .py de la carpeta migraciones de alguna de nuestras apps es importante eliminar de la base de datos lo que sea que modificaba del modelo ese archivo de migración en la base. Es decir, si eliminamos un archivo .py de migrations que agregaba una columna a una tabla, en la base de datos tenemos que eliminar también esa columna.
