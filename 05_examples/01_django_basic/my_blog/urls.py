@@ -20,6 +20,8 @@ from django.urls import path
 # Importamos la vista que creamos en la app posts
 from posts.views import HelloWord
 
+from posts.api
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 
