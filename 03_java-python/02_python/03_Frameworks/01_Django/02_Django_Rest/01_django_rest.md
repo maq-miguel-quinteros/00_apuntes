@@ -43,7 +43,7 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'create_at']
 ```
 
-# EndPoint para obtener los post
+# EndPoint para los post
 
 
 ## APIView
@@ -123,7 +123,7 @@ class PostApiView(APIView):
     def post(self, request):
 
         # Creamos un nuevo objeto del modelo (clase) Post y le indicamos que sus datos van a ser los que vienen por la petición HTTP POST
-        Post.object.crate(
+        Post.objects.create(
             title=request.POST['title'],
             description=request.POST['description'],
             order=request.POST['order']
@@ -132,4 +132,85 @@ class PostApiView(APIView):
         # Mostramos en la respuesta los datos que vinieron por POST y están en request
         return self.get(request)
 
+```
+
+# Serializadores
+
+A la hora de trabajar con los datos que recibimos o enviamos en las peticiones HTTP mediante el request Django cuanta con unas clases llamadas serializadores. Los serializadores formatean y validan los datos que salen y que entran antes de realizar alguna acción. Se utilizan para gestionar los datos de los endpoint, es decir, para indicar que datos van a entrar y que datos van a salir. Se pueden utilizar las veces que queramos. Ayudan a no tener que indicar cada vez, atributo por atributo, que es y a donde corresponde.
+
+En la carpeta api de nuestra app posts creamos un archivo `serializers.py`. Dentro ingresamos el siguiente código.
+
+```py3
+# Importamos la clase que permite hacer la serialización
+from rest_framework.serializers import ModelSerializer
+
+from posts.models import Post
+
+# Creamos una clase para hacer la serialización del modelo de Post
+class PostSerializer(ModelSerializer):
+
+    # Pasamos los datos correspondientes al modelo, como cual es el modelo y con fields cuales son los datos de este modelo que tiene que serializar
+    class Meta:
+        model = Post
+
+        # Mediante __all__ podeos indicar que debe serializar todos los datos. La forma correcta de trabajar es indicar en una lista los datos que queremos realmente que serialice
+        fields = ['title', 'description', 'order', 'create_at']
+```
+
+Tenemos que modificar la vista para trabajar ahora con los datos serializados. Modificamos el archivo `views.py` con el siguiente código.
+
+```py3
+from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from posts.models import Post
+
+# Traemos el serializador que creamos en serializers.py
+from posts.api.serializers import PostSerializer
+
+class PostApiView(APIView):
+    # Redefinimos el método get de APIView para crear nuestra respuesta a una petición GET HTTP
+    def get(self, request):
+
+        # A la clase PostSerializer le pasamos todos los objetos (registros) de Post que vienen de la base de datos. Con many=True le indicamos que devuelva el array o lista completas de estos posts
+        post = PostSerializer(Post.objects.all(), many=True)
+
+        return Response(status=status.HTTP_200_OK, data=post.data)
+    
+    def post(self, request):
+        Post.objects.create(
+            title=request.POST['title'],
+            description=request.POST['description'],
+            order=request.POST['order']
+        )
+        return self.get(request)
+```
+
+Para utilizar los datos serializados en la petición HTTP POST, es decir, para utilizarlos en el alta de un nuevo post, editamos el archivo de vistas de la API `views.py` con el siguiente código.
+
+```py3
+from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from posts.models import Post
+from posts.api.serializers import PostSerializer
+
+class PostApiView(APIView):
+    # Redefinimos el método get de APIView para crear nuestra respuesta a una petición GET HTTP
+    def get(self, request):
+        post = PostSerializer(Post.objects.all(), many=True)
+        return Response(status=status.HTTP_200_OK, data=post.data)
+    
+    def post(self, request):
+
+        # Pasamos a la clase PostSerializer los datos de la petición HTTP POST que llegan en request
+        post = PostSerializer(data=request.POST)
+
+        # Mediante el método is_valid validamos los datos que llegan en request. Si los datos no son validos va a generar una excepción
+        post.is_valid(raise_exception=True)
+
+        # Guardamos los datos en la base de datos
+        post.save()
+
+        return Response(status=status.HTTP_200_OK, data=post.data)
 ```
