@@ -134,6 +134,8 @@ console.log(typeof z);
 
 # Variables
 
+## Concatenación de variables
+
 Podemos concatenar variables usando el operador `+`. Al concatenar el contenido de dos o más variables o datos generamos una nueva cadena. Mediante `+ ' ' +` concatenamos un espacio en blanco entre las dos variables.
 
 ```js
@@ -150,3 +152,76 @@ No es necesario tener en variables los valores para concatenar.
 var nombreCompleto2 = 'Carlos' + ' ' + 'Lara';
 console.log(nombreCompleto2);
 ```
+
+La lectura de las operaciones, ya sea aritméticas o de concatenación de `string`, se hace de izquierda a derecha. Si comienza con números, realizar la operación matemática hasta que encuentra un `string`, a partir del este realiza la concatenación. Se atiende primero las operaciones que están dentro de los paréntesis, luego lo que está afuera.
+
+```js
+var nombre = 'Juan';
+var x = nombre + 2 + 4;
+console.log(x);
+
+/**  realiza la suma dentro del paréntesis antes de realizar la concatenación */
+x = nombre + (2 + 4);
+console.log(x);
+
+x = 2 + 4 + nombre;
+console.log(x);
+```
+
+## Declaración de variables
+
+### Literales
+
+Un literal es un dato suelto, que podemos asignar a una variable. Un literal tiene un tipo, como las variables, el tipo de un literal puede ser `string`, `number`, `boolean`, etc. Los siguientes son literales:
+
+```js
+3;
+3.5;
+'Andrea';
+```
+
+Cuando asignamos un literal a una variable, podemos decir que guardamos el literal dentro de la variable.
+
+```js
+var nombre = 'Andrea';
+```
+
+### Uso de `var`, `let` y `const`
+
+Ya no se recomienda usar la palabra reservada `var` para declarar una variable, sino la palabra reservada `let`. A su vez tampoco es necesario utilizar `let` para declarar la variable, se pueden declarar solo escribiendo el nombre, pero una buena práctica es escribir `let` antes del nombre de la variable. Podemos declarar primero la variable y asignarle el valor a la misma luego, o declarar la variable en una línea de código, y asignarle el valor en otra línea de código distinta.
+
+```js
+let nombre;
+nombre = "Juan";
+console.log(nombre);
+nombre = "Pedro";
+console.log( nombre );
+```
+
+Para declarar una constante utilizamos la palabra reservada `const`. A diferencia de las variables, a las constantes no podemos volver a asignarle un valor luego de hacerlo la primera vez.
+
+```js
+const apellido = "Perez";
+console.log(apellido);
+apellido = "Gomez"; // dará error
+```
+
+Podemos declarar las variables por grupos con coma y asignarles el valor en la misma línea también separadas por coma.
+
+```js
+let x, y;
+x = 10, y = 20;
+let z = x + y;
+console.log(z);
+```
+
+Javascript es sensible a mayúsculas y minúsculas para los nombres de las variables o funciones. No se puede comenzar el nombre de una variable o función con un número. Para el inicio del nombre se permiten mayúsculas, minúsculas y los signos `_` y `$`. No se pueden utilizar las palabras reservadas como nombre de variable o función.
+
+La palabra reservada `console` es un objeto, por su parte `log` es un método del objeto `console`, por lo que al escribir la sentencia `console.log()` estamos llamando a un método que se encarga de mostrar valores por consola. A esto solo queda indicar el argumento que va a recibir el método de la forma `console.log(argumento)`.
+
+```js
+let nombreCompleto = "Juan Perez";
+console.log( nombreCompleto );
+```
+
+# Operadores
