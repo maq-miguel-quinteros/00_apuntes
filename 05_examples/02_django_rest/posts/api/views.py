@@ -16,8 +16,17 @@ from posts.models import Post
 # Traemos el serializador que creamos en serializers.py
 from posts.api.serializers import PostSerializer
 
-# Mediante la clase PostModelViewSet y redefiniendo el valos de los atributos que hereda de ModelViewSet creamos el CRUD completo
+# Importamos las clases con los tipos de permisos:
+# IsAuthenticated dará permisos solo a los usuarios autenticados para hacer peticiones a este modelo
+# IsAdminUser si el usuario es administrador del proyecto (usuario admin que creamos)
+# IsAuthenticatedOrReadOnly si no es un usuario autenticado solo puede hacer consultas de lectura 
+from rest_framework.permissions import IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly
+
+# Mediante la clase PostModelViewSet y redefiniendo el valor de los atributos que hereda de ModelViewSet creamos el CRUD completo
 class PostModelViewSet(ModelViewSet):
+
+    # Redefinimos el atributo indicando las clases con los tipos de permisos que van a tener sobre el CRUD que creamos
+    permission_class = [IsAuthenticatedOrReadOnly]
 
     # Indicamos cual es el serializador que va a dar formato a los datos que enviamos y recibimos
     serializer_class = PostSerializer

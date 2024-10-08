@@ -356,4 +356,39 @@ router_posts.register(prefix='posts', basename='posts', viewset=PostModelViewSet
 
 Mediante esto indicamos que, al dirigirnos a la ruta `/api/posts` nos va a devolver todos los posts de la base de datos, Pero además, en la misma página nos habilita un formulario para cargar un nuevo post. Al dirigirnos a `/api/posts/1` nos devuelve los datos del post con id 1 en la base de datos pero además nos da un formulario para modificar los datos de ese registro. En pantalla podemos ver el botón de delete para eliminar ese post si queremos hacerlos. De esta forma generamos el CRUD completo para esa tabla en la base de datos.
 
-# Sistema de permisos
+# Sistema de permisos que aplicamos a ModelViewSet
+
+Mediante clases que podemos pasar a `ModelViewSet` podemos indicar que el CRUD sea, por ejemplo, solo de lectura, que genera solo pueda ser realizado por usuario autentificados, o por usuarios administradores del sistema, que sea abierto para la lectura pero que solo los usuarios autenticados puedan guardar nuevos posts en la base de datos, etc.
+
+Para restringir los permisos utilizamos la clase `Permissions`. Cuando hacemos una consulta mediante un cliente, al tratar de hacer una petición HTTP sin tener los permisos necesarios la misma devolverá un error. Si estamos logueados en el administrador de Django nos va a devolver los valores por que ya estamos autenticados con un usuario, el admin. Para saber si un usuario es administrador, en el AdminPanel, en los detalles del usuario tiene que tener tildada la opción Staff status. Editamos el archivo `views.py` de la app posts.
+
+```py3
+from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework.viewset import ViewSet, ModelViewSet
+from rest_framework.response import Response
+from posts.models import Post
+from posts.api.serializers import PostSerializer
+
+# Importamos las clases con los tipos de permisos:
+# IsAuthenticated dará permisos solo a los usuarios autenticados para hacer peticiones a este modelo
+# IsAdminUser si el usuario es administrador del proyecto (usuario admin que creamos)
+# IsAuthenticatedOrReadOnly si no es un usuario autenticado solo puede hacer consultas de lectura 
+from rest_framework.permissions import IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly
+
+class PostModelViewSet(ModelViewSet):
+
+    # Redefinimos el atributo indicando las clases con los tipos de permisos que van a tener sobre el CRUD que creamos
+    permission_class = [IsAuthenticatedOrReadOnly]
+
+    serializer_class = PostSerializer
+    queryset = Post.objects.all()
+```
+
+## Creamos nuestros propios permisos
+
+
+
+```py3
+
+```
