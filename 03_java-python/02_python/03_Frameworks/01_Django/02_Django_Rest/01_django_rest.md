@@ -385,10 +385,45 @@ class PostModelViewSet(ModelViewSet):
     queryset = Post.objects.all()
 ```
 
-## Creamos nuestros propios permisos
+## Creamos nuestras propias de permisos
 
 
+
+En la carpeta api de la app posts creamos un nuevo archivo llamado `permissions.py`. Dentro de este archivo vamos a crear la clase que establece los permisos personalizados. En este caso vamos una clase que permita que todo el mundo pueda leer del modelo, pero solo los usuarios administradores van a poder modificar los registros (create, update & delete)
 
 ```py3
+from rest_framework.permissions import BasePermission
+
+class IsAdminOrReadOnly(BasePermission):
+
+    # redefinimos el método has_permission que heredamos de la clase BasePermission
+    def has_permission(self, request, view):
+
+        # Si el método que tiene como atributo request es GET devuelve True, es decir, tiene permisos para realizar la petición HTTP
+        if request.method == 'GET':
+            return True
+        else:
+            # Devuelve el valor del atributo is_staff del objeto user, del objeto request. Si es un usuario administrador devuelve True, es decir, tiene permisos para realizar pa petición HTTP que esta realizando. Si el valor de is_staff es False, es decir, no es un administrador, devuelve false y no puede realizar la petición
+            return request.user.is_staff
+```
+
+Cargamos el permiso personalizado en nuestro archivo de `views.py`, en la app de posts.
+
+```py3
+from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework.viewset import ViewSet, ModelViewSet
+from rest_framework.response import Response
+from posts.models import Post
+from posts.api.serializers import PostSerializer
+from rest_framework.permissions import IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly
+
+# Importamos el permiso personalizado
+from posts.api.permissions import IsAdminOrReadOnly
+
+class PostModelViewSet(ModelViewSet):
+    permission_class = [IsAdminOrReadOnly]
+    serializer_class = PostSerializer
+    queryset = Post.objects.all()
 
 ```
