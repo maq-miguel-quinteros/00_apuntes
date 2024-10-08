@@ -214,3 +214,70 @@ class PostApiView(APIView):
 
         return Response(status=status.HTTP_200_OK, data=post.data)
 ```
+
+# ViewSet
+
+ViewSet permite crear un archivo de rutas e importarlas, es decir, que sean ajenas a la ruta principal. Con esta dependencia ya no vamos a usar POST PUT O GET sino que vamos a trabajar con métodos de esta clase como list, retrieve o create. Editamos el archivo `views.py` de la app posts de la siguiente forma.
+
+```py3
+from rest_framework import status
+from rest_framework.views import APIView
+
+# Importamos ViewSet
+from rest_framework.viewset import ViewSet
+
+from rest_framework.response import Response
+from posts.models import Post
+from posts.api.serializers import PostSerializer
+
+class PostViewSet(ViewSet):
+    # Mediante el método list traemos un listado de los post guardados en la base de datos
+    def list(self, request):
+        post = PostSerializer(Post.objects.all(), many=True)
+        return Response(status=status.HTTP_200_OK, data=post.data)
+    
+    # Mediante create creamos un nuevo post en la base de datos
+    def create(self, request):
+        post = PostSerializer(data=request.POST)
+        post.is_valid(raise_exception=True)
+        post.save()
+        return Response(status=status.HTTP_200_OK, data=post.data)
+```
+
+En la carpeta api, dentro de la app posts, creamos una nuevo archivo llamado `router.py` que va a contener las rutas con la que vamos a trabajar en `urls.py`. Editamos el archivo como sigue.
+
+```py3
+# Traemos la clase DefaultRouter que utilizamos para definir las rutas
+from rest_framework.routers import DefaultRouter
+
+# Traemos la clase PostViewSet, que creamos en las vistas
+from posts.api.views import PostViewSet
+
+# creamos un objeto de la clase DefaultRouter
+router_posts = DefaultRouter()
+
+# mediante el método register registramos la ruta /posts/
+router_posts.register(prefix='posts', basename='posts', viewset=PostViewSet)
+```
+
+Editamos el archivo de las rutas `urls.py` en la app principal de nuestro proyecto que es my_blog.
+
+```py3
+from django.contrib import admin
+
+# Traemos la clse include además de path
+from django.urls import path, include
+# from posts.api.views import PostApiView
+
+# Traemos las rutas que creamos en routers.py
+from posts.api.routers import router_posts
+
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    # path('api/posts/', PostViewSet.as_view()),
+
+    # para la ruta api/ vamos a incluir todo las rutas configuradas en el atributo urls que se crean en el objeto que este configurado en el router_posts 
+    path('api/', include(router_posts.urls))
+]
+```

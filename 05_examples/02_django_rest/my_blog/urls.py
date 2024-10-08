@@ -15,10 +15,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from posts.api.views import PostApiView
+
+# Traemos la clse include además de path
+from django.urls import path, include
+# from posts.api.views import PostApiView
+
+# Traemos las rutas que creamos en routers.py
+from posts.api.routers import router_posts
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/posts/', PostApiView.as_view()),
+    # path('api/posts/', PostViewSet.as_view()),
+
+    # para la ruta api/ vamos a incluir todo las rutas configuradas en el atributo urls que se crean en el objeto que este configurado en el router_posts 
+    path('api/', include(router_posts.urls))
 ]
