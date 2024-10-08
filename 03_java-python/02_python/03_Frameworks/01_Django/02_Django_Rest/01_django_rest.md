@@ -317,3 +317,43 @@ class PostViewSet(ViewSet):
 # ModelViewSet
 
 
+Siempre que creamos un REST API vamos a tener que generar un CRUD. Mediante ModelViewSet podemos generar este CRUD de manera mas rápida y con pocas líneas de código. Modificamos el archivos `views.py` de la app posts del proyecto con el siguiente código
+
+```py3
+from rest_framework import status
+from rest_framework.views import APIView
+
+# Importamos ModelViewSet
+from rest_framework.viewset import ViewSet, ModelViewSet
+
+from rest_framework.response import Response
+from posts.models import Post
+from posts.api.serializers import PostSerializer
+
+# Mediante la clase PostModelViewSet y redefiniendo el valos de los atributos que hereda de ModelViewSet creamos el CRUD completo
+class PostModelViewSet(ModelViewSet):
+
+    # Indicamos cual es el serializador que va a dar formato a los datos que enviamos y recibimos
+    serializer_class = PostSerializer
+
+    # Indicamos la query que va a manejar las llamadas a la base de datos, en este caso la query indica traer todos los elementos de la base de datos
+    queryset = Post.objects.all()
+```
+
+Editamos el archivo `routers.py` para configurar la ruta que va a utilizar `ModelViewSet`.
+
+```py3
+from rest_framework.routers import DefaultRouter
+
+# Traemos la clase PostModelViewSet, que creamos en las vistas
+from posts.api.views import PostModelViewSet
+
+router_posts = DefaultRouter()
+
+# mediante el método register registramos la ruta /posts/
+router_posts.register(prefix='posts', basename='posts', viewset=PostModelViewSet)
+```
+
+Mediante esto indicamos que, al dirigirnos a la ruta `/api/posts` nos va a devolver todos los posts de la base de datos, Pero además, en la misma página nos habilita un formulario para cargar un nuevo post. Al dirigirnos a `/api/posts/1` nos devuelve los datos del post con id 1 en la base de datos pero además nos da un formulario para modificar los datos de ese registro. En pantalla podemos ver el botón de delete para eliminar ese post si queremos hacerlos. De esta forma generamos el CRUD completo para esa tabla en la base de datos.
+
+# Sistema de permisos

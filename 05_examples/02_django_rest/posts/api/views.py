@@ -5,7 +5,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 
 # Importamos ViewSet
-from rest_framework.viewset import ViewSet
+from rest_framework.viewset import ViewSet, ModelViewSet
 
 # Utilizamos Response para poder generar respuestas a las peticiones HTTP
 from rest_framework.response import Response
@@ -16,27 +16,37 @@ from posts.models import Post
 # Traemos el serializador que creamos en serializers.py
 from posts.api.serializers import PostSerializer
 
-class PostViewSet(ViewSet):
-    # Mediante el método list traemos un listado de los post guardados en la base de datos
-    def list(self, request):
-        posts = PostSerializer(Post.objects.all(), many=True)
-        return Response(status=status.HTTP_200_OK, data=posts.data)
+# Mediante la clase PostModelViewSet y redefiniendo el valos de los atributos que hereda de ModelViewSet creamos el CRUD completo
+class PostModelViewSet(ModelViewSet):
 
-    # Redefinimos el método que configura la ruta /api/posts/id donde el parámetro pk que pasamos es el id del registro en la base de datos que queremos obtener. Podemos o no indicar el tipo de dato de pk
-    def retrieve(self, request, pk: int):
+    # Indicamos cual es el serializador que va a dar formato a los datos que enviamos y recibimos
+    serializer_class = PostSerializer
 
-        # mediante el método get indicamos traer solo el registro en la base de datos con el valor de id = al pk que pasamos por parámetro
-        post = PostSerializer(Post.objects.get(pk=pk))
+    # Indicamos la query que va a manejar las llamadas a la base de datos, en este caso la query indica traer todos los elementos de la base de datos
+    queryset = Post.objects.all()
+
+
+# class PostViewSet(ViewSet):
+#     # Mediante el método list traemos un listado de los post guardados en la base de datos
+#     def list(self, request):
+#         posts = PostSerializer(Post.objects.all(), many=True)
+#         return Response(status=status.HTTP_200_OK, data=posts.data)
+
+#     # Redefinimos el método que configura la ruta /api/posts/id donde el parámetro pk que pasamos es el id del registro en la base de datos que queremos obtener. Podemos o no indicar el tipo de dato de pk
+#     def retrieve(self, request, pk: int):
+
+#         # mediante el método get indicamos traer solo el registro en la base de datos con el valor de id = al pk que pasamos por parámetro
+#         post = PostSerializer(Post.objects.get(pk=pk))
         
-        return Response(status = status.HTTP_200_OK, data = post.data)
+#         return Response(status = status.HTTP_200_OK, data = post.data)
 
     
-    # Mediante create creamos un nuevo post en la base de datos
-    def create(self, request):
-        post = PostSerializer(data=request.POST)
-        post.is_valid(raise_exception=True)
-        post.save()
-        return Response(status=status.HTTP_200_OK, data=post.data)
+#     # Mediante create creamos un nuevo post en la base de datos
+#     def create(self, request):
+#         post = PostSerializer(data=request.POST)
+#         post.is_valid(raise_exception=True)
+#         post.save()
+#         return Response(status=status.HTTP_200_OK, data=post.data)
 
 
 # class PostApiView(APIView):
