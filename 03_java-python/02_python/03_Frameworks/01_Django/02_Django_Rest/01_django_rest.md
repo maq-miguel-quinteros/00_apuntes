@@ -281,3 +281,39 @@ urlpatterns = [
     path('api/', include(router_posts.urls))
 ]
 ```
+
+Con la configuración que realizamos, al ingresar en la ruta `/api/posts/` va a mostrar todos los post guardados en la base de datos. Si queremos ver los datos de, por ejemplo, solo 1 post mediante la ruta `/api/posts/1` tenemos que editar el método `retrieve` heredado de la clase `ViewSet`. Editamos el archivo `views.py` de la app posts indicando lo siguiente.
+
+```py3
+from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework.viewset import ViewSet
+from rest_framework.response import Response
+from posts.models import Post
+from posts.api.serializers import PostSerializer
+
+class PostViewSet(ViewSet):
+    # Mediante el método list traemos un listado de los post guardados en la base de datos
+    def list(self, request):
+        posts = PostSerializer(Post.objects.all(), many=True)
+        return Response(status=status.HTTP_200_OK, data=posts.data)
+
+    # Redefinimos el método que configura la ruta /api/posts/id donde el parámetro pk que pasamos es el id del registro en la base de datos que queremos obtener. Podemos o no indicar el tipo de dato de pk
+    def retrieve(self, request, pk: int):
+
+        # mediante el método get indicamos traer solo el registro en la base de datos con el valor de id = al pk que pasamos por parámetro
+        post = PostSerializer(Post.objects.get(pk=pk))
+        
+        return Response(status = status.HTTP_200_OK, data = post.data)
+
+    def create(self, request):
+        post = PostSerializer(data=request.POST)
+        post.is_valid(raise_exception=True)
+        post.save()
+        return Response(status=status.HTTP_200_OK, data=post.data)
+
+```
+
+# ModelViewSet
+
+

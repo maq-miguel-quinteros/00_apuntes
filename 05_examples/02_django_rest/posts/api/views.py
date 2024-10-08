@@ -19,8 +19,17 @@ from posts.api.serializers import PostSerializer
 class PostViewSet(ViewSet):
     # Mediante el método list traemos un listado de los post guardados en la base de datos
     def list(self, request):
-        post = PostSerializer(Post.objects.all(), many=True)
-        return Response(status=status.HTTP_200_OK, data=post.data)
+        posts = PostSerializer(Post.objects.all(), many=True)
+        return Response(status=status.HTTP_200_OK, data=posts.data)
+
+    # Redefinimos el método que configura la ruta /api/posts/id donde el parámetro pk que pasamos es el id del registro en la base de datos que queremos obtener. Podemos o no indicar el tipo de dato de pk
+    def retrieve(self, request, pk: int):
+
+        # mediante el método get indicamos traer solo el registro en la base de datos con el valor de id = al pk que pasamos por parámetro
+        post = PostSerializer(Post.objects.get(pk=pk))
+        
+        return Response(status = status.HTTP_200_OK, data = post.data)
+
     
     # Mediante create creamos un nuevo post en la base de datos
     def create(self, request):
