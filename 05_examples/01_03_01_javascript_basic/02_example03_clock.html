@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>        
+        #ejemplo13_div1{
+            font-family: sans-serif;
+            font-size: 60px;
+            text-shadow: 0px 0px 1px #333;
+            color:#fff;
+        }
+        .reloj-contenedor{
+            background-color: rgb(12, 119, 206);
+            padding: 25px;
+            max-width: 350px;
+            text-align: center;
+            border-radius: 5px;
+            margin: 0 auto;
+            margin-top: 10%;
+        }
+        #ejemplo13_div4{
+            letter-spacing: 10px;
+            font-size: 15px;
+        }
+        .animar{
+            border: rgb(255, 68, 68) 2px solid;
+        }
+    </style>
+
+    <title>Reloj Digital</title>
+    
+</head>
+<body>
+    <div id='ejemplo13_div1'>
+        <div class='reloj-contenedor' id='ejemplo13_div2'>
+            <div id='ejemplo13_div3'>Reloj digital</div>
+            <div id='ejemplo13_div4'>con JavaScript</div>
+        </div>
+    </div>
+
+    <script>
+        const mostrarReloj = ()=>{
+            let fecha = new Date();
+            let hr = formatoHora(fecha.getHours());
+            let min = formatoHora(fecha.getMinutes());
+            let seg = formatoHora(fecha.getSeconds());
+            document.getElementById('ejemplo13_div3').innerHTML = `${hr}:${min}:${seg}`;
+
+            const meses = ['Ene', 'Feb', 'Mar','Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+            const dias = ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'];
+            let diaSemana = dias[fecha.getDay()];
+            let dia = fecha.getDate();
+            let mes = meses[fecha.getMonth()];
+            let fechaTexto = `${diaSemana}, ${dia} ${mes}`;
+            document.getElementById('ejemplo13_div4').innerHTML = fechaTexto;
+            
+            // mediante el método classList obtenemos una lista de todas las clases que se están aplicando al elemeto y mediante toggle indicamos aplique la clase css animar al objeto en la primera iteración de setInterval y que quite la clase animar en la siguiente iteración
+            document.getElementById('ejemplo13_div2').classList.toggle('animar');
+        };
+
+        const formatoHora = (hora)=>{
+            if(hora < 10)
+                hora = '0' + hora;
+                return hora;    
+        };
+        setInterval(mostrarReloj, 1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Personas</title>
+</head>
+<body >
+    <div class='' id=''>
+        <h1>Listado de Personas</h1>
+    </div>   
+
+    <div class=''>
+        <button onclick='mostrarPersonas()'
+        >Mostrar listado</button>
+        <div class=''>
+            <ul id='ejemplo12_ul'>
+                <!--<li>Juan Perez</li>-->
+            </ul>
+        </div>
+    </div>
+
+    <div class="">
+
+        <button style='cursor: pointer' onclick="agregarPersona()">agregar</button>
+
+        <form id='ejemplo12_form'>
+            <input type="text" id='ejemplo12_input1' placeholder="Nombre"/>
+            <input type='text' id='ejemplo12_input2' placeholder="Apellido"/>
+        </form>
+    </div>
+
+    <script>
+
+        // Creamos la clase persona mediante la cual vamos a crear los elementos del listado
+        class Persona{
+            constructor(nombre, apellido){
+                this._nombre = nombre;
+                this._apellido = apellido;
+            }
+            get nombre(){
+                return this._nombre;
+            }
+            set nombre(nombre){
+                this._nombre = nombre;
+            }
+            get apellido(){
+                return this._apellido;
+            }
+            set apellido(apellido){
+                return this._apellido = apellido;
+            }    
+        }
+        
+        // arreglo de objetos de tipo persona
+        const personas = [
+            new Persona('Juan', 'Perez'),
+            new Persona('Karla', 'Lara')
+        ];
+        
+        // función que se llama al tocar en el botón de mostrar listado con el evento onclic
+        function mostrarPersonas(){
+            console.log('Mostrar personas...');
+            let texto = '';
+            for(let persona of personas){
+                console.log(persona);
+
+                // mediante literales creamos escribimos la sintaxis de un elemento HTML de la forma <li>Juan Perez</li>
+                texto += `<li>${persona.nombre} ${persona.apellido}</li>`;
+            }
+
+            // el elemento que creamos con literales lo pegamos en el contenido del bloque <ul> convirtiéndose en un elemento de la lista
+            document.getElementById('ejemplo12_ul').innerHTML = texto;
+        }
+
+        function agregarPersona(){
+            
+            const forma = document.forms['ejemplo12_form'];
+            const nombre = forma['ejemplo12_input1'];
+            const apellido = forma['ejemplo12_input2'];            
+            if(nombre.value != '' && apellido.value != ''){
+                const persona = new Persona(nombre.value, apellido.value);
+                console.log(persona);
+                personas.push(persona);
+                mostrarPersonas();
+            }
+            else{
+                console.log('No hay información que agregar');
+            }
+        }
+    </script> 
+</body>
+</html>

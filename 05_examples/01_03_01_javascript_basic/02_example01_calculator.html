@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Aplicación Calculadora</title>
+</head>
+
+<body>
+	<div class=''>
+		<h1>Aplicación Calculadora</h1>
+
+		<!-- creamos un formulario con 2 elementos input de tipo number y usamos clases de bootstrap para modificar lo que se ve -->
+		<form id='ejemplo11_form'>
+			<div class=''>
+				<label for='operandoA'>Operando A</label>
+				<input type="number" class='' placeholder="Escribe operando A" id='operandoA' />
+			</div>
+			<div class=''>
+				<label for='operandoB'>Operando B</label>
+				<input type="number" class="" placeholder="Escribe operando B" id='operandoB' />
+			</div>
+		</form>
+
+		<!-- el botón lo dejamos fuera del formulario ya que su acción no va a ser enviar información por GET o POST, 
+		en ese caso, si tocamos el botón no se actualiza la página -->
+		<button onclick='sumar()'>Sumar</button>
+
+		<div id='ejemplo11_div'></div>
+	</div>
+
+	<script>
+		console.log('Aplicación Calculadora');
+
+		function sumar() {
+			const forma = document.getElementById('ejemplo11_form');
+
+			// accedemos a cada uno de los elementos del array del formulario con id forma para hacerlo usamos el id de cada uno de estos elementos
+			let operandoA = forma['operandoA'];
+			let operandoB = forma['operandoB'];
+
+			// utilizamos parseInt pasar el valor del atributo value de los elementos a  números. Cuando estos se recuperan lo hacen como string aunque se escriban como números en el formulario
+			let resultado = parseInt(operandoA.value) + parseInt(operandoB.value);
+
+			// la función isNaN devuelve true si la variable que pasamos como argumento no es un número
+			if (isNaN(resultado)) resultado = 'La operación no incluye números';
+			document.getElementById('ejemplo11_div').innerHTML = `Resultado: ${resultado}`;
+			console.log(`Resultado: ${resultado}`);
+		}
+	</script>
+</body>
+
+</html>
