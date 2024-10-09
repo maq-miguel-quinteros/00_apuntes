@@ -427,3 +427,5 @@ class PostModelViewSet(ModelViewSet):
     queryset = Post.objects.all()
 
 ```
+
+# Continuar en 02_python/02_libraries/01_drf_yasg.md
