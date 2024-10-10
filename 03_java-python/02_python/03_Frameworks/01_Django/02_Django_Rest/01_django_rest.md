@@ -630,3 +630,5 @@ class UserAdmin(BaseUserAdmin)
 ```
 
 Podemos conocer los nombres de los fields inspeccionando el código de la página por defecto y, buscando el elemento HTML donde está el campo que queremos saber el nombre, vamos a verlo en el atributo name del elemento HTML.
+
+## Añadimos atributos a la class AdminUser personalizada
