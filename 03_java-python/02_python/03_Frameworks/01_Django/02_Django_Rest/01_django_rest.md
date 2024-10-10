@@ -632,3 +632,39 @@ class UserAdmin(BaseUserAdmin)
 Podemos conocer los nombres de los fields inspeccionando el código de la página por defecto y, buscando el elemento HTML donde está el campo que queremos saber el nombre, vamos a verlo en el atributo name del elemento HTML.
 
 ## Añadimos atributos a la class AdminUser personalizada
+
+Para agregar atributos al modelo del usuario editamos el mismo en el archivo `models.py` de la app users. Agregamos aquí los atributos nuevos. Luego de actualizar el modelo de users tenemos que hacer un makemigrations y migrate.
+
+```py3
+# Importamos los modelos de datos para la base de datos
+from django.db import models
+
+from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
+    # Creamos el atributo web_site e indicamos el tipo en la base de datos. Con black=True indicamos que el atributo puede estar vacío
+    web_site = models.CharField(max_length=255, blank=True)
+
+    twitter = models.CharField(max_length=255, blank=True)
+```
+
+Para que el nuevo campo aparezca tenemos que sumarlo como un field en las vistas personalizadas que configuramos en admin.py.
+
+```py3
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from users.models import User
+
+@admin.register(User)
+
+class UserAdmin(BaseUserAdmin)
+    fieldsets = (
+        (None, {'fields': ('username', 'password')}),       
+        ('Información personal', {'fields': ('first_name', 'last_name', 'email', 'web_site')}),
+
+        # sumamos el atributo web_site a un nuevo fieldset que llamamos Redes sociales
+        ('Redes sociales', {'fields': ('web_site', 'twitter')}),
+    )
+```
+
+## Cambiar el identificador username por email
