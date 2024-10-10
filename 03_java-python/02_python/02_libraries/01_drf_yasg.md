@@ -87,3 +87,19 @@ urlpatterns = [
 ```
 
 Para consultar las páginas con la documentación que se genera de forma automática tenemos que dirigirnos a la ip de la página al path `/docs/` o `/redocs/`.
+
+# User override
+
+## Que es user override
+
+Un usuario de Django puede ser un super usuario, que es el que tiene permisos sobre todo el proyecto o un usuario logueado, que tiene los permisos que nosotros indiquemos que puede tener. En ambos casos, en Django, los modelos de usuario tienen una serie de atributos, como nombre, apellido, email, usuario de login, contraseña, etc. Todos estos atributos vienen predefinidos por Django. Si queremos agregar más atributos a alguno de los tipos de usuario, por ejemplo redes sociales, tenemos que hacer un override del usuario. Es una buena práctica, al comenzar un proyecto, hacer un override del usuario, aunque no agreguemos ningún atributo, que el mismo quede en blanco. Hacerlo al comienzo del proyecto va a ayudar si en un futuro queremos hacer esto mismo con el proyecto ya avanzado. Al hacer el override para los usuarios, la tabla en la base de datos que almacena lo mismo se borra y se crea una nueva tabla.
+
+## Creando el override
+
+Creamos una nueva app para los usuarios mediante el siguiente comando. En esta nueva app vamos a controlar a los usuario, el modelo, las vistas, los endpoint etc.
+
+```shellscript
+python manage.py startapp users
+```
+
+En el archivo models.py de nuestra nueva app users configuramos el nuevo modelo de usuario que vamos a utilizar.
