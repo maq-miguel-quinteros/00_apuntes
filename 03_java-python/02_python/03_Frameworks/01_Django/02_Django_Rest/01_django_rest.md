@@ -515,3 +515,95 @@ urlpatterns = [
 ```
 
 Para consultar las páginas con la documentación que se genera de forma automática tenemos que dirigirnos a la ip de la página al path `/docs/` o `/redocs/`.
+
+# User override
+
+## Que es override
+
+Un usuario de Django puede ser un super usuario, que es el que tiene permisos sobre todo el proyecto o un usuario logueado, que tiene los permisos que nosotros indiquemos que puede tener. En ambos casos, en Django, los modelos de usuario tienen una serie de atributos, como nombre, apellido, email, usuario de login, contraseña, etc. Todos estos atributos vienen predefinidos por Django. Si queremos agregar más atributos a alguno de los tipos de usuario, por ejemplo redes sociales, tenemos que hacer un override del usuario. Es una buena práctica, al comenzar un proyecto, hacer un override del usuario, aunque no agreguemos ningún atributo, que el mismo quede en blanco. Hacerlo al comienzo del proyecto va a ayudar si en un futuro queremos hacer esto mismo con el proyecto ya avanzado. Al hacer el override para los usuarios, la tabla en la base de datos que almacena lo mismo se borra y se crea una nueva tabla.
+
+## Creando el override
+
+Creamos una nueva app para los usuarios mediante el siguiente comando. En esta nueva app vamos a controlar a los usuario, el modelo, las vistas, los endpoint etc.
+
+```shellscript
+python manage.py startapp users
+```
+
+Editamos el archivo `models.py` de la app users que creamos para controlar los usuarios. En el mismo ingresamos el siguiente código. En el mismo heredamos el modelo por defecto de usuario de `Django` en la clase que creamos como modelo para nuestros usuarios, que en este caso es `User`. En esta primera etapa no vamos a agregar atributos al modelo de usuario, solo lo creamos. Con `pass` indicamos que termina la definición de la clase y la misma queda vacía
+
+```py3
+from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
+    # Con `pass` indicamos que termina la definición de la clase y la misma queda vacía
+    pass
+```
+
+Sumamos la app users para el control de los usuarios a las apps instaladas en el archivo `settings.py` de la app principal `my_blo`. 
+
+```py3
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'drf_yasg',
+    'rest_framework',
+    'users',
+    'posts',
+]
+```
+
+Para indicar a nuestro proyecto que el modelo de usuario que vamos a utilizar es el que configuramos en la nueva app users, en el mismo archivo `settings.py`, al fina agregamos la siguiente línea.
+
+```py3
+STATIC_URL = 'static/'
+STATIC_ROOT = 'static/'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Indicamos cual es el modelo de usuario que vamos a utilizar en el proyecto
+AUTH_USER_MODEL = 'user/User'
+```
+
+Confirmamos los cambios en la base de datos mediante el siguiente comando. Esto configura el proyecto para trabajar con los modelos que indicamos.
+
+```shellscript
+python manage.py makemigrations
+```
+
+Luego tenemos que ejecutar el siguiente comando para que se generen las tablas en la base de datos.
+
+```shellscript
+python manage.py migrate
+```
+
+Es posible que aparezca un error al realizar `migrate`. La mejor forma de solucionar el error es borrar todos los archivos numerados generados en las carpetas migrate, de cada una de las apps del proyecto, luego volvemos a ejecutar ambos comandos. Esta acción vuelve a configurar los modelos que armamos en la base de datos y borra todos los elementos en la misma.
+
+Nos vemos en la necesidad de crear un nuevo superuser con el siguiente comando.
+
+```shellscript
+python manage.py createsuperuser
+```
+
+## Añadimos la app users al panel de administración
+
+Para poder administrar los usuarios, ahora que el modelo lo manejamos nosotros desde nuestra app users, en el admin de Django, tenemos que configurar esta app para que se vea en el mismo. Para hacerlo, dentro de la carpeta de nuestra app users editamos el archivo `admin.py` con el siguiente código.
+
+```py3
+# realizamos las importaciones que necesitamos
+from django.contrib import admin
+
+# el nombre de la importación UserAdmin es el mismo de la clase que creamos. En este caso podemos crear una clase con otro nombre o renombrar la importación para que no coincida. Para renombrar la importación utilizamos la palabra reservada as y el nombre que va a tomar
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+
+from users.models import User
+
+# utilizamos el decorador @admin.register y le pasamos el modelo user
+@admin.register(User)
+
+class UserAdmin(BaseUserAdmin)
+
+```
