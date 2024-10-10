@@ -590,7 +590,7 @@ python manage.py createsuperuser
 
 ## Añadimos la app users al panel de administración
 
-Para poder administrar los usuarios, ahora que el modelo lo manejamos nosotros desde nuestra app users, en el admin de Django, tenemos que configurar esta app para que se vea en el mismo. Para hacerlo, dentro de la carpeta de nuestra app users editamos el archivo `admin.py` con el siguiente código.
+Para poder administrar los usuarios, ahora que el modelo lo manejamos nosotros desde nuestra app users, en el admin de Django, tenemos que configurar esta app para que se vea en el mismo. Para hacerlo, dentro de la carpeta de nuestra app users editamos el archivo `admin.py` con el siguiente código. Una vez terminado, cuando vayamos al panel de administración van a aparecer un nuevo panel para la app Users donde vamos a poder editar los usuarios.
 
 ```py3
 # realizamos las importaciones que necesitamos
@@ -604,6 +604,29 @@ from users.models import User
 # utilizamos el decorador @admin.register y le pasamos el modelo user
 @admin.register(User)
 
+# Si no queremos añadir nada al panel de administración para los usuarios dejamos la clase vacía con pass
 class UserAdmin(BaseUserAdmin)
+    pass
 
 ```
+
+Podemos modificar la vista del usuario, es decir, el orden de los datos que aparecen por defecto, quitando o agregando datos a esta pantalla. Para hacerlo editamos los atributos que hereda nuestra clase `AdminUser` de la clase `AdminUser` de Django. Los fieldsets son los campos de datos que se muestran en el administrador. El primer fieldset que vemos cuando abrimos el módulo de users por defecto dice 'Change user' y a continuación muestra username y password. Podemos editar todo esto o indicar que no aparezca. También podemos editar el orden de los fieldset que configuramos y que va a mostrar cada uno.
+
+```py3
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from users.models import User
+
+@admin.register(User)
+
+class UserAdmin(BaseUserAdmin)
+    fieldsets = (
+        # el primer elemento de la tupla corresponde al título del fieldset, al dejarlo en None el mismo no tiene título. El segundo elemento es un diccionario donde, al la clave fields le pasamos nuevamente una tupla de valores, estos valores corresponden al modelo BaseUserAdmin. Básicamente estamos indicando con esto que datos van a aparecer en la vista para ese fieldset que dejamos sin nombre. Los datos que van a aparecer son username y password
+        (None, {'fields': ('username', 'password')}),
+
+        # Si muevo este elemento de la tupla (lo que está entre paréntesis) arriba del anterior elemento, el fieldset Información personal se va a mostrar antes que el que no tiene título
+        ('Información personal', {'fields': ('first_name', 'last_name', 'email')}),
+    )
+```
+
+Podemos conocer los nombres de los fields inspeccionando el código de la página por defecto y, buscando el elemento HTML donde está el campo que queremos saber el nombre, vamos a verlo en el atributo name del elemento HTML.
