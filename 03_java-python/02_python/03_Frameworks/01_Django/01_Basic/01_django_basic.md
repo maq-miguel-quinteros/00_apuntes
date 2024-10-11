@@ -5,13 +5,13 @@ En python tenemos dependencias que se instalan con `pipin`. Podemos instalar est
 Par crear el entorno virtual, en la carpeta donde vamos a trabajar con el proyecto, desde la consola indicamos lo siguiente. `venv` indica que estamos creando un entorno virtual, `envs` es la carpeta, dentro de la carpeta del proyecto, donde vamos a crear el entorno virtual. Lo guardamos en una carpeta por que es posible que, para el mismo proyecto, podamos tener varios entornos. Lo siguiente es el nombre de la carpeta del entorno propiamente dicho.
 
 ```shellscript
-python -m venv venvs/venvs_basic_example_01
+python -m venv venvs/my_blo
 ```
 
 Para activar el entorno y poder, por ejemplo, instalar las dependencias del proyecto, tenemos que ejecutar el archivo activate, desde la carpeta del proyecto utilizamos el siguiente comando. Al hacerlo la consola va a mostrar, en el path anterior a la linea donde ingresamos los comandos algo parecido a `(venvs_basic_example_01)->carpeta_proyecto`, indicando que estamos en el entorno virtual.
 
 ```shellscript
-venvs/venvs_basic_example_01/Scripts/activate
+venvs/my_blo/Scripts/activate
 ```
 
 # Creando un proyecto Django

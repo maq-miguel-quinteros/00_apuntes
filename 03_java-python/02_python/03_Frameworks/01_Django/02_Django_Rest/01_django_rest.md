@@ -4,7 +4,7 @@
 
 Django REST Frameworks es una biblioteca de Django pensada para crear RESTApi. Para hacer la instalación ejecutamos el siguiente comando. La instalación la hacemos estando en nuestro entorno virtual.
 ```shellscript
-pip install djangorestframework
+pip3 install djangorestframework
 ```
 
 Después de hacer la instalación tenemos que agregar Django REST a las apps instaladas en nuestro proyecto. En la carpeta de la app principal my_blog, en el archivo `settings.py` agregamos la app de `rest_frameworks`. Después de realizar la configuración, para probar su funciona, hacemos `python manage.py runserver`.
@@ -52,13 +52,13 @@ Comenzamos con la forma mas básica de crear el endpoint, esto es una vista llam
 
 ```py3
 # Importamos los estados para las respuestas 
-from rest_frameworks import status
+from rest_framework import status
 
 # APIView tiene los diferentes métodos que vamos a utilizar como GET POST PUT que son las peticiones HTTP
-from rest_frameworks.views import APIView
+from rest_framework.views import APIView
 
 # Utilizamos Response para poder generar respuestas a las peticiones HTTP
-from rest_frameworks.response import Response
+from rest_framework.response import Response
 
 class PostApiView(APIView):
     # Redefinimos el método get de APIView para crear nuestra respuesta a una petición GET HTTP
@@ -86,9 +86,9 @@ urlpatterns = [
 Para devolver los posts guardados en la base de datos cuando se hace una petición HTTP GET al endpoint que creamos, modificamos el código de la view de la siguiente forma. Cuando utilizamos los métodos de los modelos que creamos, por ejemplo el método `objects.all()` lo que hacemos es indicarle al ORM de Django que tiene que traer, en el ejemplo, todos los objetos o registros de la tabla posts en la base de datos.
 
 ```py3
-from rest_frameworks import status
-from rest_frameworks.views import APIView
-from rest_frameworks.response import Response
+from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 # Traemos el modelo
 from posts.models import Post
@@ -100,9 +100,9 @@ class PostApiView(APIView):
         # posts = Post.objects.all()
 
         # Generamos una lista (array) con todos los títulos de los post creados en la base de datos
-        posts_title = [post.title for post in Post.objects.all()]
+        posts_titles = [post.title for post in Post.objects.all()]
 
-        return Response(status=status.HTTP_200_OK, data=posts_title)
+        return Response(status=status.HTTP_200_OK, data=posts_titles)
 ```
 
 ## Generar nuevos post
@@ -154,7 +154,7 @@ class PostSerializer(ModelSerializer):
         model = Post
 
         # Mediante __all__ podeos indicar que debe serializar todos los datos. La forma correcta de trabajar es indicar en una lista los datos que queremos realmente que serialice
-        fields = ['title', 'description', 'order', 'create_at']
+        fields = ['title', 'description', 'order', 'created_at']
 ```
 
 Tenemos que modificar la vista para trabajar ahora con los datos serializados. Modificamos el archivo `views.py` con el siguiente código.
@@ -173,9 +173,9 @@ class PostApiView(APIView):
     def get(self, request):
 
         # A la clase PostSerializer le pasamos todos los objetos (registros) de Post que vienen de la base de datos. Con many=True le indicamos que devuelva el array o lista completas de estos posts
-        post = PostSerializer(Post.objects.all(), many=True)
+        posts = PostSerializer(Post.objects.all(), many=True)
 
-        return Response(status=status.HTTP_200_OK, data=post.data)
+        return Response(status=status.HTTP_200_OK, data=posts.data)
     
     def post(self, request):
         Post.objects.create(
@@ -207,7 +207,7 @@ class PostApiView(APIView):
         post = PostSerializer(data=request.POST)
 
         # Mediante el método is_valid validamos los datos que llegan en request. Si los datos no son validos va a generar una excepción
-        post.is_valid(raise_exception=True)
+        # post.is_valid(raise_exception=True)
 
         # Guardamos los datos en la base de datos
         post.save()
@@ -224,7 +224,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 
 # Importamos ViewSet
-from rest_framework.viewset import ViewSet
+from rest_framework.viewsets import ViewSet
 
 from rest_framework.response import Response
 from posts.models import Post
@@ -233,8 +233,8 @@ from posts.api.serializers import PostSerializer
 class PostViewSet(ViewSet):
     # Mediante el método list traemos un listado de los post guardados en la base de datos
     def list(self, request):
-        post = PostSerializer(Post.objects.all(), many=True)
-        return Response(status=status.HTTP_200_OK, data=post.data)
+        posts = PostSerializer(Post.objects.all(), many=True)
+        return Response(status=status.HTTP_200_OK, data=posts.data)
     
     # Mediante create creamos un nuevo post en la base de datos
     def create(self, request):
@@ -244,7 +244,7 @@ class PostViewSet(ViewSet):
         return Response(status=status.HTTP_200_OK, data=post.data)
 ```
 
-En la carpeta api, dentro de la app posts, creamos una nuevo archivo llamado `router.py` que va a contener las rutas con la que vamos a trabajar en `urls.py`. Editamos el archivo como sigue.
+En la carpeta api, dentro de la app posts, creamos una nuevo archivo llamado `routers.py` que va a contener las rutas con la que vamos a trabajar en `urls.py`. Editamos el archivo como sigue.
 
 ```py3
 # Traemos la clase DefaultRouter que utilizamos para definir las rutas
@@ -265,7 +265,7 @@ Editamos el archivo de las rutas `urls.py` en la app principal de nuestro proyec
 ```py3
 from django.contrib import admin
 
-# Traemos la clse include además de path
+# Traemos la clase include además de path
 from django.urls import path, include
 # from posts.api.views import PostApiView
 
@@ -324,7 +324,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 
 # Importamos ModelViewSet
-from rest_framework.viewset import ViewSet, ModelViewSet
+from rest_framework.viewsets import ViewSet, ModelViewSet
 
 from rest_framework.response import Response
 from posts.models import Post
@@ -363,10 +363,7 @@ Mediante clases que podemos pasar a `ModelViewSet` podemos indicar que el CRUD s
 Para restringir los permisos utilizamos la clase `Permissions`. Cuando hacemos una consulta mediante un cliente, al tratar de hacer una petición HTTP sin tener los permisos necesarios la misma devolverá un error. Si estamos logueados en el administrador de Django nos va a devolver los valores por que ya estamos autenticados con un usuario, el admin. Para saber si un usuario es administrador, en el AdminPanel, en los detalles del usuario tiene que tener tildada la opción Staff status. Editamos el archivo `views.py` de la app posts.
 
 ```py3
-from rest_framework import status
-from rest_framework.views import APIView
-from rest_framework.viewset import ViewSet, ModelViewSet
-from rest_framework.response import Response
+from rest_framework.viewset import ModelViewSet
 from posts.models import Post
 from posts.api.serializers import PostSerializer
 
@@ -385,7 +382,7 @@ class PostModelViewSet(ModelViewSet):
     queryset = Post.objects.all()
 ```
 
-## Creamos nuestras propias de permisos
+## Creamos nuestras propias clases de permisos
 
 
 
