@@ -42,6 +42,12 @@ Ahora tenemos que ejecutar el comando que va a crear los `staticfiles`. En la co
 python manage.py collectstatic
 ```
 
+En windows, para que funcione la librería necesitamos agregar antes otra librería llamada `setuptools`. Si el comando `collectstatic` da error instalamos esta primero y después volvemos a ejecutar `collectstatic`.
+
+```shellscript
+pip3 install setuptools
+```
+
 Al hacerlo nos va a indicar que generó una cantidad de archivos static y va a crear una carpeta en la raíz del proyecto llamada static.
 
 Después de esto tenemos que ir al archivo `urls.py` de la app principal de nuestro proyecto. Configuramos el siguiente código.

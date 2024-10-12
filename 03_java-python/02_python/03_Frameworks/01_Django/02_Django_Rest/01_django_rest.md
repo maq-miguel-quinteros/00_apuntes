@@ -469,9 +469,15 @@ Ahora tenemos que ejecutar el comando que va a crear los `staticfiles`. En la co
 python manage.py collectstatic
 ```
 
-Al hacerlo nos va a indicar que generó una cantidad de archivos static y va a crear una carpeta en la raíz del proyecto llamada static. Después de esto tenemos que ir al archivo `urls.py` de la app principal de nuestro proyecto. Configuramos el siguiente código.
+En windows, para que funcione la librería necesitamos agregar antes otra librería llamada `setuptools`. Si el comando `collectstatic` da error instalamos esta primero y después volvemos a ejecutar `collectstatic`.
 
 ```shellscript
+pip3 install setuptools
+```
+
+Al hacerlo nos va a indicar que generó una cantidad de archivos static y va a crear una carpeta en la raíz del proyecto llamada static. Después de esto tenemos que ir al archivo `urls.py` de la app principal de nuestro proyecto. Configuramos el siguiente código.
+
+```py3
 from django.contrib import admin
 from django.urls import path, include
 from posts.api.routers import router_posts
@@ -537,7 +543,7 @@ class User(AbstractUser):
     pass
 ```
 
-Sumamos la app users para el control de los usuarios a las apps instaladas en el archivo `settings.py` de la app principal `my_blo`. 
+Sumamos la app users para el control de los usuarios a las apps instaladas en el archivo `settings.py` de la app principal `my_blog`. 
 
 ```py3
 INSTALLED_APPS = [
@@ -562,7 +568,7 @@ STATIC_ROOT = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Indicamos cual es el modelo de usuario que vamos a utilizar en el proyecto
-AUTH_USER_MODEL = 'user/User'
+AUTH_USER_MODEL = 'users.User'
 ```
 
 Confirmamos los cambios en la base de datos mediante el siguiente comando. Esto configura el proyecto para trabajar con los modelos que indicamos.
