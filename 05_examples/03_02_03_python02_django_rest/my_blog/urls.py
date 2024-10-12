@@ -16,15 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-# from posts.api.views import PostApiView
 from posts.api.routers import router_posts
 
-# AQUÍ CONFIGURAMOS DRF_YASG
+# Las clases que drf_yasg requiere que importemos
 from django.urls import re_path
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
+# Objeto de una de las clases que importamos para drf_yasg
 schema_view = get_schema_view(
     openapi.Info(
         title="Documentación de API",
@@ -35,15 +35,16 @@ schema_view = get_schema_view(
         license=openapi.License(name="BSD License"),
     ),
     public=True,
+    # No vamos a utilizar los permisos de momento para esta librería
     # permission_classes=(permissions.AllowAny,),
 )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('api/posts/', PostApiView.as_view()),
     path('api/', include(router_posts.urls)),
 
-    # RUTAS PARA DRF_YASG
+    # Rutas que drf_yasg va a utilizar
+    # path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'), no la utilizamos
     path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redocs/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]

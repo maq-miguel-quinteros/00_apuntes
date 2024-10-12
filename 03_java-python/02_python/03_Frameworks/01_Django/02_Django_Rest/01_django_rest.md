@@ -40,7 +40,7 @@ from posts.models import Post
 class PostAdmin(admin.ModelAdmin):
 
     # Indicamos que se muestre, de los datos de la base de datos, el título del post y la fecha de creación
-    list_display = ['title', 'create_at']
+    list_display = ['title', 'created_at']
 ```
 
 # EndPoint para los post
