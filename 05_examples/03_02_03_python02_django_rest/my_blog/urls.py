@@ -42,6 +42,7 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router_posts.urls)),
+    path('api/', include('users.api.routers')),
 
     # Rutas que drf_yasg va a utilizar
     # path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'), no la utilizamos
