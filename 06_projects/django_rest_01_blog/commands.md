@@ -168,11 +168,8 @@ python manage.py runserver
 1. Nueva carpeta `api` en `users`
 
 2. Nuevo archivo en `api`, de `users`, llamado `__init__.py`
-
 3. Nuevo archivo en `api`, de `users`, llamado `views.py`
-
 4. Nuevo archivo en `api`, de `users`, llamado `serializers.py`
-
 5. Nuevo archivo en `api`, de `users`, llamado `routers.py`
 
 `views.py` de `api` en `users`
@@ -374,4 +371,124 @@ class UserView(APIView):
             return Response(serializer.data)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+```
+
+# Modelo para categorías
+
+`consola`
+
+```shellscript
+python manage.py startapp categories
+```
+
+`settings.py` de `blog`
+
+```py3
+INSTALLED_APPS = [
+	...
+    'users',
+    'categories',
+]
+```
+
+`models.py` de `categories`
+
+```py3
+from django.db import models
+
+class Category(models.Model):
+    title = models.CharField(max_length=255)
+    # la URL de la categoría
+    slug = models.SlugField(max_length=255, unique=True)
+    published = models.BooleanField(default=False)
+
+    # para configurar un desplegable con las categorías
+    def __str__(self, ):
+        return self.title
+```
+
+`consola`
+
+```shellscript
+python manage.py makemigrations
+python manage.py migrate
+```
+
+`admin.py` de `categories`
+
+```py3
+from django.contrib import admin
+from categories.models import Category
+
+@admin.register(Category)
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['title', 'published']
+```
+
+# CRUD para categories
+
+1. Nueva carpeta `api` en `categories`
+
+2. Nuevo archivo en `api`, de `categories`, llamado `__init__.py`
+3. Nuevo archivo en `api`, de `categories`, llamado `views.py`
+4. Nuevo archivo en `api`, de `categories`, llamado `serializers.py`
+5. Nuevo archivo en `api`, de `categories`, llamado `routers.py`
+
+`serializers.py` de `api` en `categories`
+
+```py3
+from rest_framework import serializers
+from categories.models import Category
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['title', 'slug', 'published']
+```
+
+`views.py` de `api` en `categories`
+
+```py3
+from rest_framework.viewsets import ModelViewSet
+from categories.api.serializers import CategorySerializer
+from categories.models import Category
+
+class CategoryApiViewSet(ModelViewSet):
+    serializer_class = CategorySerializer
+    queryset = Category.objects.all()
+```
+
+`routers.py` de `api` en `categories`
+
+```py3
+from rest_framework.routers import DefaultRouter
+from categories.api.views import CategoryApiViewSet
+
+router_categories = DefaultRouter()
+router_categories.register(prefix='categories', basename='categories', viewset=CategoryApiViewSet)
+```
+
+`urls.py` de `blog`
+
+```py3
+...
+from categories.api.routers import router_categories
+...
+urlpatterns = [
+	...
+    path('api/', include(router_categories.urls)),
+    ...
+]
+```
+
+`serializers.py` de `api` en `categories`
+
+```py3
+...
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        # sumamos id
+        fields = ['id', 'title', 'slug', 'published']
 ```

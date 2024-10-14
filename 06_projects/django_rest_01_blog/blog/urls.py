@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from categories.api.routers import router_categories
+
 # drf-yasg
 from django.urls import re_path
 from rest_framework import permissions
@@ -40,6 +42,8 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('users.api.routers')),
+    path('api/', include(router_categories.urls)),
+    
 
     # drf-yasg
     # path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
