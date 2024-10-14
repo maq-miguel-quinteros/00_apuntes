@@ -602,13 +602,6 @@ INSTALLED_APPS = [
 ]
 ```
 
-1. Nueva carpeta `api` en `posts`
-
-2. Nuevo archivo en `api`, de `posts`, llamado `__init__.py`
-3. Nuevo archivo en `api`, de `posts`, llamado `views.py`
-4. Nuevo archivo en `api`, de `posts`, llamado `serializers.py`
-5. Nuevo archivo en `api`, de `posts`, llamado `routers.py`
-
 `models.py` de `posts`
 
 ```py3
@@ -650,4 +643,135 @@ class PostAdmin(admin.ModelAdmin):
 python manage.py makemigrations
 pip3 install Pillow # si makemigrations da error
 python manage.py migrate
+
+```
+
+# CRUD para posts
+
+1. Nueva carpeta `api` en `posts`
+
+2. Nuevo archivo en `api`, de `posts`, llamado `__init__.py`
+3. Nuevo archivo en `api`, de `posts`, llamado `views.py`
+4. Nuevo archivo en `api`, de `posts`, llamado `serializers.py`
+5. Nuevo archivo en `api`, de `posts`, llamado `routers.py`
+
+`serializers.py` de `api` en `posts`
+
+```py3
+from rest_framework import serializers
+from posts.models import Post
+
+class PostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ['title', 'content', 'slug', 'miniature', 'created_at', 'published', 'user', 'category']
+```
+
+`views.py` de `api` en `posts`
+
+```py3
+from rest_framework. viewsets import ModelViewSet
+from posts.models import Post
+from posts.api.serializers import PostSerializer
+
+class PostModelViewSet(ModelViewSet):
+    serializer_class = PostSerializer
+    queryset = Post.objects.filter(published=True)
+```
+
+`routers.py` de `api` en `posts`
+
+```py3
+from rest_framework.routers import DefaultRouter
+from posts.api.views import PostModelViewSet
+
+router_posts = DefaultRouter()
+router_posts.register(prefix='posts', basename='posts', viewset=PostModelViewSet)
+```
+
+`urls.py` de `blog`
+
+```py3
+...
+from categories.api.routers import router_categories
+from posts.api.routers import router_posts
+...
+urlpatterns = [
+	...
+    path('api/', include(router_categories.urls)),
+    path('api/', include(router_posts.urls)),
+	...
+]
+```
+
+# Permisos en los posts
+
+Nuevo archivo en `api`, de `posts`, llamado `permissions.py`
+
+```py3
+from rest_framework.permissions import BasePermission
+
+class IsAdminOrReadOnly(BasePermission):
+    def has_permission(self, request, view):
+        if request.method == 'GET':
+            return True
+        else:
+            return request.user.is_staff
+```
+
+`views.py` de `api` en `posts`
+
+```py3
+...
+from posts.api.permissions import IsAdminOrReadOnly
+
+class PostModelViewSet(ModelViewSet):
+    permission_class = IsAdminOrReadOnly
+	...
+```
+
+# Obtener información de user y category al consultar un post
+
+`serializers.py` de `api` en `posts`
+
+```py3
+...
+from users.api.serializers import UserSerializer
+from categories.api.serializers import CategorySerializer
+
+class PostSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+    category = CategorySerializer()
+    class Meta:
+        model = Post
+        fields = ['title', 'content', 'slug', 'miniature', 'created_at', 'published', 'user', 'category']
+```
+
+# Obtener todos los post de una category
+
+## Filtrando por id de category
+
+`views.py` de `api` en `posts` -> _http://127.0.0.1:8000/api/posts/?category=1_
+
+```py3
+from django_filters.rest_framework import DjangoFilterBackend
+...
+class PostModelViewSet(ModelViewSet):
+	...    
+    filter_backend = [DjangoFilterBackend]
+    filter_fields = ['category']
+```
+
+## Filtrando por slug de category
+
+`views.py` de `api` en `posts` -> _http://127.0.0.1:8000/api/posts/?category__slug=react_
+
+```py3
+from django_filters.rest_framework import DjangoFilterBackend
+...
+class PostModelViewSet(ModelViewSet):
+	...    
+    filter_backend = [DjangoFilterBackend]
+    # filter_fields = ['category']
+    filter_fields = ['category__slug']
 ```
