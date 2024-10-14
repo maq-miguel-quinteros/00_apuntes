@@ -19,6 +19,7 @@ from django.urls import path, include
 
 from categories.api.routers import router_categories
 from posts.api.routers import router_posts
+from comments.api.routers import router_comments
 
 # drf-yasg
 from django.urls import re_path
@@ -45,6 +46,7 @@ urlpatterns = [
     path('api/', include('users.api.routers')),
     path('api/', include(router_categories.urls)),
     path('api/', include(router_posts.urls)),
+    path('api/', include(router_comments.urls)),
 
     # drf-yasg
     # path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),

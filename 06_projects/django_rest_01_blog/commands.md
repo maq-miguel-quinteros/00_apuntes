@@ -623,6 +623,9 @@ class Post(models.Model):
     # con on_delete=SET_NULL() si se elimina el usuario que crea el post, el post no se va a borrar
     user = models.ForeignKey(User, on_delete=SET_NULL, null=True)
     category = models.ForeignKey(Category, on_delete=SET_NULL, null=True)
+    
+	def __str__(self):
+        return self.title
 ```
 
 `admin.py` de `posts`
@@ -649,7 +652,6 @@ python manage.py migrate
 # CRUD para posts
 
 1. Nueva carpeta `api` en `posts`
-
 2. Nuevo archivo en `api`, de `posts`, llamado `__init__.py`
 3. Nuevo archivo en `api`, de `posts`, llamado `views.py`
 4. Nuevo archivo en `api`, de `posts`, llamado `serializers.py`
@@ -774,4 +776,191 @@ class PostModelViewSet(ModelViewSet):
     filter_backend = [DjangoFilterBackend]
     # filter_fields = ['category']
     filter_fields = ['category__slug']
+```
+
+# App y modelo para comentarios
+
+`consola`
+
+```shellscript
+python manage.py startapp comments
+```
+
+`settings.py` de `blog`
+
+```py3
+INSTALLED_APPS = [
+	...
+    'posts',
+    'comments',
+]
+```
+
+`models.py` de `comments`
+
+```py3
+from django.db import models
+from django.db.models import CASCADE
+
+from users.models import User
+from posts.models import Post
+
+class Comment(models.Model):
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    # al borrar el usuario se borran todos sus comentarios
+    user = models.ForeignKey(User, on_delete=CASCADE, null=True)
+    post = models.ForeignKey(Post, on_delete=CASCADE, null=True)
+```
+
+`consola`
+
+```shellscript
+python manage.py makemigrations
+python manage.py migrate
+```
+
+`admin.py` de `comments`
+
+```py3
+from django.contrib import admin
+from comments.models import Comment
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['content', 'user', 'post', 'created_at']
+```
+
+# CRUD para comments
+
+1. Nueva carpeta `api` en `comments`
+2. Nuevo archivo en `api`, de `comments`, llamado `__init__.py`
+3. Nuevo archivo en `api`, de `comments`, llamado `views.py`
+4. Nuevo archivo en `api`, de `comments`, llamado `serializers.py`
+5. Nuevo archivo en `api`, de `comments`, llamado `routers.py`
+
+`serializers.py` de `api` en `comments`
+
+```py3
+from rest_framework import serializers
+from comments.models import Comment
+
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ['content', 'created_at', 'user', 'post']
+```
+
+`views.py` de `api` en `comments`
+
+```py3
+from rest_framework.viewsets import ModelViewSet
+from comments.api.seriealizers import CommentSerializer
+from comments.models import Comment
+
+
+class CommentModelViewSet(ModelViewSet):
+    serializer_class = CommentSerializer
+    queryset = Comment.objects.all()
+```
+
+`routers.py` de `api` en `comments`
+
+```py3
+from rest_framework.routers import DefaultRouter
+from comments.api.views import CommentModelViewSet
+
+router_comments = DefaultRouter()
+router_comments.register(prefix='comments', basename='comments', viewset=CommentModelViewSet)
+```
+
+`urls.py` de `blog`
+
+```py3
+...
+from posts.api.routers import router_posts
+from comments.api.routers import router_comments
+...
+urlpatterns = [
+	...
+    path('api/', include(router_posts.urls)),
+    path('api/', include(router_comments.urls)),
+	...
+]
+```
+
+# Ordenar comentarios
+
+`views.py` de `api` en `comments`
+
+```py3
+...
+from rest_framework.filters import OrderingFilter
+...
+class CommentModelViewSet(ModelViewSet):
+	...
+    filter_backend = [OrderingFilter]
+    # mediante el - indicamos que ordene por fecha de creación pero de mayor a menor
+    ordering = ['-created_at']
+```
+
+# Obtener todos los comentarios de un post
+
+`views.py` de `api` en `comments` -> http://127.0.0.1:8000/api/comments/?post={id}
+
+```py3
+...
+from django_filters.rest_framework import DjangoFilterBackend
+...
+class CommentModelViewSet(ModelViewSet):
+	...
+    # agregamos como segunda forma de filtro DjangoFilterBackend
+    filter_backend = [OrderingFilter, DjangoFilterBackend]
+	...
+    filterset_fields = ['post']
+    
+```
+
+# Permisos para comments
+
+Nuevo archivo en `api`, de `comments`, llamado `permissions.py`
+
+```py3
+from rest_framework.permissions import BasePermission
+from comments.models import Comment
+
+class IsOwnerOrReadAndCreateOnly(BasePermission):
+    def has_permission(self, request, view):
+        if request.method == 'GET' or request.method == 'POST':
+            return True
+        else:
+            # peticiones HTTP que no son ni GET ni POST (las que modifican)
+            # id del comentario
+            id_comment = view.kwargs['pk']
+            # traemos el comentario
+            comment = Comment.objects.get(pk=id_comment)
+            # id del usuario que hizo ese comentario
+            id_user_comment = comment.user_id
+
+            # id del usuario que hace la petición HTTP
+            id_user = request.user.pk
+
+            # si el usuario que hace la petición de modificar o eliminar es el mismo que creó el comentario
+            if id_user_comment == id_user:
+                return True
+
+            return False
+```
+
+`views.py` de `api` en `comments`
+
+```py3
+...
+from comments.api.permissions import IsOwnerOrReadAndCreateOnly
+from comments.models import Comment
+
+
+class CommentModelViewSet(ModelViewSet):
+    permission_classes = [IsOwnerOrReadAndCreateOnly]
+	...
 ```
