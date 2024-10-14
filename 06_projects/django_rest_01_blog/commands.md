@@ -492,3 +492,162 @@ class CategorySerializer(serializers.ModelSerializer):
         # sumamos id
         fields = ['id', 'title', 'slug', 'published']
 ```
+
+# Permisos a los endpoint de categories
+
+Nuevo archivo en `api`, de `categories`, llamado `permissions.py`
+
+```py3
+from rest_framework.permissions import BasePermission
+
+class IsAdminOrReadOnly(BasePermission):
+    def has_permission(self, request, view):
+        if request.method == 'GET':
+            return True
+        else:
+            return request.user.is_staff
+```
+
+`views.py` de `api` en `categories`
+
+```py3
+...
+from categories.api.permissions import IsAdminOrReadOnly
+...
+
+class CategoryApiViewSet(ModelViewSet):
+    permission_class = IsAdminOrReadOnly
+	...
+```
+
+# Búsqueda de categories mediante slug
+
+`views.py` de `api` en `categories`
+
+```py3
+...
+
+class CategoryApiViewSet(ModelViewSet):
+	...
+    lookup_field = 'slug'
+```
+
+# Filtros
+
+## Filtro en todas las peticiones HTTP
+
+`views.py` de `api` en `categories`
+
+```py3
+...
+
+class CategoryApiViewSet(ModelViewSet):
+	...
+    # queryset = Category.objects.all()
+	# el filtro se aplica para cualquier petición HTTP
+    queryset = Category.objects.filter(published=True)
+	...
+```
+
+## Utilizando django-filter
+
+`consola`
+
+```shellscript
+pip3 install django-filter
+```
+
+`settings.py` de `blog`
+
+```py3
+
+INSTALLED_APPS = [
+	...
+    'rest_framework',
+    'django_filters',
+    'drf_yasg',
+	...
+]
+```
+
+`views.py` de `api` en `categories`
+
+```py3
+...
+from django_filters.rest_framework import DjangoFilterBackend
+...
+
+class CategoryApiViewSet(ModelViewSet):
+	...
+    # queryset = Category.objects.filter(published=True)
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['published', 'title']
+```
+
+# app y modelo para posts
+
+`consola`
+
+```shellscript
+python manage.py startapp posts
+```
+
+`settings.py` de `blog`
+
+```py3
+INSTALLED_APPS = [
+	...
+    'categories',
+    'posts',
+]
+```
+
+1. Nueva carpeta `api` en `posts`
+
+2. Nuevo archivo en `api`, de `posts`, llamado `__init__.py`
+3. Nuevo archivo en `api`, de `posts`, llamado `views.py`
+4. Nuevo archivo en `api`, de `posts`, llamado `serializers.py`
+5. Nuevo archivo en `api`, de `posts`, llamado `routers.py`
+
+`models.py` de `posts`
+
+```py3
+from django.db import models
+from django.db.models import SET_NULL
+
+from users.models import User
+from categories.models import Category
+
+class Post(models.Model):
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+    slug = models.SlugField(max_length=255, unique=True)
+    miniature = models.ImageField(upload_to='posts/img')
+    created_at = models.DateTimeField(auto_now_add=True)
+    published = models.BooleanField(default=False)
+
+    # models.ForeignKey identifica al usuario que crea el post mediante su modelo
+    # con on_delete=SET_NULL() si se elimina el usuario que crea el post, el post no se va a borrar
+    user = models.ForeignKey(User, on_delete=SET_NULL, null=True)
+    category = models.ForeignKey(Category, on_delete=SET_NULL, null=True)
+```
+
+`admin.py` de `posts`
+
+```py3
+from django.contrib import admin
+from posts.models import Post
+
+@admin.register(Post)
+
+class PostAdmin(admin.ModelAdmin):
+    list_display = ['title', 'user', 'created_at', 'published']
+```
+
+`consola`
+
+```shellscript
+python manage.py makemigrations
+pip3 install Pillow # si makemigrations da error
+python manage.py migrate
+```
