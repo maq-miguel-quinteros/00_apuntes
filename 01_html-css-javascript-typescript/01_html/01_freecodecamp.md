@@ -165,9 +165,21 @@ Podemos hacer énfasis en las palabras que queramos con el elemento `strong`. Se
 </figure>
 ```
 
+# Atributo `id`
+
+Utilizamos el atributo `id` para identificar de forma única un elemento, es decir, no puede existir más de un elemento con el mismo valor en el elemento `id`.
+
+```html
+<section id="comments">
+    ...
+</section>
+```
+
 # Formularios `form`
 
 El elemento `form` se utiliza para solicitar información al usuario. El atributo `action` indica a donde se va a enviar la información que cargamos en el formulario.
+
+## Elemento `input`
 
 El elemento `input`, que encerramos entre las etiquetas del elemento `form`, lo utilizamos para recolectar la información.
 
@@ -175,8 +187,32 @@ El atributo `type` del elemento `input` indica el tipo de dato que va a recibir 
 
 Para poder identificar, cuando los datos se envían, cual es el input que estamos recibiendo utilizamos el atributo `name`.
 
+Podemos indicar un texto que aparezca dentro del input antes de que nosotros carguemos un dato. Para hacerlo utilizamos el atributo `placeholder`.
+
+Si necesitamos que el dato del `input` sea indicado si o si utilizamos el atributo `required`.
+
+Los tipos de elemento `input` que podemos tener son:
+* `radio`: elementos de selección única. Para que, al enviar el formulario, solo sea considerado el que fue seleccionado utilizamos el elemento `name`. Todos los `input` de tipo `radio` deberán tener el mismo `name`.
+
+
+
+## Elemento `label`
+
+Utilizamos el elemento label para relacionar elementos `input` entre ellos.
+
+## Elemento `button`
+
+El elemento `button`, dentro del elemento `form`, se utiliza para enviar los datos que cargamos en el formulario. Si el elemento no tiene atributos que indiquen algo diferente al tocar en el botón los datos del formulario se van a enviar a la dirección que figura en el atributo `action` del elemento `form`.
+
+Si bien por defecto el botón dentro del form indica sin atributos hace el `submit` a la dirección de `action` del `form` el ideal es indicar esto en el mismo botón mediante el atributo `type` con el valor `submit`. El valor que se envía en el formulario va a ser el valor del atributo `value`.
+
 ```html
 <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <input type="text" name='catphotourl'>
+    <label><input id="indoor" type="radio" name="indoor-outdoor" value="indoor"> Indoor</label>
+    <label><input id="outdoor" type="radio" name="indoor-outdoor" value="outdoor"> Outdoor</label>
+    <input type="text" name="catphotourl" placeholder='cat photo URL' required>
+    <button type='submit'>Submit</button>
 </form>
 ```
+
+continuar en https://www.freecodecamp.org/learn/2022/responsive-web-design/learn-html-by-building-a-cat-photo-app/step-50
