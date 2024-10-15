@@ -749,3 +749,38 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=7),
 }
 ```
+
+# Despliegue
+
+Instalamos la dependencia que vamos a utilizar para subir los archivos al servidor.
+
+```shellscript
+pip3 install gunicorn
+```
+
+Necesitamos generar un archivo que indique todas las dependencias que utiliza nuestro proyecto con sus respectivas versiones. Para generar este archivo utilizamos el siguiente comando.
+
+```shellscript
+pip3 freeze > requirements.txt
+```
+
+Editamos el archivo `settings.py` de `my_blog`.
+
+```py3
+...
+# tiene que estar en True si mandamos a producción la app
+DEBUG = True
+
+# No conocemos el servidor por lo que dejamos con *
+ALLOWED_HOSTS = ['*']
+...
+```
+
+Creamos un nuevo archivo en la raíz del proyecto llamado `runtime.txt`. Dentro de este archivo indicamos cual es la versión de python con la que trabaja el proyecto, de la forma `python-3.9.2`. Configuramos el servidor que vamos a utilizar para subir la aplicación. Para hacerlo creamos un archivo llamado `Procfile` sin extensión. Indicamos lo siguiente en el archivo.
+
+```ignore
+release: python manage.py migrate
+web: gunicorn my_blog.wsgi
+```
+
+Cuando subimos por primera vez el proyecto es recomendable borrar la base de datos y volver a generarla con `makemigrations` y `migrate`.
