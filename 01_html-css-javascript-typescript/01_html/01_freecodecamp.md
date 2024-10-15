@@ -6,7 +6,7 @@ Los elementos HTML tienen etiquetas (tags) de apertura y cierre con el contenido
 <openingTag>content</closingTag>
 ```
 
-## Títulos `h1` a `h6`
+## Títulos `h1` a `h6` (_block element_)
 
 Para los títulos utilizamos elementos desde `h1` a `h6`, siendo el `h1` el de mayor nivel.
 
@@ -19,7 +19,7 @@ Para los títulos utilizamos elementos desde `h1` a `h6`, siendo el `h1` el de m
 <h6>least important heading element</h6>
 ```
 
-## Párrafos `p`
+## Párrafos `p` (_block element_)
 
 El elemento `p` se utiliza para crear párrafos.
 
@@ -37,7 +37,7 @@ Para comentarios utilizamos `<!-- comment -->`.
 <p>See more cat photos in our gallery.</p>
 ```
 
-## Contenido principal `main`
+## Contenido principal `main` (_block element_)
 
 Algunos elementos identifican diferentes areas de contenido en la página. El elemento `main` se utiliza para representar el contenido principal de la página. El contenido dentro del elemento `main` tiene que ser único para el documento y no se debe repetir en otra parte del documento.
 
@@ -52,7 +52,7 @@ Algunos elementos identifican diferentes areas de contenido en la página. El el
 
 _nesting_ es la práctica de mover dos espacios o un tab los elementos que se encuentran dentro de otros elementos para facilitar la lectura.
 
-## Imágenes `img` y atributos HTML
+## Imágenes `img` y atributos HTML (_block element_)
 
 Para agregar imágenes utilizamos el elemento `img`. Este elemento no tiene etiqueta de cierre. Los elementos sin etiqueta de cierre se denominan _void elements_.
 
@@ -66,7 +66,7 @@ En el caso del elemento `img` el atributo `src` indica la ruta desde donde vamos
 <img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt='A cute orange cat lying on its back'>
 ```
 
-## Link `a`
+## Link `a` (_inline element_)
 
 Para crear un link a otra página o a otra parte del documento utilizamos el elemento `a`. El atributo `href` del elemento indica la dirección a la que apunta el link. Entre las etiquetas del elemento podemos escribir un texto sobre el cual, al hacer click, cambiamos a la página del link. 
 
@@ -94,7 +94,7 @@ En el contenido del elemento `a` podemos tener otros elementos, por ejemplo un e
 </a>
 ```
 
-## Secciones `section`
+## Secciones `section` (_block element_)
 
 El elemento `section` es un elemento semántico que se utiliza para dividir el documento en secciones, cada una con su temática o función, que se diferencia de las otras secciones. Otras secciones son los `header` o `footer`.
 
@@ -110,7 +110,7 @@ El elemento `section` es un elemento semántico que se utiliza para dividir el d
 </main>
 ```
 
-# Listas `ul`, `ol` y `li`
+# Listas `ul`, `ol` y `li` (_block element_)
 
 Para crear una lista desordenada de items utilizamos el elemento `ul`. Los items dentro de la lista se crean con elementos `li`.
 
@@ -133,7 +133,7 @@ Para crear listas ordenadas utilizamos el elemento `ol`.
 </ol>
 ```
 
-# Imágenes con `figure` y `figcaption `
+# Imágenes con `figure` y `figcaption ` (_block element_)
 
 El elemento `figure` representa una imagen autocontenida. Permite asociar un elemento `img` con un elemento `figcaption `, que es un texto que brinda información sobre la imagen.
 
@@ -144,7 +144,7 @@ El elemento `figure` representa una imagen autocontenida. Permite asociar un ele
 </figure>
 ```
 
-# Énfasis con `em` y `strong`
+# Énfasis con `em` y `strong` (_inline element_)
 
 Podemos hacer énfasis en las palabras que queramos que resalten mediante el elemento `em`.
 
@@ -175,11 +175,11 @@ Utilizamos el atributo `id` para identificar de forma única un elemento, es dec
 </section>
 ```
 
-# Formularios `form`
+# Formularios `form` (_block element_)
 
 El elemento `form` se utiliza para solicitar información al usuario. El atributo `action` indica a donde se va a enviar la información que cargamos en el formulario.
 
-## Elemento `input`
+## Elemento `input` (_inline element_)
 
 El elemento `input`, que encerramos entre las etiquetas del elemento `form`, lo utilizamos para recolectar la información.
 
@@ -193,26 +193,46 @@ Si necesitamos que el dato del `input` sea indicado si o si utilizamos el atribu
 
 Los tipos de elemento `input` que podemos tener son:
 * `radio`: elementos de selección única. Para que, al enviar el formulario, solo sea considerado el que fue seleccionado utilizamos el elemento `name`. Todos los `input` de tipo `radio` deberán tener el mismo `name`.
+* `checkbox`: elemento de selección múltiple. Es importante que cada elemento de tipo `checkbox` tenga el mismo `name` que los otros elementos que pertenecen a esa selección múltiple. El atributo `value` es opcional, pero es una buena práctica indicarlo con el mismo valor que `id`.
 
 
 
-## Elemento `label`
+## Atributo `checked`
 
-Utilizamos el elemento label para relacionar elementos `input` entre ellos.
+Mediante el atributo `checked` podemos indicar que un `input` de tipo `radio` o `checkbox` aparezcan seleccionados por defecto.
 
-## Elemento `button`
+## Elemento `label` (_inline element_)
+
+Utilizamos el elemento `label` para relacionar elementos `input` con textos. Podemos crear el elemento `label` y en su `content`, es decir entre sus etiquetas, indicar el elemento input y si lo tiene, el texto que acompaña la mismo. La otra opción es utilizar el atributo `for` del elemento `label` y relacionar el elemento con el atributo `id` del elemento `input`.
+
+## Elemento `button` (_inline element_)
 
 El elemento `button`, dentro del elemento `form`, se utiliza para enviar los datos que cargamos en el formulario. Si el elemento no tiene atributos que indiquen algo diferente al tocar en el botón los datos del formulario se van a enviar a la dirección que figura en el atributo `action` del elemento `form`.
 
 Si bien por defecto el botón dentro del form indica sin atributos hace el `submit` a la dirección de `action` del `form` el ideal es indicar esto en el mismo botón mediante el atributo `type` con el valor `submit`. El valor que se envía en el formulario va a ser el valor del atributo `value`.
 
+## Elemento `fieldset` y `legend` (_block element_)
+
+El elemento `fieldset` se utiliza para agrupar `input` y `label` juntos dentro de un elemento `form`. Los elementos `fieldset` son elementos de bloque, es decir, van a aparecer en una nueva línea dentro del documento.
+
+El elemento `legend` funciona como el elemento `caption` de `figure` pero este es para `fieldset`.
+
 ```html
 <form action="https://freecatphotoapp.com/submit-cat-photo">
-    <label><input id="indoor" type="radio" name="indoor-outdoor" value="indoor"> Indoor</label>
-    <label><input id="outdoor" type="radio" name="indoor-outdoor" value="outdoor"> Outdoor</label>
+    <fieldset>
+        <legend>Is your cat an indoor or outdoor cat?</legend>
+        <label><input id="indoor" type="radio" name="indoor-outdoor" value="indoor"> Indoor</label>
+        <label><input id="outdoor" type="radio" name="indoor-outdoor" value="outdoor"> Outdoor</label>
+    </fieldset>
+    <fieldset>
+        <legend>What's your cat's personality?</legend>
+        <input id="loving" type="checkbox" name="personality" value='loving'> <label for="loving">Loving</label>
+        <input id="lazy" type="checkbox" name="personality" value='lazy'> <label for="lazy">Lazy</label>
+        <input id="energetic" type="checkbox" name="personality" value='energetic'> <label for="energetic"> Energetic</label>
+    </fieldset>
     <input type="text" name="catphotourl" placeholder='cat photo URL' required>
     <button type='submit'>Submit</button>
 </form>
 ```
 
-continuar en https://www.freecodecamp.org/learn/2022/responsive-web-design/learn-html-by-building-a-cat-photo-app/step-50
+continuar en https://www.freecodecamp.org/learn/2022/responsive-web-design/learn-html-by-building-a-cat-photo-app/step-62
