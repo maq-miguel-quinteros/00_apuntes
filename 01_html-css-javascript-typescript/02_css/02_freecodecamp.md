@@ -387,5 +387,13 @@ seguir https://www.freecodecamp.org/learn/2022/responsive-web-design/learn-css-c
 ```
 
 ```css
+box-shadow: offsetX offsetY color;
+
+/* movimiento en x movimiento en y, blur y color */
+box-shadow: 5px 5px 5px green
+
+
+box-shadow: offsetX offsetY blurRadius spreadRadius color;
+
 
 ```
