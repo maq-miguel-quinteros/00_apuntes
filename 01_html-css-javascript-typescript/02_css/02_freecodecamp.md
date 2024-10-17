@@ -329,3 +329,63 @@ a:active {
 ```
 
 seguir https://www.freecodecamp.org/learn/2022/responsive-web-design/learn-css-colors-by-building-a-set-of-colored-markers/step-28
+
+# Formas de seleccionar el color:
+
+* valores exadecimales: #00FF00 con los primeros dos caracteres para red, los segundos para green y los terceros para blue.
+* función rgb(0-255,0-255,0-255), red, green, blue
+* funcion hsl (0-360, 0-100%, 0-100%) hue, saturation y lightness
+
+```css
+.red {
+    background-color: #ff0000
+}
+
+.green {
+    background-color: rgb(0, 255, 0);
+}
+
+.blue {
+    background-color: hsl(240, 100%, 50%);
+}
+
+/* utilizando gradiantes  */
+
+/* 180deg es la dirección del gradiante, 50% es el porcentaje del elemento que ese color ocupa */
+.red {
+    background: linear-gradient(180deg, rgb(122, 74, 14) 50%, rgb(245, 62, 113), rgb(162, 27, 27) 10%);
+}
+
+.red {
+    background: linear-gradient(rgb(122, 74, 14), rgb(245, 62, 113), rgb(162, 27, 27));
+}
+
+.green {
+    background: linear-gradient(#55680D, #71F53E, #116C31);
+}
+
+.blue {
+    background: linear-gradient(hsl(186, 76%, 16%), hsl(223, 90%, 60%), hsl(240, 56%, 42%));
+}
+
+.sleeve {
+    width: 110px;
+    height: 25px;
+    background-color: white;
+    opacity:0.5; /* permite controlar la opacidad de los elementos */
+}
+
+/* canal alfa */
+
+.sleeve {
+    width: 110px;
+    height: 25px;
+    background-color: rgba(255, 255, 255, 0.5);
+    background: hsl(180, 50%, 20%, 0.5);
+    color: #FF559903
+}
+```
+
+```css
+
+```
