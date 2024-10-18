@@ -418,7 +418,7 @@ names.forEach( name => {
 
 ## `map`
 
-El método `map`  espera como parámetro una función. Ejecuta sobre cada uno de los elementos del array lo que la función indica. El método `map` no solo recorre el array y ejecuta lo que indica la función que recibe como parámetro sino que además devuelve un nuevo arreglo.
+El método `map`  espera como parámetro una función. Ejecuta sobre cada uno de los elementos del array lo que la función indica. El método `map` no solo recorre el array y ejecuta lo que indica la función que recibe como parámetro sino que además devuelve un nuevo arreglo. `map` no modifica el arreglo original.
 
 ```js
 const names = ['Miguel', 'Ángel', 'Daniela']
@@ -430,3 +430,51 @@ names_1 = names.map( name => {
 })
 console.log(names_1)
 ```
+
+## `find`
+
+Utilizamos el método `find` para buscar un elemento dentro de un array. Recorre cada uno de los elementos del array y devuelve un valor si se cumple con la condición dentro de la función que pasamos por parámetro.
+
+```js
+const names = ['Miguel', 'Ángel', 'Daniela']
+
+// cada elemento del array names va a llamarse name y se va a ejecutar lo que indica la función sobre cada uno
+names_2 = names.find( name => {    
+    console.log(name)
+    if (name === 'Daniela'){
+        return name
+    }
+})
+console.log(`Encontramos el nombre: ${names_2}`)
+```
+
+## `filter`
+
+Utilizamos el método `find` para devolver elementos filtrados de un array. Recorre cada uno de los elementos del array y devuelve el elemento si el mismo cumple con la condición del filtro que pasamos en la función que recibe como parámetro. `filter` devuelve un nuevo array.
+
+```js
+const names = ['Miguel', 'Ángel', 'Daniela']
+
+// cada elemento del array names va a llamarse name y se va a ejecutar lo que indica la función sobre cada uno
+names_3 = names.filter( name => {    
+    console.log(name)
+    if (name !== 'Ángel'){
+        return name
+    }
+})
+console.log(names_3)
+```
+
+## `concat`
+
+Utilizamos el método `concat` para concatenar dos array. El método `concat` devuelve un nuevo array.
+
+```js
+const names = ['Miguel', 'Ángel', 'Daniela']
+const names_1 = ['Braja', 'Santy', 'Maite']
+
+const names_2 = names.concat(names_1)
+console.log(names_2)
+```
+
+# spread operator
