@@ -371,8 +371,62 @@ document.body.append(button)
 
 # String literales
 
-
+Strings literals permite concatenar variables con strings interpretando el valor de la variable dentro del mismo string. Los strings literales los definimos dentro de backsticks que son las comillas \` \`.
 
 ```js
+// definimos variables con strings
+const background = 'grey'
+const color = 'red'
 
+const button = document.createElement('button')
+button.innerText = 'Click me'
+
+// podemos agregar estilos a los elementos html que creamos utilizando strings literals
+button.style = `background: ${background}; color: ${color}`
+```
+
+# Operador ternario
+
+Mediante el operador ternario podemos generar un condicional en una sola línea. La sintaxis es `condition ? do true : do false`
+
+```js
+const background = 'grey'
+const color = 'red'
+const is_authorized = true
+
+const button = document.createElement('button')
+button.innerText = 'Click me'
+
+// si is_authorized es true devuelve el valor de background, si es false devuelve un string blue
+button.style = `background: ${is_authorized ? background : 'blue'}; color: ${color}`
+```
+
+# Métodos de array
+
+## `forEach`
+
+El método `forEach` espera como parámetro una función. Ejecuta sobre cada uno de los elementos del array lo que la función indica. `forEach` solo recorre el arreglo y ejecuta lo que indica la función que recibe como parámetro.
+
+```js
+const names = ['Miguel', 'Ángel', 'Daniela']
+
+// cada elemento del array names va a llamarse name y se va a ejecutar lo que indica la función sobre cada uno
+names.forEach( name => {
+    console.log(name)
+})
+```
+
+## `map`
+
+El método `map`  espera como parámetro una función. Ejecuta sobre cada uno de los elementos del array lo que la función indica. El método `map` no solo recorre el array y ejecuta lo que indica la función que recibe como parámetro sino que además devuelve un nuevo arreglo.
+
+```js
+const names = ['Miguel', 'Ángel', 'Daniela']
+
+// cada elemento del array names va a llamarse name y se va a ejecutar lo que indica la función sobre cada uno
+names_1 = names.map( name => {    
+    console.log(name)
+    return `${name}_1`
+})
+console.log(names_1)
 ```
