@@ -265,3 +265,114 @@ document.body.innerHTML = print_info(user) + print_info_2(user) + print_info_3(u
 ```
 
 # Funciones anónimas
+
+Podemos declarar una función de varias formas y en varios contextosEn javascript no es necesario que una función tenga un nombre.
+
+```js
+// forma común con nombre
+function start(){
+    return 'starting...'
+}
+console.log(start())
+
+// declaramos la función dentro de la función console.log(). Para ejecutar la misma requiere el segundo par de paréntesis
+console.log(function start_2(){
+    return 'starting...'
+})()
+
+// no es necesario indicar el nombre de la función si la utilizamos al momento de declararla
+console.log(function (){
+    return 'starting...'
+})()
+```
+
+El uso más común de estas funciones es en los manejadores de eventos.
+
+```js
+// creamos la función con nombre y la pasamos al método addEventListener
+const button = document.createElement('button')
+button.innerText = 'Click me'
+function handleClick(){
+    console.log('clicked')
+}
+button.addEventListener('click', handleClick)
+document.body.append(button)
+
+// pasamos la función anónima al método addEventListener
+const button_2 = document.createElement('button')
+button_2.innerText = 'Click me 2'
+button_2.addEventListener('click', function (){
+    console.log('clicked 2')
+})
+document.body.append(button_2)
+```
+
+# Funciones flecha
+
+Otra forma de crear funciones es mediante las funciones flecha. 
+
+```js
+// forma común de declarar una función
+function add(x, y){
+    return x + y
+}
+
+// forma de declarar una función flecha con nombre
+const add = (x, y) => {
+    return x + y
+}
+
+// si el return está en la misma línea de la declaración de la función no requiere el return ni las llaves
+const add_2 = (x, y) =>  x + y
+
+// si lo que devolvemos es un objeto, tenemos en encerrarlo entre paréntesis
+const show_object = () => ({name:'Miguel', age:39})
+
+// pasamos la función flecha anónima al método addEventListener
+const button = document.createElement('button')
+button.innerText = 'Click me'
+button.addEventListener('click', () => 'clicked')
+document.body.append(button)
+```
+
+# Condicionales con return
+
+Podemos utilizar el return de una función en un condicional para establecer lo que hace la misma.
+
+```js
+// forma normal de trabajar con condicionales
+const button = document.createElement('button')
+button.innerText = 'Click me'
+const is_authorized = true
+button.addEventListener('click', () => {
+    // forma común de trabajar con condicionales
+    if (is_authorized) {
+        console.log('Autorizado')
+    }else {
+        console.log('No autorizado')
+    }
+})
+document.body.append(button)
+
+// forma altenativa de trabajar con condicionales
+const button = document.createElement('button')
+button.innerText = 'Click me'
+const is_authorized = true
+button.addEventListener('click', () => {
+    // como alternativa utilizamos return para salir de la función si es true. Si es false pasa de largo el if y ejecuta el segundo console.log
+    if (is_authorized) {
+        return console.log('Autorizado')
+    }
+    console.log('No autorizado')
+    
+})
+document.body.append(button)
+```
+
+# String literales
+
+
+
+```js
+
+```
