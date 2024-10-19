@@ -276,14 +276,14 @@ function start(){
 console.log(start())
 
 // declaramos la función dentro de la función console.log(). Para ejecutar la misma requiere el segundo par de paréntesis
-console.log(function start_2(){
+console.log((function start_2(){
     return 'starting...'
-})()
+})())
 
 // no es necesario indicar el nombre de la función si la utilizamos al momento de declararla
-console.log(function (){
+console.log((function () {
     return 'starting...'
-})()
+})())
 ```
 
 El uso más común de estas funciones es en los manejadores de eventos.
@@ -318,7 +318,7 @@ function add(x, y){
 }
 
 // forma de declarar una función flecha con nombre
-const add = (x, y) => {
+const add_1 = (x, y) => {
     return x + y
 }
 
@@ -331,7 +331,7 @@ const show_object = () => ({name:'Miguel', age:39})
 // pasamos la función flecha anónima al método addEventListener
 const button = document.createElement('button')
 button.innerText = 'Click me'
-button.addEventListener('click', () => 'clicked')
+button.addEventListener('click', () => console.log({name:'Miguel', age:39}))
 document.body.append(button)
 ```
 
@@ -340,10 +340,12 @@ document.body.append(button)
 Podemos utilizar el return de una función en un condicional para establecer lo que hace la misma.
 
 ```js
+const is_authorized = false
+
 // forma normal de trabajar con condicionales
 const button = document.createElement('button')
 button.innerText = 'Click me'
-const is_authorized = true
+
 button.addEventListener('click', () => {
     // forma común de trabajar con condicionales
     if (is_authorized) {
@@ -355,10 +357,9 @@ button.addEventListener('click', () => {
 document.body.append(button)
 
 // forma altenativa de trabajar con condicionales
-const button = document.createElement('button')
-button.innerText = 'Click me'
-const is_authorized = true
-button.addEventListener('click', () => {
+const button_1 = document.createElement('button')
+button_1.innerText = 'Click me'
+button_1.addEventListener('click', () => {
     // como alternativa utilizamos return para salir de la función si es true. Si es false pasa de largo el if y ejecuta el segundo console.log
     if (is_authorized) {
         return console.log('Autorizado')
@@ -366,7 +367,7 @@ button.addEventListener('click', () => {
     console.log('No autorizado')
     
 })
-document.body.append(button)
+document.body.append(button_1)
 ```
 
 # String literales
@@ -383,6 +384,7 @@ button.innerText = 'Click me'
 
 // podemos agregar estilos a los elementos html que creamos utilizando strings literals
 button.style = `background: ${background}; color: ${color}`
+document.body.append(button)
 ```
 
 # Operador ternario
@@ -392,13 +394,14 @@ Mediante el operador ternario podemos generar un condicional en una sola línea.
 ```js
 const background = 'grey'
 const color = 'red'
-const is_authorized = true
+const is_authorized = false
 
 const button = document.createElement('button')
 button.innerText = 'Click me'
 
 // si is_authorized es true devuelve el valor de background, si es false devuelve un string blue
 button.style = `background: ${is_authorized ? background : 'blue'}; color: ${color}`
+document.body.append(button)
 ```
 
 # Métodos de array
@@ -478,3 +481,168 @@ console.log(names_2)
 ```
 
 # spread operator
+
+Otra forma de concatenar elementos de un array es mediante el spread operator. 
+
+```js
+const names = ['Miguel', 'Ángel', 'Daniela']
+const names_1 = ['Braja', 'Santy', 'Maite']
+
+console.log([...names, ...names_1])
+```
+
+Podemos usar el spread operator con objetos.
+
+```js
+const user = {
+    name: 'Miguel',
+    last_name: 'Quinteros'
+}
+const address = {
+    street: 'Avenida Siempre Viva 123',
+    city: 'Tucumán'
+}
+const user_info = {
+    ...user, ... address
+}
+
+console.log(user_info)
+```
+
+# EcmaScript modules
+
+Podemos dividir una aplicación de javascript en multiples archivos que se conocen como módulos. Desde estos módulos podemos exportar variables o funciones hacia otros archivos o módulos.
+
+Primero tenemos que configurar `index.html` para que reconozca nuestro archivo `index.js` como módulo.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
+    <title>javaScript for React</title>
+</head>
+<body>
+	<!-- mediante el atributo html type indicamos que index.js es un módulo -->
+    <script type="module" src="./index.js"></script>
+</body>
+</html>
+```
+
+Desde un mismo módulo podemos exportar más de una función. Podemos indicar o no una función por defecto. Si indicamos una función por defecto solo se exportará esa función aunque otras también tengan la palabra reservada export.
+
+`add_subtraction.js`
+
+```js
+// función por defecto que se exporta
+export default function add(x, y) {
+    return x + y
+}
+
+// para acceder a está función usamos notación de . como en los objetos o desestructuración
+export function subtraction(x, y){
+    return x - y
+}
+
+
+```
+
+Importando la función indicada por defecto.
+
+`index.js`
+
+```js
+// sin importar el nombre que indiquemos en el import, va a traer la función que declaramos por defecto
+import add_1 from './add_subtraction.js'
+import subtraction  from './add_subtraction.js'
+
+// en ambos casos realiza una suma
+console.log(add_1(30,7))
+console.log(subtraction(30,7))
+```
+
+En el caso de querer exportar más de una función en el mismo archivo.
+
+`add_subtraction.js`
+
+```js
+export function add(x, y) {
+    return x + y
+}
+
+export function subtraction(x, y){
+    return x - y
+}
+```
+
+El total de las funciones, aunque solo sea una, se exportan como si fueran atributos de un objeto. Si no indicamos una función por defecto podemos exportar varias y desestructurarlas.
+
+`index.js`
+
+```js
+// traemos ambas funciones renombrando la función subtraction como sub mediante la palabra reservada as
+import {add , subtraction as sub} from './add_subtraction.js'
+
+console.log(add(30,7))
+console.log(sub(30,7))
+```
+
+# optional chaining
+
+En ocasiones tratamos de acceder a valores de un objeto que puede que no existan. Podemos resolver esto con un condicional pero una manera mas sencilla de hacerlo es mediante optional chaining.
+
+```js
+const user = {
+    name: 'Miguel',
+    address: {
+        city: 'Tucumán'
+    }
+}
+console.log(user.address.city)
+console.log(user.location.city) // devuelve un error
+```
+
+Podemos resolverlo de dos formas.
+
+```js
+const user = {
+    name: 'Miguel',
+    address: {
+        city: 'Tucumán'
+    }
+}
+console.log(user.address.city)
+// console.log(user.location.city) // devuelve un error
+
+// forma normal de resolverlo. Si location no está definido no ingresa en el condicional
+if (user.location){
+    console.log(user.location.city)
+}
+
+// mediante optional chaining indicamos con ? cual es la variable que tiene que evaluar si existe
+console.log(user.location?.city) // devuelve undefined
+```
+
+En el caso de que el atributo del objeto exista.
+
+```js
+const user = {
+    name: 'Miguel',
+    address: {
+        city: 'Tucumán'
+    },
+    location: {
+        city: 'San Miguel de Tucumán'
+    }
+}
+console.log(user.address.city)
+console.log(user.location.city)
+
+if (user.location){
+    console.log(user.location.city)
+}
+
+console.log(user.location?.city) // devuelve undefined
+```
