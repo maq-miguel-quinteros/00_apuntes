@@ -646,3 +646,46 @@ if (user.location){
 
 console.log(user.location?.city) // devuelve undefined
 ```
+
+# async await 
+
+## `fetch()`
+
+Utilizamos `fetch()`. Es una biblioteca que pertenece al navegador. Mediante `fetch()` podemos traer datos de un API. `fetch()` devuelve una promesa. Este tipo de función es asincrónica, es decir, se realiza mediante se realizan otras operaciones del navegador. 
+
+```js
+const data = fetch('https://jsonplaceholder.typicode.com/posts')
+console.log(data) // devuelve una promesa
+```
+
+## `then()`
+
+Para trabajar con `fetch()` utilizamos la función, `then()`, que indica que hacer cuando la promesa se cumpla, es decir, cuando termine de traer los datos de la API. `then()` recibe como parámetro una función que indica que hacer con los datos que trae `fetch()`.
+
+```js
+// con then() indicamos que hacer cuando se cumple una promesa
+fetch('https://jsonplaceholder.typicode.com/posts')
+    .then(response => {
+        // convierte la respuesta al formato json
+        response.json()
+
+    // cuando termina de ejecutar el anterior then ejecuta el siguiente de abajo
+    }).then(data => {
+        // muestra los datos convertidos a json
+        console.log(data)
+    })
+```
+
+## async await
+
+```js
+// con async indicamos que load data es una función asíncrona
+async function load_data() {
+    // con await indicamos que 
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts')
+    await response.json()
+    console.log(response)
+}
+
+load_data()
+```
