@@ -226,3 +226,80 @@ const LayoutPublic = () => {
 }
 export default LayoutPublic
 ```
+
+# _Fetching_ con `Loader` y `useLoaderData`
+
+Para hacer el fetching mediante `Loader` y `useLoaderData` primero tenemos que generar y exportar una función que sea la encargada de hacer el fetching. Por convención llamamos a esta función `loaderElement`. La función la declaramos en el elemento que devuelve la página sobre la que vamos a cargar los datos. En el ejemplo lo hacemos sobre el elemento `Blog`.
+
+```javascriptreact
+const Blog = () => {
+    return 'Blog'
+}
+export default Blog
+
+export const loaderBlog = async () => {
+    const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+    const posts = await res.json()
+    
+    // retornamos en un objeto los posts. Al retornar {posts} es lo mismo que retornar {posts: posts}
+    return {posts}
+}
+```
+
+`index.jsx` dentro de `routers`
+
+```javascriptreact
+// otras importaciones
+import LayoutPublic  from './layouts/LayoutPublic'
+
+import Blog, { loaderBlog } from '../pages/Blog'
+
+export const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <LayoutPublic />,
+        errorElement: <NotFound />,
+        children: [
+            {
+                index: true,
+                element: <Home />,
+            },
+            {
+                path: '/about',
+                element: <About />,
+            },
+            {
+                path: '/blog',
+                element: <Blog />,
+                // configuramos el atributo loader para el path /blog y el elemento Blog
+                loader: loaderBlog
+            }
+        ]
+    },
+    
+])
+```
+
+`Blog.jsx` dentro de `pages`
+
+```javascriptreact
+// mediante el hook useLoaderData vamos a recuperar lo que devuelve la función que pasamos al atributo loader de la configuración del path
+import { useLoaderData } from 'react-router-dom'
+
+const Blog = () => {
+
+    // desestructuramos para recuperar los elementos del atributo posts que los pasamos como posts
+    const { posts } = useLoaderData()
+
+    return (
+        
+    )
+}
+export default Blog
+
+export const loaderBlog = async () => {
+    const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+    const posts = await res.json()
+    return {posts}
+}
+```
