@@ -78,13 +78,25 @@ Cuando tratamos de ingresar en una ruta que no está configurada o que no existe
 Dentro de la carpeta `pages` creamos un nuevo componente de react al que llamamos `NotFound.jsx`.
 
 ```javascriptreact
-import { useRouteError } from 'react-router-dom'
+// importamos los
+import { useRouteError, Link } from 'react-router-dom'
 
 export default NotFound = () => {
 
+    // hacemos a la variable error igual a lo que devuelve el hook useRouteError
     const error = useRouteError()
 
-    return 'Página no encontrada'
+    // la página que vamos a devolver en caso de error
+    return (
+        <div>
+            <h2>404</h2>
+            <p>Page not found</p>
+            <p>{ error.statusText || error.message }</p>
+
+            {/* Mediante Link podemos indicar un link con una ruta a la cual volver */ }
+            <Link to='/'>Volver a Home</Link>
+        </div>
+    )
 }
 ```
 
@@ -114,4 +126,103 @@ export const router = createBrowserRouter([
         errorElement: <NotFound />
     }
 ])
+```
+
+# Rutas anidadas
+
+Podemos tener una página _layout_, es decir, una página que sea el template base de todas las otras páginas, y de todas las rutas, podemos utilizar rutas anidadas para que cada una de las páginas, y sus rutas, se carguen en base a ese _layout_.
+
+Creamos una nueva carpeta en la carpeta `src`. Llamamos a esa carpeta `layouts`. Creamos un nuevo componente dentro de la carpeta que vamos a llamar, como ejemplo, `LayoutPublic.jsx`.
+
+```javascriptreact
+import { Outlet } from 'react-router-dom'
+
+const LayoutPublic = () => {
+    return (
+        <>
+            <nav>Navbar</nav>
+
+            {/* Mediante el componente Outlet indicamos que todo lo que figure en children, en el archivo de rutas, se va a renderizar en ese componente y a mostrarse en el espacio que ocupa ese elemento en la página que devuelve el componente LayoutPublic */}
+            <Outlet />
+            <footer>Footer</footer>
+        </>
+    )
+}
+export default LayoutPublic
+```
+
+`index.jsx` dentro de `routers`
+
+```javascriptreact
+// otras importaciones
+import NotFound from '../pages/NotFound'
+
+import LayoutPublic  from './layouts/LayoutPublic'
+
+export const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <LayoutPublic />,
+        // todos los elementos del array children van a compartir el errorElement
+        errorElement: <NotFound />,
+
+        // cuando accedamos a alguno de los path de los children, su element se va a renderizar en el componente Outlet dentro del elemento LayoutPublic
+        children: [
+            {
+                // path: '/',
+                // mediante index: true indicamos que el elemento home se corresponde con el path: '/' del objeto con ese path y con LayoutPublic como element
+                index: true,
+                element: <Home />,
+            },
+            {
+                path: '/about',
+                element: <About />,
+            },
+            {
+                path: '/blog',
+                element: <Blog />,
+            }
+        ]
+    },
+    
+])
+```
+
+# NavBar con `NavLink`
+
+Creamos una carpeta para los componentes de las páginas en la carpeta `src`. Nombramos a la carpeta `components`. Dentro de `components` creamos un nuevo componente para manejar la navbar que llamamos `NavBar.jsx`. Mediante el componente `NavLink`, que importamos de `react-router-dom`, configuramos el navbar de la página. `NavLink` tiene la ventaja de detectar cual es la ruta activa cuando estamos en alguna de ellas y le coloca la clase active a los estilos del link. Si la clase active no está creada en los estilos del proyecto no va a tener efecto. Si queremos tener clases personalizadas tenemos el atributo `isActive` del componente `NavLink` que podemos configurar para eso.
+
+```javascriptreact
+import { NavLink } from 'react-router-dom'
+
+export default function NavBar() {
+
+    return(
+        <nav>
+            <NavLink to='/'>Home</NavLink>
+            <NavLink to='/blog'>Blog</NavLink>
+            <NavLink to='/about'>About</NavLink>
+        </nav>
+    )
+}
+```
+
+`LayoutPublic.jsx` dentro de `layouts`
+
+```javascriptreact
+import { Outlet } from 'react-router-dom'
+
+// traemos el navbar al layout para que aparezca en todas las páginas de las rutas configuradas 
+import NavBar from '../components/NavBar'
+
+const LayoutPublic = () => {
+    return (
+        <>
+            <NavBar />
+            <Outlet />
+            <footer>Footer</footer>
+        </>
+    )
+}
+export default LayoutPublic
 ```
