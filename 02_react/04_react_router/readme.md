@@ -395,3 +395,39 @@ export const loaderPost = async({params}) => {
 }
 
 ```
+
+# Navegación
+
+Mediante el hook `useNavigation` podemos controlar las factores relacionados con la navegación. Esto quiere decir que podemos configurar el loading de nuestros componentes, es decir, mostrar un loading mientras se carga la página a la que estamos accediendo. Configuramos la navegación en el elemento `LayoutPublic` para que la mista se configure en todos los elementos del atributo `children` de este objeto. El hook useNavigation, en su atributo state, nos devuelve tres estados `idle | submitting | loading`. 
+
+```javascriptreact
+import { Outlet, useNavigation } from 'react-router-dom'
+import NavBar from '../components/NavBar'
+
+const LayoutPublic = () => {
+
+    const navigation = useNavigation()
+
+    return (
+        <>
+            <NavBar />
+            {/* cuando state tiene el valor loading va a mostrar el div con loading, si tiene cualquier otro estado no muestra nada  */}
+            {navigation.state === 'loading' && (
+                <div>Loading...</div>
+            )}
+            {/* cuando termine de cargar la página, es decir, cuando termine el loading y state pase a idle, se va a mostrar lo que representa Outlet, que es el contenido de alguna de las páginas configuradas en las rutas */}
+            <Outlet />
+            <footer>Footer</footer>
+        </>
+    )
+}
+export default LayoutPublic
+```
+
+# Error en los datos solicitados
+
+Cuando pasamos datos erroneos a una ruta por parámetros necesitamos indicar cual va a ser la respuesta que nuestra app va a mostrar para indicar ese error. En este caso no es un error del path al que se accede, el path es correcto pero el dato que pasamos como parámetro no lo es.
+
+```javascriptreact
+
+```
