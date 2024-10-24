@@ -426,8 +426,81 @@ export default LayoutPublic
 
 # Error en los datos solicitados
 
-Cuando pasamos datos erroneos a una ruta por parámetros necesitamos indicar cual va a ser la respuesta que nuestra app va a mostrar para indicar ese error. En este caso no es un error del path al que se accede, el path es correcto pero el dato que pasamos como parámetro no lo es.
+Cuando pasamos datos erroneos a una ruta por parámetros necesitamos indicar cual va a ser la respuesta que nuestra app va a mostrar para indicar ese error. En este caso no es un error del path al que se accede, el path es correcto pero el dato que pasamos como parámetro no lo es. Editamos la función `loaderPost`, para indicar que hacer en caso de que el parámetro que recibimos no sea correcto o no exista.
 
 ```javascriptreact
+import { useLoaderData } from 'react-router-dom'
 
+export default function Post() {
+
+    const { post } = useLoaderData()
+
+    return (
+        <>
+            <h2>{post.title}</h2>
+            <p>{post.body}</p>
+        </>
+    )
+}
+
+export const loaderPost = async({params}) => {
+    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`)
+
+    // el atributo ok de la respuesta devuelve false cuando falla la llamada que hacemos
+    // throw es similar a return pero del lado de la captura de errores, es decir, cando hacemos el catch. Devolvemos como error un objeto
+    if (!res.ok) throw ({
+        status: res.status,
+        statusText: 'No encontrado'
+    })
+    
+    const post = await res.json()
+    return {post}
+}
+
+```
+
+# Mantener el layout al configurar el error de dato no encontrado
+
+Para poder mantener el layout (la plantilla por defecto) cuando tenemos un error de dato no encontrado, es decir, cuando lo que falla no es la ruta sino el parámetro que pasamos para traer datos tenemos que modificar la configuración del enrutador. Como children de layout generamos un objeto con el errorElement y este objeto va a tener como children el array con todas las rutas.
+
+```javascriptreact
+// otras importaciones
+import Post, { loaderPost } from '../pages/Post'
+
+export const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <LayoutPublic />,
+        errorElement: <NotFound />,
+        // children donde tenemos todas las rutas que comparten el layout
+        children: [
+            {
+                // este error element se comparte con todos los children que tiene este objeto, que es children a su vez del objeto con el element layout
+                errorElement: <NotFound />,
+                children: [
+                    {
+                        index: true,
+                        element: <Home />,
+                    },
+                    {
+                        path: '/about',
+                        element: <About />,
+                    },
+                    {
+                        path: '/blog',
+                        element: <Blog />,                
+                        loader: loaderBlog
+                    },
+                    {
+                        path: '/blog/:id',
+                        element: <Post />,                
+                        loader: loaderPost
+                    }
+                ]
+            },
+            
+        ]
+    },
+    
+])
 ```
