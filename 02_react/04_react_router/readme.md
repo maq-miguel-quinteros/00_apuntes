@@ -284,7 +284,7 @@ export const router = createBrowserRouter([
 
 ```javascriptreact
 // mediante el hook useLoaderData vamos a recuperar lo que devuelve la función que pasamos al atributo loader de la configuración del path
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData, Link } from 'react-router-dom'
 
 const Blog = () => {
 
@@ -292,7 +292,17 @@ const Blog = () => {
     const { posts } = useLoaderData()
 
     return (
-        
+        <ul>
+            {posts.length > 0 ? (
+                posts.map(post => {
+                    <li key={post.id}>
+                        <Link to={`/blog/${post.id}`}>{post.title}</Link>
+                    </li>                    
+                }
+                )) : (
+                    <li>No post found</li>
+                )}
+        </ul>
     )
 }
 export default Blog
@@ -302,4 +312,86 @@ export const loaderBlog = async () => {
     const posts = await res.json()
     return {posts}
 }
+```
+
+# Rutas con parámetros
+
+Para poder realizar un llamado al path `/blog/:id`, con el `id` siendo el id del post que queremos consultar, creamos un nuevo componente para la página que va a mostrar el post dentro de la carpeta `pages`. El componente se va a llamar `Post.jsx`
+
+```javascriptreact
+export default function Post() {
+
+    return 'Post'
+}
+
+// en params vamos a recibir los parámetros que llegan desde la petición HTML, en el ejemplo el parámetro id del path /blog/:id
+export const loaderPost = async({params}) => {
+    // indicamos el número de id del post que queremos recuperar
+    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`)
+    const post = await res.json()
+    return {post}
+}
+```
+
+`index.jsx` dentro de `routers`
+
+```javascriptreact
+// otras importaciones
+import Blog, { loaderBlog } from '../pages/Blog'
+
+import Post, { loaderPost } from '../pages/Post'
+
+export const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <LayoutPublic />,
+        errorElement: <NotFound />,
+        children: [
+            {
+                index: true,
+                element: <Home />,
+            },
+            {
+                path: '/about',
+                element: <About />,
+            },
+            {
+                path: '/blog',
+                element: <Blog />,                
+                loader: loaderBlog
+            },
+            {
+                path: '/blog/:id',
+                element: <Post />,                
+                loader: loaderPost
+            }
+        ]
+    },
+    
+])
+```
+
+`Post.jsx` dentro de `pages`
+
+```javascriptreact
+import { useLoaderData } from 'react-router-dom'
+
+export default function Post() {
+
+    const { post } = useLoaderData()
+
+    return (
+        <>
+            <h2>{post.title}</h2>
+            <p>{post.body}</p>
+        </>
+    )
+}
+
+export const loaderPost = async({params}) => {
+    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`)
+    const post = await res.json()
+    return {post}
+}
+
 ```
