@@ -1,4 +1,8 @@
-# Instalación React Router v6.4
+# React Router 6.4: Mejoras y novedades en la gestión de rutas de tus aplicaciones de React
+
+Video: [react_router_6.4](https://www.youtube.com/watch?v=byW9ULUScHI)
+
+## Instalación React Router v6.4
 
 Hacemos la instalación mediante el comando.
 
@@ -12,13 +16,13 @@ En caso de existir una versión 7 de react-router instalamos la versión 6.4 med
 npm install react-router-dom@6.4
 ```
 
-# Agregamos el enrutador _router_
+## Agregamos el enrutador _router_
 
-## Carpeta `pages` (páginas)
+### Carpeta `pages` (páginas)
 
 Vamos a guardar las páginas de nuestro proyecto en una carpeta dentro de la carpeta `src`. Nombramos a esta carpeta `pages`. Dentro de esta carpeta vamos a tener componentes de react para cada una de las páginas con nombres como `Home.jsx`, `About.jsx` o `Blog.jsx`. 
 
-## Carpeta `routers` (enrutadores)
+### Carpeta `routers` (enrutadores)
 
 Vamos a guardar el enrutador en una carpeta dentro de la carpeta `src`. Vamos a nombrar a esta carpeta `routers`. Dentro de la carpeta `routers` creamos un nuevo archivo llamado `index.jsx`. Llamamos al archivo `index.jsx` para que, cuando traigamos su contenido desde otro archivo, no tengamos la necesidad de indicar el nombre del mismo.
 
@@ -51,7 +55,7 @@ export const router = createBrowserRouter([
 ])
 ```
 
-## Configuración de `main.jsx`
+### Configuración de `main.jsx`
 
 Editamos el archivo `main.jsx` dentro de la carpeta `src`. Configuramos el enrutador que creamos indicando que nuestra app se va a configurar en base a este archivo. Para hacer esto vamos a envolver nuestra app mediante un proveedor (`provider`). Descartamos de esta manera el uso del archivo `App.jsx` que podemos borrar.
 
@@ -71,7 +75,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 )
 ```
 
-# Hook `useRouterError`
+## Hook `useRouterError`
 
 Cuando tratamos de ingresar en una ruta que no está configurada o que no existe, al trabajar con `createBrowserRouter` nos va a devolver una página de error por defecto de esta nueva API. Podemos controlar la página que se muestra cuando existe un error en la ruta a la que se accede, así como también los datos que se devuelven del error. para hacerlo utilizamos el hook `useRouterError`.
 
@@ -128,7 +132,7 @@ export const router = createBrowserRouter([
 ])
 ```
 
-# Rutas anidadas
+## Rutas anidadas
 
 Podemos tener una página _layout_, es decir, una página que sea el template base de todas las otras páginas, y de todas las rutas, podemos utilizar rutas anidadas para que cada una de las páginas, y sus rutas, se carguen en base a ese _layout_.
 
@@ -188,7 +192,7 @@ export const router = createBrowserRouter([
 ])
 ```
 
-# NavBar con `NavLink`
+## NavBar con `NavLink`
 
 Creamos una carpeta para los componentes de las páginas en la carpeta `src`. Nombramos a la carpeta `components`. Dentro de `components` creamos un nuevo componente para manejar la navbar que llamamos `NavBar.jsx`. Mediante el componente `NavLink`, que importamos de `react-router-dom`, configuramos el navbar de la página. `NavLink` tiene la ventaja de detectar cual es la ruta activa cuando estamos en alguna de ellas y le coloca la clase active a los estilos del link. Si la clase active no está creada en los estilos del proyecto no va a tener efecto. Si queremos tener clases personalizadas tenemos el atributo `isActive` del componente `NavLink` que podemos configurar para eso.
 
@@ -227,7 +231,7 @@ const LayoutPublic = () => {
 export default LayoutPublic
 ```
 
-# _Fetching_ con `Loader` y `useLoaderData`
+## _Fetching_ con `Loader` y `useLoaderData`
 
 Para hacer el fetching mediante `Loader` y `useLoaderData` primero tenemos que generar y exportar una función que sea la encargada de hacer el fetching. Por convención llamamos a esta función `loaderElement`. La función la declaramos en el elemento que devuelve la página sobre la que vamos a cargar los datos. En el ejemplo lo hacemos sobre el elemento `Blog`.
 
@@ -314,7 +318,7 @@ export const loaderBlog = async () => {
 }
 ```
 
-# Rutas con parámetros
+## Rutas con parámetros
 
 Para poder realizar un llamado al path `/blog/:id`, con el `id` siendo el id del post que queremos consultar, creamos un nuevo componente para la página que va a mostrar el post dentro de la carpeta `pages`. El componente se va a llamar `Post.jsx`
 
@@ -396,7 +400,7 @@ export const loaderPost = async({params}) => {
 
 ```
 
-# Navegación
+## Navegación
 
 Mediante el hook `useNavigation` podemos controlar las factores relacionados con la navegación. Esto quiere decir que podemos configurar el loading de nuestros componentes, es decir, mostrar un loading mientras se carga la página a la que estamos accediendo. Configuramos la navegación en el elemento `LayoutPublic` para que la mista se configure en todos los elementos del atributo `children` de este objeto. El hook useNavigation, en su atributo state, nos devuelve tres estados `idle | submitting | loading`. 
 
@@ -424,7 +428,7 @@ const LayoutPublic = () => {
 export default LayoutPublic
 ```
 
-# Error en los datos solicitados
+## Error en los datos solicitados
 
 Cuando pasamos datos erroneos a una ruta por parámetros necesitamos indicar cual va a ser la respuesta que nuestra app va a mostrar para indicar ese error. En este caso no es un error del path al que se accede, el path es correcto pero el dato que pasamos como parámetro no lo es. Editamos la función `loaderPost`, para indicar que hacer en caso de que el parámetro que recibimos no sea correcto o no exista.
 
@@ -459,7 +463,7 @@ export const loaderPost = async({params}) => {
 
 ```
 
-# Mantener el layout al configurar el error de dato no encontrado
+## Mantener el layout al configurar el error de dato no encontrado
 
 Para poder mantener el layout (la plantilla por defecto) cuando tenemos un error de dato no encontrado, es decir, cuando lo que falla no es la ruta sino el parámetro que pasamos para traer datos tenemos que modificar la configuración del enrutador. Como children de layout generamos un objeto con el errorElement y este objeto va a tener como children el array con todas las rutas.
 
@@ -504,3 +508,7 @@ export const router = createBrowserRouter([
     
 ])
 ```
+
+# DOMINA React Router DOM v6 y crea un SISTEMA DE RUTAS para tus PROYECTOS con REACT🚀🌐
+
+Video: [ver](https://www.youtube.com/watch?v=-fQsGgiEwaE)

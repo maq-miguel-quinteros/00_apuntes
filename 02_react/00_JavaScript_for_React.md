@@ -1,3 +1,5 @@
+Video: [JavaScript_for_react](https://www.youtube.com/watch?v=lVqHiTCIRQg)
+
 # Configuración del entorno
 
 Generamos 3 archivos para trabajar llamados `index.html`, `index.css` y `index.js`.
