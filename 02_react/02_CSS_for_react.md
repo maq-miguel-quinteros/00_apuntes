@@ -1,10 +1,13 @@
 # Cómo instalar Tailwind Css en un proyecto de Vite Js con React | Pedro Lara
 
 
+
 Video: [Instalar](https://www.youtube.com/watch?v=tuBirltzAAk)
 
 
+
 ## Instalación
+
 
 
 ```shellscript
@@ -17,7 +20,9 @@ npx tailwindcss init -p
 ## Configuración
 
 
+
 En el archivo `tailwind.config.js` configuramos las rutas donde vamos a utilizar tailwindcss
+
 
 ```js
 /** @type {import('tailwindcss').Config} */
@@ -35,6 +40,7 @@ export default {
 ```
 
 En `index.css` dentro de la carpeta `src` agregamos las directivas de taildwindcss
+
 
 ```tailwindcss
 /* configuramos las directivas */
@@ -54,11 +60,15 @@ En `index.css` dentro de la carpeta `src` agregamos las directivas de taildwindc
 
 # React y TailwindCSS - Dark Theme, cambio de tema
 
+
 Video: [react y tailwind](https://www.youtube.com/watch?v=_8FTL-xNz9Q)
+
 
 Podemos indicar que la web que creamos con los estilos de taildwindcss mantenga el modo dark o light los estilos del sistema donde estamos (Windows, android) y también podemos crear un botón para el cambio del estilo de la página.
 
+
 Agregamos el darkMode a la configuración de tailwindcss, en el archivo `tailwind.config.js` y le indicamos que lo vamos a manejar mediante clases.
+
 
 ```js
 /** @type {import('tailwindcss').Config} */
@@ -70,7 +80,7 @@ export default {
 	/* agregamos el modo oscuro a la configuración del proyecto */
 	darkMode: 'class',
 	theme: {
-	extend: {},
+		extend: {},
 	},
 	plugins: [],
 }
@@ -78,19 +88,20 @@ export default {
 
 En el componente principal de nuestra app, en general el componente `App.jsx`, o en el botón que va a controlar el cambio de modo, configuramos el modo oscuro.
 
+
 ```javascriptreact
 import { useEffect, useState } from "react";
 
 export default function Header() {
 
     const [theme, setTheme] = useState(() =>{
-		// window.matchMedia('(prefers-color-scheme: dark)').matches devuelve true si el esquema de colore del SO es dark
+    	// window.matchMedia('(prefers-color-scheme: dark)').matches devuelve true si el esquema de colore del SO es dark
         if (window.matchMedia('(prefers-color-scheme: dark)').matches){
             return 'dark'
-		} else return 'light'
+    	} else return 'light'
     })
 
-	// al cambiar el valor de la variable theme agrega o quita la clase dark de body según corresponda
+    // al cambiar el valor de la variable theme agrega o quita la clase dark de body según corresponda
     useEffect(()=> {
         if(theme === 'dark'){
             document.querySelector('body').classList.add('dark')
@@ -99,25 +110,62 @@ export default function Header() {
         }
     }, [theme])
 
-	// al hacer click en el botón cambia la variable theme a light o dark
+    // al hacer click en el botón cambia la variable theme a light o dark
     const handleChangeTheme = () => {
         setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light')
     }
 
     return(
-		<>
-			{/* al agregarse la clase dark al body los estilos indicados como dark:style se van a aplicar */}	
-			<div className="h-screen flex justify-center items-center text-4xl				
-							dark:bg-neutral-900">
-			
-				<button className="rounded px-4 py-2
-								bg-slate-200 hover:bg-slate-400
-								dark:bg-slate-950 dark:hover:bg-slate900 dark:text-white"
+    	<>
+    		{/* al agregarse la clase dark al body los estilos indicados como dark:style se van a aplicar */}
+    		<div className="h-screen flex justify-center items-center text-4xl
+    						dark:bg-neutral-900">
+
+    			<button className="rounded px-4 py-2
+    							bg-slate-200 hover:bg-slate-400
+    							dark:bg-slate-950 dark:hover:bg-slate900 dark:text-white"
                 onClick={handleChangeTheme}>Change Theme
-				</button>
-			
-			</div>
-		</>
+    			</button>
+
+    		</div>
+    	</>
+    )
+
+}
+
+```
+
+# Modo dark reconociendo el tema del sistema
+
+
+```javascriptreact
+import { useEffect, useState } from "react"
+import HeaderLeft from "./pages/HeaderLeft"
+import Home from "./pages/Home"
+
+function App() {
+// window.matchMedia... devuelve true si el tema del sistema (windows, android) es dark
+	const [darkMode, setDarkMode] = useState(window.matchMedia('(prefers-color-scheme: dark)').matches)
+
+	useEffect(()=>{
+// cambia el tema general de la página a dark si darkMode=true
+		document.documentElement.classList.toggle('dark', darkMode)
+	}, [darkMode])
+
+	const toggleDarkMode = () => {
+		setDarkMode(prevMode => !prevMode)
+	}
+
+	return (
+
+		<div className={`main-h-screen w-full flex flex-col sm:flex-row subpixel-antialiased ${darkMode?"bg-zinc-950":"bg-zinc-50"}`}>
+		{/* dentro del componente HeaderLeft encontramos el botón que cambia el modo */}
+			<HeaderLeft darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+			<Home />
+		</div>
 	)
 }
+
+export default App
+
 ```
